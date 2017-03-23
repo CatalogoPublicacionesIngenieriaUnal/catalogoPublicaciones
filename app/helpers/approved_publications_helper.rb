@@ -1,0 +1,2 @@
+module ApprovedPublicationsHelper
+end

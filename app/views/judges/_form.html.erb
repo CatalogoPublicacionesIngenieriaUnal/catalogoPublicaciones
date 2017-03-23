@@ -1,0 +1,57 @@
+<%= form_for(judge) do |f| %>
+  <% if judge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(judge.errors.count, "error") %> prohibited this judge from being saved:</h2>
+
+      <ul>
+      <% judge.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user %>
+    <%= f.text_field :user %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.text_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :created_at %>
+    <%= f.date_select :created_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :finish_at %>
+    <%= f.date_select :finish_at %>
+  </div>
+
+  <div class="field">
+    <%= f.label :telephone %>
+    <%= f.number_field :telephone %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

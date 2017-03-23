@@ -1,0 +1,2 @@
+module ProfessorPublicationsHelper
+end

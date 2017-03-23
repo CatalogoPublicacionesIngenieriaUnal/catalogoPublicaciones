@@ -1,0 +1,2 @@
+class ProfessorApplicationRequest < ApplicationRecord
+end

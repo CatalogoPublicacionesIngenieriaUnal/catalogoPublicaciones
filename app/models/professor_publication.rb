@@ -1,0 +1,2 @@
+class ProfessorPublication < ApplicationRecord
+end

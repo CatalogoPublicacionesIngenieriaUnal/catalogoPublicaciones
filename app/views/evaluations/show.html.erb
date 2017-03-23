@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Concept:</strong>
+  <%= @evaluation.concept %>
+</p>
+
+<p>
+  <strong>Justification:</strong>
+  <%= @evaluation.justification %>
+</p>
+
+<p>
+  <strong>Assigned at:</strong>
+  <%= @evaluation.assigned_at %>
+</p>
+
+<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
+<%= link_to 'Back', evaluations_path %>

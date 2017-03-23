@@ -1,0 +1,2 @@
+module ProfessorApplicationRequestsHelper
+end

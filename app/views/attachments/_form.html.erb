@@ -1,10 +1,10 @@
-<%= form_for(archive) do |f| %>
-  <% if archive.errors.any? %>
+<%= form_for(attachment) do |f| %>
+  <% if attachment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(archive.errors.count, "error") %> prohibited this archive from being saved:</h2>
+      <h2><%= pluralize(attachment.errors.count, "error") %> prohibited this attachment from being saved:</h2>
 
       <ul>
-      <% archive.errors.full_messages.each do |message| %>
+      <% attachment.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :url %>
-    <%= f.text_field :url %>
+    <%= f.label :url, %>
+    <%= f.text_field :url, %>
   </div>
 
   <div class="field">

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :archives
+  resources :attachments
   resources :professor_publications
   resources :professor_application_requests
   resources :approved_publications

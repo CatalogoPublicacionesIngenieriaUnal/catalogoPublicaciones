@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Application Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @application_requests.each do |application_request| %>
+      <tr>
+        <td><%= application_request.url %></td>
+        <td><%= application_request.created_at %></td>
+        <td><%= application_request.updated_at %></td>
+        <td><%= link_to 'Show', application_request %></td>
+        <td><%= link_to 'Edit', edit_application_request_path(application_request) %></td>
+        <td><%= link_to 'Destroy', application_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Application Request', new_application_request_path %>

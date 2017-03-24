@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Professor Publications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @professor_publications.each do |professor_publication| %>
+      <tr>
+        <td><%= link_to 'Show', professor_publication %></td>
+        <td><%= link_to 'Edit', edit_professor_publication_path(professor_publication) %></td>
+        <td><%= link_to 'Destroy', professor_publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Professor Publication', new_professor_publication_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Resolution:</strong>
+  <%= @approved_publication.resolution %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @approved_publication.stock %>
+</p>
+
+<p>
+  <strong>Stock at store:</strong>
+  <%= @approved_publication.stock_at_store %>
+</p>
+
+<p>
+  <strong>Stock at library:</strong>
+  <%= @approved_publication.stock_at_library %>
+</p>
+
+<%= link_to 'Edit', edit_approved_publication_path(@approved_publication) %> |
+<%= link_to 'Back', approved_publications_path %>

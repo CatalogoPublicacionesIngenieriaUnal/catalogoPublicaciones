@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @application_request.url %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @application_request.created_at %>
+</p>
+
+<p>
+  <strong>Updated at:</strong>
+  <%= @application_request.updated_at %>
+</p>
+
+<%= link_to 'Edit', edit_application_request_path(@application_request) %> |
+<%= link_to 'Back', application_requests_path %>

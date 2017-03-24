@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Professor:</strong>
+  <%= @model.Professor %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @model.user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @model.name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @model.lastname %>
+</p>
+
+<p>
+  <strong>Departament:</strong>
+  <%= @model.departament %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @model.email %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @model.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_model_path(@model) %> |
+<%= link_to 'Back', models_path %>

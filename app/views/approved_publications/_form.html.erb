@@ -1,0 +1,37 @@
+<%= form_for(approved_publication) do |f| %>
+  <% if approved_publication.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(approved_publication.errors.count, "error") %> prohibited this approved_publication from being saved:</h2>
+
+      <ul>
+      <% approved_publication.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :resolution %>
+    <%= f.text_field :resolution %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stock %>
+    <%= f.number_field :stock %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stock_at_store %>
+    <%= f.text_field :stock_at_store %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stock_at_library %>
+    <%= f.text_field :stock_at_library %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

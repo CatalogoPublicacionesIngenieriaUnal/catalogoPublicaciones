@@ -1,4 +1,4 @@
 class Attachment < ApplicationRecord
 
-  validates: :url, :type, presence: true
+  validates :url, :type, presence: true
 end

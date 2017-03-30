@@ -5,6 +5,7 @@ class CreateApprovedPublications < ActiveRecord::Migration[5.0]
       t.integer :stock
       t.integer :stock_at_store
       t.integer :stock_at_library
+      t.belongs_to :publication, foreign_key: true
 
       t.timestamps
     end

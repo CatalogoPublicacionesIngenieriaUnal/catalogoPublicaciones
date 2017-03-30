@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :keywords
   resources :attachments
   resources :professor_publications
   resources :professor_application_requests

@@ -6,4 +6,5 @@ class ApplicationRequest < ApplicationRecord
   belongs_to :state
   
   validates :url, presence: true
+
 end

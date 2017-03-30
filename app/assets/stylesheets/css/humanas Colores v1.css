@@ -1,0 +1,868 @@
+/*
+/*
+   CSS humanas 
+   Modificado por Diego F. GÃ³mez y Pedro J Rodriguez
+   Enero de 2012
+   Correo-e: dfgomeza@gmail.com 
+   Modificado en Agosto de 2014 por Juan Mario Eduardo Loaiza y Sergio Mancera.   
+   jeloaizam@unal.edu.co
+   	font-size:12px; 
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+*/
+
+html { 
+ height: 100%; 
+ }
+
+
+/* Modificado 24/09/2014*/
+body{
+ font-family:Arial, Helvetica, sans-serif;overflow:scroll;
+}
+
+/*a{color:#7F7F7F; text-decoration: none;}
+a:hover{text-decoration:underline;}
+a img{border:none}*/
+
+h1, h2, h3, h4, h5, h6{
+	color:#0071A8;
+	font-weight:normal;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-stretch:expanded;
+}
+
+div {
+	display:block;
+}
+
+.mainHumanas{
+	float:left;
+	margin:0;
+	margin-top:-10px;
+	width: 100%;
+	height: 100%;
+	min-height: 100%;
+	border:#000 solid 0px;
+	}
+
+/* Menú horizontal */	
+ #hor_menu {
+ float:left; 
+ }
+/*Yitulos del menu de la pag facultad*/
+.titulosfacultad
+{
+	font-size:15px;
+}
+/* VIEW */
+
+
+/* Banderola */ 
+ #banner, #bitacora_banner{
+   float:left;
+   position:relative;
+   height:175px;
+   width:950px; 
+ }
+ #banner_bienvenida{
+   float:left;
+   position:relative;
+   height:200px;
+   width:950px; 
+ }
+
+ #banner_full_width{
+   float:left;
+   position:relative;
+   height:210px;
+   width:950px; 
+ }
+
+ #banner_pregrado{
+   float:left;
+   position:relative;
+   height:175px;
+   width:950px; 	
+ }
+   
+ /** HUMANAS_7 se modifico el width y el height*/
+ #site_name, #site_name_s1{
+   width:538px;
+   height:44px;
+   padding:2px 5px;
+   position:absolute;
+   margin-top:157px;
+   z-index:4; 
+   background: #fff;
+   background: transparent url(images/humanas/bg_2.png) repeat left top;
+ }
+ /** HUMANAS_7 se agrego un padding-top*/
+ #site_name_text, #site_name_text_sl{
+     padding-top: 10px;
+     font-size:30px;
+     color:#444444;
+     text-align:left;
+     z-index:4; 
+ }
+  
+  #slides{
+  float:left;
+  width:inherit;
+  height:inherit;
+  border:0;
+  z-index:4;
+ }
+	 
+/* HUMANAS_7 se modifico el min-height*/
+/* Primer bloque página principal */
+ #index_box_a{
+ position:relative; 
+ float:left;
+ min-height:310px;
+ width:950px;
+ }
+ 
+ #index_box_aa, #index_box_ab, #index_box_ac, #index_box_ad{
+ position:relative;
+ float:left;
+ height:inherit;
+ border-left:0;
+ border-right: 2px solid #C9C9C9;
+ border-bottom: 1px solid #C9C9C9;
+ width:236px;
+ }
+ /* Cuadros pagina editorial*/
+  #editorial_index_box_naa, #editorial_index_box_nab{
+ position:relative;
+ float:left;
+ height:inherit;
+ border-left:0;
+ border-right: 2px solid #C9C9C9;
+ border-bottom: 1px solid #C9C9C9;
+ width:315px;
+ }
+ #editorial_index_box_nac{
+ position:relative;
+ float:right;
+ height:inherit;
+ border-left:0;
+ border-right: 2px solid #C9C9C9;
+ border-bottom: 1px solid #C9C9C9;
+ width:314px;
+ }
+ 
+  #editorial_index_box_title1,#editorial_index_box_title2,#editorial_index_box_title3{
+ 
+position:relative;
+ float:left;
+ width:inherit;
+ padding:16px 0;
+ margin:0;
+
+ color:#FFF;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ /* font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;---*/
+ font-size: 24px;
+ border-left:0;
+ border-bottom: 3px solid #C9C9C9;
+ border-right: 1px solid #C9C9C9;
+
+	 
+}
+ #editorial_index_box_title1{
+
+ background-color:#0198C3;
+
+	 
+}
+#editorial_index_box_title2
+ {
+
+ background-color:#0175B0;
+ 
+}
+#editorial_index_box_title3
+ {
+	
+ background-color:#00658F;
+ 
+	 
+}
+ #editorial_index_box_nimage{
+ position:relative;
+ float:left;
+ width:316px;
+ height:164px;
+ padding:0;
+ margin:0;
+ overflow:hidden;
+ background-color:#EEE;
+ }
+  #editorial_index_box_ntext{
+  	/*line-height:0.7em !important;*/
+	 position:relative;
+	 float:left;
+	 width:296px;
+	 padding:10px;
+	 margin:0;
+  	height:145px;
+ }
+
+ /* Cuadros opcionales Pedro R gomez*/
+	.fondonegro
+	{
+		width:188px; height:134px; position:absolute; background-color:#333; top: 40px;
+	}
+	
+/**
+HUMANAS_7
+Se modifico el width en todos las cajas "index_box_na*"	*/
+ #index_box_naa, #index_box_nab, #index_box_nac, #index_box_nad{
+ position:relative;
+ float:left;
+ height:inherit;
+ border-left:0;
+ border-right: 2px solid #C9C9C9;
+ border-bottom: 1px solid #C9C9C9;
+ width:190px;
+ }
+ #index_box_nae{
+	  position:relative;
+ float:left;
+ height:inherit;
+ border-left:0;
+ border-right: 2px solid #C9C9C9;
+ border-bottom: 1px solid #C9C9C9;
+ width:190px;
+	 }
+
+ #index_box_nimage{
+ position:relative;
+ float:left;
+ width:188px;
+ height:134px;
+ padding:0;
+ margin:0;
+ overflow:hidden;
+ }
+ #index_box_nimage_over{
+ position:relative;
+ float:left;
+ width:188px;
+ height:134px;
+ padding:0;
+ margin:0;
+ overflow:hidden;
+ opacity: 0.4;
+ }
+ 
+ /** HUMANAS_7 
+ se modifico el size de la caja, el padding y la margen*/
+ #index_box_ntext{
+ text-decoration:none;
+ position:relative;
+ text-align: left;
+ float:left;
+ width:188px;
+ padding-top:20px;
+ padding-left: 10px;
+ margin:0px;
+ /*margin:-7px;*/
+  height:135px;
+  font-size: 15px;
+ }
+
+/*  ---*/
+
+   #index_box_ad{
+   float:right;
+   border-right:0;
+   width:235px;
+   }
+ 
+ #index_box_title, #index_box_title_bitacora, #index_box_title_quick_links{
+ position:relative;
+ float:left;
+ width:inherit;
+ padding:12px 0;
+ margin:0;
+ background: url(images/humanas/index_box_title.png) repeat-x left top;
+ color: #7F7F7F;
+ text-align: center;
+ font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;
+ font-size: 16px;
+ border-left:0;
+ border-bottom: 3px solid #C9C9C9;
+ border-right: 1px solid #C9C9C9;
+ }
+
+#index_box_title_bitacora {
+ width:100%;
+ }
+
+ #index_box_title1,#med_box_title1
+ {position:relative;
+ float:left;
+ width:inherit;
+ padding:12px 0;
+ margin:0;
+ background-color:#9A784C;
+ color:#FFF;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ /* font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;---*/
+ font-size: 17px;
+ border-left:0;
+ border-bottom: 3px solid #C9C9C9;
+ border-right: 1px solid #C9C9C9;
+
+	 
+}
+#index_box_title2
+ {
+ position:relative;
+ float:left;
+ width:inherit;
+ padding:12px 0;
+ margin:0;
+ background-color:#7C4B0C;
+ color:#FFF;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ /* font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;---*/
+ font-size: 21px;
+ border-left:0;
+ border-bottom: 3px solid #C9C9C9;
+ border-right: 1px solid #C9C9C9;
+}
+#med_box_title2
+ {
+ position:relative;
+ float:left;
+ width:inherit;
+ padding:12px 0;
+ margin:0;
+ background-color:#7C4B0C;
+ color:#FFF;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ /* font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;---*/
+ font-size: 20px;
+ border-left:0;
+ border-bottom: 3px solid #C9C9C9;
+ border-right: 1px solid #C9C9C9;
+}
+#index_box_title3,#med_box_title3
+ {
+ position:relative;
+ float:left;
+ width:inherit;
+ padding:12px 0;
+ margin:0;
+ background-color:#89521B;
+ color:#FFF;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ /* font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;---*/
+ font-size: 18px;
+ border-left:0;
+ border-bottom: 3px solid #C9C9C9;
+ border-right: 1px solid #C9C9C9;
+
+	 
+}
+#index_box_title4,#med_box_title4
+ {
+	 position:relative;
+ float:left;
+ width:inherit;
+ padding:12px 0;
+ margin:0;
+ background-color:#654321;
+ color:#FFF;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ /* font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;---*/
+ font-size: 17px;
+ border-left:0;
+ border-bottom: 3px solid #C9C9C9;
+ border-right: 1px solid #C9C9C9;
+
+	 
+}
+#index_box_title5,#med_box_title5
+ {
+	 position:relative;
+ float:left;
+ width:inherit;
+ padding:12px 0;
+ margin:0;
+ background-color:#4d3823;
+ color:#FFF;
+ text-align: center;
+ font-family: Arial, Helvetica, sans-serif;
+ /* font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;---*/
+ font-size: 17px;
+ border-left:0;
+ border-bottom: 3px solid #C9C9C9;
+ border-right: 1px solid #C9C9C9;
+
+	 
+}
+ #index_box_image{
+ position:relative;
+ float:left;
+ width:235px;
+ height:134px;
+ padding:0;
+ margin:0;
+ overflow:hidden;
+ }
+ 
+ #index_box_text{
+ position:relative;
+ float:left;
+ width:215px;
+ padding:10px;
+ margin:0;
+ }
+
+/* Segundo bloque página principal */
+/* HUMANAS_7 Se modifico el size del bloque*/
+ #second_index_box{
+ position:relative;
+ float:left;
+ width:950px;
+ height:420px;
+ background:#FFF;
+ }
+
+ #index_box_b, #index_box_c, #index_box_d{
+ margin-top: 15px!important; 
+ position:relative;
+ float:right;
+ min-height:350px;
+ height:inherit;
+ border:0px solid #000;
+ }
+
+ #index_box_b{
+ float:left;
+ width:447px;
+ margin-top: 40px !important; 
+ }
+   
+   #index_box_text_ba{
+   position:relative;
+   float:left;
+   width:100%;
+   padding:0;
+   height:270px;
+   margin-top:10px;
+   text-align:center;
+ 
+   }
+   
+   #index_box_text_bb{
+   position:relative;
+   float:left;
+   width:98%;
+   text-align:center;
+   margin-top:25px;
+   margin:0;
+   height:310px; 
+   background-color:#F4F4F4;
+   }
+ 
+ #index_box_c{
+ width:250px;
+ margin:0 1px;
+ }
+ 
+ #index_box_d{
+ width:250px; 
+ }
+   
+ #index_box_text_ca, #index_box_text_da{
+ position:relative;
+ float:left;
+ height:345px;
+ width:248px;
+ background-color:#F4F4F4;
+ }
+ 
+ /*HUMANAS_7 se agrego font-size, se modifico el height*/
+ #index_box_text_cb, #index_box_text_db, #index_box_text_cc, #index_box_text_dc{
+ font-size: 13px;
+ position:relative;
+ float:left;
+ height:95px;
+ width:248px;
+ border:0;
+ }
+   
+   #index_box_title_quick_links{
+   color:#006600;
+   }
+/* FULL */
+#slides_sl{
+	max-height: 175px;
+	max-width:950px;
+   /*min-height:150px;*/
+  
+ } 
+ 
+#site_name_sl{
+   width:950px;
+   height:44px;
+   padding:2px 5px;
+   position:absolute;
+   margin-top:131px; 
+   z-index:4; 
+   background: #fff;
+   background: transparent url(images/humanas/bg_2.png) repeat left top;
+}
+#site_name_text_sl{
+ text-align:right;
+}
+
+ #banner_sl{ 
+   float:center;
+   max-width:950px;
+   min-height:175px;
+ }
+ #banner_sl_full_width{ 
+   float:center;
+   max-width:950px;
+   min-height:175px;
+ }
+ 
+ #breadcrumb{
+	 float:right;
+	 font-size:10px;
+	 width:inherit;
+ }
+    #breadcrumb a{
+	 color:#0071A8;
+	}
+/* SECOND LEVEL */
+ #second_level_b{
+  float:left; 
+  width:250px;
+ }
+ #second_level_c{
+  float:right; 
+  /* width:690px; Cambio de Diego el 19-08-2014*/
+  width: 670px;
+  margin-right: 20px;
+  margin-top: 10px;
+ }
+
+
+/* BLOG ENTRY */
+
+ #bitacora_banner{
+	 height:175px;
+ }
+
+ #bitacora_header{
+	 float:left;
+	 background: url(images/humanas/bitacora_cabezote.png) no-repeat; 
+	 margin: 0; 
+	 padding-top: 10px;
+	 height:123px;
+	 width:100%;
+	 font-family: Century Gothic,Apple Gothic,sans-serif; 
+ }
+
+ #bitacora_header_text, #bitacora_header_text_small{
+ 	 width: 220px;
+ 	 height: 50px;
+     margin-left: 100px; 
+     font-size: 69px;      
+     color: #2a6eaa;
+     margin-left: 160px; 
+     margin-top: 15px;
+	 font-family: Century Gothic,Apple Gothic,sans-serif; 
+ }
+ 
+ #bitacora_header_text_small{
+	 font-size: 51px;
+	 margin:5px;
+ }
+
+ #bitacora_name{
+ 	font-family: Century Gothic,Apple Gothic,sans-serif; 
+ 	padding-top: 12px;
+	 color: #2A6EAA;
+ }
+
+ #bitacora_website_name{
+	/*margin-top: -20px; */
+	font-family: Century Gothic,Apple Gothic,sans-serif;
+	padding-left:5px;
+	padding-top: 25px;
+    font-size: 18px; 
+    color: #888;
+    width: 300px;
+ }
+ #bitacora_website_name_small{
+	/*margin-top: -20px; */
+	font-family: Century Gothic,Apple Gothic,sans-serif;
+	padding-left:5px;
+	padding-top: 30px;
+    font-size: 18px; 
+    color: #888;
+    width: 300px;
+ }
+ 
+ #bitacora_website_name_small{
+	 font-size:13px;
+	 margin-top:-17px;	 
+ }
+ 
+ #bitacora_section{
+	position:relative; 
+	float:right;
+	left: 575px;
+	bottom: 43px;
+	width:500px; 
+	font-size:50px;}
+
+ #bitacora_banner_sl{
+	 float: left; 
+	 background: #CCC; 
+	 height: 100%;  
+	 width: 100%;
+	 min-height: 100%;
+ }
+ 
+ #bitacora_c1{
+	 float: left; 
+	 width: 330px; 
+	 padding-left: 15px;
+ }
+ #bitacora_c2{
+	 float: left; 
+	 width: 330px;	 
+ }
+ #bitacora_c3{
+	 float: right; 
+	 width: 240px; 
+	 padding: 25px 10px;	 
+ }
+ 
+ #bitacora_block_c1{
+	 background: url(images/humanas/bitacora_caja1.png) top no-repeat; 
+	 height: 260px; 
+	 padding: 35px 25px 45px 30px;
+ }
+ #bitacora_block_c2{
+	 background: url(images/humanas/bitacora_caja2.jpg) top no-repeat; 
+	 height: 260px; 
+	 padding: 13px 25px 45px 30px; 
+	 margin-top: 25px;
+ }
+ #bitacora_block_c3{
+	 background: url(images/humanas/bitacora_caja3.jpg) top no-repeat;
+	 height: 220px; 
+	 margin-top: 6px;
+	 padding: 5px; 
+	 border: 1px solid #999; 
+	 border-bottom: 0;
+ }
+ 
+ #bitacora_event{
+	 text-align: center; 
+	 font-size: 26px; 
+	 color: #2a6eaa;
+ }
+ 
+ #bitacora_texts{
+	 float:left;
+	 width:100%;
+	 height:100%;
+	 min-height: 300px;
+	 background: #CCC;
+ }
+ 
+ #bitacora_block_d1{
+	 float:left; 
+	 width:675px;
+	 background-color:#CCC;
+	 padding: 15px 0 0 0px; 
+	 color: #7f7f7f; 
+	 font-size: 11px;
+ }
+  
+      #bitacora_block_d1_text{
+		 /*padding: 15px; */
+		 font-family: Garamond, Hoefler Text, Palatino, Palatino Linotype, serif; 
+		 /*border: #CCC solid 1px; */
+		 color: #7f7f7f;
+		 min-height:200px;
+		 background: #CCC;
+		 font-size: 11px;
+	 }
+ 
+ #bitacora_block_d2{
+	 margin-top: 15px;
+	 float:left;
+	 /*float:right;*/
+	 width:240px;
+	 height:65px;
+	 background:#FFF;
+ }
+ #bitacora_block_d2_text{
+	 float:left;
+	 margin:0 0 0 2px;
+	 padding:0;
+	 width:240px;
+	 background: #FFF;
+	 
+ }
+ 
+ 
+ 
+ /* DEFAULT */
+ #last_date{
+	 float:right;
+	 width:inherit;
+	 text-align:right;
+	 padding:5px;
+	 font-size:10px;
+ }
+ 
+ #main_area{
+	 float:left;
+	 width:100%; 
+	 /* margin:0 20px 0 0; 31 09 2013*/
+ }
+ #menu_vertical{
+  width:230px;
+  min-height:250px;
+  margin:0 auto;
+  padding:10px 10px 20px 0px;
+ }
+
+
+/* Pie de página */
+ 
+ /* Título */
+ #footer_title{
+ float:left;
+ color:#FFF;
+ width:948px;
+ height:50px;
+ background-color:#0071A8;
+ border:1px solid #000;
+ border-bottom:0;
+ }
+ 
+ #footer_files_title, #footer_social_title{
+ float:left;
+ height:inherit;
+ font-family: Georgia, Palatino, Palatino Linotype, Times, Times New Roman, serif;
+ font-size: 20px;
+ margin: 0;
+ padding-top: 10px;
+ padding-left: 20px;
+ }
+ 
+ #footer_files_title{
+ width:280px;
+ }
+ 
+ #footer_social_title{
+ width:448px;
+ border-left:1px solid #000;
+ }
+ 
+ /* Contenidos */
+ #humans_footer{
+ float:left;
+ width:948px;
+ min-height:240px;
+ background: url(images/humanas/humanas_footer.png) repeat-x left top;
+ border:1px solid #000;
+ }
+ 
+ #footer_files, #footer_social{
+ float:left;
+ padding-left:20px;
+ min-height:inherit;
+ font-size:14px;
+ color:#fff;
+ }
+ 
+ #footer_files{
+ width:280px;
+ }
+ 
+ #footer_social{
+ float:left;
+ width:604px;
+ padding:10px 5px;
+ border-left:1px solid #000;
+ }
+ 
+ .social_networks_logos{
+ float:left;
+ width:160px;
+ padding-left:10px;
+ border:0 solid #000;
+ }
+ 
+ .social_networks_logos a{
+ color:#fff;
+ }
+ .social_networks_logos a:hover{
+ text-decoration:underline;
+ }
+ 
+ .social_networks_logo, .social_networks_text{
+ float:left;
+ padding-left:4px;
+ min-height:50px;
+ }
+ 
+ .social_networks_logo{
+ width:30px; 
+ }
+ 
+ .social_networks_text{
+ width:120px;
+ font-size:11px;
+ }
+
+
+/* Menú bitácora */
+#menu_bitacora{
+position: relative; 
+margin:0; 
+padding:0; 
+border: 0;
+width:240px;
+}
+
+#menu_bitacora_li{
+list-style:none; 
+border-radius: 0;
+}
+
+#menu_bitacora_li a{
+float:left;
+margin:0;
+width:240px;
+height: 44px;
+padding:20px 14px;
+text-decoration:none;
+outside:none;
+background: url(images/humanas/menu_bitacora.png) repeat-x scroll left top #7F7F7F;
+text-align:center; 
+}
+
+#menu_bitacora_li a:hover{
+background: url(images/humanas/menu_bitacora_over.png) repeat-x scroll left top #777;
+}

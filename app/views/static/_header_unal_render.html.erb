@@ -1,0 +1,30 @@
+<% content_for :header_unal do %>
+  <%= stylesheet_link_tag  'css/menu_vertical'%>
+  <%= stylesheet_link_tag  'css/menu_horizontal'%>
+  <%= stylesheet_link_tag  'css/menu_horizontal_b'%>
+  <!-- CSS rss rotativo -->
+  <%= stylesheet_link_tag  'css/rss_rotativo'%>
+  <!-- CSS UNAL -->
+  <%= stylesheet_link_tag  'css/allCSS' %>
+  <!-- CSS Plantilla nueva -->
+  <%= stylesheet_link_tag  'css/plantilla2014/reset', media: "all" %>
+  <%= stylesheet_link_tag  'css/plantilla2014/base' , media: "all" %>
+  <%= stylesheet_link_tag  'css/plantilla2014/monitor-small', media: "only screen and (min-width: 1278px) and (max-width: 1460px)" %>
+  <%= stylesheet_link_tag  'css/plantilla2014/tablet' , media: "only screen and (min-width: 992px) and (max-width: 1277px)" %>
+  <%= stylesheet_link_tag  'css/plantilla2014/phone' , media: "only screen and (min-width: 768px) and (max-width: 991px)" %>
+  <%= stylesheet_link_tag  'css/plantilla2014/small' , media: "only screen and (max-width: 767px)" %>
+  <%= stylesheet_link_tag  'css/plantilla2014/unal', media: "all" %>
+  <!-- CSS Humanas -->
+  <%= stylesheet_link_tag  'css/humanas', media: "all" %>
+  <%= render 'static/header_unal' %>
+  <%= javascript_include_tag 'js/jquery-1.6.4.min.js' %>
+  <%= javascript_include_tag 'js/unal' %>
+  <%= javascript_include_tag 'js/menu_vertical' %>
+  <%= javascript_include_tag 'js/bootstrap-select.min.js'  %>
+
+  <!-- EXTIO template -->
+  <%= stylesheet_link_tag  'css/content', media: "all" %>
+  <%= javascript_include_tag 'js/content' %>
+
+
+<% end %>

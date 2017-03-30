@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-		<title>CatalogoPublicaciones</title>
-		<%= csrf_meta_tags %>
-		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <head>
 
-    </head>
+    <title>Plantilla Test</title>
+    <%= csrf_meta_tags %>
 
-    <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link rel="shortcut icon" href="<%=image_url('unal/favicon.ico') %>" type="image/x-icon" />
 
-    <%= yield %>
+  </head>
 
-	<!-- Footer -->
-    <footer>
-    </footer>
+  <body class="nav-md">
+    <!-- MENU -->
+    <%= yield :nav %>
+        <!-- Contenido -->
+    <div class="container">
+        <%= yield %>
+        <%= javascript_include_tag 'application' %>
+    </div>
+
+    <!-- FOOTER -->
   </body>
 </html>

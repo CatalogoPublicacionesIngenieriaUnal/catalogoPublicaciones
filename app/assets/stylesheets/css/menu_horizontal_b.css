@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+/** 
+ * MTV.com Advanced CSS Drop-Down Menu Theme
+ *
+ * @file		default.advanced.css
+ * @name		MTV.com
+ * @version		0.1
+ * @type		transitional
+ * @browsers	Windows: IE6+, Opera7+, Firefox1+
+ *				Mac OS: Safari2+, Firefox2+
+ *
+ * @link		http://www.lwis.net/
+ * @copyright	2008 Live Web Institute
+ *
+ */
+
+@import "menu_default.css";
+
+
+
+/* ALL LEVELS (incl. first) */
+
+	ul.dropdown {
+	}
+
+		ul.dropdown li {
+		 background: #B4B4B4 url(images/menu_horizontal/fondo.png) repeat-x;
+		 padding: 0;
+		 font: 11px/normal Arial, Helvetica, sans-serif;
+		 width:84px;
+		}
+
+		/* Links */
+
+		ul.dropdown a:link,
+		ul.dropdown a:visited { color: #0071A8; text-decoration: none;}
+		ul.dropdown a:hover {
+		 border:0;
+		 background-color: #DADADA;
+		 color: #0071A8;
+		}
+
+		ul.dropdown ul a.dir:hover { /* proposal */
+		 background-color: #DADADA;
+		 color: #0071A8;
+		 border:0;
+		}
+
+		ul.dropdown a:active {
+		 background: #B4B4B4 url(images/menu_horizontal/nav-sub-press.png) 0 0 repeat-x !important;
+		 color: #0071A8;
+		 border:0;
+		}
+
+
+		/* NON-FIRST LEVEL */
+
+		ul.dropdown ul {
+		 left: 0; /*Distancia izquierda del menu secundario respecto del principal*/
+		 right: 0;
+		 border:0;
+		}
+
+			ul.dropdown ul li {
+			 background-color: #CCC;
+			 border-bottom:1px solid #B4B4B4;
+			 text-align:left;
+			 width:150px;
+			 background-image:none;
+	 filter:alpha(opacity=95);
+	 -moz-opacity:0.95;
+	 -khtml-opacity: 0.95;
+	 opacity: 0.95; 
+			}
+
+		ul.dropdown ul ul {
+		 top: 0;
+		 margin-top: 0;
+		 border-left:1px solid #B4B4B4;
+		}
+
+			ul.dropdown ul ul li {
+			 background-color: #CCC;
+			}
+
+		ul.dropdown ul ul ul li {
+		 background-color: #CCC;
+		}
+
+
+
+
+/* Mixed */
+ul.dropdown li a,
+ul.dropdown *.dir {
+ border: 0;
+ margin:0;
+ display: block;
+}
+
+ul.dropdown li a{
+	 margin:0;
+	 padding: 12px 10px 11px 10px;
+	 border-right:#666 solid 1px; /* Borde derecho principal */
+	 text-align:center;
+	}
+
+ul.dropdown li a:hover{
+	border-right:#666 solid 1px; /* Borde derecho principal */
+	
+}
+ul.dropdown ul li a:hover,
+ul.dropdown li *.dir{
+	text-align:left;
+	border:0;
+		 
+}
+	
+ul.dropdown ul li a{ border:0; text-align:left;}
+	
+ul.dropdown ul li a,
+ul.dropdown ul *.dir { border:0; }
+
+ul.dropdown ul ul li a,
+ul.dropdown ul ul *.dir { border:0; }
+
+ul.dropdown ul ul ul li a,
+ul.dropdown ul ul ul *.dir { border:0; }
+
+
+
+/* Agregados */
+#var_menu{
+	 position:relative;
+	 display:block;
+	 float:left;
+	 margin:0 19px;
+	 z-index:97;
+	 top:0px;
+}
+#img_left{
+ float:left;
+ position:relative;
+ display:block;
+ }
+ #img_right{
+ float:left;
+ position:relative;
+ display:block;
+}
+
+#var_menu #search_box{
+	position:relative;
+	display:inline;
+	float:left;
+	padding:0 8px;
+	width:150px;
+	height:36px;
+	background-color: #B4B4B4;
+	border-top:#BEBEBE solid 1px;
+	background: #B4B4B4 url(images/menu_horizontal/fondo.png) repeat-x;
+	}
+.search{
+ float:right;
+ margin:8px 10px 8px 0;
+ padding:0;
+ height:20px;
+ background:#0071A8;
+}
+
+.search_field{
+ float:left;
+ margin:0;
+ padding:3px 0;
+ font-size:11px;
+ width:100px;
+ color:#fff;
+ border:none; 
+ background-color:transparent;
+}
+
+.search_button{
+ position:relative;
+ float:left;
+ margin:0;
+ padding:0;
+
+}
+
+	/* Especially for IE6 or lower */
+
+	ul.dropdown ul a {
+	 /*width: 150px;*/
+	}
+
+	ul.dropdown ul *.dir {
+	 /*width: 140px;*/
+	}

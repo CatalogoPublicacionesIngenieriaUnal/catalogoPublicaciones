@@ -3,4 +3,27 @@ class Publication < ApplicationRecord
   has_many :professors, through: :professor_publications
   has_many :keywords
   belongs_to :application_request
+  
+  def self.load_publications(page = 1, per_page = 10)
+    includes(:professors, :keywords, application_request:[:evaluation]).paginate( :page=> page, :per_page => per_page)
+  end
+  
+  def self.load_publications_by_theme(theme, page = 1, per_page = 10)
+    load_publications(page, per_page).where( publication: {theme: theme}).paginate( :page=> page, :per_page => per_page)    
+  end
+  
+  def self.load_publications_by_category(category, page = 1, per_page = 10)
+    load_publications(page, per_page).where( publication: {category: category}).paginate( :page=> page, :per_page => per_page)    
+  end
+  
+  def self.load_publications_by_keyword(keyw, page = 1, per_page = 10)
+    joins(:keywords).select("publications.*").where( keywords:{ "keyword = ?", keyw} )
+    #joins(:keywords).select("publications.*").where( 'keywords.keyword = ?', keyw} )
+  end
+  
+  def self.load_publications_by_status(state, page = 1, per_page = 10)
+    joins(:application_request).select("publications.*").where( application_request:{ 'state_id = ?', state } )
+    #joins(:application_request).select("publications.*").where( 'application_request.state_id = ?', state } )
+  end
+  
 end

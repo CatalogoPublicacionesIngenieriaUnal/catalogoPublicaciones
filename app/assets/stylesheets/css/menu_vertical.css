@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+ul#am_menu, ul#am_menu ul {
+	list-style-type:none;
+	margin:0;
+	padding-left: -30px;
+	width:230px;
+	overflow:hidden;
+}
+
+ul#am_menu a {
+	display:block;
+	text-decoration:none;
+	
+	-moz-border-radius:3px; /* Supported Browsers Only */
+	-webkit-border-radius:3px; /* Supported Browsers Only */
+}
+
+ul#am_menu li {
+	margin:0px;
+}
+
+ul#am_menu li a {
+	background:url(images/menu_vertical/fondo.png) center center repeat-x;
+	color:#000;	
+	padding:6px;
+	border-top:#EBEBEB 1px solid;
+	border-left:#EBEBEB 1px solid;
+	border-right:#EBEBEB 1px solid;
+	font-size:16px;
+	font-weight:normal;
+}
+
+ul#am_menu li a:hover {
+	background:url(images/menu_vertical/fondo_b_h.png) center center repeat-x;
+}
+
+ul#am_menu li ul li a {
+	background:#fff;
+	color:#333;
+	padding-left:20px;
+	font-size:15px;
+	border:none;
+	border-bottom:#EBEBEB 1px solid;
+}
+
+ul#am_menu li ul li a:hover {
+	background:url(images/menu_vertical/drop_b_h.gif) left center no-repeat #FFF;
+}
+
+ul#am_menu li #am_menu_is_parent {
+	float:right;
+	background:url(images/menu_vertical/parent_background.png) left center no-repeat;
+	width:27px;
+	height:18px;
+	margin:1.4% 0 0 0;
+}
+
+ul#am_menu li ul li #am_menu_is_parent,
+ul#am_menu li ul li ul li#am_menu_is_parent,
+ul#am_menu li ul li ul li ul li #am_menu_is_parent,
+ul#am_menu li ul li ul li ul li ul li #am_menu_is_parent {
+	display:none;
+}
+
+ul#am_menu li a {display:inline-block\9;} /* IE 8 Fix */
+ul#am_menu li a {display:block\9;}	/* IE 8 Fix */
+.am_deep_menu {margin-left:15px !important;} /* Revel All Sub Menu's Fix */
+
+ul#am_menu li ul li a.nav-selected {
+	background:url(images/menu_vertical/drop_background_hover.gif) left center no-repeat #FFF;
+	font-weight:bold;
+}

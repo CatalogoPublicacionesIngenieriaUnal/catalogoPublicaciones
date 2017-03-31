@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html class="no-js ie9 lang_0" id="html">
+  <head>
+    <style>
+      .activo
+      {
+      background-color:#eeeeee;
+      color:#000000;
+      border:none;
+      border:solid 1px #999999;
+      }
+      .inactivo
+      {
+      background-color:#ffffff;
+      color:#000000;
+      border:solid 1px #999999;
+      }
+    </style>
+    <title>Catálogo de publicaciones</title>
+    <%= csrf_meta_tags %>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+
+    <meta name="author" content="Unimedios" />
+    <meta name="DC.Creator" content="Unimedios" />
+    <meta name="distribution" content="all" />
+    <meta name="revisit" content="1 days" />
+    <meta name="robots" content="all" />
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="last-modified" content=""/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <!-- Autorización a google para sitemaps-->
+    <meta name="google-site-verification" content="Z-c-O-OHOtH4TUGQ-WAq0Gx1fjD6EXRzffhivM-YUjA" />
+    <meta name="y_key" content="1834e5d6ab60d630" />
+    <meta name="msvalidate.01" content="67A0821365F51C2C23981A040CAF241B" />
+    <link rel="shortcut icon" href="<%=image_url('unal/favicon.ico') %>" type="image/x-icon" />
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag    'style.css', media: 'all' %>
+
+  </head>
+
+  <body class="nav-md">
+    <!-- MENU -->
+    <%= yield :header_unal %>
+
+    <div id="contenedor_info">
+      <%= render 'static/sidebar' %>
+      <div class="page-content-wrapper">
+        <div class="container-fluid" id="Contenido_UN">
+            <%= yield %>
+            <%= javascript_include_tag 'application' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <%= yield :footer_unal %>
+  </body>
+</html>

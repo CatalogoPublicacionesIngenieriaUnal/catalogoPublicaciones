@@ -1,0 +1,113 @@
+#sidebar-wrapper{
+	padding-top: 50px;
+	width: 200px;
+	height: 100;
+	overflow-y: hidden;
+	background-color: #333333;
+	position: absolute;
+}
+
+#sidebar-header{
+	height: 150px;
+	background-color: #666;
+}
+
+.page-content-wrapper{
+	z-index: -1;
+	width: 100%;
+	padding-left: 216px;
+	padding-right: 50px;
+	padding-top: 16px;
+}
+
+.sidebar-nav{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar-nav li{
+	/* text-indent: 8px; */
+	line-height: 40px;
+}
+
+.sidebar-nav li a{
+	text-indent: 8px;
+	display: block;
+	text-decoration: none;
+	color: #fff;
+}
+
+.sidebar-nav li a span .glyphicon,
+.sidebar-nav li a .title {
+	display: inline-block;
+}
+
+.sidebar-nav li a:hover{
+	background-color: #666;
+}
+
+@media screen and (max-device-width: 480px) {
+
+	#sidebar-wrapper{
+		width: 60px;
+	}
+
+	.sidebar-nav li a{
+		font-size: 120%;
+	}
+
+    .sidebar-nav li a .title,
+    #sidebar-header  {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+    .page-content-wrapper{
+		padding-left: 76px;
+		padding-top: 40px;
+	}
+}
+
+@media screen and (min-device-width: 481px) {
+    .sidebar-nav li a .title  {
+        width: auto;
+    }
+}
+
+/* Panel customisation */
+.page-content-wrapper .panel-custom .panel-heading{
+	background-image: none;
+	background-color: #333333;
+	color: white;
+	height: 50px;
+}
+
+.page-content-wrapper .panel-custom .panel-title{
+	font-size: 150%;
+}
+
+.page-content-wrapper .panel-custom .panel-heading a:hover{
+	color: white;
+	background-color: #666;
+}
+
+.page-content-wrapper .panel-custom .panel-footer{
+	height: 30px;
+}
+
+
+.page-content-wrapper .panel-collapse .collapse .in{
+	background-color: red;
+}
+
+.page-content-wrapper .panel-collapse{
+	float: none;
+	width: auto;
+	height: auto;
+}
+
+#contenedor_info{
+	min-height: 600px;
+}

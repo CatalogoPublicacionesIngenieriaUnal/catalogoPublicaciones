@@ -1,0 +1,31 @@
+<div id="wrapper">
+	<div id="sidebar-wrapper">
+		<div id="sidebar-header">
+			<%=image_tag("edf_viejo.jpg", height: '150', width: '200') %>
+		</div>
+		<ul class="sidebar-nav">
+      <li><%= link_to root_path do %>
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+				<div class="title">Inicio</div><% end %>
+			</li>
+      <li><%= link_to info_path do %>
+				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+				<div class="title">Información general</div><% end %>
+			</li>
+      <li><%= link_to catalog_path do %>
+				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+				<div class="title">Ver Catálogo</div><% end %>
+			</li>
+      <li><%= link_to instructions_path do %>
+				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+				<div class="title">Instructivo postulación</div><% end %>
+			</li>
+			<li><%= link_to contact_path do %>
+				<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+				<div class="title">Contacto</div>
+        <% end %>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="clearfix"></div>

@@ -3,10 +3,11 @@ class ApplicationRequest < ApplicationRecord
   has_many :proffessor_application_requests
   has_many :professors, through: :proffessor_application_requests
   has_many :evaluations
+  has_one :publication
   belongs_to :state
 
   def self.load_applications_by_id(id,page = 1, per_page = 10)
-      joins(:publication,:evaluation).where("id = ?", id)
+      joins(:publication, :evaluation).where("id = ?", id)
         .paginate(:page => page,:per_page => per_page)
   end
 

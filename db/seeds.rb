@@ -45,7 +45,7 @@ for i in 0..12
   end
 
   for j in 0..2
-    Attachment.create!(url: Faker::File.file_name, category: "tipo", application_request_id: aplication.id)
+    Attachment.create!(url: Faker::File.file_name, category: "tipo #{j}", application_request_id: aplication.id)
   end
 
   for j in 0..Faker::Number.between(1, 5)

@@ -1,5 +1,5 @@
 class Language < ApplicationRecord
   has_many :judges
-  
-  validates :name presence: true
+
+  validates :name, presence: true
 end

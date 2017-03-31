@@ -25,5 +25,10 @@ class Publication < ApplicationRecord
     joins(:application_request).select("publications.*").where( application_request:{ 'state_id = ?', state } )
     #joins(:application_request).select("publications.*").where( 'application_request.state_id = ?', state } )
   end
+
+  def find_publications_by_professor(page = 1, per_page = 10)
+    where("validated = ?", false)
+      .paginate(:page => page,:per_page => per_page)
+  end
   
 end

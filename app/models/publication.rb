@@ -17,13 +17,13 @@ class Publication < ApplicationRecord
   end
   
   def self.load_publications_by_keyword(keyw, page = 1, per_page = 10)
-    joins(:keywords).select("publications.*").where( keywords:{ "keyword = ?", keyw} )
-    #joins(:keywords).select("publications.*").where( 'keywords.keyword = ?', keyw} )
+    #joins(:keywords).select("publications.*").where( keywords:{ "keyword = ?", keyw} )
+    joins(:keywords).select("publications.*").where( 'keywords.keyword = ?', keyw )
   end
   
   def self.load_publications_by_status(state, page = 1, per_page = 10)
-    joins(:application_request).select("publications.*").where( application_request:{ 'state_id = ?', state } )
-    #joins(:application_request).select("publications.*").where( 'application_request.state_id = ?', state } )
+    #joins(:application_request).select("publications.*").where( application_request:{ 'state_id = ?', state } )
+    joins(:application_request).select("publications.*").where( 'application_request.state_id = ?', state  )
   end
 
   def find_publications_by_professor(page = 1, per_page = 10)

@@ -6,19 +6,12 @@ class ApplicationRequest < ApplicationRecord
   has_one :publication
   belongs_to :state
 
-  def self.load_applications_by_id(id,page = 1, per_page = 10)
-      joins(:publication, :evaluation).where("id = ?", id)
-        .paginate(:page => page,:per_page => per_page)
+   def self.load_applications_by_state_id(id,page = 1, per_page = 10)
+      includes(:state).where("state_id = ?", id)
   end
-
-  def self.load_applications_by_state_id(id,page = 1, per_page = 10)
-      joins(:state).where("application_request.state_id = ?", id)
-        .paginate(:page => page,:per_page => per_page)
-  end
-
+  
   def self.load_applications_by_professor_id(id,page = 1, per_page = 10)
-      joins(:professor).where("professor_id = ?", id)
-        .paginate(:page => page,:per_page => per_page)
+      includes(:professor_application_requests,:professors).where("id = ?",id)
   end
 
 end

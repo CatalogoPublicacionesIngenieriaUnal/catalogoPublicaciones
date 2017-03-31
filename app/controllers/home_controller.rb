@@ -4,8 +4,4 @@ class HomeController < ApplicationController
   def index
     @content = "home/index_content.html.erb"
   end
-
-  def contact
-    @content = "home/contact_content.html.erb"
-  end
 end

@@ -37,7 +37,7 @@
     <link rel="shortcut icon" href="<%=image_url('unal/favicon.ico') %>" type="image/x-icon" />
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
-    <!--<%= stylesheet_link_tag    'style.css', media: 'all' %>-->
+    <%= stylesheet_link_tag    'style.css', media: 'all' %>
     <!--<%= stylesheet_link_tag    'grayscale.css', media: 'all' %>-->
   </head>
 
@@ -46,12 +46,13 @@
     <%= yield :header_unal %>
 
     <div id="contenedor_info">
-      <!--<div class="page-content-wrapper">-->
+      <%= render 'static/sidebar' %>
+      <div class="page-content-wrapper">
         <div class="container-fluid" id="Contenido_UN">
             <%= yield %>
             <%= javascript_include_tag 'application' %>
         </div>
-      <!-- </div> -->
+      </div>
     </div>
 
     <!-- FOOTER -->

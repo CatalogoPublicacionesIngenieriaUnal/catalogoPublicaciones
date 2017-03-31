@@ -106,13 +106,3 @@ ul ul {margin-left:10px;}
  color:#003399;
  text-transform:none;
  }
-
- /* To divide the page in 2 columns */
- .intro .first-column {
-   width: 50%;
-   float: left;
- }
- .intro .second-column {
-   width: 50%;
-   float: right;
- }

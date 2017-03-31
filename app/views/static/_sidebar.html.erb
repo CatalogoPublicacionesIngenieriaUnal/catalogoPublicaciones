@@ -1,78 +1,31 @@
 <div id="wrapper">
 	<div id="sidebar-wrapper">
 		<div id="sidebar-header">
-			<%=image_tag("extio/logo_examen.png", height: '150', width: '200') %>
+			<%=image_tag("edf_viejo.jpg", height: '150', width: '200') %>
 		</div>
 		<ul class="sidebar-nav">
-			<li><%= link_to root_path do %>
+      <li><%= link_to root_path do %>
 				<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 				<div class="title">Inicio</div><% end %>
 			</li>
-			<li><%= link_to historical_path do %>
+      <li><%= link_to info_path do %>
 				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-				<div class="title">Antecedentes</div><% end %>
+				<div class="title">Información general</div><% end %>
 			</li>
-			<li><%= link_to exams_and_juries_path do %>
-				<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				<div class="title">Exámen y jurados</div><% end %>
+      <li><%= link_to catalog_path do %>
+				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+				<div class="title">Ver Catálogo</div><% end %>
 			</li>
-			<% if @register %>
-				<% if @register.value %>
-					<li><%= link_to new_pre_candidate_path do %>
-						<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-						<div class="title">Register</div><% end %>
-					</li>
-				<% end %>
-			<% end %>
-			<% if @result %>
-				<% if @result.value %>
-					<li><%= link_to results_path do %>
-						<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-						<div class="title">Resultados</div><% end %>
-					</li>
-				<% end %>
-			<% end %>
-			<li><%= link_to  test_exams_path do %>
-				<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
-				<div class="title">Exámenes de prueba</div><% end %>
+      <li><%= link_to instructions_path do %>
+				<span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+				<div class="title">Instructivo postulación</div><% end %>
 			</li>
-			<% if !current_admin && !current_jury_a && !current_jury_b %>
-	      <li><%= link_to  new_admin_session_path do %>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<div class="title">Administrador</div><% end %>
-				</li>
-	      <li><%= link_to  new_jury_a_session_path do %>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<div class="title">Jurado a</div><% end %>
-				</li>
-	      <li><%= link_to  new_jury_b_session_path do %>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<div class="title">Jurado b</div><% end %>
-				</li>
-			<% end %>
-			<% if current_admin %>
-				<li><%= link_to  new_admin_session_path do %>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<div class="title">Administrador</div><% end %>
-				</li>
-			<% elsif current_jury_a %>
-				<li><%= link_to  new_jury_a_session_path do %>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<div class="title">Jurado a</div><% end %>
-				</li>
-			<% elsif current_jury_b %>
-				<li><%= link_to  new_jury_b_session_path do %>
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<div class="title">Jurado b</div><% end %>
-				</li>
-			<% end %>
-			<li><%= link_to contact_us_path do %>
+			<li><%= link_to contact_path do %>
 				<span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
 				<div class="title">Contacto</div>
         <% end %>
 			</li>
 		</ul>
 	</div>
-
 </div>
 <div class="clearfix"></div>

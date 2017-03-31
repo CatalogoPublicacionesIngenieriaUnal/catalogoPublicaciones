@@ -39,6 +39,11 @@ for i in 0..12
   aplication = ApplicationRequest.create!(created_at: Date.today, state_id: 1)
   publication = Publication.create!(abstract: Faker::Lorem.paragraph, theme:Faker::Book.title,
                 category: Faker::Book.genre, application_request_id: aplication.id)
+
+  for j in 0..Faker::Number.between(1, 10)
+    Keyword.create!(keyword: Faker::RockBand.name, publication_id: publication.id)
+  end
+
   for j in 0..2
     Attachment.create!(url: Faker::File.file_name, category: "tipo", application_request_id: aplication.id)
   end
@@ -55,8 +60,13 @@ for i in 0..30
   aplication = ApplicationRequest.create!(created_at: Date.today, state_id: 2)
   publication = Publication.create!(abstract: Faker::Lorem.paragraph, theme:Faker::Book.title,
                 category: Faker::Book.genre, application_request_id: aplication.id)
-  for j in 0..2
-    Attachment.create!(url: Faker::File.file_name, category: "tipo", application_request_id: aplication.id)
+
+  for j in 0..Faker::Number.between(1, 10)
+      Keyword.create!(keyword: Faker::RockBand.name, publication_id: publication.id)
+    end
+
+  for j in 0..3
+    Attachment.create!(url: Faker::File.file_name, category: "tipo #{j}", application_request_id: aplication.id)
   end
 
   for j in 0..Faker::Number.between(1, 5)
@@ -65,7 +75,7 @@ for i in 0..30
     ProfessorApplicationRequest.create!(professor_id: x, application_request_id: aplication.id)
   end
 
-  Evaluation.create!(justification: Faker::HarryPotter.quote, assigned_at: Date.today, 
+  Evaluation.create!(justification: Faker::HarryPotter.quote, assigned_at: Date.today,
             judge_id: Faker::Number.between(1, 20), state_id: Faker::Number.between(3, 5),
             application_request_id: aplication.id)
 
@@ -76,8 +86,13 @@ for i in 0..10
   aplication = ApplicationRequest.create!(created_at: Date.today, state_id: 2)
   publication = Publication.create!(abstract: Faker::Lorem.paragraph, theme:Faker::Book.title,
                 category: Faker::Book.genre, application_request_id: aplication.id)
+
+  for j in 0..Faker::Number.between(1, 10)
+    Keyword.create!(keyword: Faker::RockBand.name, publication_id: publication.id)
+  end
+
   for j in 0..2
-    Attachment.create!(url: Faker::File.file_name, category: "tipo", application_request_id: aplication.id)
+    Attachment.create!(url: Faker::File.file_name, category: "tipo #{j}", application_request_id: aplication.id)
   end
 
   for j in 0..Faker::Number.between(1, 5)
@@ -99,11 +114,15 @@ for i in 0..12
   publication = Publication.create!(abstract: Faker::Lorem.paragraph, theme:Faker::Book.title,
                 category: Faker::Book.genre, application_request_id: aplication.id)
 
+  for j in 0..Faker::Number.between(1, 10)
+    Keyword.create!(keyword: Faker::RockBand.name, publication_id: publication.id)
+  end
+
   ApprovedPublication.create!(resolution: "Resolucion prueba", stock: Faker::Number.between(200, 500),
   stock_at_store: Faker::Number.between(100, 300), stock_at_library: Faker::Number.between(10, 200), publication_id: publication.id)
 
   for j in 0..2
-    Attachment.create!(url: Faker::File.file_name, category: "tipo", application_request_id: aplication.id)
+    Attachment.create!(url: Faker::File.file_name, category: "tipo #{j}", application_request_id: aplication.id)
   end
 
   for j in 0..Faker::Number.between(1, 5)

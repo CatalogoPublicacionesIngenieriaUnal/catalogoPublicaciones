@@ -1,6 +1,7 @@
 class CreateJudges < ActiveRecord::Migration[5.0]
   def change
     create_table :judges do |t|
+
       t.string :user, :null => false, :uniqueness => true 
       t.string :name, :null => false 
       t.string :lastname, :null => false 

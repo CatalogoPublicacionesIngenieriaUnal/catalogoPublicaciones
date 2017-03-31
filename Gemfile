@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 
 # gem for postgresql
 
+gem 'will_paginate', '>= 3.1'
 gem 'pg'
 
 # Use Capistrano for deployment
@@ -43,6 +44,7 @@ gem 'pg'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+gem 'faker'
   gem 'byebug', platform: :mri
 end
 

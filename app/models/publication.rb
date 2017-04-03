@@ -31,4 +31,23 @@ class Publication < ApplicationRecord
         .find_by_id(id)
   end
 
+  def self.load_evaluations_by_status(state, page = 1, per_page = 10)
+    includes(application_request:[:evaluations]).where(evaluations:{
+      state_id: state
+      })
+  end
+
+  def self.loaeu(state, page = 1, per_page = 10)
+    includes(application_request:[:evaluations]).where('evaluations.state_id = ?', state).references(application_request:[:evaluations])
+  end
+
+  def self.loaedu(state, page = 1, per_page = 10)
+    joins(application_request: :evaluations).select("publications.id")
+      .group("publications.id")
+      .where(evaluations: {
+          state_id: state
+      })
+  end
+
+
 end

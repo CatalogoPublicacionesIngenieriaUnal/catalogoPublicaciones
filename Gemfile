@@ -32,12 +32,12 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-<<<<<<< HEAD
+
 # gem for postgresql
 
 gem 'will_paginate', '>= 3.1'
 gem 'pg'
-=======
+
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'font-awesome-rails'
 gem 'will_paginate-bootstrap'
@@ -46,7 +46,7 @@ gem 'tinymce-rails'
 gem 'gentelella-rails'
 # For authentication
 gem 'devise'
->>>>>>> feature/mejorasFront
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -1,23 +1,36 @@
-<!-- Encabezado -->
-<div class="row">
-  <header class="intro">
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <h1 style="font-size:200%;">Catálogo de publicaciones</h1>
-          </div>
+<!-- Pagina principal -->
+<!-- Titulo -->
+      <div class="row">
+        <div class="text-center">
+        <div class="col-md-6 col-md-offset-3" style="padding: 10px 0px 0px 0px;">
+          <h1 style="font-size:200%;">Catálogo de publicaciones</h1>
         </div>
       </div>
-    </section>
-    <div><hr class="style13"></div>
-    <section>
+      </div>
+<!-- Contenido de la pagina -->
+    <div class="row">
+      <!-- Menu principal -->
+      <div class="col-sm-2">
+        <div class="ul-custom">
+          <div class="text-center">
+          <h4>Menú principal</h4>
+        </div>
+          <div><hr class="style13"></div>
+          <div class="li-custom"><a href="/">Principal</a></div>
+          <div class="li-custom"><a href="/">Información general</a></div>
+          <div class="li-custom"><a href="/">Ver catálogo</a></div>
+          <div class="li-custom"><a href="/">Instrucciones para postularse</a></div>
+          <div class="li-custom"><a href="contact">Contacto</a></div>
+        </div>
+      </div>
       <!-- Catalogo -->
-      <div class="col-sm-9">
+      <div class="col-sm-7">
         <div class="catalog">
           <div class="books">
             <div class="line">
-              <div class="col-md-3 quarter">
+              <h4>Publicaciones disponibles</h4>
+              <div><hr class="style13"></div>
+              <div class="col-md-3 quarter" style="padding: 0px 0px 0px 0px">
                 <div class="view text-center">
                   <%= image_tag "libro1.jpg", :alt => "lib1", :width => 100, :height => 150%>
                   <p>Publicacion 1</p>
@@ -28,7 +41,7 @@
                   </a>
                 </div>
               </div>
-              <div class="col-md-3 quarter">
+              <div class="col-md-3 quarter" style="padding: 0px 0px 0px 0px">
                 <div class="view text-center">
                   <%= image_tag "libro2.jpg", :alt => "lib2", :width => 100, :height => 150%>
                   <p>Publicacion 2</p>
@@ -61,7 +74,7 @@
                   </a>
                 </div>
               </div>
-              <div class="col-md-3 quarter">
+              <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
                 <div class="view text-center">
                   <%= image_tag "libro5.jpg", :alt => "lib5", :width => 100, :height => 150%>
                   <p>Publicacion 5</p>
@@ -72,7 +85,7 @@
                   </a>
                 </div>
               </div>
-              <div class="col-md-3 quarter">
+              <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
                 <div class="view text-center">
                   <%= image_tag "libro6.jpg", :alt => "lib6", :width => 100, :height => 150%>
                   <p>Publicacion 6</p>
@@ -83,7 +96,7 @@
                   </a>
                 </div>
               </div>
-              <div class="col-md-3 quarter">
+              <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
                 <div class="view text-center">
                   <%= image_tag "libro7.jpg", :alt => "lib7", :width => 100, :height => 150%>
                   <p>Publicacion 7</p>
@@ -94,7 +107,7 @@
                   </a>
                 </div>
               </div>
-              <div class="col-md-3 quarter">
+              <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
                 <div class="view text-center">
                   <%= image_tag "libro8.jpg", :alt => "lib8", :width => 100, :height => 150%>
                   <p>Publicacion 8</p>
@@ -108,15 +121,14 @@
             </div>
           </div>
         </div>
-        <a href="url" class="link">Ver más publicaciones</a>
       </div>
       <!-- Login -->
-      <div class="col-sm-3">
+      <div class="col-sm-3" style="padding:0px 50px 0px 0px">
         <div class="login-form">
           <div class="text-center">
             <h4>Iniciar sesión</h4>
+            <div><hr class="style13"></div>
           </div>
-          <div class="d-line"></div>
           <div class="sign-in-htm">
             <div class="group">
               <label for="user" class="label">Usuario</label>
@@ -136,7 +148,5 @@
           </div>
         </div>
       </div>
-      <!-- Fin Login -->
-    </section>
-  </header>
-</div>
+    </div>
+    <!-- Fin Login -->

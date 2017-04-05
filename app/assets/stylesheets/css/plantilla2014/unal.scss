@@ -126,12 +126,13 @@ table tr{padding:.25em .5em;text-align:left}
 #unalTop .buscador{-moz-border-radius:5px;-o-border-radius:5px;-webkit-border-radius:5px;background:none;border-radius:5px;color:#FFF;height:30px;margin:0;overflow:hidden;position:absolute;right:100px;top:36px;width:200px}
 #unalTop .buscador .gsc-control-searchbox-only .gsc-input{background-image:none!important}
 #unalTop .buscador .gsc-control-searchbox-only .gsc-search-box{height:30px;margin:0;position:relative}
-#unalTop .buscador .gsc-control-searchbox-only .gsc-input input{background:none;border:none;color:#333;display:inline;height:auto;margin:3px 0 0 3px;outline:none;padding:11px 40px 7px 9px;top:1px;width:290px}
+#unalTop .buscador .gsc-control-searchbox-only .gsc-input input{background:none;border:none;color:#FFF;display:inline;height:auto;margin:3px 0 0 3px;outline:none;padding:11px 40px 7px 9px;top:1px;width:290px}
 #unalTop .buscador .gsc-input-box-focus{-moz-box-shadow:none!important;-webkit-box-shadow:none!important}
-#unalTop .buscador .gsc-search-button{-moz-border-radius:0;-webkit-border-radius:0;background:#50992E;border:0 none;border-radius:0;box-shadow:none;cursor:pointer;float:right;height:40px!important;padding:0;width:40px!important}
+#unalTop .buscador .gsc-search-button{-moz-border-radius:0;-webkit-border-radius:0;background:#50992E;border:0 none;border-radius:0;box-shadow:none;cursor:pointer;float:right;height:40px!important;padding:0;width:30px!important}
 #unalTop .buscador .gsc-search-button input.gsc-search-button{border:none;box-shadow:none;margin:0;outline:none;padding:0}
-#unalTop .buscador .gsc-control-searchbox-only .gsc-input,.buscador .gsc-input-box{background:#777;border:none;color:#fff;padding:0!important}
+#unalTop .buscador .gsc-control-searchbox-only .gsc-input,.buscador .gsc-input-box{background:#777;border:none;color:#fff;width:100%;padding:0!important}
 #unalTop .buscador .gsc-search-button input,.buscador .gsc-search-button{height:30px!important;width:30px!important}
+
 /**imagen fondo cabezote*/
 .home-image{overflow:hidden;position:absolute;top:30px;width:100%}
 /**listas desplegables*/

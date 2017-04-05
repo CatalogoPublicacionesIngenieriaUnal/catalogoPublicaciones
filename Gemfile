@@ -46,6 +46,9 @@ gem 'tinymce-rails'
 gem 'gentelella-rails'
 # For authentication
 gem 'devise'
+gem "devise_ldap_authenticatable"
+gem "net-ldap"
+#
 
 
 # Use Capistrano for deployment

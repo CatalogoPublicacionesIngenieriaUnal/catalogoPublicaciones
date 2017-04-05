@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20170329202621) do
   end
 
   create_table "professors", force: :cascade do |t|
-    t.string   "user",        null: false
+    t.string   "username",    null: false
     t.string   "name",        null: false
     t.string   "lastname",    null: false
     t.string   "departament", null: false
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20170329202621) do
     t.datetime "created_at",  null: false
     t.boolean  "validated"
     t.datetime "updated_at",  null: false
+    t.index ["username"], name: "index_professors_on_username", using: :btree
   end
 
   create_table "publications", force: :cascade do |t|

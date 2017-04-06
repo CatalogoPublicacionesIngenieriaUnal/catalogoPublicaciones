@@ -1,7 +1,7 @@
 class Professor < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :ldap_authenticatable, :registerable,
+  devise :ldap_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:username]
 

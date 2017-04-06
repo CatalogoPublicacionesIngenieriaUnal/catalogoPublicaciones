@@ -111,31 +111,40 @@
         <a href="url" class="link">Ver más publicaciones</a>
       </div>
       <!-- Login -->
+      <%- if !anyone_singed_in? %>
       <div class="col-sm-3">
         <div class="login-form">
-          <div class="text-center">
-            <h4>Iniciar sesión</h4>
-          </div>
-          <div class="d-line"></div>
-          <div class="sign-in-htm">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="text-center">
+              <h4>Iniciar sesión</h4>
+            </div>
+            <div class="d-line"></div>
+            <div class="sign-in-htm">
             <div class="group">
               <label for="user" class="label">Usuario</label>
-              <input id="user" type="text" class="input">
+              <%= f.text_field :username, autofocus: true %>
             </div>
             <div class="group">
               <label for="pass" class="label">Contraseña</label>
-              <input id="pass" type="password" class="input" data-type="password">
-            </div>
+              <%= f.password_field :password, autocomplete: "off" %>            </div>
             <div class="group text-center">
-              <input id="check" type="checkbox" class="check" checked>
-              <label for="check">Recordar cuenta</label>
+              <% if devise_mapping.rememberable? -%>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end -%>
             </div>
             <div class="group">
-              <input type="submit" class="button" value="Ingresar">
+              <div class="actions">
+                <%= f.submit "Log in" %>
+              </div>
+            <% end %>
             </div>
           </div>
         </div>
       </div>
+      <% end %>
       <!-- Fin Login -->
     </section>
   </header>

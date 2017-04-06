@@ -10,7 +10,7 @@
 #Profesores
 
 for i in 0..60
-  Professor.create!(user: Faker::Internet.unique.user_name, name: Faker::Name.first_name,
+  Professor.create!(username: Faker::Internet.unique.user_name, name: Faker::Name.first_name,
     lastname: Faker::Name.last_name, departament: Faker::Commerce.department(1),
     email: Faker::Internet.unique.email, created_at: Date.today,
     validated: Faker::Boolean.boolean(0.8))

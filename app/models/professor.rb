@@ -2,7 +2,8 @@ class Professor < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :ldap_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :authentication_keys => [:username]
 
   default_scope {order("professors.created_at DESC")}
 
@@ -14,26 +15,15 @@ class Professor < ApplicationRecord
   validates :username, :name, :lastname, :departament, :email, presence: true
   validates :username, :email, uniqueness: true
 
-  before_validation :get_ldap_email
-   def get_ldap_email
-     self.email = Devise::LDAP::Adapter.get_ldap_param(self.username,"mail").first
-   end
-
-   # use ldap uid as primary key
-   before_validation :get_ldap_id
-   def get_ldap_id
-     self.id = Devise::LDAP::Adapter.get_ldap_param(self.username,"uidnumber").first
-   end
-
-   # hack for remember_token
-   def authenticatable_token
-     Digest::SHA1.hexdigest(email)[0,29]
-   end
-
-
    def self.load_professors_pending_approval(page = 1, per_page = 10)
        where("validated = ?", false)
          .paginate(:page => page,:per_page => per_page)
    end
 
+   def ldap_before_save
+     self.email = Devise::LDAP::Adapter.get_ldap_param(self.username,"mail").first
+     self.name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenname").first
+     self.lastname = Devise::LDAP::Adapter.get_ldap_param(self.username,"sn").first
+     self.departament = "hgghgjhg"
+   end
 end

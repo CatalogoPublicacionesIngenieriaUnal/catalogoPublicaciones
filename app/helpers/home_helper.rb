@@ -10,4 +10,6 @@ module HomeHelper
  def devise_mapping
    @devise_mapping ||= Devise.mappings[:professor]
  end
+
+
 end

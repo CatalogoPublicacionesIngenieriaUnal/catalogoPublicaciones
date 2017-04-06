@@ -144,7 +144,10 @@
           </div>
         </div>
       </div>
+      <% else %>
+      <%= link_to "Sing Out", destroy_professor_session_path, method: :delete %>
       <% end %>
+
       <!-- Fin Login -->
     </section>
   </header>

@@ -4,6 +4,16 @@ Rails.application.routes.draw do
   end
   resources :attachments do
 
+    root to: "home#index"
+  devise_scope :professor do
+    get "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
+
+  end
+    devise_for :judges
+    devise_for :administrators
+    devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
+
+
   end
   resources :professor_publications do
   end
@@ -57,8 +67,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "home#index"
   # Rutas para el sidebar
   get 'info', to: "home#index"
   get 'catalog', to: "home#index"

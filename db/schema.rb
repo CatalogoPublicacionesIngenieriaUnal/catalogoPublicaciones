@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405230940) do
+ActiveRecord::Schema.define(version: 20170406053116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,17 +66,28 @@ ActiveRecord::Schema.define(version: 20170405230940) do
   end
 
   create_table "judges", force: :cascade do |t|
-    t.string   "user",        null: false
-    t.string   "name",        null: false
-    t.string   "lastname",    null: false
+    t.string   "user",                                null: false
+    t.string   "name",                                null: false
+    t.string   "lastname",                            null: false
     t.string   "password"
-    t.string   "email",       null: false
-    t.datetime "created_at",  null: false
+    t.string   "email",                               null: false
     t.date     "finish_at"
-    t.integer  "telephone",   null: false
+    t.integer  "telephone",                           null: false
     t.integer  "language_id"
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.index ["email"], name: "index_judges_on_email", unique: true, using: :btree
     t.index ["language_id"], name: "index_judges_on_language_id", using: :btree
+    t.index ["reset_password_token"], name: "index_judges_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "keywords", force: :cascade do |t|

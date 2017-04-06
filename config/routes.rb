@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :judges
   devise_for :administrators
   devise_for :professors
   resources :keywords

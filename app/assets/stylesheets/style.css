@@ -268,7 +268,7 @@ a{color:inherit;text-decoration:none}
 }
 
 .form-basic{
-    max-width: 640px;
+    max-width: 720px;
     margin: 0 auto;
     padding: 55px;
     box-sizing: border-box;
@@ -426,5 +426,8 @@ a{color:inherit;text-decoration:none}
     .form-basic button{
         margin: 0;
     }
+}
 
+.main-content{
+    margin-bottom: 75px;
 }

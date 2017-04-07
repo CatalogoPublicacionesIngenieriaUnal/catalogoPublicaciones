@@ -33,29 +33,16 @@
 			<% end %>
             <div class="form-row">
                 <label>
-                    <span>Categoría</span>
-                    <select name="category">
-                        <option>Artículo</option>
-                        <option>Libro</option>
-                        <option>Investigación</option>
-                        <option>Tesis</option>
-                    </select>
-					  <div class="field">
-						<%= f.text_field :category %>
-					  </div>
-                </label>
+				    <span>Categoría de la publicación</span>
+					<div class="field">
+					   <%= f.select :category, category%>
+					</div>						
             </div>			
 			<div class="form-row">
                 <label>
                     <span>Área de profundización</span>
-                    <select name="area">
-                        <option>Ciencias políticas</option>
-                        <option>Matemáticas</option>
-                        <option>Ingeniería</option>
-                        <option>Medicina</option>
-                    </select>
-					<div class="field">
-					  <%= f.text_field :theme %>
+                    <div class="field">
+					  <%= f.select :theme, theme%>
 				    </div>
                 </label>
             </div>

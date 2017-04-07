@@ -1,93 +1,91 @@
 <html>
 <%= form_for(professor) do |f| %>
+  
   <% if professor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
+	<div id="error_explanation">
+	  <h2><%= pluralize(professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
 
-      <ul>
-      <% professor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+	  <ul>
+	  <% professor.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+	  <% end %>
+	  </ul>
+	</div>
   <% end %>
+<div class="main-content">
+<form class="form-basic">
     <div class="col-sm-12" style="padding:0px 50px 0px 0px">
-		<div class="main-content">
-			<form class="form-basic">
-				<div class="form-title-row">
-					<h1>Datos básicos del docente</h1>
-				</div>
-				<div class="form-row">
-					<label>
-						<span>Nombres</span>
-						  <div class="field">
-							<%= f.text_field :name %>
-						  </div>
-					</label>
-				</div>
-				<div class="form-row">
-					<label>
-						<span>Apellidos</span>
-						  <div class="field">
-							<%= f.text_field :lastname %>
-						  </div>
-					</label>
-				</div>
-				<div class="form-row">
-					<label>
-						<span>Departamento</span>
-						<select name="department">
-							<option>Sistemas e Industrial</option>
-							<option>Eléctrica y electrónica</option>
-							<option>Mecánica y mecatrónica</option>
-							<option>Civil</option>
-						</select>
-						<div class="field">
-						   <%= f.text_field :departament %>
-						</div>						
-					</label>
-				</div>	
-				<div class="form-row">
-					<label>
-						<span>Correo electrónico</span>
-						  <div class="field">
-				        	<%= f.text_field :email %>    
-						  </div>
-					</label>
-				</div>
-				<% if false %>
-				<div class="form-row">
-					<label>
-						<span>Teléfono</span>
-						  <div class="field">
-   				        	<%= f.text_field :phone_number %>  
-						  </div>
-					</label>
-				</div>
-				<div class="form-row">
-					<label>
-						<span>Género</span>
-						  <div class="field">
-							<%= f.text_field :gender %>  
-						  </div>
-					</label>
-				</div>
-				<div class="form-row">
-					<label>
-						<span>Fecha de nacimiento</span>
-						  <div class="field">
-							<%= f.date :birthday %>    
-						  </div>
-					</label>
-				</div>
-				<% end %>
-				<div class="form-row">
-					  <div class="actions">
-						<%= f.submit %>
-					  </div>
-				</div>	  
-			</form>
+		<div class="form-title-row">
+			<h1>Datos básicos del docente</h1>
 		</div>
+		
+    	<div class="form-row">
+			<span>Nombres</span>
+			<label>
+				  <div class="field">
+					<%= f.text_field :name %>
+				  </div>
+			</label>
+		</div>
+		<div class="form-row">
+			<span>Apellidos</span>
+			<label>
+				  <div class="field">
+					<%= f.text_field :lastname %>
+				  </div>
+			</label>
+		</div>
+		<div class="form-row">
+		    <span>Departamento</span>
+			<label>
+				<div class="field">
+				   <%= f.select :departament, departments%>
+				</div>						
+			</label>
+		</div>	
+		<div class="form-row">
+		    <span>Correo electrónico</span>
+			<label>
+				  <div class="field">
+					<%= f.text_field :email %>    
+				  </div>
+			</label>
+		</div>
+		<% if false %>
+		<div class="form-row">
+		    <span>Teléfono</span>
+			<label>
+				  <div class="field">
+					<%= f.text_field :phone_number %>  
+				  </div>
+			</label>
+		</div>
+		<div class="form-row">
+		    <span>Género</span>
+			<label>
+				  <div class="field">
+					<%= f.select :gender, gender%>  
+				  </div>
+			</label>
+		</div>
+		<div class="form-row">
+		    <span>Fecha de nacimiento</span>
+			<label>
+				  <div class="field">
+					<%= f.date :birthday %>    
+				  </div>
+			</label>
+		</div>
+		<% end %>
+		<div class="form-row">
+			  <div class="actions">
+				<%= f.submit %>
+			  </div>
+		</div>	  
+	</div>	
 </div>
+
 <% end %>
+</form>
+</div>
 <html>

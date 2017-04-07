@@ -1,3 +1,4 @@
+<html>
 <%= form_for(professor) do |f| %>
   <% if professor.errors.any? %>
     <div id="error_explanation">
@@ -10,38 +11,83 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :user %>
-    <%= f.text_field :user %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lastname %>
-    <%= f.text_field :lastname %>
-  </div>
-
-  <div class="field">
-    <%= f.label :departament %>
-    <%= f.text_field :departament %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :created_at %>
-    <%= f.date_select :created_at %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="col-sm-12" style="padding:0px 50px 0px 0px">
+		<div class="main-content">
+			<form class="form-basic">
+				<div class="form-title-row">
+					<h1>Datos básicos del docente</h1>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Nombres</span>
+						  <div class="field">
+							<%= f.text_field :name %>
+						  </div>
+					</label>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Apellidos</span>
+						  <div class="field">
+							<%= f.text_field :lastname %>
+						  </div>
+					</label>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Departamento</span>
+						<select name="department">
+							<option>Sistemas e Industrial</option>
+							<option>Eléctrica y electrónica</option>
+							<option>Mecánica y mecatrónica</option>
+							<option>Civil</option>
+						</select>
+						<div class="field">
+						   <%= f.text_field :departament %>
+						</div>						
+					</label>
+				</div>	
+				<div class="form-row">
+					<label>
+						<span>Correo electrónico</span>
+						  <div class="field">
+				        	<%= f.text_field :email %>    
+						  </div>
+					</label>
+				</div>
+				<% if false %>
+				<div class="form-row">
+					<label>
+						<span>Teléfono</span>
+						  <div class="field">
+   				        	<%= f.text_field :phone_number %>  
+						  </div>
+					</label>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Género</span>
+						  <div class="field">
+							<%= f.text_field :gender %>  
+						  </div>
+					</label>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Fecha de nacimiento</span>
+						  <div class="field">
+							<%= f.date :birthday %>    
+						  </div>
+					</label>
+				</div>
+				<% end %>
+				<div class="form-row">
+					  <div class="actions">
+						<%= f.submit %>
+					  </div>
+				</div>	  
+			</form>
+		</div>
+</div>
 <% end %>
+<html>

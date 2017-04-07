@@ -11,22 +11,75 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :abstract %>
-    <%= f.text_area :abstract %>
-  </div>
+      <div class="main-content">
+        <form class="form-basic" method="post" action="#">
+            <div class="form-title-row">
+                <h1>Datos de la publicación</h1>
+            </div>
+            <% if false %>
+            <div class="form-row">
+                <label>
+                    <span>Título</span>
+                    <input type="text" name="title">
+                </label>
+            </div>
+			
+			<div class="form-row">
+                <label>
+                    <span>Fecha de creación</span>
+                    <input type="date" name="creation">
+                </label>
+            </div>
+			<% end %>
+            <div class="form-row">
+                <label>
+                    <span>Categoría</span>
+                    <select name="category">
+                        <option>Artículo</option>
+                        <option>Libro</option>
+                        <option>Investigación</option>
+                        <option>Tesis</option>
+                    </select>
+					  <div class="field">
+						<%= f.text_field :category %>
+					  </div>
+                </label>
+            </div>			
+			<div class="form-row">
+                <label>
+                    <span>Área de profundización</span>
+                    <select name="area">
+                        <option>Ciencias políticas</option>
+                        <option>Matemáticas</option>
+                        <option>Ingeniería</option>
+                        <option>Medicina</option>
+                    </select>
+					<div class="field">
+					  <%= f.text_field :theme %>
+				    </div>
+                </label>
+            </div>
+            <div class="form-row">
+                <label>
+                    <span>Palabras clave</span>
+                    <input type="text" name="keywords">
+                </label>
+            </div>
+            <div class="form-row">
+			    <label>
+                    <span>Resumen</span>
+                    <div class="field">
+					<%= f.text_area :abstract %>
+				</div>
+                </label>
+            </div>
+			<div class="form-row">
+			      <div class="actions">
+					<%= f.submit %>
+				  </div>
+            </div>
+						
+        </form>
+    </div>
 
-  <div class="field">
-    <%= f.label :theme %>
-    <%= f.text_field :theme %>
-  </div>
-
-  <div class="field">
-    <%= f.label :category %>
-    <%= f.text_field :category %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

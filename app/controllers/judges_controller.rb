@@ -1,4 +1,5 @@
 class JudgesController < ApplicationController
+  layout "unal"
   before_action :set_judge, only: [:show, :edit, :update, :destroy]
 
   # GET /judges

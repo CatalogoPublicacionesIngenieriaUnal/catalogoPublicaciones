@@ -1,3 +1,4 @@
+<html>
 <%= form_for(judge) do |f| %>
   <% if judge.errors.any? %>
     <div id="error_explanation">
@@ -10,48 +11,66 @@
       </ul>
     </div>
   <% end %>
+    <div class="col-sm-12" style="padding:0px 50px 0px 0px">
+		<div class="main-content">
+			<form class="form-basic" method="post" action="#">
+				<div class="form-title-row">
+					<h1>Datos básicos del evaluador</h1>
+				</div>
 
-  <div class="field">
-    <%= f.label :user %>
-    <%= f.text_field :user %>
-  </div>
+				<div class="form-row">
+					<label>
+						<span>Nombres</span>
+						  <div class="field">
+							<%= f.text_field :name %>
+						  </div>
+					</label>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Apellidos</span>
+						  <div class="field">
+							<%= f.text_field :lastname %>
+						  </div>
+					</label>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Correo electrónico</span>
+						  <div class="field">
+							<%= f.text_field :email %>
+						  </div>
+					</label>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Teléfono</span>
+						  <div class="field">
+							<%= f.number_field :telephone %>
+						  </div>
+					</label>
+				</div>
+				<div class="form-row">
+					<label>
+						<span>Idioma</span>
+						<select name="language">
+							<option>Español</option>
+							<option>Inglés</option>
+							<option>Francés</option>
+							<option>Alemán</option>
+						</select>
+					</label>
+				</div>	
+				<div class="form-row">
+					  <div class="actions">
+						<%= f.submit %>
+					  </div>
+				</div>			
+							
+			</form>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :lastname %>
-    <%= f.text_field :lastname %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :created_at %>
-    <%= f.date_select :created_at %>
-  </div>
-
-  <div class="field">
-    <%= f.label :finish_at %>
-    <%= f.date_select :finish_at %>
-  </div>
-
-  <div class="field">
-    <%= f.label :telephone %>
-    <%= f.number_field :telephone %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+		</div>
+       </div>
+	</div>
 <% end %>
+</html>

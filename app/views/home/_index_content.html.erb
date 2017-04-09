@@ -1,130 +1,120 @@
 <!-- Pagina principal -->
 <!-- Titulo -->
-      <div class="row">
-        <div class="text-center">
-        <div class="col-md-6 col-md-offset-3" style="padding: 10px 0px 0px 0px;">
-          <h1 style="font-size:200%;">Catálogo de publicaciones</h1>
-        </div>
-      </div>
-      </div>
+<div class="row">
+  <div class="text-center">
+    <div class="col-md-6 col-md-offset-3" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Catálogo de publicaciones</h1>
+    </div>
+  </div>
+</div>
 <!-- Contenido de la pagina -->
-    <div class="row">
-      <!-- Menu principal -->
-      <div class="col-sm-2">
-        <div class="ul-custom">
-          <div class="text-center">
-          <h4>Menú principal</h4>
-        </div>
+<div class="row">
+  <!-- Menu principal -->
+  <div class="col-sm-2">
+    <%= render 'static/menu' %>
+  </div>
+  <!-- Catalogo -->
+  <div class="col-sm-7">
+    <div class="catalog">
+      <div class="books">
+        <div class="line">
+          <h4>Publicaciones disponibles</h4>
           <div><hr class="style13"></div>
-          <div class="li-custom"><a href="/">Principal</a></div>
-          <div class="li-custom"><a href="/">Información general</a></div>
-          <div class="li-custom"><a href="/">Ver catálogo</a></div>
-          <div class="li-custom"><a href="/">Instrucciones para postularse</a></div>
-          <div class="li-custom"><a href="contact">Contacto</a></div>
-        </div>
-      </div>
-      <!-- Catalogo -->
-      <div class="col-sm-7">
-        <div class="catalog">
-          <div class="books">
-            <div class="line">
-              <h4>Publicaciones disponibles</h4>
-              <div><hr class="style13"></div>
-              <div class="col-md-3 quarter" style="padding: 0px 0px 0px 0px">
-                <div class="view text-center">
-                  <%= image_tag "libro1.jpg", :alt => "lib1", :width => 100, :height => 150%>
-                  <p>Publicacion 1</p>
-                  <a class="mask" data-target="#lib1" data-toggle="modal">
-                    <div class="t-team-read">
-                      <h6>Publicacion 1</h6>
-                    </div>
-                  </a>
+          <div class="col-md-3 quarter" style="padding: 0px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro1.jpg", :alt => "lib1", :width => 100, :height => 150%>
+              <p>Publicacion 1</p>
+              <a class="mask" data-target="#lib1" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 1</h6>
                 </div>
-              </div>
-              <div class="col-md-3 quarter" style="padding: 0px 0px 0px 0px">
-                <div class="view text-center">
-                  <%= image_tag "libro2.jpg", :alt => "lib2", :width => 100, :height => 150%>
-                  <p>Publicacion 2</p>
-                  <a class="mask" data-target="#lib2" data-toggle="modal">
-                    <div class="t-team-read">
-                      <h6>Publicacion 2</h6>
-                    </div>
-                  </a>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 0px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro2.jpg", :alt => "lib2", :width => 100, :height => 150%>
+              <p>Publicacion 2</p>
+              <a class="mask" data-target="#lib2" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 2</h6>
                 </div>
-              </div>
-              <div class="col-md-3 quarter">
-                <div class="view text-center">
-                  <%= image_tag "libro3.jpg", :alt => "lib3", :width => 100, :height => 150%>
-                  <p>Publicacion 3</p>
-                  <a class="mask" data-target="#lib3" data-toggle="modal">
-                    <div class="t-team-read">
-                      <h6>Publicacion 3</h6>
-                    </div>
-                  </a>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter">
+            <div class="view text-center">
+              <%= image_tag "libro3.jpg", :alt => "lib3", :width => 100, :height => 150%>
+              <p>Publicacion 3</p>
+              <a class="mask" data-target="#lib3" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 3</h6>
                 </div>
-              </div>
-              <div class="col-md-3 quarter">
-                <div class="view text-center">
-                  <%= image_tag "libro4.jpg", :alt => "lib4", :width => 100, :height => 150%>
-                  <p>Publicacion 4</p>
-                  <a class="mask" data-target="#lib4" data-toggle="modal">
-                    <div class="t-team-read">
-                      <h6>Publicacion 4</h6>
-                    </div>
-                  </a>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter">
+            <div class="view text-center">
+              <%= image_tag "libro4.jpg", :alt => "lib4", :width => 100, :height => 150%>
+              <p>Publicacion 4</p>
+              <a class="mask" data-target="#lib4" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 4</h6>
                 </div>
-              </div>
-              <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
-                <div class="view text-center">
-                  <%= image_tag "libro5.jpg", :alt => "lib5", :width => 100, :height => 150%>
-                  <p>Publicacion 5</p>
-                  <a class="mask" data-target="#lib5" data-toggle="modal">
-                    <div class="t-team-read">
-                      <h6>Publicacion 5</h6>
-                    </div>
-                  </a>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro5.jpg", :alt => "lib5", :width => 100, :height => 150%>
+              <p>Publicacion 5</p>
+              <a class="mask" data-target="#lib5" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 5</h6>
                 </div>
-              </div>
-              <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
-                <div class="view text-center">
-                  <%= image_tag "libro6.jpg", :alt => "lib6", :width => 100, :height => 150%>
-                  <p>Publicacion 6</p>
-                  <a class="mask" data-target="#lib6" data-toggle="modal">
-                    <div class="t-team-read">
-                      <h6>Publicacion 6</h6>
-                    </div>
-                  </a>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro6.jpg", :alt => "lib6", :width => 100, :height => 150%>
+              <p>Publicacion 6</p>
+              <a class="mask" data-target="#lib6" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 6</h6>
                 </div>
-              </div>
-              <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
-                <div class="view text-center">
-                  <%= image_tag "libro7.jpg", :alt => "lib7", :width => 100, :height => 150%>
-                  <p>Publicacion 7</p>
-                  <a class="mask" data-target="#lib7" data-toggle="modal">
-                    <div class="t-team-read">
-                      <h6>Publicacion 7</h6>
-                    </div>
-                  </a>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro7.jpg", :alt => "lib7", :width => 100, :height => 150%>
+              <p>Publicacion 7</p>
+              <a class="mask" data-target="#lib7" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 7</h6>
                 </div>
-              </div>
-              <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
-                <div class="view text-center">
-                  <%= image_tag "libro8.jpg", :alt => "lib8", :width => 100, :height => 150%>
-                  <p>Publicacion 8</p>
-                  <a class="mask" data-target="#lib8" data-toggle="modal">
-                    <div class="t-team-read">
-                      <h6>Publicacion 8</h6>
-                    </div>
-                  </a>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro8.jpg", :alt => "lib8", :width => 100, :height => 150%>
+              <p>Publicacion 8</p>
+              <a class="mask" data-target="#lib8" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 8</h6>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <!-- Login -->
-      <%= render 'home/login_content' %>
-      <!-- Fin Login -->
-    </section>
-  </header>
+    </div>
+  </div>
+  <!-- Login -->
+  <%= render 'home/login_content' %>
+  <!-- Fin Login -->
+</section>
+</header>
 </div>

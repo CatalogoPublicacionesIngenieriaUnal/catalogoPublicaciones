@@ -1,6 +1,6 @@
 class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
-
+  layout "unal"
   # GET /professors
   # GET /professors.json
   def index
@@ -69,6 +69,6 @@ class ProfessorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professor_params
-      params.require(:professor).permit(:user, :name, :lastname, :departament, :email, :created_at)
+      params.require(:professor).permit(:username, :name, :lastname, :departament, :email, :created_at)
     end
 end

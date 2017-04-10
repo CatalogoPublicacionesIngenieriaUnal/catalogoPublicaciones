@@ -11,7 +11,7 @@
 <div class="row">
   <!-- Menu principal -->
   <div class="col-sm-2">
-    <%= render 'static/menu' %>
+    <%= render 'static/menu_publicaciones' %>
   </div>
   <!-- Catalogo -->
   <div class="col-sm-7">
@@ -113,7 +113,14 @@
     </div>
   </div>
   <!-- Login -->
+  <%#- if !anyone_singed_in? %>
+  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+    <%= render 'home/login_content' %>
+  </div>
+  <%# else %>
+  <div class="group">
+    <%#= link_to "Salir", destroy_professor_session_path, method: :delete, :class=>"button" %>
+  </div>
+  <%# end %>
   <!-- Fin Login -->
-</section>
-</header>
 </div>

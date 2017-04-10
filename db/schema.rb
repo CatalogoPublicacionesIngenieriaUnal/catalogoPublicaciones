@@ -10,107 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406072844) do
+ActiveRecord::Schema.define(version: 20170410050514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "administrators", force: :cascade do |t|
-    t.string   "user",                                null: false
-    t.string   "name",                                null: false
-    t.string   "lastname",                            null: false
-    t.string   "email",                               null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.index ["email"], name: "index_administrators_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true, using: :btree
+    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "application_requests", force: :cascade do |t|
+    t.integer  "state"
+    t.date     "authorized_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "attatchments", force: :cascade do |t|
+    t.string   "url"
+    t.string   "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "state_id"
-    t.index ["state_id"], name: "index_application_requests_on_state_id", using: :btree
   end
 
-  create_table "approved_publications", force: :cascade do |t|
-    t.string   "resolution"
-    t.integer  "stock"
-    t.integer  "stock_at_store"
-    t.integer  "stock_at_library"
-    t.integer  "publication_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["publication_id"], name: "index_approved_publications_on_publication_id", using: :btree
-  end
-
-  create_table "attachments", force: :cascade do |t|
-    t.string   "url",                    null: false
-    t.string   "category",               null: false
-    t.integer  "application_request_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["application_request_id"], name: "index_attachments_on_application_request_id", using: :btree
+  create_table "categories", force: :cascade do |t|
+    t.string   "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "evaluations", force: :cascade do |t|
-    t.text     "concept"
     t.text     "justification"
-    t.date     "assigned_at"
-    t.integer  "judge_id"
-    t.integer  "state_id"
-    t.integer  "application_request_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["application_request_id"], name: "index_evaluations_on_application_request_id", using: :btree
-    t.index ["judge_id"], name: "index_evaluations_on_judge_id", using: :btree
-    t.index ["state_id"], name: "index_evaluations_on_state_id", using: :btree
+    t.integer  "state"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "judges", force: :cascade do |t|
-    t.string   "user",                                null: false
-    t.string   "name",                                null: false
-    t.string   "lastname",                            null: false
-    t.string   "password"
-    t.string   "email",                               null: false
-    t.date     "finish_at"
-    t.integer  "telephone",                           null: false
-    t.integer  "language_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.index ["email"], name: "index_judges_on_email", unique: true, using: :btree
-    t.index ["language_id"], name: "index_judges_on_language_id", using: :btree
-    t.index ["reset_password_token"], name: "index_judges_on_reset_password_token", unique: true, using: :btree
+  create_table "evaluators", force: :cascade do |t|
+    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "keywords", force: :cascade do |t|
     t.string   "keyword"
-    t.integer  "publication_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["publication_id"], name: "index_keywords_on_publication_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "languages", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -118,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170406072844) do
   create_table "professor_application_requests", force: :cascade do |t|
     t.integer  "professor_id"
     t.integer  "application_request_id"
+    t.boolean  "is_holder"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["application_request_id"], name: "index_professor_application_requests_on_application_request_id", using: :btree
@@ -134,55 +93,34 @@ ActiveRecord::Schema.define(version: 20170406072844) do
   end
 
   create_table "professors", force: :cascade do |t|
-    t.string   "username",                               null: false
-    t.string   "name",                                   null: false
-    t.string   "lastname",                               null: false
-    t.string   "departament"
-    t.string   "email",                                  null: false
-    t.boolean  "authorized",             default: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.index ["email"], name: "index_professors_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true, using: :btree
-    t.index ["username"], name: "index_professors_on_username", using: :btree
+    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.integer  "department"
+    t.integer  "contact_number"
+    t.integer  "gender"
+    t.boolean  "is_authorized"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "publications", force: :cascade do |t|
+    t.text     "title"
     t.text     "abstract"
-    t.string   "theme"
-    t.string   "category"
-    t.integer  "application_request_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["application_request_id"], name: "index_publications_on_application_request_id", using: :btree
-  end
-
-  create_table "states", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.boolean  "verifier",   null: false
+    t.integer  "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "application_requests", "states"
-  add_foreign_key "approved_publications", "publications"
-  add_foreign_key "attachments", "application_requests"
-  add_foreign_key "evaluations", "application_requests"
-  add_foreign_key "evaluations", "judges"
-  add_foreign_key "evaluations", "states"
-  add_foreign_key "judges", "languages"
-  add_foreign_key "keywords", "publications"
+  create_table "themes", force: :cascade do |t|
+    t.string   "theme"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "professor_application_requests", "application_requests"
   add_foreign_key "professor_application_requests", "professors"
   add_foreign_key "professor_publications", "professors"
   add_foreign_key "professor_publications", "publications"
-  add_foreign_key "publications", "application_requests"
 end

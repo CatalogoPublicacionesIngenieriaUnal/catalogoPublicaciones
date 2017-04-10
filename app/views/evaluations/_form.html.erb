@@ -12,18 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :concept %>
-    <%= f.text_area :concept %>
-  </div>
-
-  <div class="field">
     <%= f.label :justification %>
     <%= f.text_area :justification %>
   </div>
 
   <div class="field">
-    <%= f.label :assigned_at %>
-    <%= f.date_select :assigned_at %>
+    <%= f.label :state %>
+    <%= f.number_field :state %>
   </div>
 
   <div class="actions">

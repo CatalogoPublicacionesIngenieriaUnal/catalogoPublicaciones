@@ -5,9 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Concept</th>
       <th>Justification</th>
-      <th>Assigned at</th>
+      <th>State</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +14,8 @@
   <tbody>
     <% @evaluations.each do |evaluation| %>
       <tr>
-        <td><%= evaluation.concept %></td>
         <td><%= evaluation.justification %></td>
-        <td><%= evaluation.assigned_at %></td>
+        <td><%= evaluation.state %></td>
         <td><%= link_to 'Show', evaluation %></td>
         <td><%= link_to 'Edit', edit_evaluation_path(evaluation) %></td>
         <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

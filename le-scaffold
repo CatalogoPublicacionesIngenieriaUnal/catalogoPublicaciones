@@ -1,0 +1,13 @@
+rails g model professor_application_request professor:references application_request:references is_holder:boolean
+rails g model professor_publication professor:references publication:references
+rails g scaffold Language name:string
+rails g scaffold Administrator username:string first_name:string last_name:string email:string
+rails g scaffold Professor username:string first_name:string last_name:string email:string department:integer contact_number:integer gender:integer is_authorized:boolean
+rails g scaffold Evaluator username:string first_name:string last_name:string email:string code:string 
+rails g scaffold ApplicationRequest state:integer authorized_at:date
+rails g scaffold Evaluation justification:text state:integer
+rails g scaffold Publication title:text abstract:text category:integer
+rails g scaffold Attatchment url:string category:string
+rails g scaffold Keyword keyword:string 
+rails g scaffold Category category:string
+rails g scaffold Theme theme:string

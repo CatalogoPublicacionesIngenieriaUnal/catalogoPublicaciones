@@ -1,23 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
-  <%= @professor.user %>
+  <strong>Username:</strong>
+  <%= @professor.username %>
 </p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @professor.name %>
+  <strong>First name:</strong>
+  <%= @professor.first_name %>
 </p>
 
 <p>
-  <strong>Lastname:</strong>
-  <%= @professor.lastname %>
-</p>
-
-<p>
-  <strong>Departament:</strong>
-  <%= @professor.departament %>
+  <strong>Last name:</strong>
+  <%= @professor.last_name %>
 </p>
 
 <p>
@@ -26,8 +21,23 @@
 </p>
 
 <p>
-  <strong>Created at:</strong>
-  <%= @professor.created_at %>
+  <strong>Department:</strong>
+  <%= @professor.department %>
+</p>
+
+<p>
+  <strong>Contact number:</strong>
+  <%= @professor.contact_number %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @professor.gender %>
+</p>
+
+<p>
+  <strong>Is authorized:</strong>
+  <%= @professor.is_authorized %>
 </p>
 
 <%= link_to 'Edit', edit_professor_path(@professor) %> |

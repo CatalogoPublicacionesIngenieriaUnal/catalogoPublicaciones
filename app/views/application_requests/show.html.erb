@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Url:</strong>
-  <%= @application_request.url %>
+  <strong>State:</strong>
+  <%= @application_request.state %>
 </p>
 
 <p>
-  <strong>Created at:</strong>
-  <%= @application_request.created_at %>
-</p>
-
-<p>
-  <strong>Updated at:</strong>
-  <%= @application_request.updated_at %>
+  <strong>Authorized at:</strong>
+  <%= @application_request.authorized_at %>
 </p>
 
 <%= link_to 'Edit', edit_application_request_path(@application_request) %> |

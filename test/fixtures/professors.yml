@@ -1,17 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: MyString
-  name: MyString
-  lastname: MyString
-  departament: MyString
+  username: MyString
+  first_name: MyString
+  last_name: MyString
   email: MyString
-  created_at: 2017-03-22
+  department: 1
+  contact_number: 1
+  gender: 1
+  is_authorized: false
 
 two:
-  user: MyString
-  name: MyString
-  lastname: MyString
-  departament: MyString
+  username: MyString
+  first_name: MyString
+  last_name: MyString
   email: MyString
-  created_at: 2017-03-22
+  department: 1
+  contact_number: 1
+  gender: 1
+  is_authorized: false

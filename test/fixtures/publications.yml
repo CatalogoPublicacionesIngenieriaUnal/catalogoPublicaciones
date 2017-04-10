@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  title: MyText
   abstract: MyText
-  theme: MyString
-  category: MyString
+  category: 1
 
 two:
+  title: MyText
   abstract: MyText
-  theme: MyString
-  category: MyString
+  category: 1

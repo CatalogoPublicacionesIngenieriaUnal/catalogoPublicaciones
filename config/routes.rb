@@ -1,28 +1,34 @@
 Rails.application.routes.draw do
 
 
+  resources :publications
+  resources :evaluations
+  resources :application_requests
+  resources :evaluators
+  resources :professors
+  resources :administrators
+  resources :languages
+  resources :themes
+  resources :categories
+  resources :keywords
+  resources :attatchments
   root to: "home#index"
-
-  devise_scope :professor do
-    get "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
-  end
-    devise_for :judges
-    devise_for :administrators
-    devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
-
+  
   resources :keywords do
-
   end
+  
   resources :attachments do
   end
+  
   resources :professor_publications do
   end
+  
   resources :professor_application_requests do
-
   end
+  
   resources :approved_publications do
-
   end
+  
   resources :publications do
 
   end

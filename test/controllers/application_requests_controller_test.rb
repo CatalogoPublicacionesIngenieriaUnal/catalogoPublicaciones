@@ -17,7 +17,7 @@ class ApplicationRequestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create application_request" do
     assert_difference('ApplicationRequest.count') do
-      post application_requests_url, params: { application_request: { created_at: @application_request.created_at, updated_at: @application_request.updated_at, url: @application_request.url } }
+      post application_requests_url, params: { application_request: { authorized_at: @application_request.authorized_at, state: @application_request.state } }
     end
 
     assert_redirected_to application_request_url(ApplicationRequest.last)
@@ -34,7 +34,7 @@ class ApplicationRequestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update application_request" do
-    patch application_request_url(@application_request), params: { application_request: { created_at: @application_request.created_at, updated_at: @application_request.updated_at, url: @application_request.url } }
+    patch application_request_url(@application_request), params: { application_request: { authorized_at: @application_request.authorized_at, state: @application_request.state } }
     assert_redirected_to application_request_url(@application_request)
   end
 

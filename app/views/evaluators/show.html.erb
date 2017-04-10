@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @evaluator.username %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @evaluator.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @evaluator.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @evaluator.email %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @evaluator.code %>
+</p>
+
+<%= link_to 'Edit', edit_evaluator_path(@evaluator) %> |
+<%= link_to 'Back', evaluators_path %>

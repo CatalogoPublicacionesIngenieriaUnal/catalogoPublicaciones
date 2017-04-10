@@ -17,7 +17,7 @@ class ProfessorsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create professor" do
     assert_difference('Professor.count') do
-      post professors_url, params: { professor: { created_at: @professor.created_at, departament: @professor.departament, email: @professor.email, lastname: @professor.lastname, name: @professor.name, user: @professor.user } }
+      post professors_url, params: { professor: { contact_number: @professor.contact_number, department: @professor.department, email: @professor.email, first_name: @professor.first_name, gender: @professor.gender, is_authorized: @professor.is_authorized, last_name: @professor.last_name, username: @professor.username } }
     end
 
     assert_redirected_to professor_url(Professor.last)
@@ -34,7 +34,7 @@ class ProfessorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update professor" do
-    patch professor_url(@professor), params: { professor: { created_at: @professor.created_at, departament: @professor.departament, email: @professor.email, lastname: @professor.lastname, name: @professor.name, user: @professor.user } }
+    patch professor_url(@professor), params: { professor: { contact_number: @professor.contact_number, department: @professor.department, email: @professor.email, first_name: @professor.first_name, gender: @professor.gender, is_authorized: @professor.is_authorized, last_name: @professor.last_name, username: @professor.username } }
     assert_redirected_to professor_url(@professor)
   end
 

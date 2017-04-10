@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  concept: MyText
   justification: MyText
-  assigned_at: 2017-03-22
+  state: 1
 
 two:
-  concept: MyText
   justification: MyText
-  assigned_at: 2017-03-22
+  state: 1

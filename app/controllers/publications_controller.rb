@@ -1,6 +1,6 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
-  layout "unal"
+
   # GET /publications
   # GET /publications.json
   def index
@@ -69,6 +69,6 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-      params.require(:publication).permit(:abstract, :theme, :category)
+      params.require(:publication).permit(:title, :abstract, :category)
     end
 end

@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  layout "unal", only: [:index,:contact,:historical,:exams_and_juries,:test_exams]
+  layout "unal"
 
   def index
     @content = "home/index_content.html.erb"

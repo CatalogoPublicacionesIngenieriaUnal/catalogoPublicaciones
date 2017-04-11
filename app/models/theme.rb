@@ -1,3 +1,3 @@
 class Theme < ApplicationRecord
-  belongs_to :publication
+  has_many :publications
 end

@@ -1,3 +1,4 @@
 class Keyword < ApplicationRecord
-  belongs_to :publication
+  has_many :keyword_publications
+  has_many :publications, through: :keyword_publications
 end

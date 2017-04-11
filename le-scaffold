@@ -11,3 +11,4 @@ rails g scaffold Evaluation justification:text state:integer
 rails g scaffold Publication title:text abstract:text category:integer
 rails g model professor_application_request professor:references application_request:references is_holder:boolean
 rails g model professor_publication professor:references publication:references
+rails g model keyword_publication keyword:references publication:references

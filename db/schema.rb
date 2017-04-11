@@ -10,32 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410050514) do
+ActiveRecord::Schema.define(version: 20170411041820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "administrators", force: :cascade do |t|
-    t.string   "username"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
+    t.string   "username",   null: false
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
+    t.string   "email",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "application_requests", force: :cascade do |t|
-    t.integer  "state"
+    t.integer  "state",         null: false
     t.date     "authorized_at"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "attatchments", force: :cascade do |t|
-    t.string   "url"
-    t.string   "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "url",                    null: false
+    t.string   "category",               null: false
+    t.integer  "application_request_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["application_request_id"], name: "index_attatchments_on_application_request_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -46,19 +48,34 @@ ActiveRecord::Schema.define(version: 20170410050514) do
 
   create_table "evaluations", force: :cascade do |t|
     t.text     "justification"
-    t.integer  "state"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "state",                  null: false
+    t.integer  "evaluator_id"
+    t.integer  "application_request_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["application_request_id"], name: "index_evaluations_on_application_request_id", using: :btree
+    t.index ["evaluator_id"], name: "index_evaluations_on_evaluator_id", using: :btree
   end
 
   create_table "evaluators", force: :cascade do |t|
-    t.string   "username"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "username",    null: false
+    t.string   "first_name",  null: false
+    t.string   "last_name",   null: false
+    t.string   "email",       null: false
+    t.string   "code",        null: false
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["language_id"], name: "index_evaluators_on_language_id", using: :btree
+  end
+
+  create_table "keyword_publications", force: :cascade do |t|
+    t.integer  "keyword_id"
+    t.integer  "publication_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["keyword_id"], name: "index_keyword_publications_on_keyword_id", using: :btree
+    t.index ["publication_id"], name: "index_keyword_publications_on_publication_id", using: :btree
   end
 
   create_table "keywords", force: :cascade do |t|
@@ -68,7 +85,7 @@ ActiveRecord::Schema.define(version: 20170410050514) do
   end
 
   create_table "languages", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -93,13 +110,13 @@ ActiveRecord::Schema.define(version: 20170410050514) do
   end
 
   create_table "professors", force: :cascade do |t|
-    t.string   "username"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
+    t.string   "username",       null: false
+    t.string   "first_name",     null: false
+    t.string   "last_name",      null: false
+    t.string   "email",          null: false
     t.integer  "department"
     t.integer  "contact_number"
-    t.integer  "gender"
+    t.integer  "gender",         null: false
     t.boolean  "is_authorized"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -109,8 +126,10 @@ ActiveRecord::Schema.define(version: 20170410050514) do
     t.text     "title"
     t.text     "abstract"
     t.integer  "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "application_request_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["application_request_id"], name: "index_publications_on_application_request_id", using: :btree
   end
 
   create_table "themes", force: :cascade do |t|
@@ -119,8 +138,15 @@ ActiveRecord::Schema.define(version: 20170410050514) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "attatchments", "application_requests"
+  add_foreign_key "evaluations", "application_requests"
+  add_foreign_key "evaluations", "evaluators"
+  add_foreign_key "evaluators", "languages"
+  add_foreign_key "keyword_publications", "keywords"
+  add_foreign_key "keyword_publications", "publications"
   add_foreign_key "professor_application_requests", "application_requests"
   add_foreign_key "professor_application_requests", "professors"
   add_foreign_key "professor_publications", "professors"
   add_foreign_key "professor_publications", "publications"
+  add_foreign_key "publications", "application_requests"
 end

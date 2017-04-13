@@ -1,57 +1,99 @@
-<%= form_for(professor) do |f| %>
-  <% if professor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
-
-      <ul>
-      <% professor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="row">
+  <div class="text-center">
+    <div class="col-md-6 col-md-offset-3" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Registro</h1>
     </div>
-  <% end %>
+  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
   </div>
 
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
+  <div class="col-sm-10">
+    <div class="main-content">
+      <div class="form-basic">
+      <%= form_for(professor) do |f| %>
+      <% if professor.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
 
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
+        <ul>
+          <% professor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
+      <div class="form-title-row">
+        <h1>Datos básicos del docente</h1>
+      </div>
 
-  <div class="field">
-    <%= f.label :department %>
-    <%= f.number_field :department %>
-  </div>
+      <div class="form-row">
+        <label>
+          <span>User</span>
+          <%= f.text_field :username, :disabled=>true%>
+        </label>
+      </div>
 
-  <div class="field">
-    <%= f.label :contact_number %>
-    <%= f.number_field :contact_number %>
-  </div>
+      <div class="form-row">
+        <label>
+          <span>Nombres</span>
+          <%= f.text_field :first_name, :disabled=>true%>
+        </label>
+      </div>
 
-  <div class="field">
-    <%= f.label :gender %>
-    <%= f.number_field :gender %>
-  </div>
+      <div class="form-row">
+        <label>
+          <span>Apellidos</span>
+          <%= f.text_field :last_name, :disabled=>true%>
+        </label>
+      </div>
 
-  <div class="field">
-    <%= f.label :is_authorized %>
-    <%= f.check_box :is_authorized %>
-  </div>
+      <div class="form-row">
+        <label>
+          <span>Correo electrónico</span>
+          <%= f.text_field :email, :disabled=>true%>
+        </label>
+      </div>
 
-  <div class="actions">
-    <%= f.submit %>
+      <div class="form-row">
+        <label>
+          <span>Departamento</span>
+          <%= f.number_field :department %>
+          <%#= f.select :departament, departments%>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Numero de contacto</span>
+          <%= f.number_field :contact_number %>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Genero</span>
+          <%= f.number_field :gender %>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Autorizado?</span>
+          <%= f.check_box :is_authorized %>
+        </label>
+      </div>
+
+      <div class="actions">
+        <%= f.submit :"Crear docente", :class=>"button"%>
+      </div>
+
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
+</div>

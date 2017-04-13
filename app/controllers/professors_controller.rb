@@ -1,5 +1,6 @@
 class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
+  layout "unal"
 
   # GET /professors
   # GET /professors.json
@@ -41,7 +42,7 @@ class ProfessorsController < ApplicationController
   # PATCH/PUT /professors/1.json
   def update
     respond_to do |format|
-      if @professor.update(professor_params)
+      if @professor.update(professor_params2)
         format.html { redirect_to @professor, notice: 'Professor was successfully updated.' }
         format.json { render :show, status: :ok, location: @professor }
       else
@@ -70,5 +71,8 @@ class ProfessorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def professor_params
       params.require(:professor).permit(:username, :first_name, :last_name, :email, :department, :contact_number, :gender, :is_authorized)
+    end
+    def professor_params2
+      params.require(:professor).permit(:department, :contact_number, :gender, :is_authorized)
     end
 end

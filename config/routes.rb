@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
 
+
   devise_scope :professor do
     get "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
   end
   root to: "home#index"
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
-
+  devise_for :administrators
   resources :publications
   resources :evaluations
   resources :application_requests

@@ -1,43 +1,68 @@
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Username:</strong>
-  <%= @professor.username %>
-</p>
+<div class="row">
+  <div class="text-center">
+    <div class="col-md-6 col-md-offset-3" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Mis datos</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @professor.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @professor.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @professor.email %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @professor.department %>
-</p>
-
-<p>
-  <strong>Contact number:</strong>
-  <%= @professor.contact_number %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @professor.gender %>
-</p>
-
-<p>
-  <strong>Is authorized:</strong>
-  <%= @professor.is_authorized %>
-</p>
-
-<%= link_to 'Edit', edit_professor_path(@professor) %> |
-<%= link_to 'Back', professors_path %>
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-md-10">
+    <div class="info">
+      <ul class="info-list ">
+        <li>
+          <span class="inf">Usuario</span>
+          <span class="value">
+            <%= @professor.username %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Nombres</span>
+          <span class="value">
+            <%= @professor.first_name %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Apellidos</span>
+          <span class="value">
+            <%= @professor.last_name %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Correo electrónico</span>
+          <span class="value">
+            <%= @professor.email %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Departamento</span>
+          <span class="value">
+            <%= @professor.department %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Numero de contacto</span>
+          <span class="value">
+            <%= @professor.contact_number %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Genero</span>
+          <span class="value">
+            <%= @professor.gender %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Autorizado?</span>
+          <span class="value">
+            <%= @professor.is_authorized %>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

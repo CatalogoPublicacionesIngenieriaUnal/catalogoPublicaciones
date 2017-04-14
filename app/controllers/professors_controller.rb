@@ -42,7 +42,7 @@ class ProfessorsController < ApplicationController
   # PATCH/PUT /professors/1.json
   def update
     respond_to do |format|
-      if @professor.update(professor_params2)
+      if @professor.update(professor_edit_params)
         format.html { redirect_to @professor, notice: 'Professor was successfully updated.' }
         format.json { render :show, status: :ok, location: @professor }
       else
@@ -72,7 +72,7 @@ class ProfessorsController < ApplicationController
     def professor_params
       params.require(:professor).permit(:username, :first_name, :last_name, :email, :department, :contact_number, :gender, :is_authorized)
     end
-    def professor_params2
+    def professor_edit_params
       params.require(:professor).permit(:department, :contact_number, :gender, :is_authorized)
     end
 end

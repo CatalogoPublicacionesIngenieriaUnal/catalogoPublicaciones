@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-sm-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px">
+      <h1 style="font-size:200%;">Bienvenido docente</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="li-custom">
+        <% @professors.each do |professor| %>
+        <div class="li-custom">
+          <%= link_to 'Ver mis datos personales', professor %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Actualizar datos personales', edit_professor_path(professor) %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/">Crear solicitud</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/">Revisar solicitud</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/">Mis publicaciones</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/contact">Requisitos necesarios para publicaciones</a>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -243,7 +243,7 @@ a{color:inherit;text-decoration:none}
   padding: 0;
   width: 200px;
   /*background-color: #f1f1f1;*/
-  background-color:#DDDDDD;
+  /*background-color:#DDDDDD;*/
 }
 
 .li-custom a {
@@ -473,4 +473,21 @@ if you don't need the form to work on mobile devices. */
 
 .info ul.info-list li:last-child{
   border-bottom:none;
+}
+
+.form-basic-2{
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+  font: bold 15px sans-serif;
+  text-align: center;
+}
+
+.menu-header {
+    border-bottom: 0;
+    margin-top: 0;
+    margin-left: 0;
+    width: 100%;
+    height: 100%
 }

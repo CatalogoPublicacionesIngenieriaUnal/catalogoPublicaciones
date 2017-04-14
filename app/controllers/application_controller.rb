@@ -17,5 +17,5 @@ class ApplicationController < ActionController::Base
   def authenticate_someone!
     authenticate_professor!
   end
-
+  
 end

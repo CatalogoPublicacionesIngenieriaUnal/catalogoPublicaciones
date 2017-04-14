@@ -43,7 +43,7 @@ class ProfessorsController < ApplicationController
   def update
     respond_to do |format|
       if @professor.update(professor_edit_params)
-        format.html { redirect_to @professor, notice: 'Professor was successfully updated.' }
+        format.html { redirect_to @professor, notice: 'Se ha editado tu perfil.' }
         format.json { render :show, status: :ok, location: @professor }
       else
         format.html { render :edit }

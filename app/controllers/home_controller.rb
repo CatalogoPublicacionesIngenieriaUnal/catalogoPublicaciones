@@ -6,6 +6,4 @@ class HomeController < ApplicationController
     @content = "home/index_content.html.erb"
   end
 
-
-
 end

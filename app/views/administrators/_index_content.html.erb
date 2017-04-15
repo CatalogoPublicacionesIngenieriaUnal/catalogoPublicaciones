@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-sm-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px">
+      <h1 style="font-size:200%;">Bienvenido administrador</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="li-custom">
+        <% @administrators.each do |administrator| %>
+        <div class="li-custom">
+          <%= link_to 'Ver mis datos personales', administrator %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Actualizar datos personales', edit_administrator_path(administrator) %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/">Crear o actualizar usuario</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/">Habilitar solicitudes de publicación</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/">Consultar solicitudes actuales</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/">Consultar publicaciones</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/contact">Ver estadisticas</a>
+        </div>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+  </div>
+</div>
+</div>
+</div>

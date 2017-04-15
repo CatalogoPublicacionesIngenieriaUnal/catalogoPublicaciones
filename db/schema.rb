@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20170414204823) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.index ["email"], name: "index_administrators_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true, using: :btree
+    t.index ["username"], name: "index_administrators_on_username", unique: true, using: :btree
   end
 
   create_table "application_requests", force: :cascade do |t|

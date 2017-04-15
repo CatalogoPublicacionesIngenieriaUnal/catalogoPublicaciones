@@ -1,5 +1,6 @@
 class AdministratorsController < ApplicationController
   before_action :set_administrator, only: [:show, :edit, :update, :destroy]
+  layout "unal"
 
   # GET /administrators
   # GET /administrators.json

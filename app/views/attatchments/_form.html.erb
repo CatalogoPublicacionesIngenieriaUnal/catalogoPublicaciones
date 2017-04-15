@@ -12,13 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :url %>
-    <%= f.text_field :url %>
+    <%= f.label :'Cargar solicitud' %>
+    <%= f.file_field :url %>
   </div>
 
   <div class="field">
-    <%= f.label :category %>
-    <%= f.text_field :category %>
+    <%= f.hidden_field :category, :value => '1'%>
+  </div>
+  
+  <div class="field">
+    <%= f.label :'Cargar manuscrito' %>
+    <%= f.file_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :category, :value => '1'%>
   </div>
 
   <div class="actions">

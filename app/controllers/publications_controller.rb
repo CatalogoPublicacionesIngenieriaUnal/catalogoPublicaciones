@@ -5,6 +5,11 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     @publications = Publication.all
+	respond_to do |format|
+	  format.html
+	  format.json
+	  format.pdf{render template:  'publications/pdf', pdf:'pdf'}
+	end
   end
 
   # GET /publications/1
@@ -14,6 +19,8 @@ class PublicationsController < ApplicationController
 
   # GET /publications/new
   def new
+    @categories = Category.all
+	@themes = Theme.all
     @publication = Publication.new
   end
 
@@ -60,7 +67,7 @@ class PublicationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_publication

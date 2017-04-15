@@ -1,32 +1,45 @@
 <%= form_for(publication) do |f| %>
   <% if publication.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+	<div id="error_explanation">
+	  <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
 
-      <ul>
-      <% publication.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+	  <ul>
+	  <% publication.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+	  <% end %>
+	  </ul>
+	</div>
   <% end %>
-
+  
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_area :title %>
+	<%= f.label :Título %>
+	<%= f.text_area :title %>
   </div>
 
   <div class="field">
-    <%= f.label :abstract %>
-    <%= f.text_area :abstract %>
+	<%= f.label :Resumen %>
+	<%= f.text_area :abstract %>
   </div>
 
   <div class="field">
-    <%= f.label :category %>
-    <%= f.number_field :category %>
+    <%= f.label :Categoría %>
+	<select name="category_id">
+	  <%= @categories.each do |category| %>
+		<option value="<%= category.id %>"><%= category.category %></option>
+	  <% end %>
+	</select>
+  </div>
+  
+  <div class="field">
+    <%= f.label :Tema %>
+	<select name="theme_id">
+	  <%= @themes.each do |theme| %>
+		<option value="<%= theme.id %>"><%= theme.theme %></option>
+	  <% end %>
+	</select>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+	<%= f.submit %>
   </div>
 <% end %>

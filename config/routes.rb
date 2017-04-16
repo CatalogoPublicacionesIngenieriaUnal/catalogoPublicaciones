@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   resources :evaluations
   resources :application_requests
   resources :evaluators
-  resources :professors
+  resources :professors do
+    collection do
+      put :autorize
+    end
+    get 'home', to: 'professors#home'
+  end
   resources :administrators
   resources :languages
   resources :themes
@@ -59,4 +64,5 @@ Rails.application.routes.draw do
   get 'catalog', to: "home#index"
   get 'instructions', to: "home#index"
   get 'contact', to: "contact#contact"
+
 end

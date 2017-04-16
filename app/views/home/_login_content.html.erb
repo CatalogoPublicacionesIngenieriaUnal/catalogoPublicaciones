@@ -7,26 +7,19 @@
   <div class="sign-in-htm">
     <div class="group">
       <label for="user" class="label">Usuario</label>
-      <!-- <input id="user" type="text" class="input"> -->
       <%= f.text_field :username, :id=>"user", :type=>"text", :class=>"input",autofocus: true %>
     </div>
     <div class="group">
       <label for="pass" class="label">Contraseña</label>
-      <!-- Campo temporal -->
-      <!-- <input id="pass" type="password" class="input" data-type="password"> -->
       <%= f.password_field :password,:id=>"pass", :type=>"password", :class=>"input", autocomplete: "off" %>
     </div>
     <div class="group text-center">
       <% if devise_mapping.rememberable? -%>
       <%= f.check_box :remember_me,:id=>"check", :type=>"checkbox", :class=>"check" %>
-      <!-- Campo temporal -->
-      <!-- <input id="check" type="checkbox" class="check" checked> -->
       <label for="check">Recordar cuenta</label>
       <% end %>
     </div>
     <div class="group">
-      <!-- Boton temporal -->
-      <!-- <input type="submit" class="button" value="Ingresar"> -->
       <div class="actions">
         <%= f.submit "Ingresar", :class=>"button"%>
       </div>

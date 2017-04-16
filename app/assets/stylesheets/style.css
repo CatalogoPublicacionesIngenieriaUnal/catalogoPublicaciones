@@ -101,7 +101,8 @@ a{color:inherit;text-decoration:none}
   font-size:20px;
 }
 .login-form .group .button{
-  background:#1161ee;
+  /*background:#1161ee;*/
+  background: #3399CC;
 }
 .login-form .group label .icon{
   width:15px;
@@ -476,7 +477,7 @@ if you don't need the form to work on mobile devices. */
 }
 
 .form-basic-2{
-  max-width: 720px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 10px;
   box-sizing: border-box;
@@ -490,4 +491,99 @@ if you don't need the form to work on mobile devices. */
     margin-left: 0;
     width: 100%;
     height: 100%
+}
+
+.table-custom {
+	background: #f5f5f5;
+	border-collapse: separate;
+	box-shadow: inset 0 1px 0 #fff;
+	font-size: 12px;
+	line-height: 20px;
+	margin: 30px auto;
+	text-align: center;
+	width: 100%;
+}
+
+.table-custom th {
+	background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
+	border-left: 1px solid #555;
+	border-right: 1px solid #777;
+	border-top: 1px solid #555;
+	border-bottom: 1px solid #333;
+	box-shadow: inset 0 1px 0 #999;
+	color: #fff;
+  font-weight: bold;
+	padding: 10px 15px;
+	position: relative;
+	text-shadow: 0 1px 0 #000;
+}
+
+.table-custom th:after {
+	background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
+	content: '';
+	display: block;
+	height: 25%;
+	left: 0;
+	margin: 1px 0 0 0;
+	position: absolute;
+	top: 25%;
+	width: 100%;
+}
+
+.table-custom th:first-child {
+	border-left: 1px solid #777;
+	box-shadow: inset 1px 1px 0 #999;
+}
+
+.table-custom th:last-child {
+	box-shadow: inset -1px 1px 0 #999;
+}
+
+.table-custom td {
+	border-right: 1px solid #fff;
+	border-left: 1px solid #e8e8e8;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #e8e8e8;
+	padding: 10px 15px;
+	position: relative;
+	transition: all 300ms;
+}
+
+.table-custom td:first-child {
+	box-shadow: inset 1px 0 0 #fff;
+}
+
+.table-custom td:last-child {
+	border-right: 1px solid #e8e8e8;
+	box-shadow: inset -1px 0 0 #fff;
+}
+
+.table-custom tr {
+	background: url(http://jackrugile.com/images/misc/noise-diagonal.png);
+}
+
+.table-custom tr:nth-child(odd) td {
+	background: #f1f1f1 url(http://jackrugile.com/images/misc/noise-diagonal.png);
+}
+
+.table-custom tr:last-of-type td {
+	box-shadow: inset 0 -1px 0 #fff;
+}
+
+.table-custom tr:last-of-type td:first-child {
+	box-shadow: inset 1px -1px 0 #fff;
+}
+
+.table-custom tr:last-of-type td:last-child {
+	box-shadow: inset -1px -1px 0 #fff;
+}
+
+.table-custom tbody:hover td {
+	color: transparent;
+	text-shadow: 0 0 3px #aaa;
+}
+
+.table-custom tbody:hover tr:hover td {
+	color: #444;
+	text-shadow: 0 1px 0 #fff;
 }

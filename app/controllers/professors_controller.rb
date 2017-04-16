@@ -1,4 +1,5 @@
 class ProfessorsController < ApplicationController
+  before_filter :authenticate_administrator!, only: [:index]
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
   layout "unal"
 
@@ -11,6 +12,9 @@ class ProfessorsController < ApplicationController
   # GET /professors/1
   # GET /professors/1.json
   def show
+  end
+
+  def home
   end
 
   # GET /professors/new
@@ -60,6 +64,11 @@ class ProfessorsController < ApplicationController
       format.html { redirect_to professors_url, notice: 'Professor was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def autorize
+    Professor.where(id: params[:professor_ids]).update_all(is_authorized: true)
+    redirect_to professors_path
   end
 
   private

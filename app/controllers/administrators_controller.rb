@@ -13,6 +13,10 @@ class AdministratorsController < ApplicationController
   def show
   end
 
+  def home
+    @administrators = Administrator.all
+  end
+  
   # GET /administrators/new
   def new
     @administrator = Administrator.new

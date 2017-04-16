@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
   devise_scope :professor do
     get "/logout" => "devise/sessions#destroy", :as => :destroy_user_session
   end
@@ -17,7 +15,6 @@ Rails.application.routes.draw do
     collection do
       put :autorize
     end
-    get 'home', to: 'professors#home'
   end
   resources :administrators
   resources :languages
@@ -25,6 +22,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :keywords
   resources :attatchments
+  get 'professor/home', to: 'professors#home'
+  get 'administrator/home', to: 'administrators#home'
 
 
   # resources :evaluations, except: :delete do

@@ -15,6 +15,7 @@ class ProfessorsController < ApplicationController
   end
 
   def home
+    @professors = Professor.all
   end
 
   # GET /professors/new

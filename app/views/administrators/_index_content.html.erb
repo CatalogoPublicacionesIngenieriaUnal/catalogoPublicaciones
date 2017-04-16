@@ -4,43 +4,36 @@
   </div>
   <div class="col-sm-10">
     <div class="text-center" style="padding: 10px 0px 0px 0px">
-      <h1 style="font-size:200%;">Bienvenido administrador</h1>
+      <h1 style="font-size:200%;">Administradores</h1>
       <p id="notice"><%= notice %></p>
     </div>
     <div><hr class="style13"></div>
-    <div class="form-basic-2">
-      <div class="li-custom">
-        <% @administrators.each do |administrator| %>
-        <div class="li-custom">
-          <%= link_to 'Ver mis datos personales', administrator %>
-        </div>
-        <br>
-        <div class="li-custom">
-          <!-- <a href="/administrators/sign_up">Actualizar datos personales</a> -->
-          <%= link_to 'Actualizar datos personales', edit_administrator_path(administrator) %>
-        </div>
-        <br>
-        <div class="li-custom">
-          <a href="/professors">Crear o actualizar usuario</a>
-        </div>
-        <br>
-        <div class="li-custom">
-          <a href="/">Habilitar solicitudes de publicación</a>
-        </div>
-        <br>
-        <div class="li-custom">
-          <a href="/">Consultar solicitudes actuales</a>
-        </div>
-        <br>
-        <div class="li-custom">
-          <a href="/">Consultar publicaciones</a>
-        </div>
-        <br>
-        <div class="li-custom">
-          <a href="/contact">Ver estadisticas</a>
-        </div>
-        <% end %>
-      </div>
+    <div class="form-basic-2" style="width:920px">
+
+      <table class="table-custom">
+        <tr>
+          <th>User</th>
+          <th>Name</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Created at</th>
+          <th colspan="3"></th>
+        </tr>
+        <tbody>
+          <% @administrators.each do |administrator| %>
+          <tr>
+            <td><%= administrator.username %></td>
+            <td><%= administrator.first_name %></td>
+            <td><%= administrator.last_name %></td>
+            <td><%= administrator.email %></td>
+            <td><%= administrator.created_at %></td>
+            <td><%= link_to 'Show', administrator %></td>
+            <td><%= link_to 'Edit', edit_administrator_path(administrator) %></td>
+            <td><%= link_to 'Destroy', administrator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

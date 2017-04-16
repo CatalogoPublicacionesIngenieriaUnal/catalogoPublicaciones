@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
-  before_action :authenticate_someone!
+  before_action :require_login
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -28,8 +28,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authenticate_someone!
-    authenticate_professor! || authenticate_administrator!
+  def require_login
+    unless (professor_signed_in? || administrator_signed_in?)
+      flash[:error] = "You must be logged in to access this section"
+      authenticate_professor!
+    end
+  end
+
+  def after_sign_in_path_for(resource)
+    if professor_signed_in?
+      professor_home_path
+    elsif administrator_signed_in?
+      administrator_home_path
+    else
+      root_path
+    end
   end
 
 end

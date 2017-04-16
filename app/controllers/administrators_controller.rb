@@ -1,5 +1,7 @@
 class AdministratorsController < ApplicationController
+  before_filter :authenticate_administrator!
   before_action :set_administrator, only: [:show, :edit, :update, :destroy]
+
   layout "unal"
 
   # GET /administrators
@@ -16,7 +18,7 @@ class AdministratorsController < ApplicationController
   def home
     @administrators = Administrator.all
   end
-  
+
   # GET /administrators/new
   def new
     @administrator = Administrator.new

@@ -1,8 +1,12 @@
 class ProfessorsController < ApplicationController
-  before_filter :authenticate_administrator!, only: [:index]
+  before_action :authenticate_administrator!, only: [:index, :destroy, :autorize]
+  before_action :is_authorized, except:[:not_authorized, :index, :destroy, :autorize]
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
   layout "unal"
 
+
+  def not_authorized
+  end
   # GET /professors
   # GET /professors.json
   def index
@@ -76,6 +80,13 @@ class ProfessorsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_professor
       @professor = Professor.find(params[:id])
+    end
+
+    def is_authorized
+      unless current_professor.is_authorized
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to not_authorized_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

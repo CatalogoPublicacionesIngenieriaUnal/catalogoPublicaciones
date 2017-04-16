@@ -8,7 +8,7 @@
 
 #Super Usuario
 
-
+Administrator.create!(username: "root", email: "correofalso@unal.edu.co", first_name: "super", last_name: "usuario", password: "123456789", password_confirmation: "123456789")
 
 #Profesores
 

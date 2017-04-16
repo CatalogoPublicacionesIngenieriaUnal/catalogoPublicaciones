@@ -22,4 +22,10 @@
   <div class="li-custom">
     <a href="/contact">Contacto</a>
   </div>
+  <%- if !anyone_singed_in? %>
+  <% else %>
+  <div class="li-custom">
+    <%= link_to "Salir", destroy_professor_session_path, method: :delete, :class=>"button" %>
+  </div>
+  <% end %>
 </div>

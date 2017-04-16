@@ -1,5 +1,6 @@
 class AttatchmentsController < ApplicationController
   before_action :set_attatchment, only: [:show, :edit, :update, :destroy]
+  layout "unal"
 
   # GET /attatchments
   # GET /attatchments.json

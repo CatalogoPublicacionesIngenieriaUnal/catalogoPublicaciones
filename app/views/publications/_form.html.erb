@@ -1,45 +1,93 @@
-<%= form_for(publication) do |f| %>
-  <% if publication.errors.any? %>
-	<div id="error_explanation">
-	  <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+<div class="row">
+  <div class="text-center">
+    <div class="col-md-6 col-md-offset-3" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Nueva publicación</h1>
+    </div>
+  </div>
+</div>
 
-	  <ul>
-	  <% publication.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-	  <% end %>
-	  </ul>
+<div class="row">
+  <div class="col-sm-2">
+    <%=render 'static/menu_publicaciones'%>
+  </div>
+
+  <div class="col-sm-10">
+    <div class="main-content">
+      <div class="form-basic">
+        
+		<%= form_for(publication) do |f| %>
+		  <% if publication.errors.any? %>
+			<div id="error_explanation">
+			  <h2><%= pluralize(publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+
+			  <ul>
+			  <% publication.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			  <% end %>
+			  </ul>
+			</div>
+		  <% end %>
+		  
+		  <div class="form-title-row">
+          <h1>Datos de la publicación</h1>
+          </div>
+		  
+		  <div class="form-row">
+		    <label>
+				<span>Título</span>
+				<%= f.text_area :title %>
+            </label>
+		  </div>
+
+		  <div class="form-row">
+		    <label>
+				<span>Resumen</span>
+				<%= f.text_area :abstract %>
+            </label>
+		  </div>
+
+		  <div class="form-row">
+		    <label>
+			    <span>Categoría</span>
+				<%= select(:publications, :category_id, @categories_options) %>
+            </label>
+			
+		  </div>
+		  
+		  <div class="form-row">
+			<label>
+			    <span>Tema</span>
+				<%= select(:publications, :theme_id, @themes_options) %>
+			</label>
+		  </div>
+		  <div class="form-row">
+			<label>
+			    <span>Palabra clave 1</span>
+				
+			</label>
+		  </div>
+		  <div class="form-row">
+			<label>
+			    <span>Palabra clave 2</span>
+	
+			</label>
+		  </div>
+		  <div class="form-row">
+			<label>
+			    <span>Palabra clave 3</span>
+				
+			</label>
+		  </div>
+		  
+		  <div class="actions">
+            <%= f.submit :"Crear publicación"%>
+          </div>
+		  
+		  <div class="actions">
+            <%= f.submit :"Generar pdf"%>
+          </div>
+		<% end %>
+		</div>
+	  </div>
 	</div>
-  <% end %>
-  
-  <div class="field">
-	<%= f.label :Título %>
-	<%= f.text_area :title %>
-  </div>
-
-  <div class="field">
-	<%= f.label :Resumen %>
-	<%= f.text_area :abstract %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Categoría %>
-	<select name="category_id">
-	  <%= @categories.each do |category| %>
-		<option value="<%= category.id %>"><%= category.category %></option>
-	  <% end %>
-	</select>
-  </div>
-  
-  <div class="field">
-    <%= f.label :Tema %>
-	<select name="theme_id">
-	  <%= @themes.each do |theme| %>
-		<option value="<%= theme.id %>"><%= theme.theme %></option>
-	  <% end %>
-	</select>
-  </div>
-
-  <div class="actions">
-	<%= f.submit %>
-  </div>
-<% end %>
+</div>

@@ -1,5 +1,6 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  layout "unal"
 
   # GET /publications
   # GET /publications.json
@@ -19,8 +20,9 @@ class PublicationsController < ApplicationController
 
   # GET /publications/new
   def new
-    @categories = Category.all
-	@themes = Theme.all
+    @categories_options = Category.all.map{|c| [c.category, c.id]}
+	@themes_options = Theme.all.map{|t| [t.theme, t.id]}
+	@keywords_options = Keyword.all.map{|k| [k.keyword, k.id]}
     @publication = Publication.new
   end
 

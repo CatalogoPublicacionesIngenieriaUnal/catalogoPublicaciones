@@ -9,7 +9,7 @@ class PublicationsController < ApplicationController
 	respond_to do |format|
 	  format.html
 	  format.json
-	  format.pdf{render template:  'publications/pdf', pdf:'pdf'}
+	  format.pdf{render template: 'publications/reporte', pdf:'Reporte'}
 	end
   end
 
@@ -20,9 +20,9 @@ class PublicationsController < ApplicationController
 
   # GET /publications/new
   def new
-    @categories_options = Category.all.map{|c| [c.category, c.id]}
-	@themes_options = Theme.all.map{|t| [t.theme, t.id]}
-	@keywords_options = Keyword.all.map{|k| [k.keyword, k.id]}
+    @categories = Category.all
+	@themes = Theme.all
+	@keywords = Keyword.all
     @publication = Publication.new
   end
 

@@ -35,7 +35,7 @@
 		  <div class="form-row">
 		    <label>
 				<span>Título</span>
-				<%= f.text_area :title %>
+				<%= f.text_area :title%>
             </label>
 		  </div>
 
@@ -49,7 +49,7 @@
 		  <div class="form-row">
 		    <label>
 			    <span>Categoría</span>
-				<%= select(:publications, :category_id, @categories_options) %>
+				<%= f.select :category_id, options_from_collection_for_select(@categories, "id", "category"),:prompt => "Seleccione una opción" %>
             </label>
 			
 		  </div>
@@ -57,8 +57,14 @@
 		  <div class="form-row">
 			<label>
 			    <span>Tema</span>
-				<%= select(:publications, :theme_id, @themes_options) %>
+				<%= f.select :theme_id, options_from_collection_for_select(@themes, "id", "theme"),:prompt => "Seleccione una opción" %>
 			</label>
+		  </div>
+		  <div class="form-row">
+		        <hr width=70% align="center">
+		        <center>
+			    <span>Por favor ingrese tres palabras clave para la búsqueda de su publicación</span>
+				</center> 
 		  </div>
 		  <div class="form-row">
 			<label>
@@ -69,7 +75,7 @@
 		  <div class="form-row">
 			<label>
 			    <span>Palabra clave 2</span>
-	
+				
 			</label>
 		  </div>
 		  <div class="form-row">
@@ -84,8 +90,8 @@
           </div>
 		  
 		  <div class="actions">
-            <%= f.submit :"Generar pdf"%>
-          </div>
+            <a href='/publications.pdf'
+		  </div>
 		<% end %>
 		</div>
 	  </div>

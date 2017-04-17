@@ -1,41 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= render 'static/header_unal_render' %>
 
-<h1>Professors</h1>
+<%= render 'index_content', professor: @professor %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Department</th>
-      <th>Contact number</th>
-      <th>Gender</th>
-      <th>Is authorized</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @professors.each do |professor| %>
-      <tr>
-        <td><%= professor.username %></td>
-        <td><%= professor.first_name %></td>
-        <td><%= professor.last_name %></td>
-        <td><%= professor.email %></td>
-        <td><%= professor.department %></td>
-        <td><%= professor.contact_number %></td>
-        <td><%= professor.gender %></td>
-        <td><%= professor.is_authorized %></td>
-        <td><%= link_to 'Show', professor %></td>
-        <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
-        <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Professor', new_professor_path %>
+<%= render 'static/footer_unal_render' %>

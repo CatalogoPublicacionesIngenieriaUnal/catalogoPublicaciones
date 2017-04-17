@@ -1,44 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= render 'static/header_unal_render' %>
 
-<p>
-  <strong>Username:</strong>
-  <%= @professor.username %>
-</p>
+<%= render 'show_content', professor: @professor %>
 
-<p>
-  <strong>First name:</strong>
-  <%= @professor.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @professor.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @professor.email %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @professor.department %>
-</p>
-
-<p>
-  <strong>Contact number:</strong>
-  <%= @professor.contact_number %>
-</p>
-
-<p>
-  <strong>Gender:</strong>
-  <%= @professor.gender %>
-</p>
-
-<p>
-  <strong>Is authorized:</strong>
-  <%= @professor.is_authorized %>
-</p>
-
-<%= link_to 'Edit', edit_professor_path(@professor) %> |
-<%= link_to 'Back', professors_path %>
+<%= render 'static/footer_unal_render' %>

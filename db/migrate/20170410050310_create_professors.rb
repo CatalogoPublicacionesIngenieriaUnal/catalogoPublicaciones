@@ -5,10 +5,10 @@ class CreateProfessors < ActiveRecord::Migration[5.0]
       t.string :first_name, :null => false
       t.string :last_name, :null => false
       t.string :email, :null => false, :uniqueness => true
-      t.integer :department
+      t.integer :department, :default => 1
       t.integer :contact_number
-      t.integer :gender, :null => false
-      t.boolean :is_authorized
+      t.integer :gender, :default => 1
+      t.boolean :is_authorized, :default => false
 
       t.timestamps
     end

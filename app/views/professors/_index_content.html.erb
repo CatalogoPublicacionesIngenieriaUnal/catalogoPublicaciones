@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-sm-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px">
+      <h1 style="font-size:200%;">Autorizar</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="text-center" style="padding: 10px 0px 0px 0px">
+      <p>Seleccione los profesores que desea autorizar</p>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div class="form-basic-2" style="width:920px">
+      <%= form_tag autorize_professors_path, method: :put do %>
+      <table class="table-custom">
+        <tr>
+          <th>Check</th>
+          <th>User</th>
+          <th>Name</th>
+          <th>Lastname</th>
+          <th>Departament</th>
+          <th>Email</th>
+          <th>Created at</th>
+          <th>autorized</th>
+        </tr>
+        <tbody>
+          <% @professors.each do |professor| %>
+          <tr>
+            <td><%= check_box_tag 'professor_ids[]', professor.id %></td>
+            <td><%= professor.username %></td>
+            <td><%= professor.first_name %></td>
+            <td><%= professor.last_name %></td>
+            <td><%= professor.department %></td>
+            <td><%= professor.email %></td>
+            <td><%= professor.created_at %></td>
+            <td><%= professor.is_authorized ? "Si" : "No" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= submit_tag "Autorizar"%>
+      <% end %>
+    </div>
+  </div>
+</div>

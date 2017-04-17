@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="text-center">
+    <div class="col-md-10" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Registro</h1>
+    </div>
+  </div>
+
+  <div class="col-sm-10">
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="form-title-row">
+          <h1>Datos básicos del administrador</h1>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Correo electrónico</span>
+            <%= f.email_field :email, autofocus: true %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Usuario</span>
+            <%= f.text_field :username, autofocus: true %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Nombres</span>
+            <%= f.text_field :first_name, autofocus: true %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Apellidos</span>
+            <%= f.text_field :last_name, autofocus: true %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <% if @minimum_password_length %>
+            <span>Contraseña
+            (<%= @minimum_password_length %> letras minímo)</span>
+            <% end %>
+            <%= f.password_field :password, autocomplete: "off" %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Confirmar contraseña</span>
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+          </label>
+        </div>
+
+        <div class="actions">
+          <%= f.submit :"Crear administrador", :class=>"button" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

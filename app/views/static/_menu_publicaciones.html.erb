@@ -1,12 +1,31 @@
 <div class="ul-custom">
-    <div class="text-center">
-        <h4>Menú principal</h4>
-    </div>
-    <div><hr class="style13"></div>
-        <div class="li-custom"><a href="/">Principal</a></div>
-        <div class="li-custom"><a href="/">Información general</a></div>
-        <div class="li-custom"><a href="/">Ver catálogo</a></div>
-        <div class="li-custom"><a href="/">Instrucciones para postularse</a></div>
-        <div class="li-custom"><a href="/contact">Contacto</a>
-    </div>
+  <div class="menu-header">
+    <%=image_tag("edf_viejo.jpg", height:'100%', width:'100%') %>
+  </div>
+  <div><hr class="style13"></div>
+  <div class="text-center">
+    <h4>Menú principal</h4>
+  </div>
+  <div><hr class="style13"></div>
+  <div class="li-custom">
+    <a href="/">Principal</a>
+  </div>
+  <div class="li-custom">
+    <a href="/">Información general</a>
+  </div>
+  <div class="li-custom">
+    <a href="/">Ver catálogo</a>
+  </div>
+  <div class="li-custom">
+    <a href="/">Instrucciones para postularse</a>
+  </div>
+  <div class="li-custom">
+    <a href="/contact">Contacto</a>
+  </div>
+  <%- if !anyone_singed_in? %>
+  <% else %>
+  <div class="li-custom">
+    <%= link_to "Salir", destroy_professor_session_path, method: :delete, :class=>"button" %>
+  </div>
+  <% end %>
 </div>

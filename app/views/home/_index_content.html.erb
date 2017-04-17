@@ -1,18 +1,16 @@
 <!-- Pagina principal -->
-<!-- Titulo -->
-<div class="row">
-  <div class="text-center">
-    <div class="col-md-6 col-md-offset-3" style="padding: 10px 0px 0px 0px;">
-      <h1 style="font-size:200%;">Catálogo de publicaciones</h1>
-    </div>
-  </div>
-</div>
-<!-- Contenido de la pagina -->
 <div class="row">
   <!-- Menu principal -->
   <div class="col-sm-2">
     <%= render 'static/menu_publicaciones' %>
   </div>
+  <!-- Titulo -->
+  <div class="text-center">
+    <div class="col-md-10" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Catálogo de publicaciones</h1>
+    </div>
+  </div>
+  <!-- <div><hr class="style13"></div> -->
   <!-- Catalogo -->
   <div class="col-sm-7">
     <div class="catalog">
@@ -112,15 +110,20 @@
       </div>
     </div>
   </div>
+
   <!-- Login -->
-  <%#- if !anyone_singed_in? %>
+  <%- if !anyone_singed_in? %>
   <div class="col-sm-3" style="padding:0px 50px 0px 0px">
     <%= render 'home/login_content' %>
   </div>
-  <%# else %>
-  <div class="group">
-    <%#= link_to "Salir", destroy_professor_session_path, method: :delete, :class=>"button" %>
+  <% else %>
+  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+    <div class="login-form">
+      <div class="group">
+        <%= link_to "Salir", destroy_professor_session_path, method: :delete, :class=>"button" %>
+      </div>
+    </div>
   </div>
-  <%# end %>
+  <% end %>
   <!-- Fin Login -->
 </div>

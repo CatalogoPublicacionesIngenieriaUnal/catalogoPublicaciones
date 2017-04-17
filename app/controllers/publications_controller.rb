@@ -6,11 +6,11 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     @publications = Publication.all
-	respond_to do |format|
-	  format.html
-	  format.json
-	  format.pdf{render template: 'publications/reporte', pdf:'Reporte'}
-	end
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf{render template: 'publications/reporte', pdf:'Reporte'}
+    end
   end
 
   # GET /publications/1
@@ -21,9 +21,11 @@ class PublicationsController < ApplicationController
   # GET /publications/new
   def new
     @categories = Category.all
-	@themes = Theme.all
-	@keywords = Keyword.all
+    @themes = Theme.all
+    @keywords = Keyword.all
     @publication = Publication.new
+    @categories_options = Category.all.map{ |u| [u.id, u.category] }
+    @themes_options = Theme.all.map{ |v| [v.id, v.theme] }
   end
 
   # GET /publications/1/edit
@@ -33,6 +35,8 @@ class PublicationsController < ApplicationController
   # POST /publications
   # POST /publications.json
   def create
+    @categories = Category.all
+    @themes = Theme.all
     @publication = Publication.new(publication_params)
 
     respond_to do |format|
@@ -69,15 +73,15 @@ class PublicationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_publication
-      @publication = Publication.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def publication_params
-      params.require(:publication).permit(:title, :abstract, :category)
-    end
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_publication
+    @publication = Publication.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def publication_params
+    params.require(:publication).permit(:title, :abstract, :category)
+  end
 end

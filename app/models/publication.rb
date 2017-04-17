@@ -1,4 +1,4 @@
-class Publication < ApplicationRecord
+class Publication < ApplicationRecord  
   has_many :professor_publications
   has_many :publications, through: :professor_publications
   has_many :keyword_publications

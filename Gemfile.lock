@@ -38,10 +38,11 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.5.1)
+      public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
-    autoprefixer-rails (6.7.7.1)
+    autoprefixer-rails (6.7.7.2)
       execjs
-    bcrypt (3.1.11)
     bcrypt (3.1.11-x64-mingw32)
     bindex (0.5.0)
     bootstrap-daterangepicker-rails (0.1.5)
@@ -50,7 +51,17 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.3)
-    byebug (9.0.6)
+    capybara (2.13.0)
+      addressable
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     chart-js-rails (0.1.2)
       railties (> 3.1)
     coffee-rails (4.2.1)
@@ -72,8 +83,14 @@ GEM
     devise_ldap_authenticatable (0.8.5)
       devise (>= 3.4.1)
       net-ldap (>= 0.6.0, <= 0.11)
+    diff-lcs (1.3)
     erubis (2.7.0)
     execjs (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
     fastclick-rails (1.0.1)
@@ -100,8 +117,8 @@ GEM
       sass-rails (>= 5.0)
       select2-rails
       switchery-rails
-    globalid (0.3.7)
-      activesupport (>= 4.1.0)
+    globalid (0.4.0)
+      activesupport (>= 4.2.0)
     i18n (0.8.1)
     icheck-rails (1.0.2.2)
       jquery-rails
@@ -129,16 +146,14 @@ GEM
     multi_json (1.12.1)
     net-ldap (0.11)
     nio4r (2.0.0)
-    nokogiri (1.7.1)
-      mini_portile2 (~> 2.1.0)
     nokogiri (1.7.1-x64-mingw32)
       mini_portile2 (~> 2.1.0)
     nprogress-rails (0.2.0.2)
     orm_adapter (0.5.0)
     parsley-rails (2.7.0.0)
       railties (>= 3.0.0)
-    pg (0.20.0)
     pg (0.20.0-x64-mingw32)
+    public_suffix (2.0.5)
     puma (3.8.2)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -169,6 +184,23 @@ GEM
     rake (12.0.0)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-rails (3.5.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -185,7 +217,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     sqlite3 (1.3.13-x64-mingw32)
     switchery-rails (0.8.1.1)
       railties (>= 3.2, < 6.0)
@@ -213,20 +244,26 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    wicked_pdf (1.1.0)
     will_paginate (3.1.5)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
+    wkhtmltopdf-binary (0.12.3.1)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
-  ruby
   x64-mingw32
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.1)
   byebug
+  capybara
+  carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   devise
   devise_ldap_authenticatable
+  factory_girl_rails
   faker
   font-awesome-rails
   gentelella-rails
@@ -236,6 +273,7 @@ DEPENDENCIES
   pg
   puma (~> 3.0)
   rails (~> 5.0.2)
+  rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   sqlite3
   tinymce-rails
@@ -243,8 +281,10 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  wicked_pdf
   will_paginate (>= 3.1)
   will_paginate-bootstrap
+  wkhtmltopdf-binary
 
 BUNDLED WITH
    1.14.6

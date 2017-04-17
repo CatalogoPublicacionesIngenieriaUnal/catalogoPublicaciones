@@ -1,5 +1,6 @@
 class AttatchmentsController < ApplicationController
   before_action :set_attatchment, only: [:show, :edit, :update, :destroy]
+  layout "unal"
 
   # GET /attatchments
   # GET /attatchments.json
@@ -25,7 +26,7 @@ class AttatchmentsController < ApplicationController
   # POST /attatchments.json
   def create
     @attatchment = Attatchment.new(attatchment_params)
-
+    @attatchment.url = params[:file]
     respond_to do |format|
       if @attatchment.save
         format.html { redirect_to @attatchment, notice: 'Attatchment was successfully created.' }

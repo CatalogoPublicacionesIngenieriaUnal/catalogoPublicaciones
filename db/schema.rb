@@ -148,9 +148,13 @@ ActiveRecord::Schema.define(version: 20170415050527) do
     t.text     "abstract"
     t.integer  "category"
     t.integer  "application_request_id"
+    t.integer  "theme_id"
+    t.integer  "category_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["application_request_id"], name: "index_publications_on_application_request_id", using: :btree
+    t.index ["category_id"], name: "index_publications_on_category_id", using: :btree
+    t.index ["theme_id"], name: "index_publications_on_theme_id", using: :btree
   end
 
   create_table "themes", force: :cascade do |t|
@@ -170,4 +174,6 @@ ActiveRecord::Schema.define(version: 20170415050527) do
   add_foreign_key "professor_publications", "professors"
   add_foreign_key "professor_publications", "publications"
   add_foreign_key "publications", "application_requests"
+  add_foreign_key "publications", "categories"
+  add_foreign_key "publications", "themes"
 end

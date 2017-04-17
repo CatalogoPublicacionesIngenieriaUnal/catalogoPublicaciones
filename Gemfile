@@ -48,9 +48,10 @@ gem 'gentelella-rails'
 gem 'devise'
 gem "devise_ldap_authenticatable"
 gem "net-ldap"
-#
-
-
+# Files
+gem 'carrierwave', '~> 1.0'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

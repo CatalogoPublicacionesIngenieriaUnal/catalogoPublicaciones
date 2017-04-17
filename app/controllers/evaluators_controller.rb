@@ -28,6 +28,7 @@ class EvaluatorsController < ApplicationController
 
     respond_to do |format|
       if @evaluator.save
+        JudgeMailer.welcome(@evaluator).deliver_now
         format.html { redirect_to @evaluator, notice: 'Evaluator was successfully created.' }
         format.json { render :show, status: :created, location: @evaluator }
       else

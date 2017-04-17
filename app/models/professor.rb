@@ -27,7 +27,7 @@ class Professor < ApplicationRecord
          .paginate(:page => page,:per_page => per_page)
    end
 
-  has_many :application_requests, through: :professor_application:requests
+  has_many :application_requests, through: :professor_application_requests
 
   validates :username, presence: true, uniqueness: true
   validates :first_name, presence: true

@@ -9,6 +9,13 @@ class Professor < ApplicationRecord
   has_many :publications, through: :professor_publications
   has_many :professor_application_requests
   has_many :application_requests, through: :professor_application_requests
+  has_many :application_requests, through: :professor_application_requests
+
+  validates :username, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :gender, presence: true
 
   enum gender: {male: 1, female: 2}
 
@@ -25,12 +32,4 @@ class Professor < ApplicationRecord
        where("validated = ?", false)
          .paginate(:page => page,:per_page => per_page)
    end
-
-  has_many :application_requests, through: :professor_application_requests
-
-  validates :username, presence: true, uniqueness: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: true
-  validates :gender, presence: true
 end

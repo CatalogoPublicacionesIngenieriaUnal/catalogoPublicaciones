@@ -1,6 +1,6 @@
 class ProfessorsController < ApplicationController
   before_action :authenticate_administrator!, only: [:index, :destroy, :autorize]
-  before_action :is_authorized, except:[:not_authorized, :index, :destroy, :autorize]
+  before_action :is_authorized, except:[:not_authorized, :index, :destroy, :autorize, :new]
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
   layout "unal"
 

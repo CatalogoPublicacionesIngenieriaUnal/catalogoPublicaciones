@@ -1,6 +1,9 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
-  before_action :is_authorized
+  before_action :authenticate_administrator!, only: [:destroy]
+  before_action :authorized?, only: [:new, :edit, :update]
+
+
   layout "unal"
 
   # GET /publications

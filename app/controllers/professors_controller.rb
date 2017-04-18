@@ -3,7 +3,7 @@ class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:update, :destroy]
   before_action :set_current_professor, only: [:edit, :show]
   before_action :authenticate_administrator!, only: [:index, :destroy, :autorize]
-  before_action :is_authorized, except:[:not_authorized, :index, :destroy, :new, :home, :edit, :show]
+
   layout "unal"
 
 
@@ -87,6 +87,7 @@ class ProfessorsController < ApplicationController
     def set_current_professor
       @professor = Professor.find(current_professor.id)
     end
+
 
 
     # Never trust parameters from the scary internet, only allow the white list through.

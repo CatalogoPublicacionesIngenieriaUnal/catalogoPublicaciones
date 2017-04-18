@@ -34,6 +34,8 @@ class PublicationsController < ApplicationController
 
   # GET /publications/1/edit
   def edit
+    @categories = Category.all
+    @themes = Theme.all
   end
 
   # POST /publications

@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   get 'professor/home', to: 'professors#home', :as => :professor_home
   get 'administrator/home', to: 'administrators#home', :as => :administrator_home
   get 'professor/not_authorized', to: 'professors#not_authorized', :as => :not_authorized
+  get 'professor/profile', to: 'professors#show', :as => :show_current_professor
+  get 'professor/edit', to: 'professors#edit', :as => :edit_current_professor
 
 
   # resources :evaluations, except: :delete do

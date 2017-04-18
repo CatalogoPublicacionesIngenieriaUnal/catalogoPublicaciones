@@ -12,11 +12,11 @@
       <div class="li-custom">
         <% @professors.each do |professor| %>
         <div class="li-custom">
-          <%= link_to 'Ver mis datos personales', professor %>
+          <%= link_to 'Ver mis datos personales', show_current_professor_path %>
         </div>
         <br>
         <div class="li-custom">
-          <%= link_to 'Actualizar datos personales', edit_professor_path(professor) %>
+          <%= link_to 'Actualizar datos personales', edit_current_professor_path %>
         </div>
         <br>
         <div class="li-custom">

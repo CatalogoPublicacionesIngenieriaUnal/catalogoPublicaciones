@@ -4,14 +4,17 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @evaluator.first_name %></h1>
+    <h1>Bienvienido Evaluador, <%= @evaluator.first_name %> <%= @evaluator.last_name %></h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @evaluator.username %>.<br>
+      Ha sido registrado de manera exitosa en el sistema de evaluación de publicaciones de la Universidad Nacional
+      Su usuario de acceso es: <%= @evaluator.username %>.
+      Su código de acceso es: <%= @evaluator.code %><br>
     </p>
     <p>
-      To login to the site, just follow this link: .
+      Su publicación es: .
+      Para acceder al sitio web de la publicación haga <a>click aquí</a>
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>Atentamente:</p>
+    <p>Facultad de Ingeniería</p>
   </body>
 </html>

@@ -7,4 +7,8 @@ class HomeController < ApplicationController
     @content = "home/index_content.html.erb"
   end
 
+  def under_construction
+    @content = "home/under_construction_content"
+  end
+
 end

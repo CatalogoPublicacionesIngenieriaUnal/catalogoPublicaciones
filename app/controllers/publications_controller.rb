@@ -1,3 +1,4 @@
+require "prawn"
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_administrator!, only: [:destroy]
@@ -82,7 +83,33 @@ class PublicationsController < ApplicationController
     end
   end
 
+  # def download_pdf
+  #   publ = Publication.find(params[:id])
+  #   send_data create_pdf(publ), filename: "#{try01.pdf}", type: "application/pdf"
+  #   end
+  # end
+
+  def create_pdf
+    publ = Publication.find(params[:id])
+    #tema = Theme.find(params[:theme_id])
+    Prawn::Document.generate("public/publication.pdf", :margin => [10,80,80,80] ) do
+      image "#{Rails.root}/public/logopdf.png", :position => :center, :scale => 0.16
+      move_down 40
+      font("Times-Roman") do
+        #text current_professor.first_name
+        publ.professors.each do |profe|
+          text "Yo, " + profe.first_name + " " + profe.last_name + " quiero publicar la " + publ.category.category + ' con el titulo "' + publ.title + '" y de tema ' + publ.theme.theme
+          text 'Resumen: "' + publ.abstract + '"', :align => :justify
+        end
+      end
+      #text publ.current_professor.username
+      #text tema.theme
+    end
+  end
+  helper_method :create_pdf
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_publication
     @publication = Publication.find(params[:id])

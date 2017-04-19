@@ -31,5 +31,19 @@
         </li>
       </ul>
     </div>
+    <div>
+      <%
+      # require "prawn"
+      # Prawn::Document.generate("public/hello.pdf") do
+      #   text "Hello World!"
+      # end
+      create_pdf
+      %>
+    </div>
+    <div>
+      <!-- <%= link_to "Test", "/hello.pdf"%> -->
+      <!-- <a href="#{Rails.root}/hello.pdf">PEDEEFE</a> -->
+    </div>
+
   </div>
 </div>

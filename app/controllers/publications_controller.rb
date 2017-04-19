@@ -1,7 +1,7 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_administrator!, only: [:destroy]
-  before_action :authorized?, only: [:new, :edit, :update]
+  before_action :authorized?, only: [:new, :edit, :update, :create]
 
 
   layout "unal"
@@ -9,7 +9,11 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.all
+    if professor_signed_in?
+      @publications = Publication.all
+    else
+      @publications = Publication.all
+    end
     respond_to do |format|
       format.html
       format.json
@@ -44,9 +48,9 @@ class PublicationsController < ApplicationController
     @categories = Category.all
     @themes = Theme.all
     @publication = Publication.new(publication_params)
-
     respond_to do |format|
       if @publication.save
+        @publication.professors << current_professor  
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else

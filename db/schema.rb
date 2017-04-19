@@ -121,25 +121,22 @@ ActiveRecord::Schema.define(version: 20170415050527) do
   end
 
   create_table "professors", force: :cascade do |t|
-    t.string   "username",                               null: false
-    t.string   "first_name",                             null: false
-    t.string   "last_name",                              null: false
-    t.string   "email",                                  null: false
-    t.integer  "department",             default: 1
+    t.string   "username",                            null: false
+    t.string   "first_name",                          null: false
+    t.string   "last_name",                           null: false
+    t.string   "email",                               null: false
+    t.integer  "department",          default: 1
     t.string   "contact_number"
-    t.integer  "gender",                 default: 1
-    t.boolean  "is_authorized",          default: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.integer  "gender",              default: 1
+    t.boolean  "is_authorized",       default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",       default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.index ["reset_password_token"], name: "index_professors_on_reset_password_token", unique: true, using: :btree
     t.index ["username"], name: "index_professors_on_username", unique: true, using: :btree
   end
 

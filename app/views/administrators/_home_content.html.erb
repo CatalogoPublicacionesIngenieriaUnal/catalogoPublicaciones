@@ -21,23 +21,27 @@
         </div>
         <br>
         <div class="li-custom">
-          <a href="/professors">Crear o actualizar usuario</a>
+          <a href="/professors">Autorizar profesor</a>
         </div>
         <br>
         <div class="li-custom">
-          <a href="/">Habilitar solicitudes de publicación</a>
+          <a href="/evaluators/new">Crear evaluador</a>
         </div>
         <br>
         <div class="li-custom">
-          <a href="/">Consultar solicitudes actuales</a>
+          <%= link_to 'Habilitar solicitudes de publicación', under_construction_path %>
         </div>
         <br>
         <div class="li-custom">
-          <a href="/">Consultar publicaciones</a>
+          <%= link_to 'Consultar solicitudes actuales', under_construction_path %>
         </div>
         <br>
         <div class="li-custom">
-          <a href="/contact">Ver estadisticas</a>
+          <%= link_to 'Consultar publicaciones', publications_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Ver estadisticas', under_construction_path %>
         </div>
         <% end %>
       </div>

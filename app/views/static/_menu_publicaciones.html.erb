@@ -1,6 +1,6 @@
 <div class="ul-custom">
   <div class="menu-header">
-    <%=image_tag("edf_viejo.jpg", height:'100%', width:'100%') %>
+    <%=link_to image_tag("edf_viejo.jpg", height:'100%', width:'100%'), root_path %>
   </div>
   <div><hr class="style13"></div>
   <div class="text-center">
@@ -8,16 +8,20 @@
   </div>
   <div><hr class="style13"></div>
   <div class="li-custom">
-    <a href="/">Principal</a>
+    <a href="/">Inicio</a>
   </div>
   <div class="li-custom">
-    <a href="/">Información general</a>
+    <% if professor_signed_in? %>
+      <%= link_to 'Mi perfil', professor_home_path %>
+    <% elsif administrator_signed_in? %>
+      <%= link_to 'Mi perfil', administrator_home_path %>
+    <% end %>
   </div>
   <div class="li-custom">
-    <a href="/">Ver catálogo</a>
+    <%= link_to 'Ver catálogo', under_construction_path %>
   </div>
   <div class="li-custom">
-    <a href="/">Instrucciones para postularse</a>
+    <%= link_to 'Instrucciones para postularse', under_construction_path %>
   </div>
   <div class="li-custom">
     <a href="/contact">Contacto</a>

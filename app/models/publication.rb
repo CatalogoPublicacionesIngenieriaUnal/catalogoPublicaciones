@@ -14,9 +14,8 @@ class Publication < ApplicationRecord
     self.application_request_id = application_request.id
   end
 
-
-  def publications_by_professor(professor_id)
+  scope :publications_by_professor, ->(professor_id){
     includes(:professor_publications,:professors).where(professors:{id: professor_id})
-  end
+  }
 
 end

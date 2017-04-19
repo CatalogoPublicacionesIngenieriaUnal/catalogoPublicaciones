@@ -10,7 +10,7 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     if professor_signed_in?
-      @publications = Publication.all
+      @publications = Publication.publications_by_professor(current_professor.id)
     else
       @publications = Publication.all
     end
@@ -50,7 +50,7 @@ class PublicationsController < ApplicationController
     @publication = Publication.new(publication_params)
     respond_to do |format|
       if @publication.save
-        @publication.professors << current_professor  
+        @publication.professors << current_professor
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else

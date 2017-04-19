@@ -10,7 +10,6 @@
     <div><hr class="style13"></div>
     <div class="form-basic-2">
       <div class="li-custom">
-        <% @professors.each do |professor| %>
         <div class="li-custom">
           <%= link_to 'Ver mis datos personales', show_current_professor_path %>
         </div>
@@ -20,7 +19,7 @@
         </div>
         <br>
         <div class="li-custom">
-          <a href="/">Crear solicitud</a>
+          <%= link_to 'Crear Solicitud', new_publication_path %>
         </div>
         <br>
         <div class="li-custom">
@@ -28,13 +27,12 @@
         </div>
         <br>
         <div class="li-custom">
-          <a href="/">Mis publicaciones</a>
+          <%= link_to 'Mis publicaciones', publications_path %>
         </div>
         <br>
         <div class="li-custom">
           <a href="/contact">Requisitos necesarios para publicaciones</a>
         </div>
-        <% end %>
       </div>
     </div>
   </div>

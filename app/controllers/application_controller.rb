@@ -46,12 +46,16 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
+    if resource.sign_in_count == 1
+      edit_route
+    else
+      home_route
+    end
+  end
+
+  def home_route
     if professor_signed_in?
-      if resource.sign_in_count == 1
-        edit_current_professor_path
-      else
-        professor_home_path
-      end
+      professor_home_path
     elsif administrator_signed_in?
       administrator_home_path
     else
@@ -59,6 +63,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
+  def edit_route
+    if professor_signed_in?
+      edit_current_professor_path
+    elsif administrator_signed_in?
+      administrator_home_path
+    else
+      root_path
+    end
+  end
 
 end

@@ -1,4 +1,5 @@
 class KeywordsController < ApplicationController
+  before_action :authenticate_administrator!, except: [:show, :index]
   before_action :set_keyword, only: [:show, :edit, :update, :destroy]
 
   # GET /keywords

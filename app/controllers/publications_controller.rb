@@ -1,8 +1,9 @@
 require "prawn"
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  # before_action :set_current_user, only: [:create_pdf]
   before_action :authenticate_administrator!, only: [:destroy]
-  before_action :authorized?, only: [:new, :edit, :update, :create]
+  before_action :authorized?, only: [:new, :edit, :update, :create, :create_pdf]
 
 
   layout "unal"
@@ -33,6 +34,10 @@ class PublicationsController < ApplicationController
     @themes = Theme.all
     @keywords = Keyword.all
     @publication = Publication.new
+    @words = []
+    3.times do
+      @words << Keyword.new
+    end
   end
 
   # GET /publications/1/edit
@@ -44,11 +49,10 @@ class PublicationsController < ApplicationController
   # POST /publications
   # POST /publications.json
   def create
-    @categories = Category.all
-    @themes = Theme.all
     @publication = Publication.new(publication_params)
     respond_to do |format|
       if @publication.save
+        #@publication.keywords << Keyword.find(params[:keyword_ids])
         @publication.professors << current_professor
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
@@ -96,17 +100,18 @@ class PublicationsController < ApplicationController
       image "#{Rails.root}/public/logopdf.png", :position => :center, :scale => 0.16
       move_down 40
       font("Times-Roman") do
-        #text current_professor.first_name
-        publ.professors.each do |profe|
-          text "Yo, " + profe.first_name + " " + profe.last_name + " quiero publicar la " + publ.category.category + ' con el titulo "' + publ.title + '" y de tema ' + publ.theme.theme
-          text 'Resumen: "' + publ.abstract + '"', :align => :justify
-        end
+        text current_professor.first_name
+        text 'Resumen: "' + publ.abstract + '"', :align => :justify
+        # publ.professors.each do |profe|
+        #   text "Yo, " + profe.first_name + " " + profe.last_name + " quiero publicar la " + publ.category.category + ' con el titulo "' + publ.title + '" y de tema ' + publ.theme.theme
+        #   text 'Resumen: "' + publ.abstract + '"', :align => :justify
+        # end
       end
       #text publ.current_professor.username
       #text tema.theme
     end
+    redirect_to :back
   end
-  helper_method :create_pdf
 
   private
 
@@ -114,9 +119,13 @@ class PublicationsController < ApplicationController
   def set_publication
     @publication = Publication.find(params[:id])
   end
+  #
+  # def set_current_user
+  #   @professor = current_professor
+  # end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:title, :abstract, :category, :theme_id, :category_id)
+    params.require(:publication).permit(:title, :abstract, :category, :theme_id, :category_id, :keyword_ids)
   end
 end

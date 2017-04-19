@@ -18,4 +18,8 @@ class Publication < ApplicationRecord
     includes(:professor_publications,:professors).where(professors:{id: professor_id})
   }
 
+  scope :publications_by_keyword, ->(keyword_id){
+    includes(:keyword_publications,:keywords).where(keywords:{id: keyword_id})
+  }
+
 end

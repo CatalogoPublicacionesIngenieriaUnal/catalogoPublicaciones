@@ -32,13 +32,7 @@
       </ul>
     </div>
     <div>
-      <%
-      # require "prawn"
-      # Prawn::Document.generate("public/hello.pdf") do
-      #   text "Hello World!"
-      # end
-      create_pdf
-      %>
+      <%= link_to('Create PDF', create_pdf_path) %>
     </div>
     <div>
       <!-- <%= link_to "Test", "/hello.pdf"%> -->

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'professor/not_authorized', to: 'professors#not_authorized', :as => :not_authorized
   get 'professor/profile', to: 'professors#show', :as => :show_current_professor
   get 'professor/edit', to: 'professors#edit', :as => :edit_current_professor
+  get 'publications/:id/create_pdf', to: 'publications#create_pdf', :as => :create_pdf
 
 
   # resources :evaluations, except: :delete do

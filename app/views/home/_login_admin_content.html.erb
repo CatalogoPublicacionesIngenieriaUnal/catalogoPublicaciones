@@ -1,5 +1,5 @@
 <div class="login-form">
-  <%= form_for(resource, :as => resource_name, :url => new_session_path(resource_name)) do |f| %>
+  <%= form_for(resource_admin, :as => resource_name_admin, :url => new_session_path(resource_name_admin)) do |f| %>
   <div class="text-center">
     <h4>Iniciar sesión</h4>
     <div><hr class="style13"></div>
@@ -12,6 +12,12 @@
     <div class="group">
       <label for="pass" class="label">Contraseña</label>
       <%= f.password_field :password,:id=>"pass", :type=>"password", :class=>"input", autocomplete: "off" %>
+    </div>
+    <div class="group text-center">
+      <% if devise_mapping.rememberable? -%>
+      <%= f.check_box :remember_me,:id=>"check", :type=>"checkbox", :class=>"check" %>
+      <label for="check">Recordar cuenta</label>
+      <% end %>
     </div>
     <div class="group">
       <div class="actions">

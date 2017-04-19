@@ -111,19 +111,31 @@
     </div>
   </div>
 
+  <input type="checkbox" name="LoginSelector" id="loginCheckbox" onchange="showLogin(this)"/>
   <!-- Login -->
   <%- if !anyone_singed_in? %>
+  <div id="professor_login">
   <div class="col-sm-3" style="padding:0px 50px 0px 0px">
     <%= render 'home/login_content' %>
   </div>
-  <% else %>
+  <div>
+  <div id="administrator_login" style ="visibility: hidden">
   <div class="col-sm-3" style="padding:0px 50px 0px 0px">
-    <div class="login-form">
-      <div class="group">
-        <%= link_to "Salir", destroy_professor_session_path, method: :delete, :class=>"button" %>
-      </div>
-    </div>
+    <%= render 'home/login_admin_content' %>
   </div>
+  <div>
   <% end %>
   <!-- Fin Login -->
+
+  <script type="text/javascript">
+    function showLogin(obj){
+    if ($(obj).is(":checked")) {
+         document.getElementById('professor_login').style.visibility = 'hidden';
+         document.getElementById('administrator_login').style.visibility = 'visible';
+       } else {
+         document.getElementById('professor_login').style.visibility = 'visible';
+         document.getElementById('administrator_login').style.visibility = 'hidden';
+       }
+    }
+  </script>
 </div>

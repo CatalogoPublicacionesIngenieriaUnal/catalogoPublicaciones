@@ -35,7 +35,7 @@
         <div class="form-row">
           <label>
             <span>Título</span>
-            <%= f.text_area :title%>
+            <%= f.text_field :title%>
           </label>
         </div>
 
@@ -69,19 +69,22 @@
         <div class="form-row">
           <label>
             <span>Palabra clave 1</span>
-
+            <% options = options_from_collection_for_select(@keywords, 'id', 'keyword') %>
+            <%= f.select :keywords,  options, :prompt => "Seleccione una opción"  %>
           </label>
         </div>
         <div class="form-row">
           <label>
             <span>Palabra clave 2</span>
-
+            <% options = options_from_collection_for_select(@keywords, 'id', 'keyword') %>
+            <%= f.select :keywords,  options, :prompt => "Seleccione una opción"  %>
           </label>
         </div>
         <div class="form-row">
           <label>
             <span>Palabra clave 3</span>
-
+            <% options = options_from_collection_for_select(@keywords, 'id', 'keyword') %>
+            <%= f.select :keywords,  options, :prompt => "Seleccione una opción"  %>
           </label>
         </div>
 

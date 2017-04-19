@@ -32,8 +32,6 @@ class PublicationsController < ApplicationController
     @themes = Theme.all
     @keywords = Keyword.all
     @publication = Publication.new
-    @categories_options = Category.all.map{ |u| [u.id, u.category] }
-    @themes_options = Theme.all.map{ |v| [v.id, v.theme] }
   end
 
   # GET /publications/1/edit

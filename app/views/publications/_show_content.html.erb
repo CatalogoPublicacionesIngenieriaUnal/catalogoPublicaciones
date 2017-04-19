@@ -31,13 +31,42 @@
         </li>
       </ul>
     </div>
-    <div>
-      <%= link_to('Create PDF', create_pdf_path) %>
+    <div><hr class="style13"></div>
+    <div class="col-sm-12">
+      <div class="form-basic-2">
+        <div class="text-center">
+          <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
+            <%= link_to('Create PDF', create_pdf_path) %>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div>
       <!-- <%= link_to "Test", "/hello.pdf"%> -->
       <!-- <a href="#{Rails.root}/hello.pdf">PEDEEFE</a> -->
     </div>
-
   </div>
 </div>
+<div><hr class="style13"></div>
+<% if professor_signed_in? %>
+<div class="col-sm-12">
+  <div class="form-basic-2">
+    <div class="text-center">
+      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+        <%= link_to 'Volver', professor_home_path %>
+      </div>
+    </div>
+  </div>
+</div>
+<% elsif administrator_signed_in? %>
+<div class="col-sm-12">
+  <div class="form-basic-2">
+    <div class="text-center">
+      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+        <%= link_to 'Volver', administrator_home_path %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

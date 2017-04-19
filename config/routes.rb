@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'professor/home', to: 'professors#home', :as => :professor_home
   get 'administrator/home', to: 'administrators#home', :as => :administrator_home
   get 'professor/not_authorized', to: 'professors#not_authorized', :as => :not_authorized
+  get 'under_construction', to: 'home#under_construction', :as => :under_construction
 
 
   # resources :evaluations, except: :delete do

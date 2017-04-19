@@ -4,6 +4,6 @@ class JudgeMailer < ApplicationMailer
   def welcome(evaluator)
     @evaluator = evaluator
 		mail(to: evaluator.email,
-	         subject: "Already rendered!")
+	         subject: "Catalogo de publicaciones - Nuevo evaluador!")
   end
 end

@@ -13,17 +13,17 @@
     <div class="main-content">
       <div class="form-basic">
         <%= form_for(administrator) do |f| %>
-          <% if administrator.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(administrator.errors.count, "error") %> prohibited this administrator from being saved:</h2>
+        <% if administrator.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(administrator.errors.count, "error") %> prohibited this administrator from being saved:</h2>
 
-              <ul>
-              <% administrator.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
+          <ul>
+            <% administrator.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
 
         <div class="form-title-row">
           <h1>Datos básicos del administrador</h1>
@@ -85,6 +85,16 @@
           <%= f.submit :"Crear administrador", :class=>"button" %>
         </div>
         <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div><hr class="style13"></div>
+<div class="col-sm-12">
+  <div class="form-basic-2">
+    <div class="text-center">
+      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+        <%= link_to 'Volver', administrator_home_path %>
       </div>
     </div>
   </div>

@@ -32,8 +32,6 @@ class PublicationsController < ApplicationController
     @themes = Theme.all
     @keywords = Keyword.all
     @publication = Publication.new
-    @categories_options = Category.all.map{ |u| [u.id, u.category] }
-    @themes_options = Theme.all.map{ |v| [v.id, v.theme] }
   end
 
   # GET /publications/1/edit
@@ -50,7 +48,7 @@ class PublicationsController < ApplicationController
     @publication = Publication.new(publication_params)
     respond_to do |format|
       if @publication.save
-        @publication.professors << current_professor  
+        @publication.professors << current_professor
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else

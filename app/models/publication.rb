@@ -18,5 +18,7 @@ class Publication < ApplicationRecord
   def publications_by_professor(professor_id)
     includes(:professor_publications,:professors).where(professors:{id: professor_id})
   end
+  
+  accepts_nested_attributes_for :keywords
 
 end

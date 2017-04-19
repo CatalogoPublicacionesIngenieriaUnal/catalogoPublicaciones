@@ -11,7 +11,7 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     if professor_signed_in?
-      @publications = Publication.all
+      @publications = Publication.publications_by_professor(current_professor.id)
     else
       @publications = Publication.all
     end

@@ -54,7 +54,7 @@ class ProfessorsController < ApplicationController
   def update
     respond_to do |format|
       if @professor.update(professor_edit_params)
-        format.html { redirect_to @professor, notice: 'Se ha editado tu perfil.' }
+        format.html { redirect_to home_route }
         format.json { render :show, status: :ok, location: @professor }
       else
         format.html { render :edit }
@@ -68,14 +68,14 @@ class ProfessorsController < ApplicationController
   def destroy
     @professor.destroy
     respond_to do |format|
-      format.html { redirect_to professors_url, notice: 'Professor was successfully destroyed.' }
+      format.html { redirect_to home_route }
       format.json { head :no_content }
     end
   end
 
   def autorize
     Professor.where(id: params[:professor_ids]).update_all(is_authorized: true)
-    redirect_to professors_path
+    redirect_to home_route
   end
 
   private

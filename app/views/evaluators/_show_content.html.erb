@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-10">
     <div class="text-center" style="padding: 10px 0px 0px 0px;">
-      <h1 style="font-size:200%;">Mis datos</h1>
+      <h1 style="font-size:200%;">Datos evaluador</h1>
       <p id="notice"><%= notice %></p>
     </div>
     <div><hr class="style13"></div>
@@ -13,28 +13,40 @@
         <li>
           <span class="inf">Usuario</span>
           <span class="value">
-            <%= @administrator.username %>
+            <%= @evaluator.username %>
           </span>
         </li>
         <li>
           <span class="inf">Nombres</span>
           <span class="value">
-            <%= @administrator.first_name %>
+            <%= @evaluator.first_name %>
           </span>
         </li>
         <li>
           <span class="inf">Apellidos</span>
           <span class="value">
-            <%= @administrator.last_name %>
+            <%= @evaluator.last_name %>
           </span>
         </li>
         <li>
           <span class="inf">Correo electrónico</span>
           <span class="value">
-            <%= @administrator.email %>
+            <%= @evaluator.email %>
           </span>
         </li>
-      </ul>
+        <li>
+          <span class="inf">Idioma</span>
+          <span class="value">
+            <%= @evaluator.language_id %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Código</span>
+          <span class="value">
+            <%= @evaluator.code %>
+          </span>
+        </li>
+    </ul>
     </div>
   </div>
 </div>

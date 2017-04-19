@@ -1,42 +1,83 @@
-<%= form_for(evaluator) do |f| %>
-  <% if evaluator.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(evaluator.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
-
-      <ul>
-      <% evaluator.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="text-center">
+    <div class="col-md-10" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Nuevo evaluador</h1>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
   </div>
 
-  <div class="field">
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
+  <div class="col-sm-10">
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic">
 
-  <div class="field">
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
+      <%= form_for(evaluator) do |f| %>
+      <% if evaluator.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(evaluator.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
+        <ul>
+          <% evaluator.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :code %>
-    <%= f.text_field :code %>
-  </div>
+      <div class="form-title-row">
+        <h1>Datos básicos del evaluador</h1>
+      </div>
 
-  <div class="actions">
-    <%= f.submit %>
+      <div class="form-row">
+        <label>
+          <span>Usuario</span>
+          <%= f.text_field :username %>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Nombres</span>
+          <%= f.text_field :first_name %>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Apellidos</span>
+          <%= f.text_field :last_name %>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Correo electrónico</span>
+          <%= f.text_field :email %>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Idioma evaluador</span>
+          <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"),:prompt => "Seleccione una opción" %>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>
+          <span>Código</span>
+          <%= f.text_field :code %>
+        </label>
+      </div>
+
+      <div class="actions">
+        <%= f.submit :"Crear nuevo evaluador", :class=>"button"%>
+      </div>
+
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
+</div>

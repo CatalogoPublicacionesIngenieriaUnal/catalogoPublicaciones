@@ -1,35 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= render 'static/header_unal_render' %>
 
-<h1>Evaluators</h1>
+<%= render 'index_content', evaluator: @evaluator %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Code</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @evaluators.each do |evaluator| %>
-      <tr>
-        <td><%= evaluator.username %></td>
-        <td><%= evaluator.first_name %></td>
-        <td><%= evaluator.last_name %></td>
-        <td><%= evaluator.email %></td>
-        <td><%= evaluator.code %></td>
-        <td><%= link_to 'Show', evaluator %></td>
-        <td><%= link_to 'Edit', edit_evaluator_path(evaluator) %></td>
-        <td><%= link_to 'Destroy', evaluator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Evaluator', new_evaluator_path %>
+<%= render 'static/footer_unal_render' %>

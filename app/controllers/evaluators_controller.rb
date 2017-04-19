@@ -14,16 +14,19 @@ class EvaluatorsController < ApplicationController
 
   # GET /evaluators/new
   def new
+    @languages = Language.all
     @evaluator = Evaluator.new
   end
 
   # GET /evaluators/1/edit
   def edit
+    @languages = Language.all
   end
 
   # POST /evaluators
   # POST /evaluators.json
   def create
+    @languages = Language.all
     @evaluator = Evaluator.new(evaluator_params)
 
     respond_to do |format|
@@ -41,6 +44,7 @@ class EvaluatorsController < ApplicationController
   # PATCH/PUT /evaluators/1
   # PATCH/PUT /evaluators/1.json
   def update
+    @languages = Language.all
     respond_to do |format|
       if @evaluator.update(evaluator_params)
         format.html { redirect_to @evaluator, notice: 'Evaluator was successfully updated.' }
@@ -70,6 +74,6 @@ class EvaluatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluator_params
-      params.require(:evaluator).permit(:username, :first_name, :last_name, :email, :code)
+      params.require(:evaluator).permit(:username, :first_name, :last_name, :email, :language_id, :code)
     end
 end

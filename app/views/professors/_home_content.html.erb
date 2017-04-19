@@ -10,17 +10,16 @@
     <div><hr class="style13"></div>
     <div class="form-basic-2">
       <div class="li-custom">
-        <% @professors.each do |professor| %>
         <div class="li-custom">
-          <%= link_to 'Ver mis datos personales', professor %>
+          <%= link_to 'Ver mis datos personales', show_current_professor_path %>
         </div>
         <br>
         <div class="li-custom">
-          <%= link_to 'Actualizar datos personales', edit_professor_path(professor) %>
+          <%= link_to 'Actualizar datos personales', edit_current_professor_path %>
         </div>
         <br>
         <div class="li-custom">
-          <%= link_to 'Crear solicitud', under_construction_path %>
+          <%= link_to 'Crear Solicitud', new_publication_path %>
         </div>
         <br>
         <div class="li-custom">
@@ -34,7 +33,6 @@
         <div class="li-custom">
           <%= link_to 'Requisitos necesarios para publicaciones', under_construction_path %>
         </div>
-        <% end %>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 class ApplicationRequestsController < ApplicationController
   before_action :set_application_request, only: [:show, :edit, :update, :destroy]
+  before_action :is_authorized
 
   # GET /application_requests
   # GET /application_requests.json

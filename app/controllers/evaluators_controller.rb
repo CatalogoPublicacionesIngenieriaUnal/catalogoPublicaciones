@@ -1,5 +1,6 @@
 class EvaluatorsController < ApplicationController
-  before_action :authenticate_administrator!, only: [:show, :edit, :update, :destroy]
+
+  before_action :authenticate_administrator!, only: [:new, :create, :edit, :update, :destroy, :index]
   before_action :set_evaluator, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluators

@@ -1,7 +1,9 @@
 class ProfessorsController < ApplicationController
+
+  before_action :set_professor, only: [:update, :destroy]
+  before_action :set_current_professor, only: [:edit, :show]
   before_action :authenticate_administrator!, only: [:index, :destroy, :autorize]
-  before_action :is_authorized, except:[:not_authorized, :index, :destroy, :autorize, :new]
-  before_action :set_professor, only: [:show, :edit, :update, :destroy]
+
   layout "unal"
 
 
@@ -52,7 +54,7 @@ class ProfessorsController < ApplicationController
   def update
     respond_to do |format|
       if @professor.update(professor_edit_params)
-        format.html { redirect_to @professor, notice: 'Se ha editado tu perfil.' }
+        format.html { redirect_to home_route }
         format.json { render :show, status: :ok, location: @professor }
       else
         format.html { render :edit }
@@ -66,14 +68,14 @@ class ProfessorsController < ApplicationController
   def destroy
     @professor.destroy
     respond_to do |format|
-      format.html { redirect_to professors_url, notice: 'Professor was successfully destroyed.' }
+      format.html { redirect_to home_route }
       format.json { head :no_content }
     end
   end
 
   def autorize
     Professor.where(id: params[:professor_ids]).update_all(is_authorized: true)
-    redirect_to professors_path
+    redirect_to home_route
   end
 
   private
@@ -82,18 +84,17 @@ class ProfessorsController < ApplicationController
       @professor = Professor.find(params[:id])
     end
 
-    def is_authorized
-      unless current_professor.is_authorized
-        flash[:error] = "You must be logged in to access this section"
-        redirect_to not_authorized_path
-      end
+    def set_current_professor
+      @professor = Professor.find(current_professor.id)
     end
+
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professor_params
       params.require(:professor).permit(:username, :first_name, :last_name, :email, :department, :contact_number, :gender, :is_authorized)
     end
     def professor_edit_params
-      params.require(:professor).permit(:department, :contact_number, :gender, :is_authorized)
+      params.require(:professor).permit(:department, :contact_number, :gender)
     end
 end

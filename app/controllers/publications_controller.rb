@@ -1,11 +1,21 @@
+require "prawn"
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  # before_action :set_current_user, only: [:create_pdf]
+  before_action :authenticate_administrator!, only: [:destroy]
+  before_action :authorized?, only: [:new, :edit, :update, :create, :create_pdf]
+
+
   layout "unal"
 
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.all
+    if professor_signed_in?
+      @publications = Publication.publications_by_professor(current_professor.id)
+    else
+      @publications = Publication.all
+    end
     respond_to do |format|
       format.html
       format.json
@@ -24,23 +34,26 @@ class PublicationsController < ApplicationController
     @themes = Theme.all
     @keywords = Keyword.all
     @publication = Publication.new
-    @categories_options = Category.all.map{ |u| [u.id, u.category] }
-    @themes_options = Theme.all.map{ |v| [v.id, v.theme] }
+    @words = []
+    3.times do
+      @words << Keyword.new
+    end
   end
 
   # GET /publications/1/edit
   def edit
+    @categories = Category.all
+    @themes = Theme.all
   end
 
   # POST /publications
   # POST /publications.json
   def create
-    @categories = Category.all
-    @themes = Theme.all
     @publication = Publication.new(publication_params)
-
     respond_to do |format|
       if @publication.save
+        #@publication.keywords << Keyword.find(params[:keyword_ids])
+        @publication.professors << current_professor
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else
@@ -74,14 +87,45 @@ class PublicationsController < ApplicationController
     end
   end
 
+  # def download_pdf
+  #   publ = Publication.find(params[:id])
+  #   send_data create_pdf(publ), filename: "#{try01.pdf}", type: "application/pdf"
+  #   end
+  # end
+
+  def create_pdf
+    publ = Publication.find(params[:id])
+    #tema = Theme.find(params[:theme_id])
+    Prawn::Document.generate("public/publication.pdf", :margin => [10,80,80,80] ) do
+      image "#{Rails.root}/public/logopdf.png", :position => :center, :scale => 0.16
+      move_down 40
+      font("Times-Roman") do
+        text current_professor.first_name
+        text 'Resumen: "' + publ.abstract + '"', :align => :justify
+        # publ.professors.each do |profe|
+        #   text "Yo, " + profe.first_name + " " + profe.last_name + " quiero publicar la " + publ.category.category + ' con el titulo "' + publ.title + '" y de tema ' + publ.theme.theme
+        #   text 'Resumen: "' + publ.abstract + '"', :align => :justify
+        # end
+      end
+      #text publ.current_professor.username
+      #text tema.theme
+    end
+    redirect_to :back
+  end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_publication
     @publication = Publication.find(params[:id])
   end
+  #
+  # def set_current_user
+  #   @professor = current_professor
+  # end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:title, :abstract, :category, :theme_id, :category_id)
+    params.require(:publication).permit(:title, :abstract, :category, :theme_id, :category_id, :keyword_ids)
   end
 end

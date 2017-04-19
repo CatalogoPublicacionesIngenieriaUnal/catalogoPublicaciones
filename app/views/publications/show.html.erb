@@ -1,19 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= render 'static/header_unal_render' %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @publication.title %>
-</p>
+<%= render 'show_content' %>
 
-<p>
-  <strong>Abstract:</strong>
-  <%= @publication.abstract %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @publication.category %>
-</p>
-
-<%= link_to 'Edit', edit_publication_path(@publication) %> |
-<%= link_to 'Back', publications_path %>
+<%= render 'static/footer_unal_render' %>

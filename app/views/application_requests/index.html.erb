@@ -21,7 +21,7 @@
         <td><%= application_request.professor.first_name + " " + application_request.professor.last_name %></td>
         <td><%= application_request.created_at %></td>
         <td><%= link_to 'Show', application_request %></td>
-        <td><%= link_to 'Edit', edit_application_request_path(application_request) %></td>
+        <td><%= link_to 'Asignar Evaluadores', authorize_application_path(application_request) %></td>
         <td><%= link_to 'Destroy', application_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

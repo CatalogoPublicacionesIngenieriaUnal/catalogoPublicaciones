@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'administrators/home', to: 'administrators#home', :as => :administrator_home
   get 'professors/profile', to: 'professors#show', :as => :show_current_professor
   get 'professors/edit', to: 'professors#edit', :as => :edit_current_professor
-
+  get 'application_requests/:id/authorize', to: 'application_requests#authorize', :as => :authorize_application
 
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :evaluations do
     resources :evaluators, shallow: true
   end
-  resources :application_requests
+  resources :application_requests, except: [:edit, :update]
 
   resources :professors do
     collection do

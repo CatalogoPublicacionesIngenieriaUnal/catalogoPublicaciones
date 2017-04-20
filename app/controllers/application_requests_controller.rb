@@ -1,6 +1,7 @@
 class ApplicationRequestsController < ApplicationController
-  before_action :set_application_request, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_administrator!
+  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :authorize]
+  before_action :authorized?, only: [:new, :edit, :update, :create]
+  before_action :authenticate_administrator!, only: [:index, :show, :destroy]
 
   # GET /application_requests
   # GET /application_requests.json
@@ -15,13 +16,14 @@ class ApplicationRequestsController < ApplicationController
 
   # GET /application_requests/new
   def new
-
-    puts "la wea new"
     @application_request = ApplicationRequest.new
   end
 
-  # GET /application_requests/1/edit
-  def edit
+  def authorize
+    @application_request.state = :en_evaluacion
+    Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
+    Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
+    redirect_to :back
   end
 
   # POST /application_requests
@@ -34,20 +36,6 @@ class ApplicationRequestsController < ApplicationController
         format.json { render :show, status: :created, location: @application_request }
       else
         format.html { render :new }
-        format.json { render json: @application_request.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /application_requests/1
-  # PATCH/PUT /application_requests/1.json
-  def update
-    respond_to do |format|
-      if @application_request.update(application_request_params)
-        format.html { redirect_to @application_request, notice: 'Application request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @application_request }
-      else
-        format.html { render :edit }
         format.json { render json: @application_request.errors, status: :unprocessable_entity }
       end
     end

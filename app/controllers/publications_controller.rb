@@ -33,11 +33,9 @@ class PublicationsController < ApplicationController
     @categories = Category.all
     @themes = Theme.all
     @keywords = Keyword.all
+    @current_professor = current_professor
+    @professors = Professor.all
     @publication = Publication.new
-    @words = []
-    3.times do
-      @words << Keyword.new
-    end
   end
 
   # GET /publications/1/edit
@@ -50,9 +48,10 @@ class PublicationsController < ApplicationController
   # POST /publications.json
   def create
     @publication = Publication.new(publication_params)
+    application_request = ApplicationRequest.create(state: :en_espera, professor_id: current_professor.id)
+    @publication.application_request_id = application_request.id
     respond_to do |format|
       if @publication.save
-        #@publication.keywords << Keyword.find(params[:keyword_ids])
         @publication.professors << current_professor
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
@@ -129,6 +128,6 @@ class PublicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:title, :abstract, :category, :theme_id, :category_id, :keyword_ids)
+    params.require(:publication).permit(:title, :abstract, :theme_id, :category_id, :keyword_ids, :application_request_id)
   end
 end

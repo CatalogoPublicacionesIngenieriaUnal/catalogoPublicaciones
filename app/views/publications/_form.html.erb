@@ -61,13 +61,17 @@
           </label>
         </div>
         <div class="form-row">
+          <label>
+            <span>Profesores</span>
+            <%= f.select :professors, options_from_collection_for_select(@professors, "id", "first_name"),:prompt => "Seleccione una opción" %>
+          </label>
+        </div>
+        <div class="form-row">
           <hr width=70% align="center">
           <center>
             <span>Por favor ingrese tres palabras clave para la búsqueda de su publicación</span>
           </center>
         </div>
-        <% @words.each do |key| %>
-          <%= fields_for 'words[]', key do |p| %>
             <div class="form-row">
               <label>
                 <span>Palabra clave</span>
@@ -75,8 +79,6 @@
                 <%= f.select :keyword_ids,  options, :prompt => "Seleccione una opción"  %>
               </label>
             </div>
-          <% end %>
-        <% end %>
 
         <div class="actions">
           <%= f.submit :"Crear publicación"%>

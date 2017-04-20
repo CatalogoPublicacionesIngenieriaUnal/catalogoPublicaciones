@@ -5,12 +5,21 @@ Rails.application.routes.draw do
   end
   root to: "home#index"
 
+  get 'professors/home', to: 'professors#home', :as => :professor_home
+  get 'administrators/home', to: 'administrators#home', :as => :administrator_home
+  get 'professors/profile', to: 'professors#show', :as => :show_current_professor
+  get 'professors/edit', to: 'professors#edit', :as => :edit_current_professor
+
+
+
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators
   resources :publications
-  resources :evaluations
+  resources :evaluations do
+    resources :evaluators, shallow: true
+  end
   resources :application_requests
-  resources :evaluators
+
   resources :professors do
     collection do
       put :autorize
@@ -22,14 +31,11 @@ Rails.application.routes.draw do
   resources :categories
   resources :keywords
   resources :attatchments
-  get 'professor/home', to: 'professors#home', :as => :professor_home
-  get 'administrator/home', to: 'administrators#home', :as => :administrator_home
-  get 'professor/not_authorized', to: 'professors#not_authorized', :as => :not_authorized
-  get 'under_construction', to: 'home#under_construction', :as => :under_construction
-  get 'professor/profile', to: 'professors#show', :as => :show_current_professor
-  get 'professor/edit', to: 'professors#edit', :as => :edit_current_professor
-  get 'publications/:id/create_pdf', to: 'publications#create_pdf', :as => :create_pdf
 
+  get 'not_authorized', to: 'professors#not_authorized', :as => :not_authorized
+  get 'under_construction', to: 'home#under_construction', :as => :under_construction
+  get 'publications/:id/create_pdf', to: 'publications#create_pdf', :as => :create_pdf
+  #get 'evaluate/:id', to 'evaluat'
 
   # resources :evaluations, except: :delete do
   #   match 'evaluacion', to: 'evaluations#edit', via: [:put,:post]

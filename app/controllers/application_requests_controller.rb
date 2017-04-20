@@ -1,6 +1,6 @@
 class ApplicationRequestsController < ApplicationController
   before_action :set_application_request, only: [:show, :edit, :update, :destroy]
-  before_action :is_authorized
+  before_action :authenticate_administrator!
 
   # GET /application_requests
   # GET /application_requests.json
@@ -15,6 +15,8 @@ class ApplicationRequestsController < ApplicationController
 
   # GET /application_requests/new
   def new
+
+    puts "la wea new"
     @application_request = ApplicationRequest.new
   end
 
@@ -26,7 +28,6 @@ class ApplicationRequestsController < ApplicationController
   # POST /application_requests.json
   def create
     @application_request = ApplicationRequest.new(application_request_params)
-
     respond_to do |format|
       if @application_request.save
         format.html { redirect_to @application_request, notice: 'Application request was successfully created.' }
@@ -70,6 +71,6 @@ class ApplicationRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_request_params
-      params.require(:application_request).permit(:state, :authorized_at)
+      params.require(:application_request).permit(:state, :authorized_at, :professor_id)
     end
 end

@@ -1,11 +1,11 @@
 class ApplicationRequest < ApplicationRecord
+
   has_many :attatchments
-  has_many :professor_application_requests
-  has_many :professors, through: :professor_application_requests
   has_many :evaluations
+  has_many :evaluators, through: :evaluations
 
   has_one :publication
-
+  belongs_to :professor
 
   validates :state, presence: true
 
@@ -22,4 +22,9 @@ class ApplicationRequest < ApplicationRecord
   def self.find_by_evaluation_status(id)
     includes(:evaluations).where('state_id = ?', id)
   end
+
+  def self.get_professor(professor_id)
+    includes(:professors).where(professors:{id: professor_id})
+  end
+
 end

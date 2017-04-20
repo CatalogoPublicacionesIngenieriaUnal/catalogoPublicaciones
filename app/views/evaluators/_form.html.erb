@@ -32,13 +32,6 @@
 
         <div class="form-row">
           <label>
-            <span>Usuario</span>
-            <%= f.text_field :username %>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>
             <span>Nombres</span>
             <%= f.text_field :first_name %>
           </label>
@@ -62,13 +55,6 @@
           <label>
             <span>Idioma evaluador</span>
             <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"),:prompt => "Seleccione una opción" %>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>
-            <span>Código</span>
-            <%= f.text_field :code %>
           </label>
         </div>
 

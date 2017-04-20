@@ -94,16 +94,19 @@ class PublicationsController < ApplicationController
   # end
 
   def create_pdf
+    curr_prof = current_professor
+    #p "#{@current_professor.first_name}"
     publ = Publication.find(params[:id])
     #tema = Theme.find(params[:theme_id])
     Prawn::Document.generate("public/publication.pdf", :margin => [10,80,80,80] ) do
       image "#{Rails.root}/public/logopdf.png", :position => :center, :scale => 0.16
       move_down 40
       font("Times-Roman") do
-        # text current_professor.first_name
+        text "#{curr_prof.first_name} #{curr_prof.last_name}"
+        + " quiero publicar la " + publ.category.category + ' con el titulo "' + publ.title + '" y de tema ' + publ.theme.theme
         text 'Resumen: "' + publ.abstract + '"', :align => :justify
         # publ.professors.each do |profe|
-        #   text "Yo, " + profe.first_name + " " + profe.last_name + " quiero publicar la " + publ.category.category + ' con el titulo "' + publ.title + '" y de tema ' + publ.theme.theme
+        #   text "Yo, " + profe.first_name + " " + profe.last_name
         #   text 'Resumen: "' + publ.abstract + '"', :align => :justify
         # end
       end

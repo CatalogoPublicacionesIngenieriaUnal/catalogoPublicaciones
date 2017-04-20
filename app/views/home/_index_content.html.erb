@@ -1,3 +1,8 @@
+<style>
+div.hidden {
+    display: none;
+}
+</style>
 <!-- Pagina principal -->
 <div class="row">
   <!-- Menu principal -->
@@ -115,26 +120,26 @@
   <!-- Login -->
   <%- if !anyone_singed_in? %>
   <div id="professor_login">
-  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
-    <%= render 'home/login_content' %>
+    <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+      <%= render 'home/login_content' %>
+    </div>
   </div>
-  <div>
-  <div id="administrator_login" style ="visibility: hidden">
-  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
-    <%= render 'home/login_admin_content' %>
+  <div id="administrator_login" class="hidden">
+    <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+      <%= render 'home/login_admin_content' %>
+    </div>
   </div>
-  <div>
   <% end %>
   <!-- Fin Login -->
 
   <script type="text/javascript">
     function showLogin(obj){
     if ($(obj).is(":checked")) {
-         document.getElementById('professor_login').style.visibility = 'hidden';
-         document.getElementById('administrator_login').style.visibility = 'visible';
-       } else {
-         document.getElementById('professor_login').style.visibility = 'visible';
-         document.getElementById('administrator_login').style.visibility = 'hidden';
+        document.getElementById('professor_login').classList.add("hidden");
+        document.getElementById('administrator_login').classList.remove("hidden");
+    } else {
+         document.getElementById('professor_login').classList.remove("hidden");
+         document.getElementById('administrator_login').classList.add("hidden");
        }
     }
   </script>

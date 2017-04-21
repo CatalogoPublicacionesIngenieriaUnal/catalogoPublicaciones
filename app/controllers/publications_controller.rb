@@ -12,9 +12,9 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     if professor_signed_in?
-      @publications = Publication.publications_by_professor(current_professor.id)
+      @publications = Publication.publications_by_professor(current_professor.id).page(params[:page]).per_page(5)
     else
-      @publications = Publication.all
+      @publications = Publication.all.page(params[:page]).per_page(5)
     end
     respond_to do |format|
       format.html

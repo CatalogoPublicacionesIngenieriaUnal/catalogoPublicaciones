@@ -60,7 +60,7 @@
         <div class="form-row">
           <label>
             <span>Departamento</span>
-            <%= f.number_field :department %>
+            <%= f.select(:department, Professor.departments.keys) %>
             <%#= f.select :departament, departments%>
           </label>
         </div>
@@ -75,7 +75,7 @@
         <div class="form-row">
           <label>
             <span>Genero</span>
-            <%= f.text_field :gender %>
+            <%= f.select(:gender, Professor.genders.keys)%>
           </label>
         </div>
 

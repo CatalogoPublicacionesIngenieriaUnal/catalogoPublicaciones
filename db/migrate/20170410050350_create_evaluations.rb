@@ -3,8 +3,8 @@ class CreateEvaluations < ActiveRecord::Migration[5.0]
     create_table :evaluations do |t|
       t.text :justification
       t.integer :state, :null => false
-      t.belongs_to :evaluator, :application_request, foreign_key: true
-      
+      t.belongs_to :application_request, foreign_key: true
+
       t.timestamps
     end
   end

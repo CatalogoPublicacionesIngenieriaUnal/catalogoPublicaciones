@@ -9,10 +9,12 @@ class Publication < ApplicationRecord
 
   belongs_to :application_request
 
-  before_validation(on: :create) do
-    application_request = ApplicationRequest.create!(state: :en_espera)
-    self.application_request_id = application_request.id
-  end
+  # before_validation(on: :create) do
+  #   self.application_request_id = 1
+  # #   application_request = ApplicationRequest.new(state: :en_espera, professors_id: @current_professor)
+  # #   application_request.save
+  # #   self.application_request_id = application_request.id
+  # end
 
   scope :publications_by_professor, ->(professor_id){
     includes(:professor_publications,:professors).where(professors:{id: professor_id})

@@ -13,7 +13,7 @@
     <div class="main-content">
       <div class="form-basic">
 
-        <%= form_for(evaluator) do |f| %>
+        <%= form_for([@evaluation, @evaluator], :url => {:action => "create", :id =>@evaluator}) do |f| %>
         <% if evaluator.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(evaluator.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
@@ -28,13 +28,6 @@
 
         <div class="form-title-row">
           <h1>Datos básicos del evaluador</h1>
-        </div>
-
-        <div class="form-row">
-          <label>
-            <span>Usuario</span>
-            <%= f.text_field :username %>
-          </label>
         </div>
 
         <div class="form-row">
@@ -62,13 +55,6 @@
           <label>
             <span>Idioma evaluador</span>
             <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"),:prompt => "Seleccione una opción" %>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>
-            <span>Código</span>
-            <%= f.text_field :code %>
           </label>
         </div>
 

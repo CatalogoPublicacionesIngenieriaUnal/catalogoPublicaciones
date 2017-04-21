@@ -1,14 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= render 'static/header_unal_render' %>
 
-<p>
-  <strong>State:</strong>
-  <%= @application_request.state %>
-</p>
+<%= render 'show_content' %>
 
-<p>
-  <strong>Authorized at:</strong>
-  <%= @application_request.authorized_at %>
-</p>
-
-<%= link_to 'Edit', edit_application_request_path(@application_request) %> |
-<%= link_to 'Back', application_requests_path %>
+<%= render 'static/footer_unal_render' %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420010243) do
+ActiveRecord::Schema.define(version: 20170420164402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 20170420010243) do
   create_table "application_requests", force: :cascade do |t|
     t.integer  "state",         null: false
     t.date     "authorized_at"
+    t.integer  "professor_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.index ["professor_id"], name: "index_application_requests_on_professor_id", using: :btree
   end
 
   create_table "attatchments", force: :cascade do |t|
@@ -60,24 +62,31 @@ ActiveRecord::Schema.define(version: 20170420010243) do
   create_table "evaluations", force: :cascade do |t|
     t.text     "justification"
     t.integer  "state",                  null: false
-    t.integer  "evaluator_id"
     t.integer  "application_request_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["application_request_id"], name: "index_evaluations_on_application_request_id", using: :btree
-    t.index ["evaluator_id"], name: "index_evaluations_on_evaluator_id", using: :btree
   end
 
   create_table "evaluators", force: :cascade do |t|
-    t.string   "username",    null: false
-    t.string   "first_name",  null: false
-    t.string   "last_name",   null: false
-    t.string   "email",       null: false
-    t.string   "code",        null: false
+    t.string   "first_name",                      null: false
+    t.string   "last_name",                       null: false
+    t.string   "email",                           null: false
+    t.string   "code",                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "language_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "evaluation_id"
+    t.string   "url_token",                       null: false
+    t.integer  "sign_in_count",   default: 0,     null: false
+    t.integer  "failed_attempts", default: 0,     null: false
+    t.datetime "last_sign_in_at"
+    t.datetime "code_asigned_at"
+    t.boolean  "is_locked",       default: false, null: false
+    t.index ["email"], name: "index_evaluators_on_email", unique: true, using: :btree
+    t.index ["evaluation_id"], name: "index_evaluators_on_evaluation_id", using: :btree
     t.index ["language_id"], name: "index_evaluators_on_language_id", using: :btree
+    t.index ["url_token"], name: "index_evaluators_on_url_token", unique: true, using: :btree
   end
 
   create_table "keyword_publications", force: :cascade do |t|
@@ -99,16 +108,6 @@ ActiveRecord::Schema.define(version: 20170420010243) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "professor_application_requests", force: :cascade do |t|
-    t.integer  "professor_id"
-    t.integer  "application_request_id"
-    t.boolean  "is_holder"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["application_request_id"], name: "index_professor_application_requests_on_application_request_id", using: :btree
-    t.index ["professor_id"], name: "index_professor_application_requests_on_professor_id", using: :btree
   end
 
   create_table "professor_publications", force: :cascade do |t|
@@ -159,14 +158,13 @@ ActiveRecord::Schema.define(version: 20170420010243) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "application_requests", "professors"
   add_foreign_key "attatchments", "application_requests"
   add_foreign_key "evaluations", "application_requests"
-  add_foreign_key "evaluations", "evaluators"
+  add_foreign_key "evaluators", "evaluations"
   add_foreign_key "evaluators", "languages"
   add_foreign_key "keyword_publications", "keywords"
   add_foreign_key "keyword_publications", "publications"
-  add_foreign_key "professor_application_requests", "application_requests"
-  add_foreign_key "professor_application_requests", "professors"
   add_foreign_key "professor_publications", "professors"
   add_foreign_key "professor_publications", "publications"
   add_foreign_key "publications", "application_requests"

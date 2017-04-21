@@ -12,7 +12,8 @@ class ProfessorsController < ApplicationController
   # GET /professors
   # GET /professors.json
   def index
-    @professors = Professor.all
+    # @professors = Professor.all
+    @professors = Professor.search(params[:is_authorized]).page(params[:page]).per_page(5) 
   end
 
   # GET /professors/1

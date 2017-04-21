@@ -72,13 +72,15 @@
             <span>Por favor ingrese tres palabras clave para la búsqueda de su publicación</span>
           </center>
         </div>
-            <div class="form-row">
-              <label>
-                <span>Palabra clave</span>
-                <% options = options_from_collection_for_select(@keywords, 'id', 'keyword') %>
-                <%= f.select :keyword_ids,  options, :prompt => "Seleccione una opción"  %>
-              </label>
-            </div>
+
+        <%= fields_for(@words) do |ab| %>
+        <div class="form-row">
+          <label>
+            <span>Palabras clave</span>
+            <%= collection_select(:keywords, :ids, @keywords, :id, :keyword, {:include_blank => false}, {:multiple => true}) %>
+          </label>
+        </div>
+        <% end %>
 
         <div class="actions">
           <%= f.submit :"Crear publicación"%>

@@ -1,8 +1,3 @@
-<style>
-div.hidden {
-    display: none;
-}
-</style>
 <!-- Pagina principal -->
 <div class="row">
   <!-- Menu principal -->
@@ -116,12 +111,11 @@ div.hidden {
     </div>
   </div>
 
-  <input type="checkbox" name="LoginSelector" id="loginCheckbox" onchange="showLogin(this)"/>
   <!-- Login -->
   <%- if !anyone_singed_in? %>
   <div id="professor_login">
     <div class="col-sm-3" style="padding:0px 50px 0px 0px">
-      <%= render 'home/login_content' %>
+      <%= render 'home/login_profesor_content' %>
     </div>
   </div>
   <div id="administrator_login" class="hidden">
@@ -129,18 +123,49 @@ div.hidden {
       <%= render 'home/login_admin_content' %>
     </div>
   </div>
+  <!-- Checkbox para elegir usuario -->
+  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+    <label class="switch">
+      <input type="checkbox" name="LoginSelector" id="loginCheckbox" onchange="showLogin(this)" onclick="yesno('loginCheckbox','yesnos');" />
+      <div class="slider round"></div>
+    </label>
+    <label for="loginCheckbox" name="yesnos" id="yesnos">Administrador</label>
+  </div>
+  <% else %>
+  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+    <div class="text-center">
+        <h3>Publicacíon destacada</h3>
+        <div><hr class="style13"></div>
+    </div>
+    <div class="view text-center">
+      <%= image_tag "destacada.jpg", :alt => "dest", :width => 200, :height => 250%>
+      <p>Publicación destacada</p>
+    </div>
+  </div>
   <% end %>
-  <!-- Fin Login -->
 
+  <!-- Fin Login -->
   <script type="text/javascript">
-    function showLogin(obj){
+  // Funcion para cambiar login
+  function showLogin(obj){
     if ($(obj).is(":checked")) {
-        document.getElementById('professor_login').classList.add("hidden");
-        document.getElementById('administrator_login').classList.remove("hidden");
+      document.getElementById('professor_login').classList.add("hidden");
+      document.getElementById('administrator_login').classList.remove("hidden");
     } else {
-         document.getElementById('professor_login').classList.remove("hidden");
-         document.getElementById('administrator_login').classList.add("hidden");
-       }
+      document.getElementById('professor_login').classList.remove("hidden");
+      document.getElementById('administrator_login').classList.add("hidden");
     }
+  }
+  // Funcion para cambiar el texto del checkbox
+  function yesno(thecheckbox, thelabel) {
+    var checkboxvar = document.getElementById(thecheckbox);
+    var labelvar = document.getElementById(thelabel);
+    if (!checkboxvar.checked) {
+      labelvar.innerHTML = "Administrador";
+    }
+    else {
+      labelvar.innerHTML = "Profesor";
+    }
+  }
   </script>
 </div>

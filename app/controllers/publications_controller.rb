@@ -14,7 +14,8 @@ class PublicationsController < ApplicationController
     if professor_signed_in?
       @publications = Publication.publications_by_professor(current_professor.id)
     else
-      @publications = Publication.all
+      @publications = Publication.search(params[:search],params[:category]).page(params[:page]).per_page(5)
+
     end
     respond_to do |format|
       format.html
@@ -30,9 +31,12 @@ class PublicationsController < ApplicationController
 
   # GET /publications/new
   def new
+    @publication = Publication.new
     @categories = Category.all
     @themes = Theme.all
+
     @keywords = Keyword.all
+    @words = @publication.keyword_publications.build
     @current_professor = current_professor
     @professors = Professor.all
     @publication = Publication.new
@@ -48,6 +52,13 @@ class PublicationsController < ApplicationController
   # POST /publications.json
   def create
     @publication = Publication.new(publication_params)
+
+    params[:keywords][:ids].each do |keyword|
+      if !keyword.empty?
+        @publication.keyword_publications.build(:keyword_id => keyword)
+      end
+    end
+
     application_request = ApplicationRequest.create(state: 'En espera', professor_id: current_professor.id)
     @publication.application_request_id = application_request.id
     respond_to do |format|

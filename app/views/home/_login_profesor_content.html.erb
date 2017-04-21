@@ -1,7 +1,7 @@
-<div class="login-form">
+<div class="login-form" style="height:350px">
   <%= form_for(resource, :as => resource_name, :url => new_session_path(resource_name)) do |f| %>
   <div class="text-center">
-    <h4>Iniciar sesión</h4>
+    <h4>Iniciar sesión de Profesor</h4>
     <div><hr class="style13"></div>
   </div>
   <div class="sign-in-htm">
@@ -13,7 +13,7 @@
       <label for="pass" class="label">Contraseña</label>
       <%= f.password_field :password,:id=>"pass", :type=>"password", :class=>"input", autocomplete: "off" %>
     </div>
-    <div class="group">
+    <div class="group" style="padding: 41px 0px 0px 0px">
       <div class="actions">
         <%= f.submit "Ingresar", :class=>"button"%>
       </div>

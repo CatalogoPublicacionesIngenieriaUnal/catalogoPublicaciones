@@ -8,7 +8,16 @@
       <p id="notice"><%= notice %></p>
     </div>
     <div><hr class="style13"></div>
+
     <div class="form-basic-2" style="width:920px">
+      <%= will_paginate @publications, :style => "background:none"%>
+      <%= form_tag publications_path, :method => 'get' do |f| %>
+        <span>Filtrar por nombre de la publicación</span>
+        <%= text_field_tag :search, params[:search] %>
+        <span>Filtrar por categoría</span>
+        <%= select_tag :category, options_from_collection_for_select(Category.all, "id","category","") ,prompt: "Seleccione una categoría" %>
+        <%= submit_tag "Filtrar" %>
+      <% end %>
       <table class="table-custom">
           <tr>
             <th>Titulo</th>
@@ -21,7 +30,7 @@
           <tr>
             <td><%= publication.title %></td>
             <td><%= publication.abstract %></td>
-            <td><%= publication.category %></td>
+            <td><%= publication.category.category %></td>
             <td><%= link_to 'Ver', publication %></td>
             <td><%= link_to 'Editar', edit_publication_path(publication) %></td>
             <td><%= link_to 'Eliminar', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,6 +41,7 @@
     </div>
   </div>
 </div>
+
 <div><hr class="style13"></div>
 <% if professor_signed_in? %>
 <div class="col-sm-12">

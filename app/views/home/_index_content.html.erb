@@ -131,6 +131,17 @@
     </label>
     <label for="loginCheckbox" name="yesnos" id="yesnos">Administrador</label>
   </div>
+  <% else %>
+  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+    <div class="text-center">
+        <h3>Publicacíon destacada</h3>
+        <div><hr class="style13"></div>
+    </div>
+    <div class="view text-center">
+      <%= image_tag "destacada.jpg", :alt => "dest", :width => 200, :height => 250%>
+      <p>Publicación destacada</p>
+    </div>
+  </div>
   <% end %>
 
   <!-- Fin Login -->

@@ -22,6 +22,9 @@ class Publication < ApplicationRecord
     includes(:keyword_publications,:keywords).where(keywords:{id: keyword_id})
   }
 
+  scope :publications_by_title, ->(title){
+    where(title: title)
+  }
 
 
 end

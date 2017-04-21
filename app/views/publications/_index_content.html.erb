@@ -11,6 +11,10 @@
 
     <div class="form-basic-2" style="width:920px">
       <%= will_paginate @publications %>
+      <%= form_tag publications_path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Buscar por nombre" %>
+      <% end %>
       <table class="table-custom">
           <tr>
             <th>Titulo</th>

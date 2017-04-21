@@ -12,9 +12,10 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     if professor_signed_in?
-      @publications = Publication.publications_by_professor(current_professor.id).page(params[:page]).per_page(5)
+      @publications = Publication.publications_by_professor(current_professor.id)
     else
-      @publications = Publication.where(["title LIKE ?","%#{params[:search]}%"]).page(params[:page]).per_page(5)
+      @publications = Publication.search(params[:search],params[:category]).page(params[:page]).per_page(5)
+
     end
     respond_to do |format|
       format.html

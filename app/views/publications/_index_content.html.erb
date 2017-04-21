@@ -11,8 +11,11 @@
 
     <div class="form-basic-2" style="width:920px">
       <%= will_paginate @publications %>
-      <%= form_tag publications_path, :method => 'get' do %>
+      <%= form_tag publications_path, :method => 'get' do |f| %>
+        <span>Nombre de la publicación</span>
         <%= text_field_tag :search, params[:search] %>
+        <span>Categoría</span>
+        <%= select_tag :category, options_from_collection_for_select(Category.all, "id","category","") ,prompt: "Seleccione una opción" %>
         <%= submit_tag "Buscar por nombre" %>
       <% end %>
       <table class="table-custom">
@@ -27,7 +30,7 @@
           <tr>
             <td><%= publication.title %></td>
             <td><%= publication.abstract %></td>
-            <td><%= publication.category %></td>
+            <td><%= publication.category.category %></td>
             <td><%= link_to 'Ver', publication %></td>
             <td><%= link_to 'Editar', edit_publication_path(publication) %></td>
             <td><%= link_to 'Eliminar', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>

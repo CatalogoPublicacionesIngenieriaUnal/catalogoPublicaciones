@@ -22,9 +22,21 @@ class Publication < ApplicationRecord
     includes(:keyword_publications,:keywords).where(keywords:{id: keyword_id})
   }
 
-  scope :publications_by_title, ->(title){
-    where(title: title)
-  }
+  def self.search(title_params, category_params)
+    if !title_params.blank? && category_params.blank?
+      puts "1 if"
+      where(["title LIKE ?", "%#{title_params}%"])
+    elsif !category_params.blank? && title_params.blank?
+      puts "2 if"
+      where(["category_id = ?", category_params])
+    elsif !title_params.blank? && !category_params.blank?
+      puts "3 if"
+      where(["category_id = ? and title LIKE ?", category_params, "%#{title_params}%"])
+    else
+      all
+    end
+
+  end
 
 
 end

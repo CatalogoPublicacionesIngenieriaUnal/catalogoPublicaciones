@@ -48,7 +48,7 @@ class PublicationsController < ApplicationController
   # POST /publications.json
   def create
     @publication = Publication.new(publication_params)
-    application_request = ApplicationRequest.create(state: :en_espera, professor_id: current_professor.id)
+    application_request = ApplicationRequest.create(state: 'En espera', professor_id: current_professor.id)
     @publication.application_request_id = application_request.id
     respond_to do |format|
       if @publication.save

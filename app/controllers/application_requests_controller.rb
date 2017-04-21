@@ -1,7 +1,7 @@
 class ApplicationRequestsController < ApplicationController
-  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :authorize]
+  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator]
   before_action :authorized?, only: [:new, :edit, :update, :create]
-  before_action :authenticate_administrator!, only: [:index, :show, :destroy]
+  before_action :authenticate_administrator!, only: [:index, :show, :destroy, :create_evaluator]
 
   # GET /application_requests
   # GET /application_requests.json
@@ -17,12 +17,6 @@ class ApplicationRequestsController < ApplicationController
   # GET /application_requests/new
   def new
     @application_request = ApplicationRequest.new
-  end
-
-  def authorize
-    @application_request.state = :en_evaluacion
-    evaluation = Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
-    redirect_to new_evaluation_evaluator_path(evaluation.id)
   end
 
   # POST /application_requests
@@ -48,6 +42,12 @@ class ApplicationRequestsController < ApplicationController
       format.html { redirect_to application_requests_url, notice: 'Application request was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def create_evaluator
+    @application_request.state = 'En evaluación'
+    evaluation = Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
+    redirect_to new_evaluation_evaluator_path(evaluation.id)
   end
 
   private

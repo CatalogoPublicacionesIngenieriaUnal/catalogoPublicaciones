@@ -16,4 +16,8 @@ class Evaluator < ApplicationRecord
     self.is_locked = false
   end
 
+  def self.evaluator_by_email(email)
+    where(email: email).first
+  end
+
 end

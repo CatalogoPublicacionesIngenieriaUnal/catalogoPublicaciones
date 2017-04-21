@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   end
   root to: "home#index"
 
+  get 'application_requests/:id/new_evaluator/', to: 'application_requests#create_evaluator', :as => :add_evaluator
   get 'evaluate/:id', to: 'evaluators#authenticate_evaluator', as: :authenticate_evaluator
+  post 'evaluations/evaluate', to: 'evaluations#evaluate', as: :evaluate_publication
   get 'professors/home', to: 'professors#home', :as => :professor_home
   get 'administrators/home', to: 'administrators#home', :as => :administrator_home
   get 'professors/profile', to: 'professors#show', :as => :show_current_professor

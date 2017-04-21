@@ -30,14 +30,13 @@ class PublicationsController < ApplicationController
 
   # GET /publications/new
   def new
+    @publication = Publication.new
     @categories = Category.all
     @themes = Theme.all
+
     @keywords = Keyword.all
-    @publication = Publication.new
-    @words = []
-    3.times do
-      @words << Keyword.new
-    end
+    @words = @publication.keyword_publications.build
+
   end
 
   # GET /publications/1/edit
@@ -50,6 +49,13 @@ class PublicationsController < ApplicationController
   # POST /publications.json
   def create
     @publication = Publication.new(publication_params)
+
+    params[:keywords][:ids].each do |keyword|
+      if !keyword.empty?
+        @publication.keyword_publications.build(:keyword_id => keyword)
+      end
+    end
+
     respond_to do |format|
       if @publication.save
         #@publication.keywords << Keyword.find(params[:keyword_ids])

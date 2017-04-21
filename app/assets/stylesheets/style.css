@@ -650,3 +650,18 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.barra{
+  fill: #0080FF;
+  stroke: black
+  stroke-width: 0;
+}
+
+.barra:hover{
+  fill: #003366;
+}
+
+.texto{
+  fill: white;
+  font-family: sans-serif;
+}

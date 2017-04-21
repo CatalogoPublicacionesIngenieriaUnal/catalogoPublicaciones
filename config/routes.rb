@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators
+  get 'publications/statistics', to: 'publications#statistics', :as => :statistics
   resources :publications
   resources :evaluations
   resources :application_requests

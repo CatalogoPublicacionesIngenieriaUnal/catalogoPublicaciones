@@ -123,6 +123,30 @@ class PublicationsController < ApplicationController
     redirect_to :back
   end
 
+  def statistics
+    @content = "publications/statistics"
+    @publications = Publication.all
+  end
+
+  def customJson
+    custom_json = []
+    categories = Category.all
+    publications = Publication.all
+    categories.each do |categoria|
+      cuenta = publications.where( :category_id => categoria.id ).count
+      single = {
+        # "category" => categories.where( :id => identif ),
+        "category" => categoria.category,
+        "count" => cuenta
+      }
+      custom_json << single
+    end
+    File.open("public/custom.json","w") do |f|
+      f.write(custom_json.to_json)
+    end
+  end
+  helper_method :customJson
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

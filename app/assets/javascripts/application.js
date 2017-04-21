@@ -17,3 +17,4 @@
 //= require tinymce
 //= require tinymce-jquery
 //= require app.js
+//= require d3

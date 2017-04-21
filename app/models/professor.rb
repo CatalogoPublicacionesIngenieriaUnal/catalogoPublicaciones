@@ -32,4 +32,14 @@ class Professor < ApplicationRecord
        where("validated = ?", false)
          .paginate(:page => page,:per_page => per_page)
    end
+
+   def self.search(is_authorized_params)
+     if !is_authorized_params.blank?
+       puts "1 if"
+       where(["is_authorized = ?", is_authorized_params])
+     else
+       all
+     end
+   end
+
 end

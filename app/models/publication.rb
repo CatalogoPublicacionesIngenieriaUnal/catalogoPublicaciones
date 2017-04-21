@@ -35,8 +35,6 @@ class Publication < ApplicationRecord
     else
       all
     end
-
   end
-
 
 end

@@ -14,7 +14,8 @@ class PublicationsController < ApplicationController
     if professor_signed_in?
       @publications = Publication.publications_by_professor(current_professor.id)
     else
-      @publications = Publication.all
+      @publications = Publication.search(params[:search],params[:category]).page(params[:page]).per_page(5)
+
     end
     respond_to do |format|
       format.html

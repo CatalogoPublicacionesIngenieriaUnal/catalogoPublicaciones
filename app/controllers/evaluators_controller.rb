@@ -14,6 +14,10 @@ class EvaluatorsController < ApplicationController
   def show
   end
 
+  def authenticate_evaluator
+    @url_token = params[:id]
+  end
+
   # GET /evaluators/new
   def new
     @languages = Language.all
@@ -31,10 +35,7 @@ class EvaluatorsController < ApplicationController
   def create
     @languages = Language.all
     @evaluator = Evaluator.new(evaluator_params)
-    puts "de la url #{params[:evaluation_id]}"
-    puts "de el arroba #{@evaluator.evaluation_id}"
     @evaluator.evaluation_id = params[:evaluation_id]
-    puts "de el arroba #{@evaluator.evaluation_id}"
     respond_to do |format|
       if @evaluator.save
         #JudgeMailer.welcome(@evaluator).deliver_now

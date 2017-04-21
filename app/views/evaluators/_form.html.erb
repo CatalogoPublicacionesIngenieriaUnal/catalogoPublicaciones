@@ -13,7 +13,7 @@
     <div class="main-content">
       <div class="form-basic">
 
-        <%= form_for(evaluator) do |f| %>
+        <%= form_for([@evaluation, @evaluator], :url => {:action => "create", :id =>@evaluator}) do |f| %>
         <% if evaluator.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(evaluator.errors.count, "error") %> prohibited this evaluator from being saved:</h2>

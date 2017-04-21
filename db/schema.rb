@@ -62,31 +62,29 @@ ActiveRecord::Schema.define(version: 20170420164402) do
   create_table "evaluations", force: :cascade do |t|
     t.text     "justification"
     t.integer  "state",                  null: false
-    t.integer  "evaluator_id"
     t.integer  "application_request_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["application_request_id"], name: "index_evaluations_on_application_request_id", using: :btree
-    t.index ["evaluator_id"], name: "index_evaluations_on_evaluator_id", using: :btree
   end
 
   create_table "evaluators", force: :cascade do |t|
-    t.string   "first_name",                             null: false
-    t.string   "last_name",                              null: false
-    t.string   "email",                                  null: false
-    t.string   "code",                                   null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.string   "first_name",                      null: false
+    t.string   "last_name",                       null: false
+    t.string   "email",                           null: false
+    t.string   "code",                            null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "language_id"
-    t.integer  "application_request_id"
-    t.string   "url_token",                              null: false
-    t.integer  "sign_in_count",          default: 0,     null: false
-    t.integer  "failed_attempts",        default: 0,     null: false
+    t.integer  "evaluation_id"
+    t.string   "url_token",                       null: false
+    t.integer  "sign_in_count",   default: 0,     null: false
+    t.integer  "failed_attempts", default: 0,     null: false
     t.datetime "last_sign_in_at"
     t.datetime "code_asigned_at"
-    t.boolean  "is_locked",              default: false, null: false
-    t.index ["application_request_id"], name: "index_evaluators_on_application_request_id", using: :btree
+    t.boolean  "is_locked",       default: false, null: false
     t.index ["email"], name: "index_evaluators_on_email", unique: true, using: :btree
+    t.index ["evaluation_id"], name: "index_evaluators_on_evaluation_id", using: :btree
     t.index ["language_id"], name: "index_evaluators_on_language_id", using: :btree
     t.index ["url_token"], name: "index_evaluators_on_url_token", unique: true, using: :btree
   end
@@ -163,8 +161,7 @@ ActiveRecord::Schema.define(version: 20170420164402) do
   add_foreign_key "application_requests", "professors"
   add_foreign_key "attatchments", "application_requests"
   add_foreign_key "evaluations", "application_requests"
-  add_foreign_key "evaluations", "evaluators"
-  add_foreign_key "evaluators", "application_requests"
+  add_foreign_key "evaluators", "evaluations"
   add_foreign_key "evaluators", "languages"
   add_foreign_key "keyword_publications", "keywords"
   add_foreign_key "keyword_publications", "publications"

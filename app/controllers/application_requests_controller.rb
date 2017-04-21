@@ -21,9 +21,8 @@ class ApplicationRequestsController < ApplicationController
 
   def authorize
     @application_request.state = :en_evaluacion
-    Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
-    Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
-    redirect_to :back
+    evaluation = Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
+    redirect_to new_evaluation_evaluator_path(evaluation.id)
   end
 
   # POST /application_requests

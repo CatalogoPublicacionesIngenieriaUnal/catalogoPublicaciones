@@ -1,5 +1,5 @@
 class Evaluator < ApplicationRecord
-  belong_to   :evaluations
+  belongs_to   :evaluation
   belongs_to  :language
 
   validates :first_name, presence: true

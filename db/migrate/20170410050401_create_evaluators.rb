@@ -9,7 +9,7 @@ class CreateEvaluators < ActiveRecord::Migration[5.0]
 
       t.timestamps
       t.belongs_to :language, foreign_key:true
-      t.belongs_to :application_request, foreign_key: true
+      t.belongs_to :evaluation, foreign_key: true
     end
   end
 end

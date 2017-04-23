@@ -1,21 +1,5 @@
-<%= form_for(:evaluation, :url => evaluate_publication_path) do |f| %>
+<%= render 'static/header_unal_render' %>
 
-<div class="field">
-  <%= f.label "Correo" %><br />
-  <%= f.text_field :email, autofocus: true %>
-</div>
+<%= render 'authenticate_evaluator_content' %>
 
-<div class="field">
-  <%= f.label "Codigo" %><br />
-  <%= f.password_field :code, autocomplete: "off" %>
-</div>
-
-<div class="field">
-  <%= f.hidden_field :url_token,  :value => @url_token %>
-</div>
-
-<div class="actions">
-  <%= f.submit :"Autenticar", :class=>"button"%>
-</div>
-
-<% end %>
+<%= render 'static/footer_unal_render' %>

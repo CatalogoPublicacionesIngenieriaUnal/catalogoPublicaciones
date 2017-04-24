@@ -32,11 +32,36 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+
+# gem for postgresql
+
+gem 'will_paginate', '>= 3.1'
+gem 'pg'
+
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'font-awesome-rails'
+gem 'will_paginate-bootstrap'
+gem 'tinymce-rails'
+# Gentella  bootstrap template for admins
+gem 'gentelella-rails'
+# For authentication
+gem 'devise'
+gem "devise_ldap_authenticatable"
+gem "net-ldap"
+# Files
+gem 'carrierwave', '~> 1.0'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'sysrandom'
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+gem 'faker'
   gem 'byebug', platform: :mri
 end
 
@@ -45,5 +70,17 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+end
+
+
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'bcrypt', platforms: :ruby
+
+gem 'prawn'

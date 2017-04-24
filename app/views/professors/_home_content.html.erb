@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-sm-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px">
+      <h1 style="font-size:200%;">Bienvenido docente</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="li-custom">
+        <div class="li-custom">
+          <%= link_to 'Ver mis datos personales', show_current_professor_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Actualizar datos personales', edit_current_professor_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Crear Solicitud', new_publication_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Revisar solicitud', under_construction_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Mis publicaciones', publications_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Requisitos necesarios para publicaciones', under_construction_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

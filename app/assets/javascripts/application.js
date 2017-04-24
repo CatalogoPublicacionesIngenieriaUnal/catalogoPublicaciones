@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require bootstrap-sprockets
+//= require bootstrap/dropdown
+//= require bootstrap/carousel
+//= require tinymce
+//= require tinymce-jquery
+//= require app.js

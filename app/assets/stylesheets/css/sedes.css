@@ -1,0 +1,36 @@
+/* ================================================================ 
+This copyright notice must be untouched at all times.
+ 
+The original version of this stylesheet and the associated (x)html
+is available at http://www.cssplay.co.uk/menus/dd_valid.html
+Copyright (c) 2005-2007 Stu Nicholls. All rights reserved.
+This stylesheet and the assocaited (x)html may be modified in any 
+way to fit your requirements.
+=================================================================== */
+
+/*
+   CSS unal_2.0 
+   Modificado por Diego F. Gómez
+   Diciembre de 2010
+   Correo-e: dfgomeza@gmail.com 
+*/
+
+/* Menu Sedes */
+
+/* common styling */
+.menuSedesC {position:relative; z-index:99; }
+.menuSedesC ul li a, .menuSedesC ul li a:visited {z-index:99; display:block; text-decoration:none; color:#fff; width:70px; min-height:19px; line-height:18px; overflow:hidden; text-align:left; color:#fff; padding:0 5px;}
+.menuSedesC ul {padding:0; margin:0; list-style: none;}
+.menuSedesC ul li {float:left; position:relative;}
+.menuSedesC ul li ul {display: none;}
+ 
+/* specific to non IE browsers */
+.menuSedesC ul li:hover a {color:#fff;  color:#0000CC; }
+.menuSedesC ul li:hover ul {display:block; position:absolute; top:19px; left:0; width:70px; background:#4A96E7;}
+.menuSedesC ul li:hover ul li a.hide {color:#F1FBFB;}
+.menuSedesC ul li:hover ul li:hover a.hide {background: #CEE7FB; color:#000;}
+.menuSedesC ul li:hover ul li ul {display: none;}
+.menuSedesC ul li:hover ul li a {display:block; background:#4A96E7; color:#fff;}
+.menuSedesC ul li:hover ul li a:hover {background:#CEE7FB; color:#000;}
+.menuSedesC ul li:hover ul li:hover ul {display:block; position:absolute; left:105px; top:0;}
+.menuSedesC ul li:hover ul li:hover ul.left {left:-105px;}

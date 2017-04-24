@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  professor: one
+  application_request: one
+  is_holder: false
+
+two:
+  professor: two
+  application_request: two
+  is_holder: false

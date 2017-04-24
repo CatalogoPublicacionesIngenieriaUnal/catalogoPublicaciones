@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Attatchments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attatchments.each do |attatchment| %>
+      <tr>
+        <td><%= attatchment.url %></td>
+        <td><%= attatchment.category %></td>
+        <td><%= link_to 'Show', attatchment %></td>
+        <td><%= link_to 'Edit', edit_attatchment_path(attatchment) %></td>
+        <td><%= link_to 'Destroy', attatchment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attatchment', new_attatchment_path %>

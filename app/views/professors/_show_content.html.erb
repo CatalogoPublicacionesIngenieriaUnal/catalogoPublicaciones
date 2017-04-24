@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-md-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Mis datos</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="info">
+      <ul class="info-list ">
+        <li>
+          <span class="inf">Usuario</span>
+          <span class="value">
+            <%= @professor.username %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Nombres</span>
+          <span class="value">
+            <%= @professor.first_name %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Apellidos</span>
+          <span class="value">
+            <%= @professor.last_name %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Correo electrónico</span>
+          <span class="value">
+            <%= @professor.email %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Departamento</span>
+          <span class="value">
+            <%= @professor.department %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Numero de contacto</span>
+          <span class="value">
+            <%= @professor.contact_number %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Genero</span>
+          <span class="value">
+            <%= @professor.gender %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Autorizado?</span>
+          <span class="value">
+            <%= @professor.is_authorized %>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div><hr class="style13"></div>
+<div class="col-sm-12">
+  <div class="form-basic-2">
+    <div class="text-center">
+      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+        <%= link_to 'Volver', professor_home_path %>
+      </div>
+    </div>
+  </div>
+</div>

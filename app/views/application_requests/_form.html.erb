@@ -1,0 +1,27 @@
+<%= form_for(application_request) do |f| %>
+  <% if application_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(application_request.errors.count, "error") %> prohibited this application_request from being saved:</h2>
+
+      <ul>
+      <% application_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :state %>
+    <%= f.number_field :state %>
+  </div>
+
+  <div class="field">
+    <%= f.label :authorized_at %>
+    <%= f.date_select :authorized_at %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-md-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Datos evaluador</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="info">
+      <ul class="info-list">
+        <li>
+          <span class="inf">Nombres</span>
+          <span class="value">
+            <%= @evaluator.first_name %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Apellidos</span>
+          <span class="value">
+            <%= @evaluator.last_name %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Correo electrónico</span>
+          <span class="value">
+            <%= @evaluator.email %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Idioma</span>
+          <span class="value">
+            <%= @evaluator.language_id %>
+          </span>
+        </li>
+    </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,171 @@
+<!-- Pagina principal -->
+<div class="row">
+  <!-- Menu principal -->
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <!-- Titulo -->
+  <div class="text-center">
+    <div class="col-md-10" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Catálogo de publicaciones</h1>
+    </div>
+  </div>
+  <!-- <div><hr class="style13"></div> -->
+  <!-- Catalogo -->
+  <div class="col-sm-7">
+    <div class="catalog">
+      <div class="books">
+        <div class="line">
+          <h4>Publicaciones disponibles</h4>
+          <div><hr class="style13"></div>
+          <div class="col-md-3 quarter" style="padding: 0px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro1.jpg", :alt => "lib1", :width => 100, :height => 150%>
+              <p>Publicacion 1</p>
+              <a class="mask" data-target="#lib1" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 1</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 0px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro2.jpg", :alt => "lib2", :width => 100, :height => 150%>
+              <p>Publicacion 2</p>
+              <a class="mask" data-target="#lib2" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 2</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter">
+            <div class="view text-center">
+              <%= image_tag "libro3.jpg", :alt => "lib3", :width => 100, :height => 150%>
+              <p>Publicacion 3</p>
+              <a class="mask" data-target="#lib3" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 3</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter">
+            <div class="view text-center">
+              <%= image_tag "libro4.jpg", :alt => "lib4", :width => 100, :height => 150%>
+              <p>Publicacion 4</p>
+              <a class="mask" data-target="#lib4" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 4</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro5.jpg", :alt => "lib5", :width => 100, :height => 150%>
+              <p>Publicacion 5</p>
+              <a class="mask" data-target="#lib5" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 5</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro6.jpg", :alt => "lib6", :width => 100, :height => 150%>
+              <p>Publicacion 6</p>
+              <a class="mask" data-target="#lib6" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 6</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro7.jpg", :alt => "lib7", :width => 100, :height => 150%>
+              <p>Publicacion 7</p>
+              <a class="mask" data-target="#lib7" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 7</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-3 quarter" style="padding: 10px 0px 0px 0px">
+            <div class="view text-center">
+              <%= image_tag "libro8.jpg", :alt => "lib8", :width => 100, :height => 150%>
+              <p>Publicacion 8</p>
+              <a class="mask" data-target="#lib8" data-toggle="modal">
+                <div class="t-team-read">
+                  <h6>Publicacion 8</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login -->
+  <%- if !anyone_singed_in? %>
+  <div id="professor_login">
+    <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+      <%= render 'home/login_profesor_content' %>
+    </div>
+  </div>
+  <div id="administrator_login" class="hidden">
+    <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+      <%= render 'home/login_admin_content' %>
+    </div>
+  </div>
+  <!-- Checkbox para elegir usuario -->
+  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+    <label class="switch">
+      <input type="checkbox" name="LoginSelector" id="loginCheckbox" onchange="showLogin(this)" onclick="yesno('loginCheckbox','yesnos');" />
+      <div class="slider round"></div>
+    </label>
+    <label for="loginCheckbox" name="yesnos" id="yesnos">Administrador</label>
+  </div>
+  <% else %>
+  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+    <div class="text-center">
+        <h3>Publicacíon destacada</h3>
+        <div><hr class="style13"></div>
+    </div>
+    <div class="view text-center">
+      <%= image_tag "destacada.jpg", :alt => "dest", :width => 200, :height => 250%>
+      <p>Publicación destacada</p>
+    </div>
+  </div>
+  <% end %>
+
+  <!-- Fin Login -->
+  <script type="text/javascript">
+  // Funcion para cambiar login
+  function showLogin(obj){
+    if ($(obj).is(":checked")) {
+      document.getElementById('professor_login').classList.add("hidden");
+      document.getElementById('administrator_login').classList.remove("hidden");
+    } else {
+      document.getElementById('professor_login').classList.remove("hidden");
+      document.getElementById('administrator_login').classList.add("hidden");
+    }
+  }
+  // Funcion para cambiar el texto del checkbox
+  function yesno(thecheckbox, thelabel) {
+    var checkboxvar = document.getElementById(thecheckbox);
+    var labelvar = document.getElementById(thelabel);
+    if (!checkboxvar.checked) {
+      labelvar.innerHTML = "Administrador";
+    }
+    else {
+      labelvar.innerHTML = "Profesor";
+    }
+  }
+  </script>
+</div>

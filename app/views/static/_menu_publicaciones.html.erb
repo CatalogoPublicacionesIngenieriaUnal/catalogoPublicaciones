@@ -1,0 +1,35 @@
+<div class="ul-custom">
+  <div class="menu-header">
+    <%=link_to image_tag("edf_viejo.jpg", height:'100%', width:'100%'), root_path %>
+  </div>
+  <div><hr class="style13"></div>
+  <div class="text-center">
+    <h4>Menú principal</h4>
+  </div>
+  <div><hr class="style13"></div>
+  <div class="li-custom">
+    <a href="/">Inicio</a>
+  </div>
+  <div class="li-custom">
+    <% if professor_signed_in? %>
+      <%= link_to 'Mi perfil', professor_home_path %>
+    <% elsif administrator_signed_in? %>
+      <%= link_to 'Mi perfil', administrator_home_path %>
+    <% end %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Ver catálogo', under_construction_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Instrucciones para postularse', under_construction_path %>
+  </div>
+  <div class="li-custom">
+    <a href="/contact">Contacto</a>
+  </div>
+  <%- if !anyone_singed_in? %>
+  <% else %>
+  <div class="li-custom">
+    <%= link_to "Salir", destroy_professor_session_path, method: :delete, :class=>"button" %>
+  </div>
+  <% end %>
+</div>

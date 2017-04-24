@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @attatchment.url %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @attatchment.category %>
+</p>
+
+<%= link_to 'Edit', edit_attatchment_path(@attatchment) %> |
+<%= link_to 'Back', attatchments_path %>

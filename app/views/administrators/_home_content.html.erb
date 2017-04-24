@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-sm-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px">
+      <h1 style="font-size:200%;">Bienvenido administrador</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="li-custom">
+        <% @administrators.each do |administrator| %>
+        <div class="li-custom">
+          <%= link_to 'Ver mis datos personales', administrator %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <!-- <a href="/administrators/sign_up">Actualizar datos personales</a> -->
+          <%= link_to 'Actualizar datos personales', edit_administrator_path(administrator) %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/professors">Ver profesores</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <a href="/evaluators/new">Crear evaluador</a>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Habilitar solicitudes de publicación', application_requests_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Consultar solicitudes actuales', under_construction_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Consultar publicaciones', publications_path %>
+        </div>
+        <br>
+        <div class="li-custom">
+          <%= link_to 'Ver estadisticas', under_construction_path %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

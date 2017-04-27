@@ -3,7 +3,7 @@ class CreateProfessorApplicationRequests < ActiveRecord::Migration[5.0]
     create_table :professor_application_requests do |t|
       t.references :professor, foreign_key: true
       t.references :application_request, foreign_key: true
-      t.boolean :is_holder  
+      t.boolean :is_holder
 
       t.timestamps
     end

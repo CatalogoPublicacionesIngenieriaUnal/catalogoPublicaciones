@@ -21,7 +21,7 @@ class EvaluatorsController < ApplicationController
   # GET /evaluators/new
   def new
     @languages = Language.all
-    evaluation = Evaluation.find(params[:evaluation_id])
+    @evaluation = Evaluation.find(params[:evaluation_id])
     @evaluator = Evaluator.new
   end
 

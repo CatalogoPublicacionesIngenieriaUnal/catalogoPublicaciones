@@ -3,6 +3,7 @@ class Publication < ApplicationRecord
   has_many :professors, through: :professor_publications
   has_many :keyword_publications
   has_many :keywords, through: :keyword_publications
+  has_many :attatchments, through: :application_request
 
   belongs_to :theme
   belongs_to :category

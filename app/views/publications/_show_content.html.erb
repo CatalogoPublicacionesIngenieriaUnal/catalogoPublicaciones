@@ -41,6 +41,25 @@
         </div>
       </div>
     </div>
+    <%- unless @publication.attatchments.get_attachment_by_category(:carta_presentacion) %>
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
+    application_request: @publication.application_request,
+    category: :carta_presentacion%>
+
+    <% end %>
+
+    <%- unless @publication.attatchments.get_attachment_by_category(:concepto_editorial_a) %>
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
+    application_request: @publication.application_request,
+    category: :concepto_editorial_a%>
+    <% end %>
+
+    <%- unless @publication.attatchments.get_attachment_by_category(:manuscrito) %>
+
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
+    application_request: @publication.application_request,
+    category: :manuscrito%>
+    <% end %>
 
     <div>
       <!-- <%= link_to "Test", "/hello.pdf"%> -->

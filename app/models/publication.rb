@@ -26,13 +26,10 @@ class Publication < ApplicationRecord
 
   def self.search(title_params, category_params)
     if !title_params.blank? && category_params.blank?
-      puts "1 if"
       where(["title LIKE ?", "%#{title_params}%"])
     elsif !category_params.blank? && title_params.blank?
-      puts "2 if"
       where(["category_id = ?", category_params])
     elsif !title_params.blank? && !category_params.blank?
-      puts "3 if"
       where(["category_id = ? and title LIKE ?", category_params, "%#{title_params}%"])
     else
       all

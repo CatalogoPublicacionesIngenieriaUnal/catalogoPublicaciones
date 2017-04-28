@@ -32,39 +32,33 @@
       </ul>
     </div>
     <div><hr class="style13"></div>
-    <div class="col-sm-12">
-      <div class="form-basic-2">
-        <div class="text-center">
-          <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
-            <%= link_to('Create PDF', create_pdf_path) %>
-          </div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to('Create PDF', create_pdf_path) %>
         </div>
       </div>
     </div>
+    <div><hr class="style13"></div>
+
     <%- unless @publication.attatchments.get_attachment_by_category(:carta_presentacion) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :carta_presentacion%>
-
     <% end %>
-
+    <center><div style="width:720px"><hr class="style13"></div></center>
     <%- unless @publication.attatchments.get_attachment_by_category(:concepto_editorial_a) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :concepto_editorial_a%>
     <% end %>
-
+    <center><div style="width:720px"><hr class="style13"></div></center>
     <%- unless @publication.attatchments.get_attachment_by_category(:manuscrito) %>
-
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :manuscrito%>
     <% end %>
 
-    <div>
-      <!-- <%= link_to "Test", "/hello.pdf"%> -->
-      <!-- <a href="#{Rails.root}/hello.pdf">PEDEEFE</a> -->
-    </div>
   </div>
 </div>
 <div><hr class="style13"></div>

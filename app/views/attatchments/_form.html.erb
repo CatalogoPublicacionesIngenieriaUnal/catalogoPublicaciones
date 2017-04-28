@@ -1,30 +1,37 @@
-<div class="col-sm-10">
-  <div class="main-content">
-    <div class="form-basic">
-      <%= puts "cat #{category}" %>
-
-      <h1 style="font-size:100%;"><%= "#{category}" %></h1>
-      <%= form_for [application_request, attatchment] do |f| %>
-      <% if attatchment.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(attatchment.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
-        <ul>
-          <% attatchment.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+<div class="form-basic">
+  <div class="form-title-row">
+    <%= puts "cat #{category}" %>
+    <% if "#{category}" == "carta_presentacion" %>
+    <h1><%= "Carta de presentación" %></h1>
+    <% elsif "#{category}" == "concepto_editorial_a" %>
+    <h1><%= "Concepto editorial" %></h1>
+    <% else %>
+    <h1><%= "Manuscrito" %></h1>
+    <% end %>
+  </div>
+  <%= form_for [application_request, attatchment] do |f| %>
+  <% if attatchment.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(attatchment.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
+    <ul>
+      <% attatchment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
       <% end %>
-      <div class="form-row">
-        <%= f.label :'Cargar solicitud' %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="form-row">
+    <label>
+      <span>Cargar solicitud</span>
+      <div class="text-center" style="display: inline-block">
         <%= f.file_field :pdf_document%>
         <%= f.hidden_field :category, :value => category%>
       </div>
-      <div class="actions">
-        <%= f.submit :"Subir archivo"%>
-      </div>
-      <% end %>
-    </div>
+    </label>
   </div>
-</div>
+  <div class="actions">
+    <%= f.submit :"Subir archivo"%>
+  </div>
+  <% end %>
 </div>

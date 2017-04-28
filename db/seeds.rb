@@ -56,7 +56,6 @@ Criterium.create!([{criterion_type: :general, criterion: "El material constituye
     "sobre los objetivos y problemas que se abordan en el documento"},
   {criterion_type: :writing, criterion:"La extensión del texto es adecuada en función de"\
     "la complejidad del tema, los objetivos y el público lector" }])
-# for i in 0..20
-#   publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
-#                 category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
-# end
+for i in 0..20
+  publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
+end

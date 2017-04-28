@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   get 'professors/profile', to: 'professors#show', :as => :show_current_professor
   get 'professors/edit', to: 'professors#edit', :as => :edit_current_professor
   get 'application_requests/:id/authorize', to: 'application_requests#authorize', :as => :authorize_application
-
+  get 'publications/statistics', to: 'publications#statistics', :as => :statistics
+  get 'publications/dataTest', :defaults => { :format => 'json' }
+  get 'publications/dataTheme', :defaults => { :format => 'json' }
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
       put :autorize
     end
   end
+
   resources :administrators
   resources :languages
   resources :themes

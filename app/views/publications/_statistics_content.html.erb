@@ -8,47 +8,15 @@
       <p id="notice"><%= notice %></p>
     </div>
     <div><hr class="style13"></div>
-    <div id="graph"></div>
-    <% customJson %>
-    <!-- <div>
-      <%= link_to "Test", "#{Rails.root}/public/custom.json"%>
-    </div> -->
+    <%= javascript_include_tag "graphs" %>
+    <center>
+    <button class="li-custom" onclick="categ();">Category</button>
+    <button class="li-custom" onclick="them();">Tema</button>
+    <br><br>
+    <svg id="graficas"></svg>
+    </center>
     <script type="text/javascript">
-      json_data = []
-      $.ajax({
-        type: "GET",
-        contentType: "application/json; charset=utf-8",
-        url: '/public/custom.json',
-        dataType: 'json',
-        success: function(result){
-          json_data = result;
-        },
-        error: function(result){
-          console.log("error");
-        },
-        async: false
-      });
-      console.log(json_data);
-      var dataArray = [23, 13, 21, 14, 37, 15, 18, 34, 30];
-      var dataText = ["uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"];
-      var svg = d3.select("#graph").append("svg").attr("height","500").attr("width","500");
-      console.log("coñoelamadre");
-      svg.selectAll("rect")
-      .data(dataArray)
-      .enter().append("rect")
-      .attr("class","barra")
-      .attr("height", 20)
-      .attr("width", function(d,i){ return d * 10 })
-      .attr("x", 10)
-      .attr("y", function(d, i){ return (i * 25) + 5 });
-
-      svg.selectAll("text")
-      .data(dataText)
-      .enter().append("text")
-      .text(function(d){ return d; })
-      .attr("class","texto")
-      .attr("x", 10 )
-      .attr("y", function(d, i){ return (i * 25) + 20 });
+      //categ();
     </script>
 
     <div><hr class="style13"></div>

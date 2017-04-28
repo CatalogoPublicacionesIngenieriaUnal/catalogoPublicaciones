@@ -150,6 +150,52 @@ class PublicationsController < ApplicationController
   end
   helper_method :customJson
 
+  def dataTest
+    custom_json = []
+    categories = Category.all
+    publications = Publication.all
+    categories.each do |categoria|
+      cuenta = publications.where( :category_id => categoria.id ).count
+      single = [
+        # "category" => categories.where( :id => identif ),
+        categoria.category,
+        cuenta
+        # "category" => categoria.category,
+        # "count" => cuenta
+      ]
+      custom_json << single
+    end
+
+    respond_to do |format|
+       format.json {
+         render :json => custom_json
+       }
+    end
+  end
+
+  def dataTheme
+    custom_json = []
+    themes = Theme.all
+    publications = Publication.all
+    themes.each do |tema|
+      cuenta = publications.where( :theme_id => tema.id ).count
+      single = [
+        # "category" => categories.where( :id => identif ),
+        tema.theme,
+        cuenta
+        # "category" => categoria.category,
+        # "count" => cuenta
+      ]
+      custom_json << single
+    end
+
+    respond_to do |format|
+       format.json {
+         render :json => custom_json
+       }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

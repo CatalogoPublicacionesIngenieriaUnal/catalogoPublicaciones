@@ -8,9 +8,8 @@
       <p id="notice"><%= notice %></p>
     </div>
     <div><hr class="style13"></div>
-
     <div class="form-basic-2" style="width:920px">
-      <%= will_paginate @publications, :style => "background:none"%>
+      <%#= will_paginate @publications, :style => "background:none"%>
       <%= form_tag publications_path, :method => 'get' do |f| %>
         <span>Filtrar por nombre de la publicación</span>
         <%= text_field_tag :search, params[:search] %>
@@ -39,28 +38,24 @@
         </tbody>
       </table>
     </div>
-  </div>
-</div>
-
-<div><hr class="style13"></div>
-<% if professor_signed_in? %>
-<div class="col-sm-12">
-  <div class="form-basic-2">
-    <div class="text-center">
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', professor_home_path %>
+    <% if professor_signed_in? %>
+    <div class="form-basic-2">
+      <div><hr class="style13"></div>
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', professor_home_path %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<% elsif administrator_signed_in? %>
-<div class="col-sm-12">
-  <div class="form-basic-2">
-    <div class="text-center">
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', administrator_home_path %>
+    <% elsif administrator_signed_in? %>
+    <div class="form-basic-2">
+      <div><hr class="style13"></div>
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', administrator_home_path %>
+        </div>
       </div>
     </div>
+    <% end %>
   </div>
 </div>
-<% end %>

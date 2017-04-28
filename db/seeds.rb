@@ -25,156 +25,38 @@ for i in 0..100
   Keyword.create(keyword: Faker::Job.field)
 end
 
-for i in 0..60
+for i in 0..10
   Professor.create!(username: Faker::Internet.unique.user_name, first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, email: Faker::Internet.unique.email,
     contact_number: Faker::Number.number(10),is_authorized: Faker::Boolean.boolean(0.8),
     password: "123456", password_confirmation: "123456")
 end
 
-
-for i in 0..20
-  publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
-                category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
-end
-
-
-
-    # SEEDS PARA TEST
-
-
-    #Profesores
-
-    # for i in 0..60
-    #   Professor.create!(username: Faker::Internet.unique.user_name, name: Faker::Name.first_name,
-    #     lastname: Faker::Name.last_name, departament: Faker::Commerce.department(1),
-    #     email: Faker::Internet.unique.email, created_at: Date.today,
-    #     validated: Faker::Boolean.boolean(0.8))
-    # end
-    #
-    # #Estados
-    # State.create!(name: "En espera de aprobacion", verifier: true)
-    # State.create!(name: "En espera de evaluacion", verifier: true)
-    # State.create!(name: "Aceptado", verifier: false)
-    # State.create!(name: "Rechazado", verifier: false)
-    # State.create!(name: "Aceptado con modificaciones", verifier: false)
-    #
-
-    #
-    #
-    # for i in 0..60
-    #   Judge.create!(user: Faker::Internet.unique.user_name, name: Faker::Name.first_name,
-    #     lastname: Faker::Name.last_name, password: Faker::Internet.password, telephone: Faker::PhoneNumber.phone_number,
-    #     email: Faker::Internet.unique.email, created_at: Date.today, language_id: Faker::Number.between(1, 3))
-    # end
-    #
-    #
-    # #application_requests
-    # #en espera de aprobacion
-    # for i in 0..20
-    #   aplication = ApplicationRequest.create!(created_at: Date.today, state_id: 1)
-    #   publication = Publication.create!(abstract: Faker::Lorem.paragraph, theme:Faker::Book.title,
-    #                 category: Faker::Book.genre, application_request_id: aplication.id)
-    #
-    #   for j in 0..Faker::Number.between(1, 10)
-    #     Keyword.create!(keyword: Faker::RockBand.name, publication_id: publication.id)
-    #   end
-    #
-    #   for j in 0..2
-    #     Attachment.create!(url: Faker::File.file_name, category: "tipo #{j}", application_request_id: aplication.id)
-    #   end
-    #
-    #   for j in 0..Faker::Number.between(1, 5)
-    #     x = Faker::Number.between(1, 60)
-    #     ProfessorPublication.create!(professor_id: x, publication_id: publication.id)
-    #     ProfessorApplicationRequest.create!(professor_id: x, application_request_id: aplication.id)
-    #   end
-    # end
-    #
-    #
-    # #En espera evaluacion
-    # for i in 0..10
-    #   aplication = ApplicationRequest.create!(created_at: Date.today, state_id: 2)
-    #   publication = Publication.create!(abstract: Faker::Lorem.paragraph, theme:Faker::Book.title,
-    #                 category: Faker::Book.genre, application_request_id: aplication.id)
-    #
-    #   for j in 0..Faker::Number.between(1, 10)
-    #     Keyword.create!(keyword: Faker::RockBand.name, publication_id: publication.id)
-    #   end
-    #
-    #   for j in 0..2
-    #     Attachment.create!(url: Faker::File.file_name, category: "tipo #{j}", application_request_id: aplication.id)
-    #   end
-    #
-    #   for j in 0..Faker::Number.between(1, 5)
-    #     x = Faker::Number.between(1, 60)
-    #     ProfessorPublication.create!(professor_id: x, publication_id: publication.id)
-    #     ProfessorApplicationRequest.create!(professor_id: x, application_request_id: aplication.id)
-    #   end
-    #
-    #   Evaluation.create!(assigned_at: Date.today, judge_id: Faker::Number.between(1, 20), state_id: Faker::Number.between(3, 5),
-    #             application_request_id: aplication.id)
-    #
-    #   Evaluation.create!(assigned_at: Date.today, judge_id: Faker::Number.between(1, 20), state_id: Faker::Number.between(3, 5),
-    #   application_request_id: aplication.id)
-    #
-    # end
-    #
-    #
-    # #Evaluada
-    # for i in 0..30
-    #   aplication = ApplicationRequest.create!(created_at: Date.today, state_id: 2)
-    #   publication = Publication.create!(abstract: Faker::Lorem.paragraph, theme:Faker::Book.title,
-    #                 category: Faker::Book.genre, application_request_id: aplication.id)
-    #
-    #   for j in 0..Faker::Number.between(1, 10)
-    #       Keyword.create!(keyword: Faker::RockBand.name, publication_id: publication.id)
-    #     end
-    #
-    #   for j in 0..3
-    #     Attachment.create!(url: Faker::File.file_name, category: "tipo #{j}", application_request_id: aplication.id)
-    #   end
-    #
-    #   for j in 0..Faker::Number.between(1, 5)
-    #     x = Faker::Number.between(1, 60)
-    #     ProfessorPublication.create!(professor_id: x, publication_id: publication.id)
-    #     ProfessorApplicationRequest.create!(professor_id: x, application_request_id: aplication.id)
-    #   end
-    #
-    #   Evaluation.create!(justification: Faker::HarryPotter.quote, assigned_at: Date.today,
-    #             judge_id: Faker::Number.between(1, 20), state_id: Faker::Number.between(3, 5),
-    #             application_request_id: aplication.id)
-    #
-    #   Evaluation.create!(justification: Faker::HarryPotter.quote, assigned_at: Date.today,
-    #             judge_id: Faker::Number.between(1, 20), state_id: Faker::Number.between(3, 5),
-    #             application_request_id: aplication.id)
-    #
-    # end
-    #
-    #
-    #
-    # #Aprobada
-    # for i in 0..12
-    #   aplication = ApplicationRequest.create!(created_at: Date.today, state_id: 1)
-    #   publication = Publication.create!(abstract: Faker::Lorem.paragraph, theme:Faker::Book.title,
-    #                 category: Faker::Book.genre, application_request_id: aplication.id)
-    #
-    #   for j in 0..Faker::Number.between(1, 10)
-    #     Keyword.create!(keyword: Faker::RockBand.name, publication_id: publication.id)
-    #   end
-    #
-    #   ApprovedPublication.create!(resolution: "Resolucion prueba", stock: Faker::Number.between(200, 500),
-    #   stock_at_store: Faker::Number.between(100, 300), stock_at_library: Faker::Number.between(10, 200), publication_id: publication.id)
-    #
-    #   for j in 0..2
-    #     Attachment.create!(url: Faker::File.file_name, category: "tipo #{j}", application_request_id: aplication.id)
-    #   end
-    #
-    #   for j in 0..Faker::Number.between(1, 5)
-    #     x = Faker::Number.between(1, 60)
-    #     ProfessorPublication.create!(professor_id: x, publication_id: publication.id)
-    #     ProfessorApplicationRequest.create!(professor_id: x, application_request_id: aplication.id)
-    #   end
-    #
-    #
-    # end
+Criterium.create!([{criterion_type: :general, criterion: "El material constituye un aporte válido,"\
+    "vigente y relevante para el área de conocimiento en la cual se inscribe"},
+  {criterion_type: :general, criterion: "El material es resultado de un proceso maduro de"\
+    "investigación o reflexión: su contenido es producto de un desarrollo conceptual"\
+    "completo y del contraste crítico con otras investigaciones afines"},
+  {criterion_type: :general, criterion: "Está debidamente estructurado y argumentado"\
+    "(planteamiento del problema, metodología y resultados) en relación con las"\
+    "prácticas de la disciplina a la que pertenece"},
+  {criterion_type: :general, criterion: "La originalidad de los aportes y reflexiones del"\
+    "autor le confieren un valor agregado al material"},
+  {criterion_type: :general, criterion: "Las referencias bibliográficas cumplen con la exactitud, "\
+    "pertinencia y actualidad requeridas"},
+  {criterion_type: :general, criterion: "EI texto reúne las condiciones para ser parte de la"\
+    "bibliografía más reconocida y necesaria sobre el tema"},
+  {criterion_type: :writing, criterion: "Es adecuado el título de la obra"},
+  {criterion_type: :writing, criterion:"La escritura presenta las calidades esperadas para"\
+    "el nivel de formación (apropiada redacción, léxico, ortografía, claridad"\
+    "conceptual, etc.)"},
+  {criterion_type: :writing, criterion:"El material gráfico que acompaña los textos (imágenes "\
+    "de toda índole y tablas) es relevante, clarifica y añade valor en todos los casos"},
+  {criterion_type: :writing, criterion:"El texto presenta una introducción clara y precisa"\
+    "sobre los objetivos y problemas que se abordan en el documento"},
+  {criterion_type: :writing, criterion:"La extensión del texto es adecuada en función de"\
+    "la complejidad del tema, los objetivos y el público lector" }])
+# for i in 0..20
+#   publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
+#                 category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
+# end

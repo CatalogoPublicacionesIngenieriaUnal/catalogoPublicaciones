@@ -14,9 +14,14 @@ class EvaluatorsController < ApplicationController
   def show
   end
 
+  def authenticate_evaluator
+    @url_token = params[:id]
+  end
+
   # GET /evaluators/new
   def new
     @languages = Language.all
+    evaluation = Evaluation.find(params[:evaluation_id])
     @evaluator = Evaluator.new
   end
 
@@ -30,10 +35,10 @@ class EvaluatorsController < ApplicationController
   def create
     @languages = Language.all
     @evaluator = Evaluator.new(evaluator_params)
-
+    @evaluator.evaluation_id = params[:evaluation_id]
     respond_to do |format|
       if @evaluator.save
-        JudgeMailer.welcome(@evaluator).deliver_now
+        #JudgeMailer.welcome(@evaluator).deliver_now
         format.html { redirect_to @evaluator, notice: 'El evaluador ha sido creado.' }
         format.json { render :show, status: :created, location: @evaluator }
       else
@@ -76,6 +81,7 @@ class EvaluatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluator_params
-      params.require(:evaluator).permit(:username, :first_name, :last_name, :email, :language_id, :code)
+      params.require(:evaluator).permit(:first_name, :last_name, :email, :language_id,
+      :code, :url_token, :failed_attempts, :is_locked, :code_asigned_at, :evaluation_id)
     end
 end

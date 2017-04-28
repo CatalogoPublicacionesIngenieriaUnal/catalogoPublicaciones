@@ -37,7 +37,9 @@ class PublicationsController < ApplicationController
 
     @keywords = Keyword.all
     @words = @publication.keyword_publications.build
-
+    @current_professor = current_professor
+    @professors = Professor.all
+    @publication = Publication.new
   end
 
   # GET /publications/1/edit
@@ -57,9 +59,10 @@ class PublicationsController < ApplicationController
       end
     end
 
+    application_request = ApplicationRequest.create(state: 'En espera', professor_id: current_professor.id)
+    @publication.application_request_id = application_request.id
     respond_to do |format|
       if @publication.save
-        #@publication.keywords << Keyword.find(params[:keyword_ids])
         @publication.professors << current_professor
         format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
@@ -160,6 +163,6 @@ class PublicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:title, :abstract, :category, :theme_id, :category_id, :keyword_ids)
+    params.require(:publication).permit(:title, :abstract, :theme_id, :category_id, :keyword_ids, :application_request_id)
   end
 end

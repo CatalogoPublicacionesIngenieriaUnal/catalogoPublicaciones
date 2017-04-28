@@ -65,6 +65,6 @@ Rails.application.configure do
   enable_starttls_auto: true
   }
 
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
 
 end

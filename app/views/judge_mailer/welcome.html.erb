@@ -33,12 +33,12 @@
     <h3>Bienvienido Evaluador, <%= @evaluator.first_name %> <%= @evaluator.last_name %></h3>
     <p>
       Ha sido registrado de manera exitosa en el sistema de evaluación de publicaciones de la Universidad Nacional
-      Su usuario de acceso es: <%= @evaluator.username %>.
+      Su usuario de acceso es: <%= @evaluator.email %>.
       Su código de acceso es: <%= @evaluator.code %><br>
     </p>
     <p>
       Su publicación es: .
-      Para acceder al sitio web de la publicación haga <a><href>click aquí</a>
+      Para acceder al sitio web de la publicación haga <a><href = "localhost:3000/evaluate/id">click aquí <%= @evaluator.url_token %><br></a>
       </p>
       <p>Atentamente:</p>
       <p>Facultad de Ingeniería</p>

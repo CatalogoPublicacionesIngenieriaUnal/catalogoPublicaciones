@@ -1,6 +1,7 @@
 class ApplicationRequestsController < ApplicationController
-  before_action :set_application_request, only: [:show, :edit, :update, :destroy]
-  before_action :is_authorized
+  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator]
+  before_action :authorized?, only: [:new, :edit, :update, :create]
+  before_action :authenticate_administrator!, only: [:index, :show, :destroy, :create_evaluator]
 
   # GET /application_requests
   # GET /application_requests.json
@@ -18,35 +19,16 @@ class ApplicationRequestsController < ApplicationController
     @application_request = ApplicationRequest.new
   end
 
-  # GET /application_requests/1/edit
-  def edit
-  end
-
   # POST /application_requests
   # POST /application_requests.json
   def create
     @application_request = ApplicationRequest.new(application_request_params)
-
     respond_to do |format|
       if @application_request.save
         format.html { redirect_to @application_request, notice: 'Application request was successfully created.' }
         format.json { render :show, status: :created, location: @application_request }
       else
         format.html { render :new }
-        format.json { render json: @application_request.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /application_requests/1
-  # PATCH/PUT /application_requests/1.json
-  def update
-    respond_to do |format|
-      if @application_request.update(application_request_params)
-        format.html { redirect_to @application_request, notice: 'Application request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @application_request }
-      else
-        format.html { render :edit }
         format.json { render json: @application_request.errors, status: :unprocessable_entity }
       end
     end
@@ -62,6 +44,12 @@ class ApplicationRequestsController < ApplicationController
     end
   end
 
+  def create_evaluator
+    @application_request.state = 'En evaluación'
+    evaluation = Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
+    redirect_to new_evaluation_evaluator_path(evaluation.id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_application_request
@@ -70,6 +58,6 @@ class ApplicationRequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_request_params
-      params.require(:application_request).permit(:state, :authorized_at)
+      params.require(:application_request).permit(:state, :authorized_at, :professor_id)
     end
 end

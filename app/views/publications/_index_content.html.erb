@@ -3,10 +3,18 @@
     <%= render 'static/menu_publicaciones' %>
   </div>
   <div class="col-sm-10">
-    <div class="text-center" style="padding: 10px 0px 0px 0px">
+    <% if professor_signed_in? %>
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Mis Publicaciones</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <% elsif administrator_signed_in? %>
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
       <h1 style="font-size:200%;">Publicaciones</h1>
       <p id="notice"><%= notice %></p>
     </div>
+    <% end %>
+
     <div><hr class="style13"></div>
     <div class="form-basic-2" style="width:920px">
       <%#= will_paginate @publications, :style => "background:none"%>

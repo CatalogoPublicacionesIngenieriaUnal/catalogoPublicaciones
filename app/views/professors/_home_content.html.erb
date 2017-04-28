@@ -7,33 +7,49 @@
       <h1 style="font-size:200%;">Bienvenido docente</h1>
       <p id="notice"><%= notice %></p>
     </div>
+
     <div><hr class="style13"></div>
-    <div class="form-basic-2">
-      <div class="li-custom">
-        <div class="li-custom">
-          <%= link_to 'Ver mis datos personales', show_current_professor_path %>
-        </div>
-        <br>
-        <div class="li-custom">
-          <%= link_to 'Actualizar datos personales', edit_current_professor_path %>
-        </div>
-        <br>
-        <div class="li-custom">
-          <%= link_to 'Crear Solicitud', new_publication_path %>
-        </div>
-        <br>
-        <div class="li-custom">
-          <%= link_to 'Revisar solicitud', under_construction_path %>
-        </div>
-        <br>
-        <div class="li-custom">
-          <%= link_to 'Mis publicaciones', publications_path %>
-        </div>
-        <br>
-        <div class="li-custom">
-          <%= link_to 'Requisitos necesarios para publicaciones', under_construction_path %>
-        </div>
-      </div>
+
+    <div class="form-basic-2" style="width:920px">
+      <%#= will_paginate @publications, :style => "background:none"%>
+      <%= form_tag publications_path, :method => 'get' do |f| %>
+      <span>Filtrar por nombre de la publicación</span>
+      <%= text_field_tag :search, params[:search] %>
+      <span>Filtrar por categoría</span>
+      <%= select_tag :category, options_from_collection_for_select(Category.all, "id","category","") ,prompt: "Seleccione una categoría" %>
+      <%= submit_tag "Filtrar" %>
+      <% end %>
+      <table class="table-custom">
+        <tr>
+          <th>Titulo</th>
+          <th>Abstract</th>
+          <th>Tema</th>
+          <th>Categoria</th>
+          <th>Estado</th>
+          <th>Progreso</th>
+          <th></th>
+        </tr>
+        <tbody>
+          <% @publications.each do |publication| %>
+          <tr>
+            <td><%= publication.title %></td>
+            <td><%= publication.abstract %></td>
+            <td><%= publication.theme.theme %></td>
+            <td><%= publication.category.category %></td>
+            <td><%= publication.application_request.state %></td>
+            <td>
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                  40%
+                </div>
+              </div>
+            </td>
+            <td><%= link_to 'Ver', publication %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
+
   </div>
 </div>

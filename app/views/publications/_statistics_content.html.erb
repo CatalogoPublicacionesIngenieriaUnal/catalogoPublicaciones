@@ -10,14 +10,11 @@
     <div><hr class="style13"></div>
     <%= javascript_include_tag "graphs" %>
     <center>
-    <button class="li-custom" onclick="categ();">Category</button>
-    <button class="li-custom" onclick="them();">Tema</button>
-    <br><br>
-    <svg id="graficas"></svg>
+      <button class="button1 button2" onclick="categ()">Categoria</button>
+      <button class="button1 button2" onclick="them()">Tema</button>
+      <br><br>
+      <svg id="graficas"></svg>
     </center>
-    <script type="text/javascript">
-      //categ();
-    </script>
 
     <div><hr class="style13"></div>
     <% if professor_signed_in? %>

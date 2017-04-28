@@ -21,7 +21,9 @@
           <tr>
             <th>Titulo</th>
             <th>Abstract</th>
+            <th>Tema</th>
             <th>Categoria</th>
+            <th>Estado</th>
             <th colspan="3"></th>
           </tr>
         <tbody>
@@ -29,7 +31,9 @@
           <tr>
             <td><%= publication.title %></td>
             <td><%= publication.abstract %></td>
+            <td><%= publication.theme.theme %></td>
             <td><%= publication.category.category %></td>
+            <td><%= publication.application_request.state %></td>
             <td><%= link_to 'Ver', publication %></td>
             <td><%= link_to 'Editar', edit_publication_path(publication) %></td>
             <td><%= link_to 'Eliminar', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>

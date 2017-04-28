@@ -29,6 +29,32 @@
             <%= @publication.abstract %>
           </span>
         </li>
+        <li>
+          <span class="inf">Tema</span>
+          <span class="value">
+            <%= @publication.theme.theme %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Categoria</span>
+          <span class="value">
+            <%= @publication.category.category %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Palabras clave</span>
+          <span class="value">
+            <%= Keyword.find(@publication.keyword_ids[0]).keyword %>,
+            <%= Keyword.find(@publication.keyword_ids[1]).keyword %>,
+            <%= Keyword.find(@publication.keyword_ids[2]).keyword %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Estado</span>
+          <span class="value">
+            <%= @publication.application_request.state %>
+          </span>
+        </li>
       </ul>
     </div>
     <div><hr class="style13"></div>

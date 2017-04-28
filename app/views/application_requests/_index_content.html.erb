@@ -10,36 +10,33 @@
     <div><hr class="style13"></div>
     <div class="form-basic-2" style="width:920px">
       <table class="table-custom">
-          <tr>
-            <th>Titulo</th>
-            <th>Estado</th>
-            <th>Profesor</th>
-            <th>Fecha de creacíon</th>
-            <th colspan="3"></th>
-          </tr>
-
+        <tr>
+          <th>Titulo</th>
+          <th>Estado</th>
+          <th>Profesor</th>
+          <th>Fecha de creacíon</th>
+          <th colspan="3"></th>
+        </tr>
         <tbody>
           <% @application_requests.each do |application_request| %>
-            <tr>
-              <td><%= application_request.publication.title %></td>
-              <td><%= application_request.state %></td>
-              <td><%= application_request.professor.first_name + " " + application_request.professor.last_name %></td>
-              <td><%= application_request.created_at.strftime("%F")  %></td>
-              <td><%= link_to 'Ver resumen de la publicación', application_request %></td>
-              <td><%= link_to 'Eliminar', application_request, method: :delete, data: { confirm: '¿Está seguro de que desea eliminar la solicitud?' } %></td>
-            </tr>
+          <tr>
+            <td><%= application_request.publication.title %></td>
+            <td><%= application_request.state %></td>
+            <td><%= application_request.professor.first_name + " " + application_request.professor.last_name %></td>
+            <td><%= application_request.created_at.strftime("%F")  %></td>
+            <td><%= link_to 'Ver resumen de la publicación', application_request %></td>
+            <td><%= link_to 'Eliminar', application_request, method: :delete, data: { confirm: '¿Está seguro de que desea eliminar la solicitud?' } %></td>
+          </tr>
           <% end %>
         </tbody>
       </table>
     </div>
-  </div>
-</div>
-<div><hr class="style13"></div>
-<div class="col-sm-12">
-  <div class="form-basic-2">
-    <div class="text-center">
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', professor_home_path %>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', professor_home_path %>
+        </div>
       </div>
     </div>
   </div>

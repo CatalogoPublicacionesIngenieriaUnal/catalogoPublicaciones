@@ -54,24 +54,13 @@
         </li>
       </ul>
     </div>
-  </div>
-</div>
-<div class="col-sm-12">
-  <div class="col-sm-9">
+    <div><hr class="style13"></div>
     <div class="form-basic-2">
-      <div class="text-center">
-        <div class="li-custom" style="width:180px; margin:auto; padding:0px 0px 20px 0px">
-          <%= link_to 'Volver', administrator_home_path %>
-        </div>
+      <div class="li-custom" style="width:200px; float:left">
+        <%= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
       </div>
-    </div>
-  </div>
-  <div class="col-sm-2">
-    <div class="form-basic-2">
-      <div class="text-center">
-        <div class="li-custom" style="width:180px; margin:auto padding:10px 10px 10px 10px">
-          <%= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
-        </div>
+      <div class="li-custom" style="width:100px; float:right">
+        <%= link_to 'Volver', administrator_home_path %>
       </div>
     </div>
   </div>

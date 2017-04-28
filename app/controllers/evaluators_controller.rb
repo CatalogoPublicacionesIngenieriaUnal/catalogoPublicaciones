@@ -12,6 +12,7 @@ class EvaluatorsController < ApplicationController
   # GET /evaluators/1
   # GET /evaluators/1.json
   def show
+    @languages = Language.all
   end
 
   def authenticate_evaluator

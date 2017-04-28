@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'administrators/home', to: 'administrators#home', :as => :administrator_home
   get 'professors/profile', to: 'professors#show', :as => :show_current_professor
   get 'professors/edit', to: 'professors#edit', :as => :edit_current_professor
+  get 'administrators/profile', to: 'administrators#show', :as => :show_current_administrator
+  get 'administrators/edit', to: 'administrators#edit', :as => :edit_current_administrator
   get 'application_requests/:id/authorize', to: 'application_requests#authorize', :as => :authorize_application
   get 'publications/statistics', to: 'publications#statistics', :as => :statistics
   get 'publications/dataTest', :defaults => { :format => 'json' }

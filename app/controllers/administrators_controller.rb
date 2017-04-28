@@ -1,6 +1,8 @@
 class AdministratorsController < ApplicationController
+
   before_filter :authenticate_administrator!
-  before_action :set_administrator, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_administrator, only: [:edit, :show]
+  before_action :set_administrator, only: [:update, :destroy]
 
   layout "unal"
 
@@ -72,6 +74,10 @@ class AdministratorsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_administrator
       @administrator = Administrator.find(params[:id])
+    end
+
+    def set_current_administrator
+      @administrator = Administrator.find(current_administrator.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

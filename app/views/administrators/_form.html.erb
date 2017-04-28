@@ -7,7 +7,6 @@
       <h1 style="font-size:200%;">Registro</h1>
     </div>
   </div>
-
   <div class="col-sm-10">
     <div><hr class="style13"></div>
     <div class="main-content">
@@ -16,7 +15,6 @@
         <% if administrator.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(administrator.errors.count, "error") %> prohibited this administrator from being saved:</h2>
-
           <ul>
             <% administrator.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -87,14 +85,12 @@
         <% end %>
       </div>
     </div>
-  </div>
-</div>
-<div><hr class="style13"></div>
-<div class="col-sm-12">
-  <div class="form-basic-2">
-    <div class="text-center">
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', administrator_home_path %>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', administrator_home_path %>
+        </div>
       </div>
     </div>
   </div>

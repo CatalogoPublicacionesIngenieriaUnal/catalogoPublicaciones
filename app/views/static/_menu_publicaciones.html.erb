@@ -1,4 +1,4 @@
-<div class="ul-custom">
+<div class="ul-custom" style="padding:0px 0px 10px 0px">
   <div class="menu-header">
     <%=link_to image_tag("edf_viejo.jpg", height:'100%', width:'100%'), root_path %>
   </div>
@@ -7,21 +7,55 @@
     <h4>Menú principal</h4>
   </div>
   <div><hr class="style13"></div>
+  <% if professor_signed_in? %>
   <div class="li-custom">
-    <a href="/">Inicio</a>
+    <%= link_to 'Inicio', professor_home_path %>
   </div>
   <div class="li-custom">
-    <% if professor_signed_in? %>
-      <%= link_to 'Mi perfil', professor_home_path %>
-    <% elsif administrator_signed_in? %>
-      <%= link_to 'Mi perfil', administrator_home_path %>
-    <% end %>
+    <%= link_to 'Mi perfil', show_current_professor_path %>
   </div>
   <div class="li-custom">
-    <%= link_to 'Ver catálogo', under_construction_path %>
+    <%= link_to 'Mis publicaciones', publications_path %>
   </div>
+  <div class="li-custom">
+    <%= link_to 'Crear Solicitud', new_publication_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Revisar solicitud', under_construction_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Requisitos necesarios para publicaciones', under_construction_path %>
+  </div>
+
+  <% elsif administrator_signed_in? %>
+  <div class="li-custom">
+    <%= link_to 'Inicio', administrator_home_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Mi perfil', show_current_administrator_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Ver profesores', professors_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Habilitar solicitudes de publicación', application_requests_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Consultar solicitudes actuales', under_construction_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Consultar publicaciones', publications_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Ver estadisticas', under_construction_path %>
+  </div>
+  <% else %>
   <div class="li-custom">
     <%= link_to 'Instrucciones para postularse', under_construction_path %>
+  </div>
+  <% end %>
+  <div class="li-custom">
+    <%= link_to 'Ver catálogo', under_construction_path %>
   </div>
   <div class="li-custom">
     <a href="/contact">Contacto</a>

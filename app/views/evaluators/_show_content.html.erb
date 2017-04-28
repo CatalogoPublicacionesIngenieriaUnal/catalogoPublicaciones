@@ -31,7 +31,8 @@
         <li>
           <span class="inf">Idioma</span>
           <span class="value">
-            <%= @evaluator.language_id %>
+            <%= Language.find(@evaluator.language_id).name %>
+            <%#= @evaluator.language_id.name %>
           </span>
         </li>
     </ul>

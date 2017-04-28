@@ -64,7 +64,12 @@ class EvaluationsController < ApplicationController
   end
 
   def evaluate
-    @evaluator = Evaluator.evaluator_by_email(params[:evaluation][:email])
+    @evaluators = Evaluator.evaluator_by_email(params[:evaluation][:email])
+    @evaluation = Evaluation.new
+    @categories = Category.all
+    @publications = Publication.all
+    @criteria = Criterium.all
+    #@evaluations_criteria = Evaluation_criterium.all
     if @evaluator
       puts "la weas #{@evaluator}"
       if(params[:evaluation][:code] == @evaluator.code && params[:evaluation][:url_token] == @evaluator.url_token)

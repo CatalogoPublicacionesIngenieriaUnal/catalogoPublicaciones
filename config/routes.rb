@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :evaluators, shallow: true
   end
   resources :application_requests, except: [:edit, :update] do
-    resources :attatchments, shallow: true, except: :new 
+    resources :attatchments, shallow: true
   end
 
   resources :professors do

@@ -17,6 +17,21 @@ class Publication < ApplicationRecord
   # #   self.application_request_id = application_request.id
   # end
 
+  def request_completeness
+    count = 0
+    count += application_request.documents_loaded
+    count += application_request.professor_concept_completeness
+    count += 1 if keywords.count >= 1
+    count += 1 unless abstract.nil?
+    count += 1 unless title.nil?
+    count += 1 unless theme_id.nil?
+  end
+
+  def total_request_fields
+    return total_publication_fields + application_request.total_application_fields
+  end
+
+
   scope :publications_by_professor, -> (professor_id){
     includes(:professor_publications,:professors).where(professors:{id: professor_id})
   }
@@ -38,6 +53,15 @@ class Publication < ApplicationRecord
     else
       all
     end
+  end
+
+  private
+  def total_publication_fields
+    # Titulo
+    # Tema
+    # Abstract
+    # Palabras claves
+    return 4
   end
 
 end

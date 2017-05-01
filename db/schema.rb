@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170426195648) do
 
   create_table "attatchments", force: :cascade do |t|
     t.string   "url",                    null: false
-    t.string   "category",               null: false
+    t.integer  "category",               null: false
     t.integer  "application_request_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false

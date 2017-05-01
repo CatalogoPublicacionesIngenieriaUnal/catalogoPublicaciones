@@ -1,9 +1,8 @@
 <div class="form-basic">
   <div class="form-title-row">
-    <%= puts "cat #{category}" %>
-    <% if "#{category}" == "carta_presentacion" %>
+    <% if category == :carta_presentacion %>
     <h1><%= "Carta de presentación" %></h1>
-    <% elsif "#{category}" == "concepto_editorial_a" %>
+    <% elsif category == :concepto_editorial_a %>
     <h1><%= "Concepto editorial" %></h1>
     <% else %>
     <h1><%= "Manuscrito" %></h1>
@@ -20,13 +19,12 @@
     </ul>
   </div>
   <% end %>
-
+<%= f.hidden_field :category, value: category %>
   <div class="form-row">
     <label>
       <span>Cargar solicitud</span>
       <div class="text-center" style="display: inline-block">
         <%= f.file_field :pdf_document%>
-        <%= f.hidden_field :category, :value => category%>
       </div>
     </label>
   </div>

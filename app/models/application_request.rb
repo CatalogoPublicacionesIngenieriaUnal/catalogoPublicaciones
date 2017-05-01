@@ -9,9 +9,37 @@ class ApplicationRequest < ApplicationRecord
 
   validates :state, presence: true
 
-  enum state: {'En espera': 1, 'En evaluación': 2, 'Aprobado': 3, 'Rechazado': 4}
+  enum state: [:'En espera', :'En evaluación', :'Aprobado', :'Rechazado']
 
-  def self.load_applications_by_state_id(id,page = 1, per_page = 10)
+  def document_loaded?(doc_category)
+    attatchments.where(category: doc_category).first.nil?
+  end
+
+  def documents_loaded
+    count = 0
+    count += 1 if document_loaded?(:carta_presentacion)
+    count += 1 if document_loaded?(:concepto_editorial_a)
+    count += 1 if document_loaded?(:manuscrito)
+    return count
+  end
+
+  def professor_concept_completeness
+    count = 0
+    count += 1 unless author_target_audience.nil?
+    count += 1 unless author_positioning_strategies.nil?
+    count += 1 unless author_academic_appreciation.nil?
+    count += 1 unless author_published_titles.nil?
+    count += 1 unless author_final_recomendation.nil?
+    return count
+  end
+
+  def total_application_fields
+    # 3 documentos
+    # 5 campos de concepto_editorial
+    return 8
+  end
+
+  def self.load_applications_by_state_id(id, page = 1, per_page = 10)
     includes(:state).where("state_id = ?", id)
   end
 

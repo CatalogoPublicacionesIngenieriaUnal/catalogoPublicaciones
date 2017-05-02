@@ -67,33 +67,33 @@
 
     <div><hr class="style13"></div>
     <% if professor_signed_in? %>
-    <div class="li-custom" style="width:200px; float:left">
-      <%= link_to('Crear PDF', create_pdf_path) %>
-    </div>
-    <div class="li-custom" style="width:100px; float:right">
-      <%= link_to 'Volver', professor_home_path %>
-    </div>
+      <div class="li-custom" style="width:100px; margin:auto; text-align:center">
+        <%= link_to('Crear PDF', create_pdf_path) %>
+      </div>
+      <br>
+      <div class="li-custom" style="width:100px; margin:auto; text-align:center">
+        <%= link_to 'Volver', professor_home_path %>
+      </div>
     <% elsif administrator_signed_in? %>
-    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px; text-align:center">
       <%= link_to 'Volver', administrator_home_path %>
     </div>
     <% end %>
 
+    <%- if @publication.application_request.document_loaded?(:carta_presentacion) %>
     <div><hr class="style13"></div>
-    <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :carta_presentacion%>
     <% end %>
 
-    <center><div style="width:720px"><hr class="style13"></div></center>
-    <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
+    <%- if @publication.application_request.document_loaded?(:concepto_editorial_a) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :concepto_editorial_a%>
     <% end %>
-    <center><div style="width:720px"><hr class="style13"></div></center>
-    <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
+
+    <%- if @publication.application_request.document_loaded?(:manuscrito) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :manuscrito%>

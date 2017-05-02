@@ -70,10 +70,22 @@
         <div class="form-row">
           <label>
             <span>Palabras clave</span>
-            <%= collection_select(:keywords, :ids, @keywords, :id, :keyword, {:include_blank => false}, {:multiple => true}) %>
+            <%= collection_select(:keywords, :ids, @keywords, :id, :keyword, {:include_blank => "Seleccione las palabras clave"},
+            {:multiple => true, :id => "key"}) %>
           </label>
         </div>
         <% end %>
+        <script>
+        var last_valid_selection = null;
+        $('#key').change(function(event) {
+          if ($(this).val().length > 3) {
+            alert('Seleccione solo 3 palabras clave');
+            $(this).val(last_valid_selection);
+          } else {
+            last_valid_selection = $(this).val();
+          }
+        });
+        </script>
 
         <div class="actions">
           <%= f.submit :"Crear publicación"%>

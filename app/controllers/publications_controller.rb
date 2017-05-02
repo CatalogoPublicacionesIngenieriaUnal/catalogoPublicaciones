@@ -4,6 +4,8 @@ class PublicationsController < ApplicationController
   # before_action :set_current_user, only: [:create_pdf]
   before_action :authenticate_administrator!, only: [:destroy]
   before_action :authorized?, only: [:new, :edit, :update, :create, :create_pdf]
+  before_action :set_attributes, only: [:new, :create]
+  before_action :set_attributes_edit, only: [:update, :edit]
 
 
   layout "unal"
@@ -201,6 +203,23 @@ class PublicationsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_publication
     @publication = Publication.find(params[:id])
+    @words = @publication.keyword_publications.build
+  end
+
+  def set_attributes
+    @publication = Publication.new
+    @categories = Category.all
+    @themes = Theme.all
+    @professors = Professor.all
+    @keywords = Keyword.all
+    @words = @publication.keyword_publications.build
+  end
+
+  def set_attributes_edit
+    @categories = Category.all
+    @themes = Theme.all
+    @professors = Professor.all
+    @keywords = Keyword.all
   end
   #
   # def set_current_user

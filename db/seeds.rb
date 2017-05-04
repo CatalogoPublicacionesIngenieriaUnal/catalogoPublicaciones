@@ -25,13 +25,6 @@ for i in 0..100
   Keyword.create(keyword: Faker::Job.field)
 end
 
-for i in 0..10
-  Professor.create!(username: Faker::Internet.unique.user_name, first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name, email: Faker::Internet.unique.email,
-    contact_number: Faker::Number.number(10),is_authorized: Faker::Boolean.boolean(0.8),
-    password: "123456", password_confirmation: "123456")
-end
-
 Criterium.create!([{criterion_type: :general, criterion: "El material constituye un aporte válido,"\
     "vigente y relevante para el área de conocimiento en la cual se inscribe"},
   {criterion_type: :general, criterion: "El material es resultado de un proceso maduro de"\
@@ -56,6 +49,31 @@ Criterium.create!([{criterion_type: :general, criterion: "El material constituye
     "sobre los objetivos y problemas que se abordan en el documento"},
   {criterion_type: :writing, criterion:"La extensión del texto es adecuada en función de"\
     "la complejidad del tema, los objetivos y el público lector" }])
+
+for i in 0..50
+  Professor.create!(username: Faker::Internet.unique.user_name, first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name, email: Faker::Internet.unique.email,
+    contact_number: Faker::Number.number(10),is_authorized: Faker::Boolean.boolean(0.8),
+    password: "123456", password_confirmation: "123456")
+end
+
+#Publicaciones
+##En Espera
+
 for i in 0..20
-  publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
+  professor = Professor.find( Faker::Number.between(1, 51))
+
+  application_requests = ApplicationRequest.create!(state: :'En espera', professor_id: professor.id)
+
+  publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
+  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20),
+  application_request_id: application_requests.id)
+
+  ProfessorApplicationRequest.create!(publication_id: publication.id,
+  professor_id: professor.id)
+
+  for i in 0..Faker::Number.between(0, 5)
+    ProfessorApplicationRequest.create!(publication_id: publication.id,
+    professor_id: Professor.find( Faker::Number.between(1, 51)))
+  end
 end

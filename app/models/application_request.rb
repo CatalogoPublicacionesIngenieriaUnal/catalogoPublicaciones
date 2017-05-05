@@ -4,7 +4,7 @@ class ApplicationRequest < ApplicationRecord
   has_many :evaluations
   has_many :evaluators, through: :evaluations
 
-  has_one :publication
+  belongs_to :publication
   belongs_to :professor
 
   validates :state, presence: true

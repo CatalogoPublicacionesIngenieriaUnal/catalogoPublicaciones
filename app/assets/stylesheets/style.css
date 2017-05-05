@@ -486,106 +486,106 @@ if you don't need the form to work on mobile devices. */
 }
 
 .menu-header {
-    border-bottom: 0;
-    margin-top: 0;
-    margin-left: 0;
-    width: 100%;
-    height: 100%
+  border-bottom: 0;
+  margin-top: 0;
+  margin-left: 0;
+  width: 100%;
+  height: 100%
 }
 
 .table-custom {
-	background: #f5f5f5;
-	border-collapse: separate;
-	box-shadow: inset 0 1px 0 #fff;
-	font-size: 12px;
-	line-height: 20px;
-	margin: 30px auto;
-	text-align: center;
-	width: 100%;
+  background: #f5f5f5;
+  border-collapse: separate;
+  box-shadow: inset 0 1px 0 #fff;
+  font-size: 12px;
+  line-height: 20px;
+  margin: 30px auto;
+  text-align: center;
+  width: 100%;
 }
 
 .table-custom th {
-	background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
-	border-left: 1px solid #555;
-	border-right: 1px solid #777;
-	border-top: 1px solid #555;
-	border-bottom: 1px solid #333;
-	box-shadow: inset 0 1px 0 #999;
-	color: #fff;
+  background: url(http://jackrugile.com/images/misc/noise-diagonal.png), linear-gradient(#777, #444);
+  border-left: 1px solid #555;
+  border-right: 1px solid #777;
+  border-top: 1px solid #555;
+  border-bottom: 1px solid #333;
+  box-shadow: inset 0 1px 0 #999;
+  color: #fff;
   font-weight: bold;
-	padding: 10px 15px;
-	position: relative;
-	text-shadow: 0 1px 0 #000;
+  padding: 10px 15px;
+  position: relative;
+  text-shadow: 0 1px 0 #000;
 }
 
 .table-custom th:after {
-	background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
-	content: '';
-	display: block;
-	height: 25%;
-	left: 0;
-	margin: 1px 0 0 0;
-	position: absolute;
-	top: 25%;
-	width: 100%;
+  background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.08));
+  content: '';
+  display: block;
+  height: 25%;
+  left: 0;
+  margin: 1px 0 0 0;
+  position: absolute;
+  top: 25%;
+  width: 100%;
 }
 
 .table-custom th:first-child {
-	border-left: 1px solid #777;
-	box-shadow: inset 1px 1px 0 #999;
+  border-left: 1px solid #777;
+  box-shadow: inset 1px 1px 0 #999;
 }
 
 .table-custom th:last-child {
-	box-shadow: inset -1px 1px 0 #999;
+  box-shadow: inset -1px 1px 0 #999;
 }
 
 .table-custom td {
-	border-right: 1px solid #fff;
-	border-left: 1px solid #e8e8e8;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #e8e8e8;
-	padding: 10px 15px;
-	position: relative;
-	transition: all 300ms;
+  border-right: 1px solid #fff;
+  border-left: 1px solid #e8e8e8;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 10px 15px;
+  position: relative;
+  transition: all 300ms;
 }
 
 .table-custom td:first-child {
-	box-shadow: inset 1px 0 0 #fff;
+  box-shadow: inset 1px 0 0 #fff;
 }
 
 .table-custom td:last-child {
-	border-right: 1px solid #e8e8e8;
-	box-shadow: inset -1px 0 0 #fff;
+  border-right: 1px solid #e8e8e8;
+  box-shadow: inset -1px 0 0 #fff;
 }
 
 .table-custom tr {
-	background: url(http://jackrugile.com/images/misc/noise-diagonal.png);
+  background: url(http://jackrugile.com/images/misc/noise-diagonal.png);
 }
 
 .table-custom tr:nth-child(odd) td {
-	background: #f1f1f1 url(http://jackrugile.com/images/misc/noise-diagonal.png);
+  background: #f1f1f1 url(http://jackrugile.com/images/misc/noise-diagonal.png);
 }
 
 .table-custom tr:last-of-type td {
-	box-shadow: inset 0 -1px 0 #fff;
+  box-shadow: inset 0 -1px 0 #fff;
 }
 
 .table-custom tr:last-of-type td:first-child {
-	box-shadow: inset 1px -1px 0 #fff;
+  box-shadow: inset 1px -1px 0 #fff;
 }
 
 .table-custom tr:last-of-type td:last-child {
-	box-shadow: inset -1px -1px 0 #fff;
+  box-shadow: inset -1px -1px 0 #fff;
 }
 
 .table-custom tbody:hover td {
-	color: transparent;
-	text-shadow: 0 0 3px #aaa;
+  color: transparent;
+  text-shadow: 0 0 3px #aaa;
 }
 
 .table-custom tbody:hover tr:hover td {
-	color: #444;
-	text-shadow: 0 1px 0 #fff;
+  color: #444;
+  text-shadow: 0 1px 0 #fff;
 }
 
 div.hidden {
@@ -649,4 +649,46 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.barra{
+  fill: #B2B3B4;
+  stroke: black
+  stroke-width: 0;
+}
+
+.barra:hover{
+  fill: #97aac9;
+  color: white;
+}
+
+.texto{
+  color: black;
+}
+
+.button1{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.button2{
+  background-color: #b2b3b4;
+  color: black;
+  border: 2px solid white;
+}
+
+.button2:hover{
+  background-color: #97aac9;
+  color: white;
 }

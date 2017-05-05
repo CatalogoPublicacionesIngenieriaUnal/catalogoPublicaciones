@@ -61,7 +61,6 @@
           <label>
             <span>Departamento</span>
             <%= f.select(:department, Professor.departments.keys) %>
-            <%#= f.select :departament, departments%>
           </label>
         </div>
 
@@ -79,13 +78,6 @@
           </label>
         </div>
 
-        <!-- <div class="form-row">
-          <label>
-            <span>Autorizado?</span>
-            <%#= f.check_box :is_authorized %>
-          </label>
-        </div> -->
-
         <div class="actions">
           <%= f.submit :"Actualizar datos personales", :class=>"button"%>
         </div>
@@ -93,14 +85,12 @@
         <% end %>
       </div>
     </div>
-  </div>
-</div>
-<div><hr class="style13"></div>
-<div class="col-sm-12">
-  <div class="form-basic-2">
-    <div class="text-center">
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', professor_home_path %>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', professor_home_path %>
+        </div>
       </div>
     </div>
   </div>

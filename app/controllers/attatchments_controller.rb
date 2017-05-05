@@ -15,6 +15,7 @@ class AttatchmentsController < ApplicationController
 
   # GET /attatchments/new
   def new
+    @application_request = ApplicationRequest.find(params[:application_request_id])
     @attatchment = Attatchment.new
   end
 
@@ -26,12 +27,13 @@ class AttatchmentsController < ApplicationController
   # POST /attatchments.json
   def create
     @attatchment = Attatchment.new(attatchment_params)
-    @attatchment.url = params[:file]
+    @attatchment.application_request_id = params[:application_request_id]
     respond_to do |format|
       if @attatchment.save
-        format.html { redirect_to @attatchment, notice: 'Attatchment was successfully created.' }
+        format.html { redirect_to :back}
         format.json { render :show, status: :created, location: @attatchment }
       else
+        puts @attatchment.errors.inspect
         format.html { render :new }
         format.json { render json: @attatchment.errors, status: :unprocessable_entity }
       end
@@ -70,6 +72,6 @@ class AttatchmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attatchment_params
-      params.require(:attatchment).permit(:url, :category)
+      params.require(:attatchment).permit(:url, :category, :application_request_id)
     end
 end

@@ -15,6 +15,13 @@
     </div>
     <% end %>
     <div><hr class="style13"></div>
+    <center>
+      <div class="progress" style="width:500px">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+          40%
+        </div>
+      </div>
+    </center>
     <div class="info">
       <ul class="info-list ">
         <li>
@@ -29,44 +36,66 @@
             <%= @publication.abstract %>
           </span>
         </li>
+        <li>
+          <span class="inf">Tema</span>
+          <span class="value">
+            <%= @publication.theme.theme %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Categoria</span>
+          <span class="value">
+            <%= @publication.category.category %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Palabras clave</span>
+          <span class="value">
+            <%= Keyword.find(@publication.keyword_ids[0]).keyword %>,
+            <%= Keyword.find(@publication.keyword_ids[1]).keyword %>,
+            <%= Keyword.find(@publication.keyword_ids[2]).keyword %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Estado</span>
+          <span class="value">
+            <%= @publication.application_request.state %>
+          </span>
+        </li>
       </ul>
     </div>
-    <div><hr class="style13"></div>
-    <div class="col-sm-12">
-      <div class="form-basic-2">
-        <div class="text-center">
-          <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
-            <%= link_to('Create PDF', create_pdf_path) %>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div>
-      <!-- <%= link_to "Test", "/hello.pdf"%> -->
-      <!-- <a href="#{Rails.root}/hello.pdf">PEDEEFE</a> -->
+    <div><hr class="style13"></div>
+    <% if professor_signed_in? %>
+    <div class="li-custom" style="width:200px; float:left">
+      <%= link_to('Crear PDF', create_pdf_path) %>
     </div>
+    <div class="li-custom" style="width:100px; float:right">
+      <%= link_to 'Volver', professor_home_path %>
+    </div>
+    <% elsif administrator_signed_in? %>
+    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+      <%= link_to 'Volver', administrator_home_path %>
+    </div>
+    <% end %>
+
+    <div><hr class="style13"></div>
+    <%- unless @publication.attatchments.get_attachment_by_category(:carta_presentacion) %>
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
+    application_request: @publication.application_request,
+    category: :carta_presentacion%>
+    <% end %>
+    <center><div style="width:720px"><hr class="style13"></div></center>
+    <%- unless @publication.attatchments.get_attachment_by_category(:concepto_editorial_a) %>
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
+    application_request: @publication.application_request,
+    category: :concepto_editorial_a%>
+    <% end %>
+    <center><div style="width:720px"><hr class="style13"></div></center>
+    <%- unless @publication.attatchments.get_attachment_by_category(:manuscrito) %>
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
+    application_request: @publication.application_request,
+    category: :manuscrito%>
+    <% end %>
   </div>
 </div>
-<div><hr class="style13"></div>
-<% if professor_signed_in? %>
-<div class="col-sm-12">
-  <div class="form-basic-2">
-    <div class="text-center">
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', professor_home_path %>
-      </div>
-    </div>
-  </div>
-</div>
-<% elsif administrator_signed_in? %>
-<div class="col-sm-12">
-  <div class="form-basic-2">
-    <div class="text-center">
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', administrator_home_path %>
-      </div>
-    </div>
-  </div>
-</div>
-<% end %>

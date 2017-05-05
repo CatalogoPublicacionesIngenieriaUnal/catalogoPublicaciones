@@ -31,10 +31,19 @@
         <li>
           <span class="inf">Idioma</span>
           <span class="value">
-            <%= @evaluator.language_id %>
+            <%= Language.find(@evaluator.language_id).name %>
+            <%#= @evaluator.language_id.name %>
           </span>
         </li>
     </ul>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', administrator_home_path %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

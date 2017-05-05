@@ -12,6 +12,7 @@ class EvaluatorsController < ApplicationController
   # GET /evaluators/1
   # GET /evaluators/1.json
   def show
+    @languages = Language.all
   end
 
   def authenticate_evaluator
@@ -21,7 +22,7 @@ class EvaluatorsController < ApplicationController
   # GET /evaluators/new
   def new
     @languages = Language.all
-    evaluation = Evaluation.find(params[:evaluation_id])
+    @evaluation = Evaluation.find(params[:evaluation_id])
     @evaluator = Evaluator.new
   end
 

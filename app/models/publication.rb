@@ -15,8 +15,8 @@ class Publication < ApplicationRecord
   validates :abstract, presence: true
   validates :category, presence: true
   validates :theme, presence: true
-  validates :keyword_publications, :length => { :minimum => 3}
-  
+  # validates :keyword_publications, :length => { :minimum => 3}
+
   # before_validation(on: :create) do
   #   self.application_request_id = 1
   # #   application_request = ApplicationRequest.new(state: :en_espera, professors_id: @current_professor)

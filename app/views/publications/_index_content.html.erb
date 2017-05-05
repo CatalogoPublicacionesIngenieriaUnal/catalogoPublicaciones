@@ -19,21 +19,24 @@
     <div class="form-basic-2" style="width:920px">
       <%#= will_paginate @publications, :style => "background:none"%>
       <%= form_tag publications_path, :method => 'get' do |f| %>
-        <span>Filtrar por nombre de la publicación</span>
-        <%= text_field_tag :search, params[:search] %>
-        <span>Filtrar por categoría</span>
-        <%= select_tag :category, options_from_collection_for_select(Category.all, "id","category","") ,prompt: "Seleccione una categoría" %>
-        <%= submit_tag "Filtrar" %>
+      <span>Filtrar por nombre de la publicación</span>
+      <%= text_field_tag :search, params[:search] %>
+      <br>
+      <span>Filtrar por categoría</span>
+      <%= select_tag :category, options_from_collection_for_select(Category.all, "id","category","") ,prompt: "Seleccione una categoría" %>
+      <span>Filtrar por estado</span>
+      <%= select_tag :status, options_for_select(ApplicationRequest.states.map {|k, v| [k.humanize.capitalize, v]}), prompt: "Seleccione estado" %>
+      <%= submit_tag "Filtrar" %>
       <% end %>
       <table class="table-custom">
-          <tr>
-            <th>Titulo</th>
-            <th>Abstract</th>
-            <th>Tema</th>
-            <th>Categoria</th>
-            <th>Estado</th>
-            <th colspan="3"></th>
-          </tr>
+        <tr>
+          <th>Titulo</th>
+          <th>Abstract</th>
+          <th>Tema</th>
+          <th>Categoria</th>
+          <th>Estado</th>
+          <th colspan="3"></th>
+        </tr>
         <tbody>
           <% @publications.each do |publication| %>
           <tr>
@@ -41,7 +44,12 @@
             <td><%= publication.abstract %></td>
             <td><%= publication.theme.theme %></td>
             <td><%= publication.category.category %></td>
-            <td><%= publication.application_request.state %></td>
+            <td>
+              <% if publication.application_request == nil %>
+              <% else %>
+              <%= publication.application_request.state %>
+              <% end %>
+            </td>
             <td><%= link_to 'Ver', publication %></td>
             <td><%= link_to 'Editar', edit_publication_path(publication) %></td>
             <td><%= link_to 'Eliminar', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>

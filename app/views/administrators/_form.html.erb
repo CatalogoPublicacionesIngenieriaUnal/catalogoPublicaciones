@@ -61,21 +61,21 @@
             <span>Contraseña</span>
             <!-- (<%#= @minimum_password_length %> letras minímo) -->
             <%# end %>
-            <%= f.password_field :password, autocomplete: "off" %>
+            <%= f.password_field :password, autocomplete: "off", required: true %>
           </label>
         </div>
 
         <div class="form-row">
           <label>
             <span>Confirmar contraseña</span>
-            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", required: true %>
           </label>
         </div>
 
         <div class="form-row">
           <label>
             <span>Contraseña actual</span>
-            <%= f.password_field :current_password, autocomplete: "off" %>
+            <%= f.password_field :current_password, autocomplete: "off", required: true %>
           </label>
         </div>
 

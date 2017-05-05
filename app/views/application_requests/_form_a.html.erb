@@ -37,13 +37,6 @@
 
         <div class="form-row">
           <label>
-            <span>Profesor</span>
-            <%= f.select :professor_id, options_from_collection_for_select(@professors, "id", "first_name"),:prompt => "Seleccione un prof" %>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>
             <span>a) Tema</span>
             <%= f.text_field :author_topic %>
           </label>
@@ -83,6 +76,15 @@
             <%= f.text_area :author_final_recomendation%>
           </label>
         </div>
+
+        <div class="form-row">
+            <%= f.hidden_field :professor_id, value: @professor%>
+        </div>
+
+        <div class="form-row">
+            <%= f.hidden_field :publication_id, value: @publication%>
+        </div>
+
 
         <div class="actions">
           <%= f.submit :"Crear solicitud", :class => "button" %>

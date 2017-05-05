@@ -18,7 +18,8 @@ class ApplicationRequestsController < ApplicationController
   # GET /application_requests/new
   def new
     @application_request = ApplicationRequest.new
-    @professors = Professor.all
+    @publication = params[:publication]
+    @professor = current_professor.id
   end
 
   def edit
@@ -82,6 +83,8 @@ class ApplicationRequestsController < ApplicationController
   end
 
   def application_request_params_a
-    params.require(:application_request).permit(:state, :professor_id, :author_topic, :author_target_audience, :author_positioning_strategies, :author_academic_appreciation, :author_published_titles, :author_final_recomendation)
+    params.require(:application_request).permit(:state, :professor_id, :author_topic,
+    :author_target_audience, :author_positioning_strategies, :author_academic_appreciation,
+    :author_published_titles, :author_final_recomendation, :publication_id)
   end
 end

@@ -22,13 +22,11 @@ Rails.application.routes.draw do
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators
-  resources :publications do
-    resources :application_requests, shallow: true
-  end
+  resources :publications
   resources :evaluations do
     resources :evaluators, shallow: true
   end
-  resources :application_requests, except: [:edit, :update] do
+  resources :application_requests do
     resources :attatchments, shallow: true
   end
 

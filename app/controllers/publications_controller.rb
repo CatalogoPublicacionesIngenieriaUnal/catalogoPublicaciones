@@ -29,6 +29,9 @@ class PublicationsController < ApplicationController
   # GET /publications/1
   # GET /publications/1.json
   def show
+    if @publication.application_request.nil?
+      redirect_to new_application_request_path(publication: @publication)
+    end
   end
 
   # GET /publications/new
@@ -63,7 +66,7 @@ class PublicationsController < ApplicationController
     respond_to do |format|
       if @publication.save
         @publication.professors << current_professor
-        format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
+        format.html { redirect_to new_application_request_path(publication: @publication), notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else
         format.html { render :new }

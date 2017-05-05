@@ -105,20 +105,21 @@ function statusPie(){
 
 function addText( data ){
   svg = d3.select("#graficas");
-  for( i = 0; i < data.length; i++ ){
-    svg.append("text")
-      .text( data[i].label )
-      .attr( "class", "texto" )
-      .attr("x", 350 )
-      .attr("y", 30 * i + 50);
-    svg.append("rect")
-      .attr( "class","barra" )
-      .attr( "height", 15 )
-      .attr( "width", 15 )
-      .attr( "x", 332 )
-      .attr( "y", 30 * i + 38 )
-      .attr( "fill", data[i].color );
-    console.log( data[i].label );
+  for( i = 0; i < Math.ceil(data.length / 8); i++ ){
+    for( j = 0; j < 8; j++ ){
+      svg.append("text")
+        .text( data[ i * 8 + j ].label )
+        .attr( "class", "texto" )
+        .attr("x", 350 + i * 150 )
+        .attr("y", 30 * j + 50);
+      svg.append("rect")
+        .attr( "class","barra" )
+        .attr( "height", 15 )
+        .attr( "width", 15 )
+        .attr( "x", 332 + i * 150)
+        .attr( "y", 30 * j + 38 )
+        .attr( "fill", data[ i * 8 + j ].color );
+    }
   }
 }
 

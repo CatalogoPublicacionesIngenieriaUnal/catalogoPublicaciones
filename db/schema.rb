@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170426195648) do
   create_table "application_requests", force: :cascade do |t|
     t.integer  "state",                         null: false
     t.date     "authorized_at"
+    t.integer  "publication_id"
     t.integer  "professor_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170426195648) do
     t.text     "author_published_titles"
     t.text     "author_final_recomendation"
     t.index ["professor_id"], name: "index_application_requests_on_professor_id", using: :btree
+    t.index ["publication_id"], name: "index_application_requests_on_publication_id", using: :btree
   end
 
   create_table "attatchments", force: :cascade do |t|
@@ -185,13 +187,11 @@ ActiveRecord::Schema.define(version: 20170426195648) do
   create_table "publications", force: :cascade do |t|
     t.text     "title"
     t.text     "abstract"
-    t.integer  "application_request_id"
     t.integer  "theme_id"
     t.integer  "category_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "publishing_unit"
-    t.index ["application_request_id"], name: "index_publications_on_application_request_id", using: :btree
     t.index ["category_id"], name: "index_publications_on_category_id", using: :btree
     t.index ["theme_id"], name: "index_publications_on_theme_id", using: :btree
   end
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 20170426195648) do
   end
 
   add_foreign_key "application_requests", "professors"
+  add_foreign_key "application_requests", "publications"
   add_foreign_key "attatchments", "application_requests"
   add_foreign_key "evaluations", "application_requests"
   add_foreign_key "evaluations_criteria", "criteria", column: "criteria_id"
@@ -213,7 +214,6 @@ ActiveRecord::Schema.define(version: 20170426195648) do
   add_foreign_key "keyword_publications", "publications"
   add_foreign_key "professor_publications", "professors"
   add_foreign_key "professor_publications", "publications"
-  add_foreign_key "publications", "application_requests"
   add_foreign_key "publications", "categories"
   add_foreign_key "publications", "themes"
 end

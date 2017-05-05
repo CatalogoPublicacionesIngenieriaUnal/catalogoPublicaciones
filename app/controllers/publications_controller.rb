@@ -60,9 +60,6 @@ class PublicationsController < ApplicationController
         @publication.keyword_publications.build(:keyword_id => keyword)
       end
     end
-
-    application_request = ApplicationRequest.create(state: 'En espera', professor_id: current_professor.id)
-    @publication.application_request_id = application_request.id
     respond_to do |format|
       if @publication.save
         @publication.professors << current_professor

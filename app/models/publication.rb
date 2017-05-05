@@ -1,4 +1,6 @@
 class Publication < ApplicationRecord
+
+  has_one  :application_request
   has_many :professor_publications
   has_many :professors, through: :professor_publications
   has_many :keyword_publications
@@ -8,7 +10,6 @@ class Publication < ApplicationRecord
   belongs_to :theme
   belongs_to :category
 
-  belongs_to :application_request
 
   validates :title, presence: true
   validates :abstract, presence: true
@@ -16,6 +17,7 @@ class Publication < ApplicationRecord
   validates :theme, presence: true
   validates :keyword_publications, :length => { :minimum => 3}
 
+  belongs_to :application_request
   # before_validation(on: :create) do
   #   self.application_request_id = 1
   # #   application_request = ApplicationRequest.new(state: :en_espera, professors_id: @current_professor)

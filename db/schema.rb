@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20170426195648) do
     t.integer  "disclosure_degree"
     t.integer  "target_audience"
     t.text     "target_audience_remark"
+    t.text     "extra_target_audience"
     t.index ["application_request_id"], name: "index_evaluations_on_application_request_id", using: :btree
   end
 

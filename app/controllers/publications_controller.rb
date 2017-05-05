@@ -1,4 +1,4 @@
-require "prawn"
+
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
   # before_action :set_current_user, only: [:create_pdf]
@@ -20,7 +20,7 @@ class PublicationsController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf{render template: 'publications/reporte', pdf:'Reporte'}
+      format.pdf{render template: 'publications/formulario13', pdf:'formulario13'}
     end
   end
 

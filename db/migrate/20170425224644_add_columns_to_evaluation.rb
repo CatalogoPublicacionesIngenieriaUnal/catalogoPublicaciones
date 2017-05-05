@@ -13,7 +13,7 @@ class AddColumnsToEvaluation < ActiveRecord::Migration[5.0]
       t.integer :disclosure_degree
       t.integer :target_audience
       t.text    :target_audience_remark
-      # t.text   :extra_target_audience
+      t.text    :extra_target_audience
     end
   end
 end

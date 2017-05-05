@@ -9,7 +9,7 @@ class ApplicationRequest < ApplicationRecord
 
   validates :state, presence: true
 
-  enum state: {'En espera': 1, 'En evaluación': 2, 'Aprobado': 3, 'Rechazado': 4}
+  enum state: ['En creación','En espera', 'En evaluación', 'Aprobado', 'Rechazado']
 
   def self.load_applications_by_state_id(id,page = 1, per_page = 10)
     includes(:state).where("state_id = ?", id)

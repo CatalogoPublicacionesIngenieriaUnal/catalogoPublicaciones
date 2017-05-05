@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   get 'publications/statistics', to: 'publications#statistics', :as => :statistics
   get 'publications/dataCateg', :defaults => { :format => 'json' }
   get 'publications/dataTheme', :defaults => { :format => 'json' }
-  get 'publications/dataCategTest', :defaults => { :format => 'json' }
+  get 'publications/dataCategPie', :defaults => { :format => 'json' }
+  get 'publications/dataThemePie', :defaults => { :format => 'json' }
+  get 'publications/dataStatusPie', :defaults => { :format => 'json' }
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators

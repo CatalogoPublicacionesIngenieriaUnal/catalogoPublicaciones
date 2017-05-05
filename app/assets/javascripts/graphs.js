@@ -34,19 +34,21 @@ function them(){
   });
 }
 
-function categTest(){
+function categPie(){
   $.ajax({
        type: "GET",
        contentType: "application/json; charset=utf-8",
-       url: 'dataCategTest',
+       url: 'dataCategPie',
        dataType: 'json',
        success: function (data) {
         //json_data = data;
-        //console.log(data);
+        console.log(data);
         //graficarPie(data);
         svg = d3.select("#graficas");
+        svg.selectAll("*").remove();
         svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 150, 150, 130, 100, 30, 0.4);
+        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        addText( data );
        },
       error: function (result) {
         console.log("error");
@@ -55,15 +57,70 @@ function categTest(){
   });
 }
 
-function graficarPie(data){
-  // for( i = 0; i < data.length; i++){
-  //   data[i].color = "#FFFFFF";
-  //   console.log(data[i]);
-  // }
-  console.log(data);
+function themePie(){
+  $.ajax({
+       type: "GET",
+       contentType: "application/json; charset=utf-8",
+       url: 'dataThemePie',
+       dataType: 'json',
+       success: function (data) {
+        //json_data = data;
+        console.log(data);
+        //graficarPie(data);
+        svg = d3.select("#graficas");
+        svg.selectAll("*").remove();
+        svg.append("g").attr("id","donuTest");
+        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        addText( data );
+       },
+      error: function (result) {
+        console.log("error");
+      },
+      async: false
+  });
 }
 
-//console.log(json_data);
+function statusPie(){
+  $.ajax({
+       type: "GET",
+       contentType: "application/json; charset=utf-8",
+       url: 'dataStatusPie',
+       dataType: 'json',
+       success: function (data) {
+        //json_data = data;
+        console.log(data);
+        //graficarPie(data);
+        svg = d3.select("#graficas");
+        svg.selectAll("*").remove();
+        svg.append("g").attr("id","donuTest");
+        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        addText( data );
+       },
+      error: function (result) {
+        console.log("error");
+      },
+      async: false
+  });
+}
+
+function addText( data ){
+  svg = d3.select("#graficas");
+  for( i = 0; i < data.length; i++ ){
+    svg.append("text")
+      .text( data[i].label )
+      .attr( "class", "texto" )
+      .attr("x", 350 )
+      .attr("y", 30 * i + 50);
+    svg.append("rect")
+      .attr( "class","barra" )
+      .attr( "height", 15 )
+      .attr( "width", 15 )
+      .attr( "x", 332 )
+      .attr( "y", 30 * i + 38 )
+      .attr( "fill", data[i].color );
+    console.log( data[i].label );
+  }
+}
 
 function graficar2(data){
   a = d3.select("#graficas").attr("height", data.length * 30 + 10 ).attr("width","80%");

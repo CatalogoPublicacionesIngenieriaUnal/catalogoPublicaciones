@@ -17,7 +17,7 @@
         <div class="form-row">
           <label>
             <span>Título de la publicación</span>
-            <%= @evaluation_id.application_request.publication.title %>
+            <%= @evaluation.application_request.publication.title %>
           </label>
         </div>
 
@@ -47,31 +47,29 @@
           <span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span>
           <hr>
           <tr>
-            <th>Criterio</th>
-            <th>Calificación</th>
+          <%= fields_for @evaluations_criteria do |g| %>
+            <td><%= @criteria.find(1).criterion %></td>
+
+          <% end %>
           </tr>
           <tr>
-            <%#= @evaluations_criteria.evaluations.id(1) %>
-            <%= f.number_field :score %>
-          </tr>
-          <tr>
-            <td>Criterio 2</td>
+            <td><%= @criteria.find(2).criterion %></td>
             <%#= f.number_field :score %>
           </tr>
           <tr>
-            <td>Criterio 3</td>
+            <td><%= @criteria.find(3).criterion %></td>
             <%#= f.number_field :score %>
           </tr>
           <tr>
-            <td>Criterio 4</td>
+            <td><%= @criteria.find(4).criterion %></td>
             <%#= f.number_field :score %>
           </tr>
           <tr>
-            <td>Criterio 5</td>
+            <td><%= @criteria.find(5).criterion %></td>
             <%#= f.number_field :score %>
           </tr>
           <tr>
-            <td>Criterio 6</td>
+            <td><%= @criteria.find(6).criterion %></td>
             <%#= f.number_field :score %>
           </tr>
 
@@ -88,27 +86,23 @@
          <span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span>
          <hr>
          <tr>
-           <th>Criterio</th>
-           <th>Calificación</th>
-         </tr>
-         <tr>
-           <td>Criterio 1</td>
+           <td><%= @criteria.find(7).criterion %></td>
            <%#= f.number_field :score %>
          </tr>
          <tr>
-           <td>Criterio 2</td>
+           <td><%= @criteria.find(8).criterion %></td>
            <%#= f.number_field :score %>
          </tr>
          <tr>
-           <td>Criterio 3</td>
+           <td><%= @criteria.find(9).criterion %></td>
            <%#= f.number_field :score %>
          </tr>
          <tr>
-           <td>Criterio 4</td>
+           <td><%= @criteria.find(10).criterion %></td>
            <%#= f.number_field :score %>
          </tr>
          <tr>
-           <td>Criterio 5</td>
+           <td><%= @criteria.find(11).criterion %></td>
            <%#= f.number_field :score %>
          </tr>
        </table>
@@ -167,19 +161,19 @@
             <th>Selección</th>
           </tr>
           <tr>
-            <td>Público 1</td>
+            <td>Intradisciplinario: público altamente especializado, de modo tal que requiere pertenecer a la misma área para poder comprender el contenido.</td>
             <td><%= f.radio_button :target_audience, 1 %></td>
           </tr>
           <tr>
-            <td>Público 2</td>
+            <td>Interdisciplinario: público especializado interesado en cruzar las fronteras del conocimiento y de la disciplina (pertenece a la misma disciplina, pero trabaja en áreas diversas).</td>
             <td><%= f.radio_button :target_audience, 2 %></td>
           </tr>
           <tr>
-            <td>Público 3</td>
+            <td>En formación: estudiantes en una dimensión amplia que abarca todos los niveles del sistema educativo.</td>
             <td><%= f.radio_button :target_audience, 3 %></td>
           </tr>
           <tr>
-            <td>Público 4</td>
+            <td>General: lectores no especializados, interesados en información puntual.</td>
             <td><%= f.radio_button :target_audience, 4 %></td>
           </tr>
         </table>

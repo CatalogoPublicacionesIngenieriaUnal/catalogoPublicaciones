@@ -32,7 +32,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-
 # gem for postgresql
 
 gem 'will_paginate', '>= 3.1'
@@ -82,5 +81,3 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bcrypt', platforms: :ruby
-
-gem 'prawn'

@@ -13,13 +13,19 @@
         <li>
           <span class="inf">Titulo</span>
           <span class="value">
+            <% unless @application_request.publication %>
+            <% else %>
             <%= @application_request.publication.title %>
+            <% end %>
           </span>
         </li>
         <li>
           <span class="inf">Resumen</span>
           <span class="value">
+            <% unless @application_request.publication %>
+            <% else %>
             <%= @application_request.publication.abstract %>
+            <% end %>
           </span>
         </li>
         <li>
@@ -44,6 +50,42 @@
           <span class="inf">Estado</span>
           <span class="value">
             <%= @application_request.state %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Tema</span>
+          <span class="value">
+            <%= @application_request.author_topic %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Publico al cual va dirigido</span>
+          <span class="value">
+            <%= @application_request.author_target_audience %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Estrategias de posicionamiento</span>
+          <span class="value">
+            <%= @application_request.author_positioning_strategies %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Valoracion academica</span>
+          <span class="value">
+            <%= @application_request.author_academic_appreciation %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Titulos del autor</span>
+          <span class="value">
+            <%= @application_request.author_published_titles %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Recomendacion final</span>
+          <span class="value">
+            <%= @application_request.author_final_recomendation %>
           </span>
         </li>
         <li>

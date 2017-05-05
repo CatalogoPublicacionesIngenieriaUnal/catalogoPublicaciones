@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="text-center">
+    <div class="col-md-10" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Registro</h1>
+    </div>
+  </div>
+  <div class="col-sm-10">
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= form_for(application_request) do |f| %>
+        <% if application_request.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(application_request.errors.count, "error") %> prohibited this application_request from being saved:</h2>
+
+          <ul>
+            <% application_request.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+
+        <div class="form-title-row">
+          <h1>Formato A</h1>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Estado</span>
+            <%= f.select :state, ApplicationRequest.states.keys.map { |w| [w.humanize, w] }, prompt: "Seleccione un estado" %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Profesor</span>
+            <%= f.select :professor_id, options_from_collection_for_select(@professors, "id", "first_name"),:prompt => "Seleccione un prof" %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>a) Tema</span>
+            <%= f.text_field :author_topic %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>b) Publico al cual va dirigido</span>
+            <%= f.text_field :author_target_audience %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>c) Estrategias de posicionamiento</span>
+            <%= f.text_field :author_positioning_strategies %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>d) Valoración acádemica</span>
+            <%= f.text_field :author_academic_appreciation %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Referencia de otros titulos publicados</span>
+            <%= f.text_area :author_published_titles %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Recomendacion final</span>
+            <%= f.text_area :author_final_recomendation%>
+          </label>
+        </div>
+
+        <div class="actions">
+          <%= f.submit :"Crear solicitud", :class => "button" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', professor_home_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

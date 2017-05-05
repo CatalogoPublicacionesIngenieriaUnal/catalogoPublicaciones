@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators
-  resources :publications
+  resources :publications do
+    resources :application_requests, shallow: true
+  end
   resources :evaluations do
     resources :evaluators, shallow: true
   end

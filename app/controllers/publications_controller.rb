@@ -169,9 +169,9 @@ class PublicationsController < ApplicationController
     end
 
     respond_to do |format|
-       format.json {
-         render :json => custom_json
-       }
+      format.json {
+        render :json => custom_json
+      }
     end
   end
 
@@ -192,9 +192,9 @@ class PublicationsController < ApplicationController
     end
 
     respond_to do |format|
-       format.json {
-         render :json => custom_json
-       }
+      format.json {
+        render :json => custom_json
+      }
     end
   end
 

@@ -27,7 +27,7 @@ end
 
 Criterium.create!([{criterion_type: :general, criterion: "El material constituye un aporte válido,"\
     "vigente y relevante para el área de conocimiento en la cual se inscribe"},
-  {criterion_type: :general, criterion: "El material es resultado de un proceso maduro de"\
+  {criterion_type: :general, criterion: "El material es resultado de un proceso maduro de"\
     "investigación o reflexión: su contenido es producto de un desarrollo conceptual"\
     "completo y del contraste crítico con otras investigaciones afines"},
   {criterion_type: :general, criterion: "Está debidamente estructurado y argumentado"\
@@ -67,7 +67,7 @@ for i in 0..20
   application_requests = ApplicationRequest.create!(state: :'En creación', professor_id: professor.id)
 
   publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
-  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20), application_request_id: application_requests.id)
+  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
 
   publication.application_request_id = application_requests.id
   publication.save!
@@ -77,7 +77,7 @@ for i in 0..20
 
   for i in 0..Faker::Number.between(0, 5)
     ProfessorPublication.create!(publication_id: publication.id,
-    professor_id: Professor.find( Faker::Number.between(1, 51)).id)
+    professor_id: Professor.find( Faker::Number.between(1, 51)))
   end
 
 end
@@ -92,7 +92,7 @@ for i in 0..20
   author_published_titles: Faker::Lorem.paragraph, author_final_recomendation: Faker::Hipster.paragraph)
 
   publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
-  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20), application_request_id: application_requests.id)
+  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
 
   publication.application_request_id = application_requests.id
   publication.save!
@@ -102,7 +102,7 @@ for i in 0..20
 
   for i in 0..Faker::Number.between(0, 5)
     ProfessorPublication.create!(publication_id: publication.id,
-    professor_id: Professor.find( Faker::Number.between(1, 51)).id)
+    professor_id: Professor.find( Faker::Number.between(1, 51)))
   end
 
 end
@@ -118,7 +118,7 @@ for i in 0..20
   author_published_titles: Faker::Lorem.paragraph, author_final_recomendation: Faker::Hipster.paragraph)
 
   publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
-  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20), application_request_id: application_requests.id)
+  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
 
   publication.application_request_id = application_requests.id
   publication.save!
@@ -128,7 +128,7 @@ for i in 0..20
 
   for i in 0..Faker::Number.between(0, 5)
     ProfessorPublication.create!(publication_id: publication.id,
-    professor_id: Professor.find( Faker::Number.between(1, 51)).id)
+    professor_id: Professor.find( Faker::Number.between(1, 51)))
   end
 
   for j in 0..1
@@ -139,4 +139,5 @@ for i in 0..20
     institution: Faker::Company.name, degree: Faker::Company.profession,
     degree_institution: Faker::University.name , is_locked: false)
   end
+
 end

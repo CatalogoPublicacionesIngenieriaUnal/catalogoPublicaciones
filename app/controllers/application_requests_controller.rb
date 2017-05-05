@@ -19,7 +19,6 @@ class ApplicationRequestsController < ApplicationController
   def new
     @application_request = ApplicationRequest.new
     @publication = params[:publication]
-    @professor = current_professor.id
   end
 
   def edit
@@ -30,9 +29,11 @@ class ApplicationRequestsController < ApplicationController
   # POST /application_requests.json
   def create
     @application_request = ApplicationRequest.new(application_request_params_a)
+    @application_request.professor_id = current_professor.id
+    @application_request.state = :'En creación'
     respond_to do |format|
       if @application_request.save
-        format.html { redirect_to @application_request, notice: 'Application request was successfully created.' }
+        format.html { redirect_to @application_request.publication, notice: 'Application request was successfully created.' }
         format.json { render :show, status: :created, location: @application_request }
       else
         format.html { render :new }
@@ -83,8 +84,8 @@ class ApplicationRequestsController < ApplicationController
   end
 
   def application_request_params_a
-    params.require(:application_request).permit(:state, :professor_id, :author_topic,
-    :author_target_audience, :author_positioning_strategies, :author_academic_appreciation,
-    :author_published_titles, :author_final_recomendation, :publication_id)
+    params.require(:application_request).permit(:author_topic, :author_target_audience,
+    :author_positioning_strategies, :author_academic_appreciation, :author_published_titles,
+    :author_final_recomendation, :publication_id)
   end
 end

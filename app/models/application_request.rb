@@ -9,7 +9,7 @@ class ApplicationRequest < ApplicationRecord
 
   validates :state, presence: true
 
-  enum state: [:'En espera', :'En evaluación', :'Aprobado', :'Rechazado']
+  enum state: ['En creación', 'En espera', 'En evaluación', 'Aprobado', 'Rechazado']
 
   def document_loaded?(doc_category)
     attatchments.where(category: doc_category).first.nil?

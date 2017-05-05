@@ -30,13 +30,6 @@
 
         <div class="form-row">
           <label>
-            <span>Estado</span>
-            <%= f.select :state, ApplicationRequest.states.keys.map { |w| [w.humanize, w] }, prompt: "Seleccione un estado" %>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>
             <span>a) Tema</span>
             <%= f.text_field :author_topic %>
           </label>

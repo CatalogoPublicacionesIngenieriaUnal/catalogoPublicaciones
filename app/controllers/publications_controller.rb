@@ -150,7 +150,7 @@ class PublicationsController < ApplicationController
   end
   helper_method :customJson
 
-  def dataTest
+  def dataCateg
     custom_json = []
     categories = Category.all
     publications = Publication.all
@@ -194,6 +194,55 @@ class PublicationsController < ApplicationController
          render :json => custom_json
        }
     end
+  end
+
+  def dataCategTest
+    golden_ratio_conjugate = 0.618033988749895
+    h = rand
+    custom_json = []
+    categories = Category.all
+    publications = Publication.all
+    categories.each do |categoria|
+      cuenta = publications.where( :category_id => categoria.id ).count
+      h += golden_ratio_conjugate
+      h %= 1
+      rgb = hsv_to_rgb( h, 0.5, 0.95 )
+      single = {
+        "label" => categoria.category,
+        "value" => cuenta,
+        "color" => rgb_pls( rgb[0], rgb[1], rgb[2] )
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
+       format.json {
+         render :json => custom_json
+       }
+    end
+  end
+
+  def hsv_to_rgb(h, s, v)
+    h_i = (h * 6).to_i
+    f = h * 6 - h_i
+    p = v * (1 - s)
+    q = v * (1 - f * s)
+    t = v * (1 - (1 - f) * s)
+    r, g, b = v, t, p if h_i==0
+    r, g, b = q, v, p if h_i==1
+    r, g, b = p, v, t if h_i==2
+    r, g, b = p, q, v if h_i==3
+    r, g, b = t, p, v if h_i==4
+    r, g, b = v, p, q if h_i==5
+    [(r*256).to_i, (g*256).to_i, (b*256).to_i]
+  end
+
+  def rgb_pls( r, g, b )
+    "##{to_hex r}#{to_hex g}#{to_hex b}"
+  end
+
+  def to_hex(n)
+    n.to_s(16).rjust(2,'0').upcase
   end
 
   private

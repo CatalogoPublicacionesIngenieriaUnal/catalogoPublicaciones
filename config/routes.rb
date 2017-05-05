@@ -17,8 +17,9 @@ Rails.application.routes.draw do
   get 'administrators/edit', to: 'administrators#edit', :as => :edit_current_administrator
   get 'application_requests/:id/authorize', to: 'application_requests#authorize', :as => :authorize_application
   get 'publications/statistics', to: 'publications#statistics', :as => :statistics
-  get 'publications/dataTest', :defaults => { :format => 'json' }
+  get 'publications/dataCateg', :defaults => { :format => 'json' }
   get 'publications/dataTheme', :defaults => { :format => 'json' }
+  get 'publications/dataCategTest', :defaults => { :format => 'json' }
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators
@@ -27,7 +28,7 @@ Rails.application.routes.draw do
     resources :evaluators, shallow: true
   end
   resources :application_requests, except: [:edit, :update] do
-    resources :attatchments, shallow: true, except: :new 
+    resources :attatchments, shallow: true, except: :new
   end
 
   resources :professors do

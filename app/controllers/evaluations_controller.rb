@@ -69,17 +69,18 @@ class EvaluationsController < ApplicationController
     @categories = Category.all
     @publications = Publication.all
     @criteria = Criterium.all
-    #@evaluations_criteria = Evaluation_criterium.all
-    if @evaluator
-      puts "la weas #{@evaluator}"
-      if(params[:evaluation][:code] == @evaluator.code && params[:evaluation][:url_token] == @evaluator.url_token)
-        @evaluation = Evaluation.find(@evaluator.evaluation_id)
-      else
-        redirect_to not_authorized_path
-      end
-    else
-      redirect_to :back
-    end
+    @application_requests = ApplicationRequest.all
+    @evaluations_criteria = EvaluationsCriterium.all
+    # if @evaluator
+    #   puts "la weas #{@evaluator}"
+    #   if(params[:evaluation][:code] == @evaluator.code && params[:evaluation][:url_token] == @evaluator.url_token)
+    #     @evaluation = Evaluation.find(@evaluator.evaluation_id)
+    #   else
+    #     redirect_to not_authorized_path
+    #   end
+    # else
+    #   redirect_to :back
+    # end
   end
 
   private

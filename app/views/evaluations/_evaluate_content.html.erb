@@ -17,34 +17,23 @@
         <div class="form-row">
           <label>
             <span>Título de la publicación</span>
-            <%#= @evaluation.publication.title %>
+            <%= @evaluation_id.application_request.publication.title %>
           </label>
         </div>
 
+        <div>Clasificación de la obra: Seleccione la obra según corresponda</div>
+        <br>
         <div class="form-row">
-          <label>
-            <span>Justificación</span>
-            <%= f.text_area :justification %>
-          </label>
+            <%= collection_radio_buttons(:evaluation, :publication_clasiffication, @categories, :id, :category, {:include_blank => false}) do |b|%>
+            <%= b.label { b.radio_button + " " + b.text } %><br>
+            <% end %>
         </div>
-        <div>Clasificación de la obra</div>
-
-        <div class="form-row", position: relative>
-          <label>
-            <span>Seleccione la obra según corresponda</span>
-            <%= collection_check_boxes(:evaluation, :publication_clasiffication, @categories, :id, :category, {:include_blank => false}, {:multiple => false}) %>
-            <span>Otro, ¿cuál?</span>
-            <%= f.text_field :publication_clasiffication %>
-          </label>
-        </div>
-
+        <div>En caso de que se trate de una traducción, especifique qué tipo de material fue traducido</div>
+        <br>
         <div class="form-row">
-          <label>
-            <span>En caso de que se trate de una traducción, especifique qué tipo de material fue traducido</span>
-            <%= collection_check_boxes(:evaluation, :"publication_translated_material", @categories, :id, :category, {:include_blank => false}, {:multiple => false}) %>
-            <span>Otro, ¿cuál?</span>
-            <%= f.text_field :publication_translated_material%>
-          </label>
+            <%= collection_radio_buttons(:evaluation, :"publication_translated_material", @categories, :id, :category, {:include_blank => false}) do |b| %>
+            <%= b.label { b.radio_button + " " + b.text } %><br>
+            <% end %>
         </div>
 
         <div class="form-row">
@@ -59,40 +48,31 @@
           <hr>
           <tr>
             <th>Criterio</th>
-            <th>Excelente [100-90]</th>
-            <th>Aceptable [89-60]</th>
-            <th>Deficiente[59-0]</th>
-            <th>N/A</th>
+            <th>Calificación</th>
           </tr>
           <tr>
-            <td>Criterio 1</td>
-            <td></td>
-            <td></td>
+            <%#= @evaluations_criteria.evaluations.id(1) %>
+            <%= f.number_field :score %>
           </tr>
           <tr>
             <td>Criterio 2</td>
-            <td></td>
-            <td></td>
+            <%#= f.number_field :score %>
           </tr>
           <tr>
             <td>Criterio 3</td>
-            <td></td>
-            <td></td>
+            <%#= f.number_field :score %>
           </tr>
           <tr>
             <td>Criterio 4</td>
-            <td></td>
-            <td></td>
+            <%#= f.number_field :score %>
           </tr>
           <tr>
             <td>Criterio 5</td>
-            <td></td>
-            <td></td>
+            <%#= f.number_field :score %>
           </tr>
           <tr>
             <td>Criterio 6</td>
-            <td></td>
-            <td></td>
+            <%#= f.number_field :score %>
           </tr>
 
         </table>
@@ -109,37 +89,28 @@
          <hr>
          <tr>
            <th>Criterio</th>
-           <th>Excelente [100-90]</th>
-           <th>Aceptable [89-60]</th>
-           <th>Deficiente[59-0]</th>
-           <th>N/A</th>
+           <th>Calificación</th>
          </tr>
          <tr>
            <td>Criterio 1</td>
-           <td></td>
-           <td></td>
+           <%#= f.number_field :score %>
          </tr>
          <tr>
            <td>Criterio 2</td>
-           <td></td>
-           <td></td>
+           <%#= f.number_field :score %>
          </tr>
          <tr>
            <td>Criterio 3</td>
-           <td></td>
-           <td></td>
+           <%#= f.number_field :score %>
          </tr>
          <tr>
            <td>Criterio 4</td>
-           <td></td>
-           <td></td>
+           <%#= f.number_field :score %>
          </tr>
          <tr>
            <td>Criterio 5</td>
-           <td></td>
-           <td></td>
+           <%#= f.number_field :score %>
          </tr>
-
        </table>
        <hr>
 
@@ -149,18 +120,21 @@
             <%= f.text_area :writing_score_jistification %>
           </label>
         </div>
-        <div>Decisión final</div>
+        <div>DECISIÓN FINAL</div>
+        <br>
+        <div>Considera que el material debe ser publicado:</div>
+        <br>
         <div class="form-row">
-          <label>
-            <span>Considera que el material debe ser publicado:</span>
-
-          </label>
+            <%= f.radio_button :disclosure_degree, 1 %> (1) Tal como está <br>
+            <%= f.radio_button :disclosure_degree, 2 %> (2) Con ligeras modificaciones <br>
+            <%= f.radio_button :disclosure_degree, 3 %> (3) Con modificaciones sustanciales <br>
+            <%= f.radio_button :disclosure_degree, 4 %> (4) De ninguna manera <br>
         </div>
         <div class="form-row">
           <label>
             <span>En caso de haber escogido las opciones 2 o 3 en el punto anterior, por favor especifique el tipo de modificacióna
             o modificaciones a realizar. En caso de haber escogido la opción 4, por favor realice el comentario pertinente.</span>
-            <%#= f.text_area :justification %>
+            <%= f.text_area :justification %>
           </label>
         </div>
         <div class="form-row">
@@ -177,13 +151,13 @@
             </div>
           </label>
         </div>
+        <div>El grado de divulgación de la obra es:</div>
+        <br>
         <div class="form-row">
-          <label>
-            <span>El grado de divulgación de la obra es:</span>
-            <%= f.radio_button :disclosure_degree, 1 %> Regional
-            <%= f.radio_button :disclosure_degree, 2 %> Nacional
-            <%= f.radio_button :disclosure_degree, 3 %> Internacional
-          </label>
+            <br>
+            <%= f.radio_button :disclosure_degree, 1 %> Regional <br>
+            <%= f.radio_button :disclosure_degree, 2 %> Nacional <br>
+            <%= f.radio_button :disclosure_degree, 3 %> Internacional <br>
         </div>
         <table style="width:100%">
           <span>El público lector al que está dirigida la obra es:</span>
@@ -223,7 +197,7 @@
               cuyos integrantes constituyan un público objetivo importante
               para la publicación(especifique ubicación geográfica y, de
               ser pertinente, fecha) </span>
-            <%#= f.text_area :justification %>
+            <%#= f.text_area :extra_target_audience %>
           </label>
         </div>
 

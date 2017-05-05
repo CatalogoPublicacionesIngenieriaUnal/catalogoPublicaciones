@@ -64,23 +64,19 @@ class EvaluationsController < ApplicationController
   end
 
   def evaluate
-    @evaluators = Evaluator.evaluator_by_email(params[:evaluation][:email])
-    @evaluation = Evaluation.new
-    @categories = Category.all
-    @publications = Publication.all
-    @criteria = Criterium.all
-    @application_requests = ApplicationRequest.all
-    @evaluations_criteria = EvaluationsCriterium.all
-    # if @evaluator
-    #   puts "la weas #{@evaluator}"
-    #   if(params[:evaluation][:code] == @evaluator.code && params[:evaluation][:url_token] == @evaluator.url_token)
-    #     @evaluation = Evaluation.find(@evaluator.evaluation_id)
-    #   else
-    #     redirect_to not_authorized_path
-    #   end
-    # else
-    #   redirect_to :back
-    # end
+    @evaluator = Evaluator.evaluator_by_email(params[:evaluation][:email])
+    unless @evaluator.nil?
+      if(params[:evaluation][:code] == @evaluator.code && params[:evaluation][:url_token] == @evaluator.url_token)
+        @evaluation = Evaluation.find(@evaluator.evaluation_id)
+        @categories = Category.all
+        @criteria = Criterium.all
+        @evaluations_criteria = EvaluationsCriterium.all
+      else
+        redirect_to not_authorized_path
+      end
+    else
+      redirect_to :back
+    end
   end
 
   private

@@ -17,7 +17,7 @@
         <div class="form-row">
           <label>
             <span>Título de la publicación</span>
-            <%= @evaluation_id.application_request.publication.title %>
+            <%= @evaluation.application_request.publication.title %>
           </label>
         </div>
 
@@ -52,7 +52,7 @@
           </tr>
           <tr>
             <%#= @evaluations_criteria.evaluations.id(1) %>
-            <%= f.number_field :score %>
+            <%#= f.number_field :score %>
           </tr>
           <tr>
             <td>Criterio 2</td>

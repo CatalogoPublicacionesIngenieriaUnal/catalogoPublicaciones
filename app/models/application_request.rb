@@ -22,6 +22,12 @@ class ApplicationRequest < ApplicationRecord
     documents_loaded + professor_concept_completeness
   end
 
+  def total_application_fields
+    # 3 documentos
+    # 5 campos de concepto_editorial
+    return 8
+  end
+
   def self.load_applications_by_state_id(id, page = 1, per_page = 10)
     includes(:state).where("state_id = ?", id)
   end
@@ -56,12 +62,6 @@ class ApplicationRequest < ApplicationRecord
     count += 1 unless author_published_titles.nil?
     count += 1 unless author_final_recomendation.nil?
     return count
-  end
-
-  def total_application_fields
-    # 3 documentos
-    # 5 campos de concepto_editorial
-    return 8
   end
 
 end

@@ -4,6 +4,9 @@ class ApplicationRequest < ApplicationRecord
   has_many :evaluations
   has_many :evaluators, through: :evaluations
 
+  has_many  :application_request_editorial_concept_criteria
+  has_many  :editorial_concept_criteria, through: :application_request_editorial_concept_criteria
+
   belongs_to :publication
   belongs_to :professor
 

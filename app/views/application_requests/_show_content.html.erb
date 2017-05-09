@@ -96,14 +96,16 @@
         </li>
       </ul>
     </div>
-    <div><hr class="style13"></div>
-    <div class="form-basic-2">
-      <div class="li-custom" style="width:200px; float:left">
-        <%= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
-      </div>
-      <div class="li-custom" style="width:100px; float:right">
-        <%= link_to 'Volver', administrator_home_path %>
+  </div>
+    <div class="col-sm-10" style="padding: 0px 0px 20px 0px">
+      <div><hr class="style13"></div>
+      <div class="form-basic-2">
+        <div class="li-custom" style="width:200px; float:left">
+          <%= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
+        </div>
+        <div class="li-custom" style="width:100px; float:right">
+          <%= link_to 'Volver', :back %>
+        </div>
       </div>
     </div>
-  </div>
 </div>

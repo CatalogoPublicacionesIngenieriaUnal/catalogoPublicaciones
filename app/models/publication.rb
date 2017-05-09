@@ -31,6 +31,7 @@ class Publication < ApplicationRecord
     count += 1 unless abstract.nil?
     count += 1 unless title.nil?
     count += 1 unless theme_id.nil?
+    return (count*100)/total_request_fields
   end
 
   def total_request_fields

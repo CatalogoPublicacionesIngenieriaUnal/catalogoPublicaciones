@@ -26,8 +26,7 @@ class Publication < ApplicationRecord
 
   def request_completeness
     count = 0
-    count += application_request.documents_loaded
-    count += application_request.professor_concept_completeness
+    count += application_request.completeness
     count += 1 if keywords.count >= 1
     count += 1 unless abstract.nil?
     count += 1 unless title.nil?

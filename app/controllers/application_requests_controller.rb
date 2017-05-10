@@ -46,7 +46,7 @@ class ApplicationRequestsController < ApplicationController
 
   def create_evaluator
     @application_request.state = 'En evaluación'
-    evaluation = Evaluation.create(state: :sin_evaluar, application_request_id: @application_request.id)
+    evaluation = Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
     redirect_to new_evaluation_evaluator_path(evaluation.id)
   end
 

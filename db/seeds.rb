@@ -13,8 +13,10 @@ Administrator.create!(username: "root", email: "correofalso@unal.edu.co", first_
 Language.create!([{name: "Español"},{name: "Inglés"},{name: "Francés"},
   {name: "Alemán"},{name: "Ruso"}, {name: "Portugués"}])
 
-Category.create!([{category: "Revista"},{category: "Produccion Editorial"},
-  {category: "Antologia"},{category: "Articulo"}])
+Category.create!([{category: "Libro resultado de investigación"},{category: "Compilación de artículos de investigación"},
+  {category: "Compilación de ensayos"},{category: "Libro de texto de pregrado"},{category: "Libro de texto de posgrado"},
+  {category: "Antología de ponencias"},{category: "Libro de referencia"},{category: "Traducción"},
+  {category: "Edición académica de un texto literario"}])
 
 for i in 0..20
   Theme.create!(theme: Faker::Book.genre)

@@ -94,12 +94,12 @@ ActiveRecord::Schema.define(version: 20170426195648) do
 
   create_table "evaluations_criteria", force: :cascade do |t|
     t.integer  "score"
-    t.integer  "criteria_id"
-    t.integer  "evaluations_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["criteria_id"], name: "index_evaluations_criteria_on_criteria_id", using: :btree
-    t.index ["evaluations_id"], name: "index_evaluations_criteria_on_evaluations_id", using: :btree
+    t.integer  "criterium_id"
+    t.integer  "evaluation_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["criterium_id"], name: "index_evaluations_criteria_on_criterium_id", using: :btree
+    t.index ["evaluation_id"], name: "index_evaluations_criteria_on_evaluation_id", using: :btree
   end
 
   create_table "evaluators", force: :cascade do |t|
@@ -206,8 +206,8 @@ ActiveRecord::Schema.define(version: 20170426195648) do
   add_foreign_key "application_requests", "professors"
   add_foreign_key "attatchments", "application_requests"
   add_foreign_key "evaluations", "application_requests"
-  add_foreign_key "evaluations_criteria", "criteria", column: "criteria_id"
-  add_foreign_key "evaluations_criteria", "evaluations", column: "evaluations_id"
+  add_foreign_key "evaluations_criteria", "criteria"
+  add_foreign_key "evaluations_criteria", "evaluations"
   add_foreign_key "evaluators", "evaluations"
   add_foreign_key "evaluators", "languages"
   add_foreign_key "keyword_publications", "keywords"

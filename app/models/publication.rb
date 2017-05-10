@@ -1,4 +1,6 @@
 class Publication < ApplicationRecord
+
+  has_one  :application_request
   has_many :professor_publications
   has_many :professors, through: :professor_publications
   has_many :keyword_publications
@@ -8,7 +10,12 @@ class Publication < ApplicationRecord
   belongs_to :theme
   belongs_to :category
 
-  belongs_to :application_request
+
+  validates :title, presence: true
+  validates :abstract, presence: true
+  validates :category, presence: true
+  validates :theme, presence: true
+  # validates :keyword_publications, :length => { :minimum => 3}
 
   # before_validation(on: :create) do
   #   self.application_request_id = 1
@@ -16,6 +23,21 @@ class Publication < ApplicationRecord
   # #   application_request.save
   # #   self.application_request_id = application_request.id
   # end
+
+  def request_completeness
+    count = 0
+    count += application_request.completeness
+    count += 1 if keywords.count >= 1
+    count += 1 unless abstract.nil?
+    count += 1 unless title.nil?
+    count += 1 unless theme_id.nil?
+    return (count*100)/total_request_fields
+  end
+
+  def total_request_fields
+    return total_publication_fields + application_request.total_application_fields
+  end
+
 
   scope :publications_by_professor, -> (professor_id){
     includes(:professor_publications,:professors).where(professors:{id: professor_id})
@@ -38,6 +60,15 @@ class Publication < ApplicationRecord
     else
       all
     end
+  end
+
+  private
+  def total_publication_fields
+    # Titulo
+    # Tema
+    # Abstract
+    # Palabras claves
+    return 4
   end
 
 end

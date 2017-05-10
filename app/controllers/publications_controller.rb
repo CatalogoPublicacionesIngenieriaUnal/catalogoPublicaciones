@@ -4,6 +4,8 @@ class PublicationsController < ApplicationController
   # before_action :set_current_user, only: [:create_pdf]
   before_action :authenticate_administrator!, only: [:destroy]
   before_action :authorized?, only: [:new, :edit, :update, :create, :create_pdf]
+  before_action :set_attributes, only: [:new, :create]
+  before_action :set_attributes_edit, only: [:update, :edit]
 
 
   layout "unal"
@@ -27,6 +29,9 @@ class PublicationsController < ApplicationController
   # GET /publications/1
   # GET /publications/1.json
   def show
+    if @publication.application_request.nil?
+      redirect_to new_application_request_path(publication: @publication)
+    end
   end
 
   # GET /publications/new
@@ -58,13 +63,10 @@ class PublicationsController < ApplicationController
         @publication.keyword_publications.build(keyword_id: keyword)
       end
     end
-
-    application_request = ApplicationRequest.create(state: 'En espera', professor_id: current_professor.id)
-    @publication.application_request_id = application_request.id
     respond_to do |format|
       if @publication.save
         @publication.professors << current_professor
-        format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
+        format.html { redirect_to new_application_request_path(publication: @publication), notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else
         format.html { render :new }
@@ -167,9 +169,9 @@ class PublicationsController < ApplicationController
     end
 
     respond_to do |format|
-       format.json {
-         render :json => custom_json
-       }
+      format.json {
+        render :json => custom_json
+      }
     end
   end
 
@@ -190,9 +192,9 @@ class PublicationsController < ApplicationController
     end
 
     respond_to do |format|
-       format.json {
-         render :json => custom_json
-       }
+      format.json {
+        render :json => custom_json
+      }
     end
   end
 
@@ -201,6 +203,23 @@ class PublicationsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_publication
     @publication = Publication.find(params[:id])
+    @words = @publication.keyword_publications.build
+  end
+
+  def set_attributes
+    @publication = Publication.new
+    @categories = Category.all
+    @themes = Theme.all
+    @professors = Professor.all
+    @keywords = Keyword.all
+    @words = @publication.keyword_publications.build
+  end
+
+  def set_attributes_edit
+    @categories = Category.all
+    @themes = Theme.all
+    @professors = Professor.all
+    @keywords = Keyword.all
   end
   #
   # def set_current_user

@@ -1,0 +1,1 @@
+json.partial! "editorial_concept_criteria/editorial_concept_criterium", editorial_concept_criterium: @editorial_concept_criterium

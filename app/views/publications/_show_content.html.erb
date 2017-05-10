@@ -17,8 +17,8 @@
     <div><hr class="style13"></div>
     <center>
       <div class="progress" style="width:500px">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-          40%
+        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:<%= @publication.request_completeness %>%">
+          <%= @publication.request_completeness %>%
         </div>
       </div>
     </center>
@@ -62,37 +62,44 @@
             <%= @publication.application_request.state %>
           </span>
         </li>
+        <li>
+          <span class="inf">Profesores</span>
+          <span class="value">
+            <%= "#{Professor.find(@publication.professor_ids[0]).first_name}#{" "}#{Professor.find(@publication.professor_ids[0]).last_name}" %>
+          </span>
+        </li>
       </ul>
     </div>
 
     <div><hr class="style13"></div>
     <% if professor_signed_in? %>
-    <div class="li-custom" style="width:200px; float:left">
+    <div class="li-custom" style="width:100px; margin:auto; text-align:center">
       <%= link_to('Crear PDF', create_pdf_path) %>
     </div>
-    <div class="li-custom" style="width:100px; float:right">
-      <%= link_to 'Volver', professor_home_path %>
+    <br>
+    <div class="li-custom" style="width:100px; margin:auto; text-align:center">
+      <%= link_to 'Volver', :back %>
     </div>
     <% elsif administrator_signed_in? %>
-    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-      <%= link_to 'Volver', administrator_home_path %>
+    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px; text-align:center">
+      <%= link_to 'Volver', :back %>
     </div>
     <% end %>
 
+    <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
     <div><hr class="style13"></div>
-    <%- unless @publication.attatchments.get_attachment_by_category(:carta_presentacion) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :carta_presentacion%>
     <% end %>
-    <center><div style="width:720px"><hr class="style13"></div></center>
-    <%- unless @publication.attatchments.get_attachment_by_category(:concepto_editorial_a) %>
+
+    <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :concepto_editorial_a%>
     <% end %>
-    <center><div style="width:720px"><hr class="style13"></div></center>
-    <%- unless @publication.attatchments.get_attachment_by_category(:manuscrito) %>
+
+    <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :manuscrito%>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :editorial_concept_criteria
   resources :criteria
   devise_scope :professor do
     get "/logout" => "devise/sessions#destroy", as: :destroy_proffesor_session
@@ -26,8 +27,8 @@ Rails.application.routes.draw do
   resources :evaluations do
     resources :evaluators, shallow: true
   end
-  resources :application_requests, except: [:edit, :update] do
-    resources :attatchments, shallow: true, except: :new 
+  resources :application_requests do
+    resources :attatchments, shallow: true
   end
 
   resources :professors do

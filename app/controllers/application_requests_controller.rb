@@ -3,6 +3,7 @@ class ApplicationRequestsController < ApplicationController
   before_action :authorized?, only: [:new, :edit, :update, :create]
   before_action :authenticate_administrator!, only: [:index, :show, :destroy, :create_evaluator]
 
+  layout "unal"
   # GET /application_requests
   # GET /application_requests.json
   def index
@@ -17,18 +18,39 @@ class ApplicationRequestsController < ApplicationController
   # GET /application_requests/new
   def new
     @application_request = ApplicationRequest.new
+    @publication = params[:publication]
+  end
+
+  def edit
+    @professors = Professor.all
   end
 
   # POST /application_requests
   # POST /application_requests.json
   def create
-    @application_request = ApplicationRequest.new(application_request_params)
+    @application_request = ApplicationRequest.new(application_request_params_a)
+    @application_request.professor_id = current_professor.id
+    @application_request.state = :'En creación'
     respond_to do |format|
       if @application_request.save
-        format.html { redirect_to @application_request, notice: 'Application request was successfully created.' }
+        format.html { redirect_to @application_request.publication, notice: 'Application request was successfully created.' }
         format.json { render :show, status: :created, location: @application_request }
       else
         format.html { render :new }
+        format.json { render json: @application_request.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /publications/1
+  # PATCH/PUT /publications/1.json
+  def update
+    respond_to do |format|
+      if @application_request.update(application_request_params_a)
+        format.html { redirect_to @application_request, notice: 'Application request was successfully updated.' }
+        format.json { render :show, status: :ok, location: @application_request }
+      else
+        format.html { render :edit }
         format.json { render json: @application_request.errors, status: :unprocessable_entity }
       end
     end
@@ -51,13 +73,19 @@ class ApplicationRequestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_application_request
-      @application_request = ApplicationRequest.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_application_request
+    @application_request = ApplicationRequest.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def application_request_params
-      params.require(:application_request).permit(:state, :authorized_at, :professor_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def application_request_params
+    params.require(:application_request).permit(:state, :authorized_at, :professor_id)
+  end
+
+  def application_request_params_a
+    params.require(:application_request).permit(:author_topic, :author_target_audience,
+    :author_positioning_strategies, :author_academic_appreciation, :author_published_titles,
+    :author_final_recomendation, :publication_id)
+  end
 end

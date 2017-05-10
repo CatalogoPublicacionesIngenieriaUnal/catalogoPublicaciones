@@ -13,13 +13,19 @@
         <li>
           <span class="inf">Titulo</span>
           <span class="value">
+            <% unless @application_request.publication %>
+            <% else %>
             <%= @application_request.publication.title %>
+            <% end %>
           </span>
         </li>
         <li>
           <span class="inf">Resumen</span>
           <span class="value">
+            <% unless @application_request.publication %>
+            <% else %>
             <%= @application_request.publication.abstract %>
+            <% end %>
           </span>
         </li>
         <li>
@@ -47,6 +53,42 @@
           </span>
         </li>
         <li>
+          <span class="inf">Tema</span>
+          <span class="value">
+            <%= @application_request.author_topic %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Publico al cual va dirigido</span>
+          <span class="value">
+            <%= @application_request.author_target_audience %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Estrategias de posicionamiento</span>
+          <span class="value">
+            <%= @application_request.author_positioning_strategies %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Valoracion academica</span>
+          <span class="value">
+            <%= @application_request.author_academic_appreciation %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Titulos del autor</span>
+          <span class="value">
+            <%= @application_request.author_published_titles %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Recomendacion final</span>
+          <span class="value">
+            <%= @application_request.author_final_recomendation %>
+          </span>
+        </li>
+        <li>
           <span class="inf">Autorizado por: </span>
           <span class="value">
             <%= @application_request.authorized_at %>
@@ -54,14 +96,16 @@
         </li>
       </ul>
     </div>
-    <div><hr class="style13"></div>
-    <div class="form-basic-2">
-      <div class="li-custom" style="width:200px; float:left">
-        <%= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
-      </div>
-      <div class="li-custom" style="width:100px; float:right">
-        <%= link_to 'Volver', administrator_home_path %>
+  </div>
+    <div class="col-sm-10" style="padding: 0px 0px 20px 0px">
+      <div><hr class="style13"></div>
+      <div class="form-basic-2">
+        <div class="li-custom" style="width:200px; float:left">
+          <%= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
+        </div>
+        <div class="li-custom" style="width:100px; float:right">
+          <%= link_to 'Volver', :back %>
+        </div>
       </div>
     </div>
-  </div>
 </div>

@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationRequestEditorialConceptCriterium, type: :model do
+RSpec.describe EdConAppRequest, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

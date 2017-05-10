@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426195648) do
+ActiveRecord::Schema.define(version: 20170510234051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,23 @@ ActiveRecord::Schema.define(version: 20170426195648) do
     t.integer  "criterion_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+  end
+
+  create_table "ed_con_app_requests", force: :cascade do |t|
+    t.integer  "score"
+    t.string   "remark"
+    t.integer  "application_requests_id"
+    t.integer  "editorial_concept_criteria_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["application_requests_id"], name: "index_ed_con_app_requests_on_application_requests_id", using: :btree
+    t.index ["editorial_concept_criteria_id"], name: "index_ed_con_app_requests_on_editorial_concept_criteria_id", using: :btree
+  end
+
+  create_table "editorial_concept_criteria", force: :cascade do |t|
+    t.string   "criterium"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -206,6 +223,8 @@ ActiveRecord::Schema.define(version: 20170426195648) do
   add_foreign_key "application_requests", "professors"
   add_foreign_key "application_requests", "publications"
   add_foreign_key "attatchments", "application_requests"
+  add_foreign_key "ed_con_app_requests", "application_requests", column: "application_requests_id"
+  add_foreign_key "ed_con_app_requests", "editorial_concept_criteria", column: "editorial_concept_criteria_id"
   add_foreign_key "evaluations", "application_requests"
   add_foreign_key "evaluations_criteria", "criteria", column: "criteria_id"
   add_foreign_key "evaluations_criteria", "evaluations", column: "evaluations_id"

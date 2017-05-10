@@ -27,7 +27,6 @@ class EvaluationsController < ApplicationController
   # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(evaluation_params)
-
     respond_to do |format|
       if @evaluation.save
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully created.' }
@@ -43,6 +42,11 @@ class EvaluationsController < ApplicationController
   # PATCH/PUT /evaluations/1.json
   def update
     respond_to do |format|
+      params[:eval_criteria].each do |ev, score|
+        evaluations_criterium = EvaluationsCriterium.find(ev)
+        evaluations_criterium.score = score[:score]
+        evaluations_criterium.save
+      end
       if @evaluation.update(evaluation_params)
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
         format.json { render :show, status: :ok, location: @evaluation }
@@ -69,10 +73,7 @@ class EvaluationsController < ApplicationController
        if(params[:evaluation][:code] == @evaluator.code && params[:evaluation][:url_token] == @evaluator.url_token)
          @evaluation = Evaluation.find(@evaluator.evaluation_id)
          @categories = Category.all
-         @publications = Publication.all
-         @criteria = Criterium.all
-         @application_requests = ApplicationRequest.all
-         @evaluations_criteria = EvaluationsCriterium.all
+         @evaluations_criteria = EvaluationsCriterium.criteria_by_evaluation(@evaluation)
        else
          redirect_to not_authorized_path
        end
@@ -89,6 +90,6 @@ class EvaluationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def evaluation_params
-    params.require(:evaluation).permit(:justification, :state, :application_request_id)
+    params.require(:evaluation).permit(:justification, :state, :application_request_id, evaluations_criteria:[:score])
   end
 end

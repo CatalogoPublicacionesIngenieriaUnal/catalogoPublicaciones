@@ -43,36 +43,16 @@
           </label>
         </div>
         <div>Originalidad y relevancia del contenido </div>
-        <table style="width:100%">
           <span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span>
-          <hr>
-          <tr>
-          <%= fields_for @evaluations_criteria do |g| %>
-            <td><%= @criteria.find(1).criterion %></td>
-
-          <% end %>
-          </tr>
-          <tr>
-            <td><%= @criteria.find(2).criterion %></td>
-            <%#= f.number_field :score %>
-          </tr>
-          <tr>
-            <td><%= @criteria.find(3).criterion %></td>
-            <%#= f.number_field :score %>
-          </tr>
-          <tr>
-            <td><%= @criteria.find(4).criterion %></td>
-            <%#= f.number_field :score %>
-          </tr>
-          <tr>
-            <td><%= @criteria.find(5).criterion %></td>
-            <%#= f.number_field :score %>
-          </tr>
-          <tr>
-            <td><%= @criteria.find(6).criterion %></td>
-            <%#= f.number_field :score %>
-          </tr>
-
+        <table style="width:100%">
+          <%- @evaluations_criteria.type_general.each do |ev_criteria| %>
+          <%= fields_for 'eval_criteria[]', ev_criteria do |ec| %>
+            <tr>
+              <td><%=ev_criteria.criterium.criterion%></td>
+              <td><%=ec.number_field :score %></td>
+            </tr>
+              <% end %>
+            <% end %>
         </table>
         <hr>
         <div class="form-row">
@@ -84,27 +64,14 @@
         <div>Adecuación de la escritura y presentación</div>
        <table style="width:100%">
          <span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span>
-         <hr>
-         <tr>
-           <td><%= @criteria.find(7).criterion %></td>
-           <%#= f.number_field :score %>
-         </tr>
-         <tr>
-           <td><%= @criteria.find(8).criterion %></td>
-           <%#= f.number_field :score %>
-         </tr>
-         <tr>
-           <td><%= @criteria.find(9).criterion %></td>
-           <%#= f.number_field :score %>
-         </tr>
-         <tr>
-           <td><%= @criteria.find(10).criterion %></td>
-           <%#= f.number_field :score %>
-         </tr>
-         <tr>
-           <td><%= @criteria.find(11).criterion %></td>
-           <%#= f.number_field :score %>
-         </tr>
+         <%- @evaluations_criteria.type_writing.each do |ev_criteria| %>
+         <%= fields_for 'eval_criteria[]', ev_criteria do |ec| %>
+           <tr>
+             <td><%=ev_criteria.criterium.criterion%></td>
+             <td><%=ec.number_field :score %></td>
+           </tr>
+             <% end %>
+           <% end %>
        </table>
        <hr>
 

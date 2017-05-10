@@ -54,8 +54,8 @@ class PublicationsController < ApplicationController
     @publication = Publication.new(publication_params)
 
     params[:keywords][:ids].each do |keyword|
-      if !keyword.empty?
-        @publication.keyword_publications.build(:keyword_id => keyword)
+      unless keyword.empty?
+        @publication.keyword_publications.build(keyword_id: keyword)
       end
     end
 

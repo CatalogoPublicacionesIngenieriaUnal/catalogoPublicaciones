@@ -8,6 +8,7 @@ class ApplicationRequestsController < ApplicationController
   # GET /application_requests.json
   def index
     @application_requests = ApplicationRequest.all
+    @application_requests = ApplicationRequest.page(params[:page]).per_page(5)
   end
 
   # GET /application_requests/1

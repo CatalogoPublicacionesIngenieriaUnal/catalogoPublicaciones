@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510234051) do
+ActiveRecord::Schema.define(version: 20170511023048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20170510234051) do
   end
 
   create_table "attatchments", force: :cascade do |t|
-    t.string   "url",                    null: false
+    t.string   "pdf_document",           null: false
     t.integer  "category",               null: false
     t.integer  "application_request_id"
     t.datetime "created_at",             null: false

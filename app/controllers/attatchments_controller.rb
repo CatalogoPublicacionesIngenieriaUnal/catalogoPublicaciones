@@ -71,6 +71,6 @@ class AttatchmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def attatchment_params
-    params.require(:attatchment).permit(:url, :category, :application_request_id)
+    params.require(:attatchment).permit(:category, :application_request_id, :pdf_document)
   end
 end

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="text-center">
+    <div class="col-md-10" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Formulario B</h1>
+    </div>
+  </div>
+  <div class="col-sm-10">
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= form_for(@application_request, :url => form_b_create_path) do |f| %>
+        <% if application_request.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(application_request.errors.count, "error") %> prohibited this application_request from being saved:</h2>
+
+          <ul>
+            <% application_request.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <table style="width:100%">
+          <%- @editorial_concept_criteria.zip(@crits).each do |ed_criterium, crit| %>
+          <%= fields_for 'edit_criteria[]', crit do |ec| %>
+          <tr>
+            <td><%=ec.hidden_field :editorial_concept_criteria_id, value: ed_criterium.id%></td>
+            <td><%=ed_criterium.criterium%></td>
+            <td><%=ec.number_field :score %></td>
+            <td><%=ec.text_area :remark %></td>
+          </tr>
+          <% end %>
+          <% end %>
+          <div class="actions">
+            <%= f.submit :'Crear Evaluación' %>
+          </div>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', :back %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,8 +29,8 @@
           <tr>
             <td><%=ec.hidden_field :editorial_concept_criteria_id, value: ed_criterium.id%></td>
             <td><%=ed_criterium.criterium%></td>
-            <td><%=ec.number_field :score %></td>
-            <td><%=ec.text_area :remark %></td>
+            <td><%=ec.number_field :score, :required => true %></td>
+            <td><%=ec.text_area :remark, :required => true %></td>
           </tr>
           <% end %>
           <% end %>

@@ -18,7 +18,7 @@
           <th colspan="3"></th>
         </tr>
         <tbody>
-          <% @application_requests.each do |application_request| %>
+          <% @application_requests.ready_requests.each do |application_request| %>
           <tr>
             <td>
               <% if application_request.publication == nil %>

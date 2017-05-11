@@ -44,6 +44,10 @@ class ApplicationRequest < ApplicationRecord
     includes(:professors).where(professors:{id: professor_id})
   end
 
+  def self.ready_requests
+    where(state: :'En espera')
+  end
+
   private
 
   def documents_loaded

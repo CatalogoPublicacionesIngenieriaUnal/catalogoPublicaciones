@@ -15,19 +15,19 @@
         <br>
         <%= form_for(@application_request, :url => form_b_create_path) do |f| %>
         <table id="t01" style="width:100%">
-          <th>
-            <td width="25%">Criterio</td>
-            <td>Valoración</td>
-            <td>Observaciones al autor o unidad académica</td>
-          </th>
           <tr>
-            <td colspan="4", align="right" style="background-color:#eee;">1. Presentación del manuscrito</td>
+            <th width="25%">Criterio</th>
+            <th>Valoración</th>
+            <th>Observaciones al autor o unidad académica</th>
+          </tr>
+          <tr>
+            <td colspan="3", align="right" style="background-color:#eee;">1. Presentación del manuscrito</td>
           </tr>
           <%- @editorial_concept_criteria.zip(@crits).each do |ed_criterium, crit| %>
           <% if ed_criterium.id <= 5 %>
           <%= fields_for 'edit_criteria[]', crit do |ec| %>
           <tr>
-            <td><%=ec.hidden_field :editorial_concept_criteria_id, value: ed_criterium.id%></td>
+            <%=ec.hidden_field :editorial_concept_criteria_id, value: ed_criterium.id%>
             <td align="right"><%=ed_criterium.criterium%></td>
             <td><%=ec.number_field :score, :required => true %></td>
             <td><%=ec.text_area :remark, :required => true %></td>
@@ -36,13 +36,13 @@
           <% end %>
           <% end %>
           <tr>
-            <td colspan="4", align="right" style="background-color:#eee;">2. Adecuación a la pauta editorial de la Facultad (Manual editorial)</td>
+            <td colspan="3", align="right" style="background-color:#eee;">2. Adecuación a la pauta editorial de la Facultad (Manual editorial)</td>
           </tr>
           <%- @editorial_concept_criteria.zip(@crits).each do |ed_criterium, crit| %>
           <% if ed_criterium.id > 5 && ed_criterium.id <= 14 %>
           <%= fields_for 'edit_criteria[]', crit do |ec| %>
           <tr>
-            <td><%=ec.hidden_field :editorial_concept_criteria_id, value: ed_criterium.id%></td>
+            <%=ec.hidden_field :editorial_concept_criteria_id, value: ed_criterium.id%>
             <td><%=ed_criterium.criterium%></td>
             <td><%=ec.number_field :score, :required => true %></td>
             <td><%=ec.text_area :remark, :required => true %></td>
@@ -51,13 +51,13 @@
           <% end %>
           <% end %>
           <tr>
-            <td colspan="4", align="right" style="background-color:#eee;">3. Viabilidad editorial, económica y comercial</td>
+            <td colspan="3", align="right" style="background-color:#eee;">3. Viabilidad editorial, económica y comercial</td>
           </tr>
           <%- @editorial_concept_criteria.zip(@crits).each do |ed_criterium, crit| %>
           <% if ed_criterium.id > 14%>
           <%= fields_for 'edit_criteria[]', crit do |ec| %>
           <tr>
-            <td><%=ec.hidden_field :editorial_concept_criteria_id, value: ed_criterium.id%></td>
+            <%=ec.hidden_field :editorial_concept_criteria_id, value: ed_criterium.id%>
             <td><%=ed_criterium.criterium%></td>
             <td><%=ec.number_field :score, :required => true %></td>
             <td><%=ec.text_area :remark, :required => true %></td>

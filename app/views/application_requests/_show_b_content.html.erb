@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-md-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Resumen de la Publicación</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="info">
+      <ul class="info-list ">
+        <%- @editorial_concept_criteria.each do |ed_criterium| %>
+        <li>
+          <span class="inf"><%=ed_criterium.criterium%></span>
+          <span class="value">
+            SHIT DUDE
+          </span>
+        </span>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div class="col-sm-10" style="padding: 0px 0px 20px 0px">
+  <div><hr class="style13"></div>
+  <div class="form-basic-2">
+    <div class="li-custom" style="width:100px; float:right">
+      <%= link_to 'Volver', :back %>
+    </div>
+  </div>
+</div>
+</div>

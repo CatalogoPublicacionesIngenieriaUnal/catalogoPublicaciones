@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'evaluate/:id', to: 'evaluators#authenticate_evaluator', as: :authenticate_evaluator
   post 'evaluations/evaluate', to: 'evaluations#evaluate', as: :evaluate_publication
   get 'application_requests/:id/form_b', to: 'application_requests#form_b', as: :form_b
+  get 'application_requests/:id/show_b/', to: 'application_requests#show_b', as: :show_b
   patch 'application_requests/:id/form_b_create', to: 'application_requests#form_b_create', as: :form_b_create
   get 'professors/home', to: 'professors#home', :as => :professor_home
   get 'administrators/home', to: 'administrators#home', :as => :administrator_home

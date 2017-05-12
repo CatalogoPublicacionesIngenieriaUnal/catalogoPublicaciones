@@ -1,5 +1,5 @@
 class ApplicationRequestsController < ApplicationController
-  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator, :form_b, :form_b_create]
+  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator, :form_b, :form_b_create, :show_b]
   before_action :authorized?, only: [:new, :edit, :update, :create]
   before_action :authenticate_administrator!, only: [:index, :show, :destroy, :create_evaluator]
 
@@ -22,9 +22,13 @@ class ApplicationRequestsController < ApplicationController
     @publication = params[:publication]
   end
 
+  def show_b
+    @editorial_concept_criteria = EditorialConceptCriterium.all
+    @ed_con_app_request = EdConAppRequest.all
+  end
+
   def form_b
     @editorial_concept_criteria = EditorialConceptCriterium.all
-    # @ed_con_app_requests = EdConAppRequests.all
     @crits = []
     @editorial_concept_criteria.count.times do
       @crits << EdConAppRequest.new
@@ -37,7 +41,9 @@ class ApplicationRequestsController < ApplicationController
       EdConAppRequest.create!(editorial_concept_criterium_id: values[0],
       score: values[1], remark: values[2], application_request_id: @application_request.id)
     end
+    redirect_to show_b_url
   end
+
   def edit
     @professors = Professor.all
   end

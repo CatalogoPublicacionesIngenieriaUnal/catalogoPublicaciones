@@ -269,7 +269,7 @@ html{
 }
 
 .form-basic{
-  max-width: 720px;
+  width: 720px;
   margin: 0 auto;
   padding: 55px;
   box-sizing: border-box;
@@ -691,4 +691,20 @@ input:checked + .slider:before {
 .button2:hover{
   background-color: #97aac9;
   color: white;
+}
+
+table {
+    width:100%;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+table#t01 th {
+    background-color: black;
+    color: white;
 }

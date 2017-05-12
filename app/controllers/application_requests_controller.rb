@@ -24,7 +24,6 @@ class ApplicationRequestsController < ApplicationController
 
   def show_b
     @editorial_concept_criteria = EditorialConceptCriterium.all
-    @ed_con_app_request = EdConAppRequest.all
   end
 
   def form_b

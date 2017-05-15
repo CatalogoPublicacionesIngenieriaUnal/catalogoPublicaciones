@@ -7,6 +7,8 @@ class AddFieldsToApplicationRequest < ActiveRecord::Migration[5.0]
       t.string  :author_academic_appreciation
       t.text    :author_published_titles
       t.text    :author_final_recomendation
+      t.text    :editorial_aditional_recomendation
+      t.text    :editorial_remarks_to_author
     end
   end
 end

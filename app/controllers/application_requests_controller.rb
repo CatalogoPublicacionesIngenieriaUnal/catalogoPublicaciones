@@ -1,7 +1,7 @@
 class ApplicationRequestsController < ApplicationController
-  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator]
+  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator, :authorize_evaluation]
   before_action :authorized?, only: [:new, :edit, :update, :create]
-  before_action :authenticate_administrator!, only: [:index, :show, :destroy, :create_evaluator]
+  before_action :authenticate_administrator!, only: [:index, :show, :destroy, :create_evaluator, :authorize_evaluation]
 
   layout "unal"
   # GET /application_requests
@@ -70,6 +70,9 @@ class ApplicationRequestsController < ApplicationController
     @application_request.state = 'En evaluación'
     evaluation = Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
     redirect_to new_evaluation_evaluator_path(evaluation.id)
+  end
+
+  def authorize_evaluation
   end
 
   private

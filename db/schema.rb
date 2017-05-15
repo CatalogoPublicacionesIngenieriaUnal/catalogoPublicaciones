@@ -36,18 +36,20 @@ ActiveRecord::Schema.define(version: 20170511023048) do
   end
 
   create_table "application_requests", force: :cascade do |t|
-    t.integer  "state",                         null: false
+    t.integer  "state",                             null: false
     t.date     "authorized_at"
     t.integer  "publication_id"
     t.integer  "professor_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "author_topic"
     t.string   "author_target_audience"
     t.string   "author_positioning_strategies"
     t.string   "author_academic_appreciation"
     t.text     "author_published_titles"
     t.text     "author_final_recomendation"
+    t.text     "editorial_aditional_recomendation"
+    t.text     "editorial_remarks_to_author"
     t.index ["professor_id"], name: "index_application_requests_on_professor_id", using: :btree
     t.index ["publication_id"], name: "index_application_requests_on_publication_id", using: :btree
   end

@@ -11,7 +11,7 @@ class ApplicationRequest < ApplicationRecord
   belongs_to :professor
 
   validates :state, presence: true
-
+  
   enum state: ['En creación', 'En espera', 'En evaluación', 'Aprobado', 'Rechazado']
 
   def document_loaded?(doc_category)

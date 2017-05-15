@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   get 'application_requests/:id/new_evaluator/', to: 'application_requests#create_evaluator', as:  :add_evaluator
   get 'evaluate/:id', to: 'evaluators#authenticate_evaluator', as: :authenticate_evaluator
   post 'evaluations/evaluate', to: 'evaluations#evaluate', as: :evaluate_publication
-  get 'professors/home', to: 'professors#home', as: :professor_home
+  get 'application_requests/:id/form_b', to: 'application_requests#form_b', as: :form_b
+  get 'application_requests/:id/show_b/', to: 'application_requests#show_b', as: :show_b
+  patch 'application_requests/:id/form_b_create', to: 'application_requests#form_b_create', as: :form_b_create
+  get 'professors/home', to: 'professors#home', :as => :professor_home
   get 'administrators/home', to: 'administrators#home', :as => :administrator_home
   get 'professors/profile', to: 'professors#show', :as => :show_current_professor
   get 'professors/edit', to: 'professors#edit', :as => :edit_current_professor

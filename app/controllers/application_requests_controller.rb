@@ -1,5 +1,5 @@
 class ApplicationRequestsController < ApplicationController
-  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator, :authorize_evaluation]
+  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator, :form_b, :form_b_create, :show_b]
   before_action :authorized?, only: [:new, :edit, :update, :create]
   before_action :authenticate_administrator!, only: [:index, :show, :destroy, :create_evaluator, :authorize_evaluation]
 
@@ -8,6 +8,7 @@ class ApplicationRequestsController < ApplicationController
   # GET /application_requests.json
   def index
     @application_requests = ApplicationRequest.all
+    @application_requests = ApplicationRequest.page(params[:page]).per_page(5)
   end
 
   # GET /application_requests/1
@@ -19,6 +20,27 @@ class ApplicationRequestsController < ApplicationController
   def new
     @application_request = ApplicationRequest.new
     @publication = params[:publication]
+  end
+
+  def show_b
+    @editorial_concept_criteria = EditorialConceptCriterium.all
+  end
+
+  def form_b
+    @editorial_concept_criteria = EditorialConceptCriterium.all
+    @crits = []
+    @editorial_concept_criteria.count.times do
+      @crits << EdConAppRequest.new
+    end
+  end
+
+  def form_b_create
+    params[:edit_criteria].each do |ec|
+      values = ec.values
+      EdConAppRequest.create!(editorial_concept_criterium_id: values[0],
+      score: values[1], remark: values[2], application_request_id: @application_request.id)
+    end
+    redirect_to show_b_url
   end
 
   def edit

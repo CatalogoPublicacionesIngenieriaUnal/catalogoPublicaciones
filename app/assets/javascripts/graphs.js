@@ -103,6 +103,52 @@ function statusPie(){
   });
 }
 
+function profDptoPie(){
+  $.ajax({
+       type: "GET",
+       contentType: "application/json; charset=utf-8",
+       url: '../professors/dataDepartmentPie',
+       dataType: 'json',
+       success: function (data) {
+        //json_data = data;
+        console.log(data);
+        //graficarPie(data);
+        svg = d3.select("#graficas");
+        svg.selectAll("*").remove();
+        svg.append("g").attr("id","donuTest");
+        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        addText( data );
+       },
+      error: function (result) {
+        console.log("error");
+      },
+      async: false
+  });
+}
+
+function profGenderPie(){
+  $.ajax({
+       type: "GET",
+       contentType: "application/json; charset=utf-8",
+       url: '../professors/dataGenderPie',
+       dataType: 'json',
+       success: function (data) {
+        //json_data = data;
+        console.log(data);
+        //graficarPie(data);
+        svg = d3.select("#graficas");
+        svg.selectAll("*").remove();
+        svg.append("g").attr("id","donuTest");
+        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        addText( data );
+       },
+      error: function (result) {
+        console.log("error");
+      },
+      async: false
+  });
+}
+
 function addText( data ){
   svg = d3.select("#graficas");
   for( i = 0; i < Math.ceil(data.length / 8); i++ ){

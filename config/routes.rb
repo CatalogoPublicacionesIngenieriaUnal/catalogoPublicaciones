@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'publications/dataCategPie', :defaults => { :format => 'json' }
   get 'publications/dataThemePie', :defaults => { :format => 'json' }
   get 'publications/dataStatusPie', :defaults => { :format => 'json' }
+  get 'application_requests/index_others', to: 'application_requests#index_others', :as => :index_others
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators

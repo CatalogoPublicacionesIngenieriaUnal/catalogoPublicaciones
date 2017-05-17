@@ -3,7 +3,7 @@ class Attatchment < ApplicationRecord
   validates :category, presence: true
   validate :document_already_loaded?
 
-  enum category: [:carta_presentacion, :concepto_editorial_a, :manuscrito ]
+  enum category: [:carta_presentacion, :concepto_editorial_a, :concepto_editorial_b, :manuscrito ]
   mount_uploader :pdf_document, AttachmentUploader
 
   after_save  :check_completeness

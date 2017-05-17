@@ -1,14 +1,14 @@
 class ApplicationRequestsController < ApplicationController
-  before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator, :form_b, :form_b_create, :show_b]
+  before_action :set_application_request, only: [:show, :edit, :update, :destroy,
+    :create_evaluator, :form_b, :form_b_create, :show_b, :authorize, :reject]
   before_action :authorized?, only: [:new, :edit, :update, :create]
-  before_action :authenticate_administrator!, only: [:index, :show, :destroy, :create_evaluator, :authorize_evaluation]
-
+  before_action :authenticate_administrator!, except: [:new, :edit, :update, :create]
+  before_action :in_evaluation?, except: [:show, :index, :show_b, :authorize, :reject_form]
   layout "unal"
   # GET /application_requests
   # GET /application_requests.json
   def index
-    @application_requests = ApplicationRequest.all
-    @application_requests = ApplicationRequest.page(params[:page]).per_page(5)
+    @application_requests = ApplicationRequest.ready_requests.page(params[:page]).per_page(5)
   end
 
   # GET /application_requests/1
@@ -28,17 +28,17 @@ class ApplicationRequestsController < ApplicationController
 
   def form_b
     @editorial_concept_criteria = EditorialConceptCriterium.all
-    @crits = []
-    @editorial_concept_criteria.count.times do
-      @crits << EdConAppRequest.new
+    if @application_request.ed_con_app_requests.count.zero?
+      @editorial_concept_criteria.each do |ed_concept|
+        EdConAppRequest.create!(application_request_id: @application_request.id, editorial_concept_criterium_id: ed_concept.id)
+      end
     end
+    @crits = @application_request.ed_con_app_requests
   end
 
   def form_b_create
-    params[:edit_criteria].each do |ec|
-      values = ec.values
-      EdConAppRequest.create!(editorial_concept_criterium_id: values[0],
-      score: values[1], remark: values[2], application_request_id: @application_request.id)
+    params[:edit_criteria].each do |id, ec|
+      EdConAppRequest.find(id).update!(score: ec.values[1], remark: ec.values[2])
     end
     redirect_to show_b_url
   end
@@ -94,7 +94,17 @@ class ApplicationRequestsController < ApplicationController
     redirect_to new_evaluation_evaluator_path(evaluation.id)
   end
 
-  def authorize_evaluation
+  def authorize
+  end
+
+  def reject
+  end
+
+  def reject_create
+    application_request = ApplicationRequest.find(params[:id])
+    remarks = params[:application_request][:editorial_remarks_to_authoreditorial_remarks_to_author]
+    application_request.update!(editorial_remarks_to_author: remarks, state: 'Rechazado')
+    redirect_to application_request
   end
 
   private
@@ -112,5 +122,8 @@ class ApplicationRequestsController < ApplicationController
     params.require(:application_request).permit(:author_topic, :author_target_audience,
     :author_positioning_strategies, :author_academic_appreciation, :author_published_titles,
     :author_final_recomendation, :publication_id)
+  end
+  def in_evaluation?
+    puts "Validar que no se modifique mientras esté en evaluacion"
   end
 end

@@ -7,6 +7,14 @@
       <h1 style="font-size:200%;">Resumen de la Publicación</h1>
       <p id="notice"><%= notice %></p>
     </div>
+    <%- if @application_request.ready_for_evaluation %>
+    <div><hr class="style13"></div>
+    <div class="info">
+      La publicacion está lista para ser evaluada
+      <%= button_to "Rechazar", application_request_reject_form_path, method: :get, data: { confirm: "sefuro?" }  %>
+      <%= button_to "enviar a evaluar", application_request_reject_form_path, data: { confirm: "sefuro?" }  %>
+    </div>
+    <% end %>
     <div><hr class="style13"></div>
     <div class="info">
       <ul class="info-list ">
@@ -97,6 +105,12 @@
       </ul>
     </div>
   </div>
+  <%- unless @application_request.document_loaded?(:concepto_editorial_b) && @application_request.form_b?  %>
+  <div><hr class="style13"></div>
+  <%= render 'attatchments/form', attatchment: Attatchment.new,
+  application_request: @application_request,
+  category: :concepto_editorial_b%>
+  <% end %>
     <div class="col-sm-10" style="padding: 0px 0px 20px 0px">
       <div><hr class="style13"></div>
       <div class="form-basic-2">
@@ -109,7 +123,7 @@
           <%#= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
         </div>
         <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-          <%= link_to 'Volver', :back %>
+          <%= link_to 'Volver', application_requests_path %>
         </div>
       </div>
     </div>

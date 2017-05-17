@@ -24,6 +24,7 @@ class Publication < ApplicationRecord
   # #   self.application_request_id = application_request.id
   # end
 
+
   def request_completeness
     count = 0
     count += application_request.completeness

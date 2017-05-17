@@ -11,7 +11,7 @@ class ApplicationRequest < ApplicationRecord
   belongs_to :professor
 
   validates :state, presence: true
-  
+
   enum state: ['En creación', 'En espera', 'En evaluación', 'Aprobado', 'Rechazado']
 
   def document_loaded?(doc_category)
@@ -26,6 +26,14 @@ class ApplicationRequest < ApplicationRecord
     # 3 documentos
     # 5 campos de concepto_editorial
     return 8
+  end
+
+  def form_b?
+    ed_con_app_requests.count == 19 ? true : false
+  end
+
+  def ready_for_evaluation
+    state == 'En espera' && form_b? && attatchments.count == 4 ? true : false
   end
 
   def self.load_applications_by_state_id(id, page = 1, per_page = 10)

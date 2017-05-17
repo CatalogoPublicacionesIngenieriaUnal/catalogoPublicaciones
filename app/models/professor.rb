@@ -27,6 +27,22 @@ class Professor < ApplicationRecord
     'Instituto de extensión e investigación IEI': 6
   }
 
+  enum identity_document_type:
+  {
+    'Cédula de ciudadanía': 1,
+    'Cédula de extranjería': 2,
+    'Pasaporte': 3
+  }
+
+  enum dependency:
+  {
+    'Vicedecanatura académica': 1,
+    'Vicedecanatura de investigación y extensión': 2,
+    'Dirección de bienestar': 3,
+    'Programa de relaciones internacionales': 4,
+    'Escuela doctoral': 5
+  }
+
   def ldap_before_save
      self.email = Devise::LDAP::Adapter.get_ldap_param(self.username,"mail").first
      self.first_name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenname").first

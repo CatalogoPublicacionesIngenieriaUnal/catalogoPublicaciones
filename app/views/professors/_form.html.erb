@@ -52,6 +52,27 @@
 
         <div class="form-row">
           <label>
+            <span>Tipo de identificación</span>
+            <%= f.select(:identity_document_type, Professor.identity_document_types.keys) %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Número de identificación</span>
+            <%= f.number_field :identity_document%>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Lugar de expedición</span>
+            <%= f.text_field :identity_document_issued%>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
             <span>Correo electrónico</span>
             <%= f.text_field :email, :disabled=>true%>
           </label>
@@ -61,6 +82,20 @@
           <label>
             <span>Departamento</span>
             <%= f.select(:department, Professor.departments.keys) %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Otra dependencia</span>
+            <%= f.select(:dependency, Professor.dependencies.keys) %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Cargo</span>
+            <%= f.text_field :position %>
           </label>
         </div>
 

@@ -1,0 +1,6 @@
+<% if @evaluator.errors.empty? %>
+  $('#product-modal').modal('hide');
+  window.location.href = "<%= application_request_path(@evaluator.evaluation.application_request) %>"
+<% else %>
+  alert('<%= @evaluator.errors.full_messages[0] %>');
+<% end %>

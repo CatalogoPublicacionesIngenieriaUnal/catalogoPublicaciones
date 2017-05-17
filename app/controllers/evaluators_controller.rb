@@ -37,16 +37,7 @@ class EvaluatorsController < ApplicationController
     @languages = Language.all
     @evaluator = Evaluator.new(evaluator_params)
     @evaluator.evaluation_id = params[:evaluation_id]
-    respond_to do |format|
-      if @evaluator.save
-        #JudgeMailer.welcome(@evaluator).deliver_now
-        format.html { redirect_to @evaluator, notice: 'El evaluador ha sido creado.' }
-        format.json { render :show, status: :created, location: @evaluator }
-      else
-        format.html { render :new }
-        format.json { render json: @evaluator.errors, status: :unprocessable_entity }
-      end
-    end
+    @evaluator.save
   end
 
   # PATCH/PUT /evaluators/1

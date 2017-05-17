@@ -10,7 +10,7 @@
           <tr>
             <%- if evaluation.evaluator.nil? %>
             <td colspan="3", align="right" style="background-color:#eee;">
-              Agregar Evaluador
+              <%= link_to "Agregar Evaluador", new_evaluation_evaluator_path(evaluation), remote: true %>
             </td>
             <%- else %>
             <td colspan="3", align="right" style="background-color:#eee;">

@@ -9,130 +9,139 @@
     </div>
     <div><hr class="style13"></div>
     <%- if @application_request.ready_for_evaluation %>
-    <div><hr class="style13"></div>
-    <div class="info">
-      La publicacion está lista para ser evaluada
-      <%= button_to "Rechazar", application_request_reject_form_path,
-      method: :get, data: { confirm: "seguro?" }  %>
-      <%= button_to "Enviar a evaluar", application_request_authorize_path,
-      method: :patch, data: { confirm: "seguro?" }  %>
-    </div>
-    <% end %>
-
-    <%- if @application_request.state == 'En evaluación' %>
-    <%= render 'authorize', application_request: @application_request%>
-    <div><hr class="style13"></div>
-    <% end %>
-
-    <div class="info">
-      <ul class="info-list ">
-        <li>
-          <span class="inf">Titulo</span>
-          <span class="value">
-            <% unless @application_request.publication %>
-            <% else %>
-            <%= @application_request.publication.title %>
-            <% end %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Resumen</span>
-          <span class="value">
-            <% unless @application_request.publication %>
-            <% else %>
-            <%= @application_request.publication.abstract %>
-            <% end %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Docente que publica</span>
-          <span class="value">
-            <%= "#{@application_request.professor.first_name}#{" "}#{@application_request.professor.last_name}" %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Correo electrónico</span>
-          <span class="value">
-            <%= @application_request.professor.email %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Departamento</span>
-          <span class="value">
-            <%= @application_request.professor.department %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Estado</span>
-          <span class="value">
-            <%= @application_request.state %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Tema</span>
-          <span class="value">
-            <%= @application_request.author_topic %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Publico al cual va dirigido</span>
-          <span class="value">
-            <%= @application_request.author_target_audience %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Estrategias de posicionamiento</span>
-          <span class="value">
-            <%= @application_request.author_positioning_strategies %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Valoracion academica</span>
-          <span class="value">
-            <%= @application_request.author_academic_appreciation %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Titulos del autor</span>
-          <span class="value">
-            <%= @application_request.author_published_titles %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Recomendacion final</span>
-          <span class="value">
-            <%= @application_request.author_final_recomendation %>
-          </span>
-        </li>
-        <li>
-          <span class="inf">Autorizado por: </span>
-          <span class="value">
-            <%= @application_request.authorized_at %>
-          </span>
-        </li>
-      </ul>
-    </div>
-  <!-- </div> -->
-  <%- unless @application_request.document_loaded?(:concepto_editorial_b) || !@application_request.form_b?  %>
-  <div><hr class="style13"></div>
-  <%= render 'attatchments/form', attatchment: Attatchment.new,
-  application_request: @application_request,
-  category: :concepto_editorial_b%>
-  <% end %>
-  <!-- <div class="col-sm-10" style="padding: 0px 0px 20px 0px"> -->
-    <div><hr class="style13"></div>
-    <div class="form-basic-2">
-      <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Evaluar', form_b_path %>
-        <%#= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
+    <div class="main-content" style="height:170px">
+      <div class="form-basic" style="height:220px">
+        La publicacion está lista para ser evaluada.
+        <div><hr class="style13"></div>
+        <div class="form-basic-2">
+          <div class="li-custom" style="float:right; padding:10px 10px 10px 10px">
+            <%= button_to "Rechazar", application_request_reject_form_path,
+            method: :get, style: :"background-color:#FF4233; color:black;", data: { confirm: "Esta seguro?" }  %>
+          </div>
+          <div class="li-custom" style="float:left; padding:10px 10px 10px 10px">
+            <%= button_to "Enviar a evaluar", application_request_authorize_path,
+            method: :patch, style: :"background-color:#49FF33; color:black;", data: { confirm: "Esta seguro?" }  %>
+          </div>
+        </div>
       </div>
-      <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Ver evaluacion', show_b_path %>
-        <%#= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
+    </div>
+      <div><hr class="style13"></div>
+      <% end %>
+
+      <%- if @application_request.state == 'En evaluación' %>
+      <%= render 'authorize', application_request: @application_request%>
+      <div><hr class="style13"></div>
+      <% end %>
+
+      <div class="info">
+        <ul class="info-list ">
+          <li>
+            <span class="inf">Titulo</span>
+            <span class="value">
+              <% unless @application_request.publication %>
+              <% else %>
+              <%= @application_request.publication.title %>
+              <% end %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Resumen</span>
+            <span class="value">
+              <% unless @application_request.publication %>
+              <% else %>
+              <%= @application_request.publication.abstract %>
+              <% end %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Docente que publica</span>
+            <span class="value">
+              <%= "#{@application_request.professor.first_name}#{" "}#{@application_request.professor.last_name}" %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Correo electrónico</span>
+            <span class="value">
+              <%= @application_request.professor.email %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Departamento</span>
+            <span class="value">
+              <%= @application_request.professor.department %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Estado</span>
+            <span class="value">
+              <%= @application_request.state %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Tema</span>
+            <span class="value">
+              <%= @application_request.author_topic %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Publico al cual va dirigido</span>
+            <span class="value">
+              <%= @application_request.author_target_audience %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Estrategias de posicionamiento</span>
+            <span class="value">
+              <%= @application_request.author_positioning_strategies %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Valoracion academica</span>
+            <span class="value">
+              <%= @application_request.author_academic_appreciation %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Titulos del autor</span>
+            <span class="value">
+              <%= @application_request.author_published_titles %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Recomendacion final</span>
+            <span class="value">
+              <%= @application_request.author_final_recomendation %>
+            </span>
+          </li>
+          <li>
+            <span class="inf">Autorizado por: </span>
+            <span class="value">
+              <%= @application_request.authorized_at %>
+            </span>
+          </li>
+        </ul>
       </div>
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', application_requests_path %>
+      <!-- </div> -->
+      <%- unless @application_request.document_loaded?(:concepto_editorial_b) || !@application_request.form_b?  %>
+      <div><hr class="style13"></div>
+      <%= render 'attatchments/form', attatchment: Attatchment.new,
+      application_request: @application_request,
+      category: :concepto_editorial_b%>
+      <% end %>
+      <!-- <div class="col-sm-10" style="padding: 0px 0px 20px 0px"> -->
+      <div><hr class="style13"></div>
+      <div class="form-basic-2">
+        <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Evaluar', form_b_path %>
+          <%#= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
+        </div>
+        <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Ver evaluacion', show_b_path %>
+          <%#= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
+        </div>
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', application_requests_path %>
+        </div>
       </div>
     </div>
   </div>
-</div>

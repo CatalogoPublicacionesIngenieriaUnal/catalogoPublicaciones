@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-md-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Motivos del rechazo</h1>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic">
+        <p>Escriba aquí los motivos por los que rechaza esta publicación.</p>
+        <%= form_for(@application_request, :url => application_request_reject_path) do |f| %>
+        <%=f.text_area :editorial_remarks_to_author, :required => true, style: :"height:400px;
+        width: 600px;" %>
+        <div class="actions" style="padding:20px">
+          <%= f.submit :"Rechazar publicación" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

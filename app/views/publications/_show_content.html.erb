@@ -86,19 +86,21 @@
     </div>
     <% end %>
 
-    <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
     <div><hr class="style13"></div>
+    <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :carta_presentacion%>
     <% end %>
 
+    <br>
     <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :concepto_editorial_a%>
     <% end %>
 
+    <br>
     <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,

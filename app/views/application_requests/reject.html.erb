@@ -1,13 +1,5 @@
-<div class="main-content">
-  <div class="form-basic">
-    <div class="form-title-row">
-      <h1><%= "Motivos del rechazo" %></h1>
-    </div>
-    <%= form_for(@application_request, :url => application_request_reject_path) do |f| %>
-      <%=f.text_area :editorial_remarks_to_author, :required => true %>
-    <div class="actions">
-      <%= f.submit :"Rechazar publicación"%>
-    </div>
-    <% end %>
-  </div>
-</div>
+<%= render 'static/header_unal_render' %>
+
+<%= render 'reject_content' %>
+
+<%= render 'static/footer_unal_render' %>

@@ -1,10 +1,10 @@
-<div class="main-content">
-  <div class="form-basic">
+<div class="main-content" >
+  <div class="form-basic" style="height:450px; width:820px">
     <div class="form-title-row">
-      <h1><%= "Agregar evluadores" %></h1>
+      <h1><%= "Agregar evaluadores" %></h1>
     </div>
     <div class="main-content">
-      <div class="form-basic" style="width:900px">
+      <div class="form-basic" style="width:100%">
         <table id="t01" style="width:100%">
           <% @application_request.evaluations.each do |evaluation| %>
           <tr>
@@ -20,10 +20,10 @@
           </tr>
           <tr>
             <% unless evaluation.evaluator.nil? %>
-              <th>algo</th>
-              <th>Informacion ficty 1 </th>
-              <th>Informacion ficty 2 </th>
-              <% end %>
+            <th>algo</th>
+            <th>Informacion ficty 1 </th>
+            <th>Informacion ficty 2 </th>
+            <% end %>
           </tr>
           <%end%>
         </table>

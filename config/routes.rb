@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'application_requests/:id/form_b', to: 'application_requests#form_b', as: :form_b
   get 'application_requests/:id/show_b/', to: 'application_requests#show_b', as: :show_b
   patch 'application_requests/:id/form_b_create', to: 'application_requests#form_b_create', as: :form_b_create
-  get 'application_request/:id/authorize_form', to: 'application_requests#authorize', as: :application_request_authorize
+  patch 'application_request/:id/authorize', to: 'application_requests#authorize', as: :application_request_authorize
   patch 'application_request/:id/reject_create', to: 'application_requests#reject_create', as: :application_request_reject
   get 'application_request/:id/reject', to: 'application_requests#reject', as: :application_request_reject_form
 

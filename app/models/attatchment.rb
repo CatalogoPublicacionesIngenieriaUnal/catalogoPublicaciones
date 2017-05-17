@@ -15,9 +15,7 @@ class Attatchment < ApplicationRecord
   private
 
   def check_completeness
-    puts "completo? = #{publication_complete?}"
-    application_request.state = 'En espera' if  publication_complete?
-    application_request.save!
+    application_request.update!(state: 'En espera') if publication_complete? && application_request.state == 'En creación' 
   end
 
   def document_already_loaded?

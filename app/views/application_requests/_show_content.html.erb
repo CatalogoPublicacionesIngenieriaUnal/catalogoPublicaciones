@@ -7,14 +7,22 @@
       <h1 style="font-size:200%;">Resumen de la Publicación</h1>
       <p id="notice"><%= notice %></p>
     </div>
+
     <%- if @application_request.ready_for_evaluation %>
     <div><hr class="style13"></div>
     <div class="info">
       La publicacion está lista para ser evaluada
-      <%= button_to "Rechazar", application_request_reject_form_path, method: :get, data: { confirm: "sefuro?" }  %>
-      <%= button_to "enviar a evaluar", application_request_reject_form_path, data: { confirm: "sefuro?" }  %>
+      <%= button_to "Rechazar", application_request_reject_form_path,
+       method: :get, data: { confirm: "sefuro?" }  %>
+      <%= button_to "enviar a evaluar", application_request_authorize_path,
+      method: :patch, data: { confirm: "sefuro?" }  %>
     </div>
     <% end %>
+
+    <%- if @application_request.state == 'En evaluación' %>
+    <%= render 'authorize', application_request: @application_request%>
+    <% end %>
+
     <div><hr class="style13"></div>
     <div class="info">
       <ul class="info-list ">
@@ -105,7 +113,7 @@
       </ul>
     </div>
   </div>
-  <%- unless @application_request.document_loaded?(:concepto_editorial_b) && @application_request.form_b?  %>
+  <%- unless @application_request.document_loaded?(:concepto_editorial_b) || !@application_request.form_b?  %>
   <div><hr class="style13"></div>
   <%= render 'attatchments/form', attatchment: Attatchment.new,
   application_request: @application_request,

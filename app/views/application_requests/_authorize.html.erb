@@ -1,0 +1,33 @@
+<div class="main-content">
+  <div class="form-basic">
+    <div class="form-title-row">
+      <h1><%= "Agregar evluadores" %></h1>
+    </div>
+    <div class="main-content">
+      <div class="form-basic" style="width:900px">
+        <table id="t01" style="width:100%">
+          <% @application_request.evaluations.each do |evaluation| %>
+          <tr>
+            <%- if evaluation.evaluator.nil? %>
+            <td colspan="3", align="right" style="background-color:#eee;">
+              Agregar Evaluador
+            </td>
+            <%- else %>
+            <td colspan="3", align="right" style="background-color:#eee;">
+              <%= evaluation.evaluator.get_name %>
+            </td>
+            <% end %>
+          </tr>
+          <tr>
+            <% unless evaluation.evaluator.nil? %>
+              <th>algo</th>
+              <th>Informacion ficty 1 </th>
+              <th>Informacion ficty 2 </th>
+              <% end %>
+          </tr>
+          <%end%>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

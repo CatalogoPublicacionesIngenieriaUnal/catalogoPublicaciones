@@ -4,6 +4,7 @@ class ApplicationRequestsController < ApplicationController
   before_action :authorized?, only: [:new, :edit, :update, :create]
   before_action :authenticate_administrator!, except: [:new, :edit, :update, :create]
   before_action :in_evaluation?, except: [:show, :index, :show_b, :authorize, :reject_form]
+  before_action :ready_to_evaluate?, only: :show
   layout "unal"
   # GET /application_requests
   # GET /application_requests.json
@@ -90,15 +91,19 @@ class ApplicationRequestsController < ApplicationController
 
   def create_evaluator
     @application_request.state = 'En evaluación'
-    evaluation = Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
     redirect_to new_evaluation_evaluator_path(evaluation.id)
   end
 
   def authorize
+    @application_request.update!(state: :'En evaluación')
+    if @application_request.evaluations.count < 2
+      Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
+      Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
+    end
+    redirect_to @application_request
   end
 
-  def reject
-  end
+  def reject;  end
 
   def reject_create
     application_request = ApplicationRequest.find(params[:id])
@@ -123,7 +128,14 @@ class ApplicationRequestsController < ApplicationController
     :author_positioning_strategies, :author_academic_appreciation, :author_published_titles,
     :author_final_recomendation, :publication_id)
   end
+
   def in_evaluation?
     puts "Validar que no se modifique mientras esté en evaluacion"
   end
+
+  def ready_to_evaluate?
+    @application_request = ApplicationRequest.find(params[:id])
+    @application_request.ready_for_evaluation
+  end
+
 end

@@ -68,7 +68,7 @@
     <div><hr class="style13"></div>
     <% if professor_signed_in? %>
     <div class="li-custom" style="width:200px; float:left">
-      <%= link_to('Crear PDF', create_pdf_path) %>
+      <%= link_to('Crear Carta de Presentación', create_carta_de_presentacion_path(format: :pdf)) %>
     </div>
     <div class="li-custom" style="width:100px; float:right">
       <%= link_to 'Volver', professor_home_path %>
@@ -85,6 +85,14 @@
     application_request: @publication.application_request,
     category: :carta_presentacion%>
     <% end %>
+
+    <div><hr class="style13"></div>
+    <% if professor_signed_in? %>
+    <div class="li-custom" style="width:200px; float:left">
+      <%= link_to('Crear Concepto Editorial', create_concepto_editorial_path(format: :pdf)) %>
+    </div>
+    <% end %>
+
     <center><div style="width:720px"><hr class="style13"></div></center>
     <%- unless @publication.attatchments.get_attachment_by_category(:concepto_editorial_a) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,

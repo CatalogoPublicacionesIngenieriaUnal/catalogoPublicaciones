@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8"></meta>
+	<script>
+		function number_pages() {
+			var vars={};
+			var x=document.location.search.substring(1).split('&');
+			for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
+			var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+			for(var i in x) {
+				var y = document.getElementsByClassName(x[i]);
+				for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+			}
+		}
+	</script>
+</head>
+<body onload="number_pages()">
+	<table border="1">
+			<tr>
+				<td rowspan="4">
+				<div>
+					<%= image_tag('Escudo_UN.png',options = { :width => 200, :height => 100}) %>
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<th rowspan="2">COMUNICACIÓN</th>
+				<th>Código: U-FT-03.002.025</th>
+			</tr>
+			<tr>
+				<th>Versión: 1.0</th>
+			</tr>
+			<tr>
+				<th>CONCEPTO EDITORIAL (EVALUACIÓN TÉCNICA)</th>
+				<th>Página <span class="page"></span> de <span class="topage"></span></th>
+			</tr>
+
+	</table>

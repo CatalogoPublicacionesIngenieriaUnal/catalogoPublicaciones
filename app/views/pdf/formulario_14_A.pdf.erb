@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8"></meta>
+</head>
+<body>
+  <h4>Instrucciones<h4>
+  <p>I. Este formato debe ser diligenciado de manera íntegra (todos los puntos
+    son de respuesta obligatoria, salvo que se especifique lo contrario).
+  </p>
+
+  <p>II. Para que el concepto editorial se considere válido, el formato debe
+    presentar firma, cédula y cargo de quien lo diligencia, es decir, el autor
+    del manuscrito en la parte A, o el editor, coordinador editorial, director
+    del comité editorial o del centro editorial de la unidad editora
+    correspondiente), en la parte B.
+  </p>
+
+  <h3>IDENTIFICACIÓN DEL MANUSCRITO</h3>
+
+  <p>
+    1. Fecha de elaboración de la evaluación: <%=%><br>
+    2. Título del manuscrito: <%= @publication.title %><br>
+    3. Autor: <%=%><br>
+    3. Unidad editorial: <%= @publication.publishing_unit %><br>
+  </p>
+
+  <h3>A. ESPACIOS A DILIGENCIAR POR PARTE DEL AUTOR DEL MANUSCRITO</h3>
+
+  <p>
+    Realice las observaciones que haya lugar, en cada uno de los siguientes criterios:
+  </p>
+
+  <table border='1'>
+    <tr>
+      <th colspan="2">1. Presentación del manuscrito</th>
+    </tr>
+    <tr>
+      <th>Criterio</th>
+      <th>Observaciones</th>
+    </tr>
+    <tr>
+      <th>a) Tema</th>
+      <th><%=%></th>
+    </tr>
+    <tr>
+      <th>b) Público al cual va dirigido</th>
+      <th><%=%></th>
+    </tr>
+    <tr>
+      <th>c) Estrategias de posicionamiento</th>
+      <th><%=%></th>
+    </tr>
+    <tr>
+      <th>d) Valoración académica</th>
+      <th><%=%></th>
+    </tr>
+    <tr>
+      <th colspan="2">2.	Referencia de otros títulos publicados</th>
+    </tr>
+    <tr>
+      <th>Referenciar otros títulos publicados, con características similares
+        al manuscrito, que se encuentren disponibles comercialmente </th>
+      <th><%=%></th>
+    </tr>
+  </table>
+  <p>
+    Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación)
+  </p>
+
+  <input type="text">
+
+  <p>
+    __________________________
+  </p>
+
+  <p>
+    <%= current_professor.first_name%> <%= current_professor.last_name %><br>
+    <%= current_professor.identity_document_type %> <%= current_professor.identity_document %> de <%= current_professor.identity_document_issued %><br>
+  </p>
+</body>
+</html>

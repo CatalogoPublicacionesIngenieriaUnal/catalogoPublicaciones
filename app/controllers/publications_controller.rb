@@ -1,6 +1,7 @@
 
 class PublicationsController < ApplicationController
-  before_action :set_publication, only: [:show, :edit, :update, :destroy]
+  before_action :set_publication, only: [:show, :edit, :update, :destroy,
+    :create_carta_de_presentacion, :create_concepto_editorial ]
   # before_action :set_current_user, only: [:create_pdf]
   before_action :authenticate_administrator!, only: [:destroy]
   before_action :authorized?, only: [:new, :edit, :update, :create, :create_pdf]
@@ -15,12 +16,18 @@ class PublicationsController < ApplicationController
       @publications = Publication.publications_by_professor(current_professor.id).page(params[:page]).per_page(5)
     else
       @publications = Publication.search(params[:search],params[:category]).page(params[:page]).per_page(5)
-
     end
     respond_to do |format|
       format.html
       format.json
-      format.pdf{render template: 'publications/formulario13', pdf:'formulario13'}
+      format.pdf do
+        render template: 'pdf/formulario_15', pdf:'formulario_15', page_size: 'Letter',
+          header: {
+            html: {
+              template: 'pdf/headers/header_formulario_15'
+            }
+          }
+      end
     end
   end
 
@@ -103,27 +110,34 @@ class PublicationsController < ApplicationController
   #   end
   # end
 
-  def create_pdf
-    curr_prof = current_professor
-    #p "#{@current_professor.first_name}"
-    publ = Publication.find(params[:id])
-    #tema = Theme.find(params[:theme_id])
-    Prawn::Document.generate("public/publication.pdf", :margin => [10,80,80,80] ) do
-      image "#{Rails.root}/public/logopdf.png", :position => :center, :scale => 0.16
-      move_down 40
-      font("Times-Roman") do
-        text "#{curr_prof.first_name} #{curr_prof.last_name}"
-        + " quiero publicar la " + publ.category.category + ' con el titulo "' + publ.title + '" y de tema ' + publ.theme.theme
-        text 'Resumen: "' + publ.abstract + '"', :align => :justify
-        # publ.professors.each do |profe|
-        #   text "Yo, " + profe.first_name + " " + profe.last_name
-        #   text 'Resumen: "' + publ.abstract + '"', :align => :justify
-        # end
+  def create_carta_de_presentacion
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render template: 'pdf/formulario_13', pdf:'formulario_13', page_size: 'Letter',
+        header: {
+          html: {
+            template: 'pdf/headers/header_formulario_13'
+          }
+        }
       end
-      #text publ.current_professor.username
-      #text tema.theme
     end
-    redirect_to :back
+  end
+
+  def create_concepto_editorial
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render template: 'pdf/formulario_14_A', pdf:'formulario_14_A', page_size: 'Letter',
+          header: {
+            html: {
+              template: 'pdf/headers/header_formulario_14'
+            }
+          }
+      end
+    end
   end
 
   def statistics

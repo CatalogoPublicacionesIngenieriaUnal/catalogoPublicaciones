@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8"></meta>
+</head>
+<body>
+	<p>
+		Yo, <%= current_professor.first_name%> <%= current_professor.last_name %>,
+		mayor de edad, domiciliado en <%=%>, identificado con <%= current_professor.identity_document_type %>
+		número <%= current_professor.identity_document %> expedida en
+		<%= current_professor.identity_document_issued %>, actuando en nombre y
+		representación propia, y que en adelante se conocerá como el AUTOR
+		del manuscrito titulado <%= @publication.title %>, por medio del presente
+		documento pongo a disposición de <%= Administrator.find(1).first_name %>
+		<%= Administrator.find(1).last_name %> el manuscrito ya mencionado a fin de
+		que el mismo sea evaluado por parte del comité editorial, para luego precisar
+		los términos en que se realizará la publicación. Dichos términos quedarán
+		consignados en el eventual contrato de edición, coedición o cesión de derechos
+		patrimoniales según sea el caso.<br>
+	</p>
+	<p>
+		Es de señalar que el presente documento no es un contrato de edición, ni otro
+		semejante. Ni tampoco tiene por objeto transferir el derecho patrimonial de
+		la obra. Por el contrario, el presente documento es la autorización que le
+		brinda el Autor o titular del derecho patrimonial de autor a <%= Administrator.find(1).first_name%> <%= Administrator.find(1).last_name%>
+		para iniciar las gestiones necesarias para la evaluación académica del manuscrito.<br>
+	</p>
+	<p>
+		Finalmente, hacemos constar que el contenido del manuscrito es inédito y no
+		se ha suscrito contrato de edición con ninguna otra empresa y/o casa editorial,
+		y que las fotografías, las ilustraciones, la música, los videos, el software, y
+		en general todo el material utilizado en el manuscrito mencionado, son de propiedad
+		del autor(es) o cuentan con las autorizaciones escritas para ser incluidos en el libro.<br>
+	</p>
+	<p>
+		Dada en Bogotá, a los <%=Date.today.day.to_words%>
+		  (<%=Date.today.day%>) días del mes <%= Date.today.strftime("%B") %> de <%=Date.today.year%>.<br>
+	</p>
+	<p>
+		Cordialmente,<br>
+	</p>
+	<p>
+		Autor 1.<br>
+		Nombre:<%= current_professor.first_name%> <%= current_professor.last_name%><br>
+		No. de documento de identidad: <%= current_professor.identity_document %><br>
+		Facultad y dependencia: <%= current_professor.department %><br>
+		Cargo: <%=  %><br>
+		Teléfono: <%= current_professor.contact_number %><br>
+		E-mail: <%= current_professor.email %><br>
+	</p>
+	<p>
+		Firma: ______________________<br>
+	</p>
+	<p>
+		Autor 2.<br>
+		Nombre: _______________________________________________<br>
+		No. de documento de identidad: __________________________<br>
+		Facultad y dependencia: _________________________________<br>
+		Cargo: _________________________________________________<br>
+		Teléfono: ______________________________________________<br>
+		E-mail: ________________________________________________<br>
+	</p>
+	<p>
+		Firma: ______________________<br>
+	</p>
+</body>
+</html>

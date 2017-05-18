@@ -8,34 +8,175 @@
     </div>
   </div>
   <div class="col-sm-10">
-    <div class="text-center" style="padding: 10px 0px 0px 0px">
-      <h1 style="font-size:200%;">Evaluación de publicaciones</h1>
-    </div>
     <div><hr class="style13"></div>
     <div class="form-basic" style="width:100% height:100%">
-      <h1>Evaluación.</h1>
-      <p>Aqui puede hacer su evaluacio de las cosas que evaluan los evaluadores</p>
+        <%= form_for(@evaluation) do |f| %>
+        <div class="form-title-row">
+          <h1>Evaluación de la publicación.</h1>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Título de la publicación</span>
+            <%= @evaluation.application_request.publication.title %>
+          </label>
+        </div>
+
+        <div>Clasificación de la obra: Seleccione la obra según corresponda</div>
+        <br>
+        <div class="form-row">
+            <%= collection_radio_buttons(:evaluation, :publication_clasiffication, @categories, :id, :category, {:include_blank => false}) do |b|%>
+            <%= b.label { b.radio_button + " " + b.text } %><br>
+            <% end %>
+        </div>
+        <div>En caso de que se trate de una traducción, especifique qué tipo de material fue traducido</div>
+        <br>
+        <div class="form-row">
+            <%= collection_radio_buttons(:evaluation, :"publication_translated_material", @categories, :id, :category, {:include_blank => false}) do |b| %>
+            <%= b.label { b.radio_button + " " + b.text } %><br>
+            <% end %>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Elabore una sinopsis que dé cuenta del contenido del libro evaluado(tema, disciplina, propósito, alcances, etc.)</span>
+            <%= f.text_area :publication_synopsis %>
+          </label>
+        </div>
+        <div>Originalidad y relevancia del contenido </div>
+          <span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span>
+        <table style="width:100%">
+          <%- @evaluations_criteria.type_general.each do |ev_criteria| %>
+          <%= fields_for 'eval_criteria[]', ev_criteria do |ec| %>
+            <tr>
+              <td><%=ev_criteria.criterium.criterion%></td>
+              <td><%=ec.number_field :score %></td>
+            </tr>
+              <% end %>
+            <% end %>
+        </table>
+        <hr>
+        <div class="form-row">
+          <label>
+            <span>Redacte una argumentación en la que consten las razones por las cuales otorgó las calificaciones dadas en el punto anterior.</span>
+            <%= f.text_area :general_score_justification %>
+          </label>
+        </div>
+        <div>Adecuación de la escritura y presentación</div>
+       <table style="width:100%">
+         <span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span>
+         <%- @evaluations_criteria.type_writing.each do |ev_criteria| %>
+         <%= fields_for 'eval_criteria[]', ev_criteria do |ec| %>
+           <tr>
+             <td><%=ev_criteria.criterium.criterion%></td>
+             <td><%=ec.number_field :score %></td>
+           </tr>
+             <% end %>
+           <% end %>
+       </table>
+       <hr>
+
+        <div class="form-row">
+          <label>
+            <span>Realice comentarios u observaciones puntuales sobre los aspectos evaluados en el punto anterior.</span>
+            <%= f.text_area :writing_score_jistification %>
+          </label>
+        </div>
+        <div>DECISIÓN FINAL</div>
+        <br>
+        <div>Considera que el material debe ser publicado:</div>
+        <br>
+        <div class="form-row">
+            <%= f.radio_button :disclosure_degree, 1 %> (1) Tal como está <br>
+            <%= f.radio_button :disclosure_degree, 2 %> (2) Con ligeras modificaciones <br>
+            <%= f.radio_button :disclosure_degree, 3 %> (3) Con modificaciones sustanciales <br>
+            <%= f.radio_button :disclosure_degree, 4 %> (4) De ninguna manera <br>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>En caso de haber escogido las opciones 2 o 3 en el punto anterior, por favor especifique el tipo de modificacióna
+            o modificaciones a realizar. En caso de haber escogido la opción 4, por favor realice el comentario pertinente.</span>
+            <%= f.text_area :justification %>
+          </label>
+        </div>
+        <div class="form-row">
+          <span><center>Optativamente, el evaluador podrá utilizar este espacio para realizar cualquier tipo de
+             observación adicional para el autor o para el editor acerca del manuscrito.</center></span>
+          <label>
+            <div class="form-row">
+            <span>Observaciones para el autor</span>
+            <%= f.text_area :aditional_remarks_to_author %>
+            </div>
+            <div class="form-row">
+            <span>Observaciones para el editor</span>
+            <%= f.text_area :aditional_remarks_to_publisher %>
+            </div>
+          </label>
+        </div>
+        <div>El grado de divulgación de la obra es:</div>
+        <br>
+        <div class="form-row">
+            <br>
+            <%= f.radio_button :disclosure_degree, 1 %> Regional <br>
+            <%= f.radio_button :disclosure_degree, 2 %> Nacional <br>
+            <%= f.radio_button :disclosure_degree, 3 %> Internacional <br>
+        </div>
+        <table style="width:100%">
+          <span>El público lector al que está dirigida la obra es:</span>
+          <hr>
+          <tr>
+            <th>Público lector</th>
+            <th>Selección</th>
+          </tr>
+          <tr>
+            <td>Intradisciplinario: público altamente especializado, de modo tal que requiere pertenecer a la misma área para poder comprender el contenido.</td>
+            <td><%= f.radio_button :target_audience, 1 %></td>
+          </tr>
+          <tr>
+            <td>Interdisciplinario: público especializado interesado en cruzar las fronteras del conocimiento y de la disciplina (pertenece a la misma disciplina, pero trabaja en áreas diversas).</td>
+            <td><%= f.radio_button :target_audience, 2 %></td>
+          </tr>
+          <tr>
+            <td>En formación: estudiantes en una dimensión amplia que abarca todos los niveles del sistema educativo.</td>
+            <td><%= f.radio_button :target_audience, 3 %></td>
+          </tr>
+          <tr>
+            <td>General: lectores no especializados, interesados en información puntual.</td>
+            <td><%= f.radio_button :target_audience, 4 %></td>
+          </tr>
+        </table>
+        <hr>
+        <div class="form-row">
+          <label>
+            <span>Observaciones sobre el público lector:</span>
+            <%= f.text_area :target_audience_remark %>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Mencione a continuación institutos, sociedades, gremios,
+              escuelas, facultades, congresos y otras entidades o eventos
+              cuyos integrantes constituyan un público objetivo importante
+              para la publicación(especifique ubicación geográfica y, de
+              ser pertinente, fecha) </span>
+            <%#= f.text_area :extra_target_audience %>
+          </label>
+        </div>
+
+
+        <div class="actions">
+          <%= f.submit :'Crear Evaluación' %>
+        </div>
+
     </div>
+    <% end %>
   </div>
 </div>
-<% if professor_signed_in? %>
 <div class="col-sm-12">
   <div class="form-basic-2">
     <div class="text-center">
       <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', professor_home_path %>
+        <%= link_to 'Volver', :back %>
       </div>
     </div>
   </div>
 </div>
-<% elsif administrator_signed_in? %>
-<div class="col-sm-12">
-  <div class="form-basic-2">
-    <div class="text-center">
-      <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-        <%= link_to 'Volver', administrator_home_path %>
-      </div>
-    </div>
-  </div>
-</div>
-<% end %>

@@ -4,7 +4,6 @@ class CreatePublications < ActiveRecord::Migration[5.0]
       t.text :title
       t.text :abstract
       t.integer :category
-      t.belongs_to :application_request, foreign_key: true
       t.belongs_to :theme, foreign_key: true
       t.belongs_to :category, foreign_key: true
       t.timestamps

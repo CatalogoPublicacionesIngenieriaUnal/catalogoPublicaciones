@@ -85,30 +85,31 @@
       <%= link_to 'Volver', :back %>
     </div>
     <% end %>
-
     <div><hr class="style13"></div>
-    <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
-    <%= render 'attatchments/form', attatchment: Attatchment.new,
-    application_request: @publication.application_request,
-    category: :carta_presentacion%>
-    <% end %>
+      <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
+      <%= render 'attatchments/form', attatchment: Attatchment.new,
+      application_request: @publication.application_request,
+      category: :carta_presentacion%>
+      <%- else %>
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
+      <% end %>
 
-    <br>
-    <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
-    <%= render 'attatchments/form', attatchment: Attatchment.new,
-    application_request: @publication.application_request,
-    category: :concepto_editorial_a%>
-    <% end %>
+      <br>
+      <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
+      <%= render 'attatchments/form', attatchment: Attatchment.new,
+      application_request: @publication.application_request,
+      category: :concepto_editorial_a%>
+      <%- else %>
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:concepto_editorial_a)%>
+      <% end %>
 
-    <br>
-    <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
-    <%= render 'attatchments/form', attatchment: Attatchment.new,
-    application_request: @publication.application_request,
-    category: :manuscrito%>
-    <% end %>
-    <%- @publication.application_request.attatchments.each do |att| %>
-    <%= link_to "PDF1", att.pdf_document.url, target: :_blank %>
-    <%= link_to "PDF1", att.pdf_document.url, target: :_blank %>
-    <% end %>
+      <br>
+      <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
+      <%= render 'attatchments/form', attatchment: Attatchment.new,
+      application_request: @publication.application_request,
+      category: :manuscrito%>
+      <%- else %>
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:manuscrito)%>
+      <% end %>
   </div>
 </div>

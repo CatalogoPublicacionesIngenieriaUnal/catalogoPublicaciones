@@ -57,6 +57,34 @@
           </label>
         </div>
 
+        <div class="form-row">
+          <label>
+            <span>Cargo</span>
+            <%= f.text_field :position %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Institución a la que pertenece</span>
+            <%= f.text_field :institution %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Grado obtenido</span>
+            <%= f.text_field :degree %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Número de contacto</span>
+            <%= f.number_field :contact_number %>
+          </label>
+        </div>
+
         <div class="actions">
           <%= f.submit :"Crear nuevo evaluador", :class=>"button"%>
         </div>

@@ -1,43 +1,48 @@
 <div id="product-modal" class="modal fade">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" style="height:630px; width:710px">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
         <h4 class="modal-title"><%= title %></h4>
+      </div>
       </div>
       <%= form_for([@evaluation, @evaluator],:url => {:action => "create", :id =>@evaluator}, remote: true) do |f| %>
       <div class="modal-body">
-      <div class="field">
-        <label>
-          <span>Nombres</span>
-          <%= f.text_field :first_name, required: true %>
-        </label>
+        <div class="form-basic" style="height:100%; width:100%;">
+          <div class="form-row">
+            <label>
+              <span>Nombres</span>
+              <%= f.text_field :first_name %>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Apellidos</span>
+              <%= f.text_field :last_name %>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Correo electrónico</span>
+              <%= f.text_field :email %>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Idioma evaluador</span>
+              <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"),:prompt => "Seleccione una opción" %>
+            </label>
+          </div>
+        </div>
       </div>
-
-      <div class="field">
-        <label>
-          <span>Apellidos</span>
-          <%= f.text_field :last_name, required: true %>
-        </label>
+      <div class="modal-footer">
+        <div class="form-basic" style="height:100%; width:100%;">
+          <div class="actions">
+            <%= f.submit :"Crear nuevo evaluador", :class=>"button"%>
+          </div>
+        </div>
       </div>
-
-      <div class="field">
-        <label>
-          <span>Correo electrónico</span>
-          <%= f.text_field :email, required: true %>
-        </label>
-      </div>
-      <%= f.hidden_field :application_request_id, value: @evaluation.id %>
-    <div class="field">
-        <label>
-          <span>Idioma evaluador</span>
-          <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"),:prompt => "Seleccione una opción" %>
-        </label>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <%= f.submit :"Crear nuevo evaluador", :class=>"button"%>
-    </div>
       <% end %>
     </div>
   </div>

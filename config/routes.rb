@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'publications/dataStatusPie', :defaults => { :format => 'json' }
   get 'professors/dataDepartmentPie', :defaults => { :format => 'json' }
   get 'professors/dataGenderPie', :defaults => { :format => 'json' }
+  get 'application_requests/dataRequestCreation', :defaults => { :format => 'json' }
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators

@@ -63,11 +63,11 @@ for i in 0..20
   professor = Professor.find( Faker::Number.between(1, 51))
 
   publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
-  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
+  category_id: Faker::Number.between(1, 9), theme_id:Faker::Number.between(1, 20))
 
   application_requests = ApplicationRequest.create!(state: :'En creación',
   professor_id: professor.id, publication_id: publication.id)
-  application_requests.update_attribute :created_at, (rand(365)).days.ago
+  # application_requests.update_attribute :created_at, (Faker::Number.between(50,365)).days.ago
 
   ProfessorPublication.create!(publication_id: publication.id,
   professor_id: professor.id)
@@ -131,6 +131,11 @@ for i in 0..20
     language_id: Faker::Number.between(1, 6), evaluation_id: evaluation.id ,position: Faker::Job.title,
     institution: Faker::Company.name, degree: Faker::Company.profession,
     degree_institution: Faker::University.name , is_locked: false)
+  end
+
+  appreq = ApplicationRequest.all
+  appreq.each do |appl|
+    appl.update_attribute :created_at, (Faker::Number.between(1,365)).days.ago
   end
 
 end

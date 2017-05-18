@@ -1,3 +1,5 @@
+require 'set'
+
 class ApplicationRequestsController < ApplicationController
   before_action :set_application_request, only: [:show, :edit, :update, :destroy, :create_evaluator]
   before_action :authorized?, only: [:new, :edit, :update, :create]
@@ -70,6 +72,62 @@ class ApplicationRequestsController < ApplicationController
     @application_request.state = 'En evaluación'
     evaluation = Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
     redirect_to new_evaluation_evaluator_path(evaluation.id)
+  end
+
+  def dataRequestCreation
+    golden_ratio_conjugate = 0.618033988749895
+    h = rand
+    custom_json = []
+    años = Set.new
+    meses = Set.new
+    am = Set.new
+    appreq = ApplicationRequest.all
+    appreq.each do |apprequest|
+      años.add( apprequest.created_at.year )
+      meses.add( apprequest.created_at.month )
+      am.add( [apprequest.created_at.year, apprequest.created_at.month] )
+
+
+      # cuenta = publications.where( :category_id => categoria.id ).count
+      # h += golden_ratio_conjugate
+      # h %= 1
+      # rgb = hsv_to_rgb( h, 0.7, 0.75 )
+      # single = {
+      #   "añito" => años,
+      #   "mesesito" => meses,
+      #   "am" => am
+      #
+      #   # "value" => cuenta,
+      #   # "color" => rgb_pls( rgb[0], rgb[1], rgb[2] )
+      # }
+      # custom_json << single
+    end
+    añossa = años.to_a
+    data = Hash.new()
+    añossa.each do |año|
+      data[año] = Hash.new()
+      (1..12).each do |mes|
+        data[año][mes] = 0
+      end
+    end
+
+    appreq.each do |apprequest|
+      data[ apprequest.created_at.year ][ apprequest.created_at.month ] = data[ apprequest.created_at.year ][ apprequest.created_at.month ] + 1
+    end
+
+    single = {
+      "añito" => años,
+      "mesesito" => meses,
+      "am" => am,
+      "hash" => data
+    }
+
+    respond_to do |format|
+      format.json {
+        # render :json => custom_json
+        render :json => single
+      }
+    end
   end
 
   private

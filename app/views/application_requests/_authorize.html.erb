@@ -5,8 +5,8 @@
     </div>
     <div class="main-content">
       <div class="form-basic" style="width:100%">
-        <table id="t01" style="width:100%">
           <% @application_request.evaluations.each do |evaluation| %>
+          <table id="t01" style="width:100%">
           <tr>
             <%- if evaluation.evaluator.nil? %>
             <td colspan="3", align="right" style="background-color:#eee;">
@@ -25,8 +25,9 @@
             <th>Informacion ficty 2 </th>
             <% end %>
           </tr>
+          </table>
+          <br>
           <%end%>
-        </table>
       </div>
     </div>
   </div>

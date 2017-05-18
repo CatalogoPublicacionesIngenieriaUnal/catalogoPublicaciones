@@ -1,5 +1,6 @@
 class EvaluatorsController < ApplicationController
 
+  skip_before_action :require_login, only: [:authenticate_evaluator]
   before_action :authenticate_administrator!, only: [:new, :create, :edit, :update, :destroy, :index]
   before_action :set_evaluator, only: [:show, :edit, :update, :destroy]
 

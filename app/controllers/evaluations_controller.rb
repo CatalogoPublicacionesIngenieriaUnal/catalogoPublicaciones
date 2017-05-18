@@ -1,6 +1,7 @@
 class EvaluationsController < ApplicationController
 
-  before_action :authenticate_administrator!, except: [:evaluate]
+  skip_before_action :require_login, only: [:evaluate]
+  before_action :authenticate_administrator!, only: [:create, :index, :new]
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluations

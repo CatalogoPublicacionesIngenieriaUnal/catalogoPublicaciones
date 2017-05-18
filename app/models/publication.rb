@@ -33,8 +33,15 @@ class Publication < ApplicationRecord
     count += 1 unless title.nil?
     count += 1 unless theme_id.nil?
     completeness = (count*100)/total_request_fields
-
     return completeness
+  end
+
+  def state
+    application_request.state
+  end
+
+  def professors_owner
+    application_request.professor
   end
 
   def total_request_fields

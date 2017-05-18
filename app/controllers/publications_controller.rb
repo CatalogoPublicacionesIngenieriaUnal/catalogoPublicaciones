@@ -1,7 +1,7 @@
 require "prawn"
 class PublicationsController < ApplicationController
-  before_action :set_publication, only: [:show, :edit, :update, :destroy]
-  # before_action :set_current_user, only: [:create_pdf]
+  before_action :my_publication?, only: [:show, :edit, :update, :destroy, :evaluate]
+  before_action :set_publication, only: [:show, :edit, :update, :destroy, :evaluate]
   before_action :authenticate_administrator!, only: [:destroy]
   before_action :authorized?, only: [:new, :edit, :update, :create, :create_pdf]
   before_action :set_attributes, only: [:new, :create]
@@ -34,9 +34,6 @@ class PublicationsController < ApplicationController
     end
   end
 
-  def delete_pdf
-    @publication.delete_attatchment
-  end
   # GET /publications/new
   def new
     @publication = Publication.new
@@ -48,7 +45,6 @@ class PublicationsController < ApplicationController
     @words = @publication.keyword_publications.build
     @current_professor = current_professor
     @professors = Professor.all
-    @publication = Publication.new
   end
 
   # GET /publications/1/edit
@@ -101,6 +97,11 @@ class PublicationsController < ApplicationController
       format.html { redirect_to publications_url, notice: 'Publication was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def evaluate
+    @publication.application_request.update(state: 'En espera') if @publication.request_completeness == 100
+    redirect_to @publication
   end
 
   # def download_pdf
@@ -317,4 +318,10 @@ class PublicationsController < ApplicationController
   def publication_params
     params.require(:publication).permit(:title, :abstract, :theme_id, :category_id, :keyword_ids, :application_request_id)
   end
+
+  def my_publication?
+    @publication = Publication.find(params[:id])
+    redirect_to not_authorized_path unless @publication.professors_owner == current_professor
+  end
+
 end

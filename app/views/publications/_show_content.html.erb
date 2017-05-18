@@ -22,6 +22,21 @@
         </div>
       </div>
     </center>
+    <%- if @publication.request_completeness == 100 && @publication.state == 'En creación' %>
+    <div class="main-content" style="height:170px">
+      <div class="form-basic" style="height:220px">
+        Su publicación está lista para ser enviada para evaluación.
+        <div><hr class="style13"></div>
+        <div class="form-basic-2">
+          <div class="li-custom" style="float:center; padding:10px 10px 10px 10px">
+            <%= button_to "Enviar para evaluación",publication_to_evaluation_path,
+            method: :patch, data: { confirm: "Despues de enviada no podra modificar esta solicitud, ¿Está seguro que desea enviarla?" }  %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div><hr class="style13"></div>
+    <% end %>
     <div class="info">
       <ul class="info-list ">
         <li>
@@ -72,44 +87,48 @@
     </div>
 
     <div><hr class="style13"></div>
-    <% if professor_signed_in? %>
-    <div class="li-custom" style="width:100px; margin:auto; text-align:center">
-      <%= link_to('Crear PDF', create_pdf_path) %>
-    </div>
-    <br>
-    <div class="li-custom" style="width:100px; margin:auto; text-align:center">
-      <%= link_to 'Volver', :back %>
-    </div>
-    <% elsif administrator_signed_in? %>
-    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px; text-align:center">
-      <%= link_to 'Volver', :back %>
-    </div>
-    <% end %>
-    <div><hr class="style13"></div>
-      <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
-      <%= render 'attatchments/form', attatchment: Attatchment.new,
+    <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
       application_request: @publication.application_request,
       category: :carta_presentacion%>
-      <%- else %>
-        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
-      <% end %>
+  <%- else %>
+    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
+    <% end %>
 
-      <br>
-      <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
-      <%= render 'attatchments/form', attatchment: Attatchment.new,
+    <br>
+    <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
       application_request: @publication.application_request,
       category: :concepto_editorial_a%>
-      <%- else %>
-        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:concepto_editorial_a)%>
-      <% end %>
+  <%- else %>
+    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:concepto_editorial_a)%>
+    <% end %>
 
-      <br>
-      <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
-      <%= render 'attatchments/form', attatchment: Attatchment.new,
+    <br>
+    <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
+    <%= render 'attatchments/form', attatchment: Attatchment.new,
       application_request: @publication.application_request,
       category: :manuscrito%>
-      <%- else %>
-        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:manuscrito)%>
-      <% end %>
+  <%- else %>
+    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:manuscrito)%>
+    <% end %>
   </div>
 </div>
+
+<div><hr class="style13"></div>
+<% if professor_signed_in? %>
+<div class="li-custom" style="width:100px; margin:auto; text-align:center">
+  <%= link_to('Crear PDF', create_pdf_path) %>
+</div>
+<br>
+<div class="li-custom" style="width:100px; margin:auto; text-align:center">
+  <%= link_to 'Volver', publications_path %>
+</div>
+<div class="li-custom" style="width:100px; margin:auto; text-align:center">
+  <%= link_to 'Editar publicación',edit_publication_path(@publication.id) %>
+</div>
+<% elsif administrator_signed_in? %>
+<div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px; text-align:center">
+  <%= link_to 'Volver', :back %>
+</div>
+<% end %>

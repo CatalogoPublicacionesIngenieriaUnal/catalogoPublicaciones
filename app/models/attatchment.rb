@@ -6,17 +6,11 @@ class Attatchment < ApplicationRecord
   enum category: [:carta_presentacion, :concepto_editorial_a, :concepto_editorial_b, :manuscrito ]
   mount_uploader :pdf_document, AttachmentUploader
 
-  after_save  :check_completeness
-
   def self.get_attachment_by_category(category)
     where(category: category).first
   end
 
   private
-
-  def check_completeness
-    application_request.update!(state: 'En espera') if publication_complete? && application_request.state == 'En creación' 
-  end
 
   def document_already_loaded?
     errors.add(:attatchments, 'Document Already Loaded') if ApplicationRequest

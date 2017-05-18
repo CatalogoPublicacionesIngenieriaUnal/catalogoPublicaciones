@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'professors/profile', to: 'professors#show', :as => :show_current_professor
   get 'professors/edit', to: 'professors#edit', :as => :edit_current_professor
 
-  get 'publications/delete_pdf', to: 'publications#delete_pdf', :as => :delete_pdf
+  patch 'publications/:id/evaluate', to: 'publications#evaluate', as: :publication_to_evaluation
   get 'publications/statistics', to: 'publications#statistics', :as => :statistics
   get 'publications/dataCateg', :defaults => { :format => 'json' }
   get 'publications/dataTheme', :defaults => { :format => 'json' }

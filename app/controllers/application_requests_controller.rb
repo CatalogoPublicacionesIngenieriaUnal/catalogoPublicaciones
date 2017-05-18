@@ -11,7 +11,9 @@ class ApplicationRequestsController < ApplicationController
   def index
     @application_requests = ApplicationRequest.ready_requests.page(params[:page]).per_page(5)
   end
-
+  def index_others
+    @application_requests = ApplicationRequest.all
+  end
   # GET /application_requests/1
   # GET /application_requests/1.json
   def show
@@ -113,8 +115,8 @@ class ApplicationRequestsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_application_request
+  # Use callbacks to share common setup or constraints between actions.
     @application_request = ApplicationRequest.find(params[:id])
   end
 

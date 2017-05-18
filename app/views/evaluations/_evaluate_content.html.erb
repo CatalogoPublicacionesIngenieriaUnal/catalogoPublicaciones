@@ -8,20 +8,19 @@
     </div>
   </div>
   <div class="col-sm-10">
-    <div><hr class="style13"></div>
     <div class="form-basic" style="width:100% height:100%">
         <%= form_for(@evaluation) do |f| %>
         <div class="form-title-row">
           <h1>Evaluación de la publicación.</h1>
         </div>
-        <div class="form-row">
+        <div>
           <label>
-            <span>Título de la publicación</span>
+            <span><b>Título de la publicación:</b></span>
             <%= @evaluation.application_request.publication.title %>
           </label>
         </div>
-
-        <div>Clasificación de la obra: Seleccione la obra según corresponda</div>
+        <br>
+        <div><b>Clasificación de la obra: </b>Seleccione la obra según corresponda</div>
         <br>
         <div class="form-row">
             <%= collection_radio_buttons(:evaluation, :publication_clasiffication, @categories, :id, :category, {:include_blank => false}) do |b|%>
@@ -36,14 +35,16 @@
             <% end %>
         </div>
 
-        <div class="form-row">
-          <label>
-            <span>Elabore una sinopsis que dé cuenta del contenido del libro evaluado(tema, disciplina, propósito, alcances, etc.)</span>
-            <%= f.text_area :publication_synopsis %>
-          </label>
-        </div>
-        <div>Originalidad y relevancia del contenido </div>
-          <span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span>
+        <table style="width=100%">
+            <tr>
+              <td><%= 'Elabore una sinopsis que dé cuenta del contenido del libro evaluado(tema, disciplina, propósito, alcances, etc.)'%></td>
+              <td><%= f.text_area :publication_synopsis %></td>
+            </tr>
+        </table>
+        <div><b>Originalidad y relevancia del contenido</b></div>
+        <br>
+        <div><span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span></div>
+        <br>
         <table style="width:100%">
           <%- @evaluations_criteria.type_general.each do |ev_criteria| %>
           <%= fields_for 'eval_criteria[]', ev_criteria do |ec| %>
@@ -55,13 +56,14 @@
             <% end %>
         </table>
         <hr>
-        <div class="form-row">
-          <label>
-            <span>Redacte una argumentación en la que consten las razones por las cuales otorgó las calificaciones dadas en el punto anterior.</span>
-            <%= f.text_area :general_score_justification %>
-          </label>
-        </div>
-        <div>Adecuación de la escritura y presentación</div>
+        <table style="width=100%">
+            <tr>
+              <td><%= 'Redacte una argumentación en la que consten las razones por las cuales otorgó las calificaciones dadas en el punto anterior.'%></td>
+              <td><%= f.text_area :general_score_justification %></td>
+            </tr>
+        </table>
+        <br>
+       <div>Adecuación de la escritura y presentación</div>
        <table style="width:100%">
          <span>Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</span>
          <%- @evaluations_criteria.type_writing.each do |ev_criteria| %>

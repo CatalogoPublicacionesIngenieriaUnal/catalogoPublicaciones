@@ -22,8 +22,12 @@ Rails.application.routes.draw do
 
 
   get 'publications/statistics', to: 'publications#statistics', :as => :statistics
-  get 'publications/dataTest', defaults: { format: 'json' }
-  get 'publications/dataTheme', defaults: { format: 'json' }
+  get 'publications/dataCateg', :defaults => { :format => 'json' }
+  get 'publications/dataTheme', :defaults => { :format => 'json' }
+  get 'publications/dataCategPie', :defaults => { :format => 'json' }
+  get 'publications/dataThemePie', :defaults => { :format => 'json' }
+  get 'publications/dataStatusPie', :defaults => { :format => 'json' }
+  get 'application_requests/index_others', to: 'application_requests#index_others', :as => :index_others
 
   get 'application_requests/:id/new_evaluator/', to: 'application_requests#create_evaluator', as:  :add_evaluator
   get 'application_requests/:id/form_b', to: 'application_requests#form_b', as: :form_b
@@ -39,8 +43,9 @@ Rails.application.routes.draw do
   resources :evaluations do
     resources :evaluators, shallow: true
   end
-  resources :application_requests do
-    resources :attatchments, shallow: true
+
+  resources :application_requests, except: [:edit, :update] do
+    resources :attatchments, shallow: true, except: :new
   end
 
   resources :professors do

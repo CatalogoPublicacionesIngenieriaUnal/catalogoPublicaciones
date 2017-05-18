@@ -29,6 +29,24 @@
           </span>
         </li>
         <li>
+          <span class="inf">Tipo de identificación</span>
+          <span class="value">
+            <%= @professor.identity_document_type %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Número de identificación</span>
+          <span class="value">
+            <%= @professor.identity_document %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Lugar de expedición</span>
+          <span class="value">
+            <%= @professor.identity_document_issued %>
+          </span>
+        </li>
+        <li>
           <span class="inf">Correo electrónico</span>
           <span class="value">
             <%= @professor.email %>
@@ -38,6 +56,18 @@
           <span class="inf">Departamento</span>
           <span class="value">
             <%= @professor.department %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Otra dependencia</span>
+          <span class="value">
+            <%= @professor.dependency %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Cargo</span>
+          <span class="value">
+            <%= @professor.position %>
           </span>
         </li>
         <li>
@@ -53,9 +83,9 @@
           </span>
         </li>
         <li>
-          <span class="inf">Autorizado?</span>
+          <span class="inf">¿Autorizado?</span>
           <span class="value">
-            <%= @professor.is_authorized %>
+            <%= if @professor.is_authorized == false then 'No' else 'Si' end%>
           </span>
         </li>
       </ul>

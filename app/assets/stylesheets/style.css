@@ -652,15 +652,15 @@ input:checked + .slider:before {
 }
 
 .barra{
-  fill: #B2B3B4;
-  stroke: black
-  stroke-width: 0;
+  /*fill: #B2B3B4;*/
+  stroke: black;
+  stroke-width: 1px;
 }
 
-.barra:hover{
+/*.barra:hover{
   fill: #97aac9;
   color: white;
-}
+}*/
 
 .texto{
   color: black;

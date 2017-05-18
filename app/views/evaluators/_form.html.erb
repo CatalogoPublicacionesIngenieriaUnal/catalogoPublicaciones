@@ -35,6 +35,73 @@
             </label>
           </div>
         </div>
+        <% end %>
+
+        <div class="form-title-row">
+          <h1>Datos básicos del evaluador</h1>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Nombres</span>
+            <%= f.text_field :first_name %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Apellidos</span>
+            <%= f.text_field :last_name %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Correo electrónico</span>
+            <%= f.text_field :email %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Idioma evaluador</span>
+            <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"),:prompt => "Seleccione una opción" %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Cargo</span>
+            <%= f.text_field :position %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Institución a la que pertenece</span>
+            <%= f.text_field :institution %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Grado obtenido</span>
+            <%= f.text_field :degree %>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span>Número de contacto</span>
+            <%= f.number_field :contact_number %>
+          </label>
+        </div>
+
+        <div class="actions">
+          <%= f.submit :"Crear nuevo evaluador", :class=>"button"%>
+        </div>
+
+        <% end %>
       </div>
       <div class="modal-footer">
         <div class="form-basic" style="height:100%; width:100%;">

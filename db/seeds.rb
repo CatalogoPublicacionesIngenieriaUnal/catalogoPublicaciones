@@ -138,7 +138,7 @@ for i in 0..20
     email: Faker::Internet.unique.email, contact_number: Faker::Number.number(10),
     language_id: Faker::Number.between(1, 6), evaluation_id: evaluation.id ,position: Faker::Job.title,
     institution: Faker::Company.name, degree: Faker::Company.profession,
-    degree_institution: Faker::University.name , is_locked: false)
+    degree_institution: Faker::University.name )
   end
 
 end

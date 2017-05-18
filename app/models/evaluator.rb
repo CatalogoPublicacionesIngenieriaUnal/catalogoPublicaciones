@@ -1,20 +1,21 @@
 class Evaluator < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
   belongs_to :evaluation
   belongs_to :language
 
   validates :last_name, presence: true
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :code, presence: true
-  validates :url_token, presence: true, uniqueness: true
-  validates :failed_attempts, presence: true
 
-  before_validation(on: :create) do
-    self.code = Sysrandom.hex(8)
-    self.code_asigned_at = DateTime.now
-    self.url_token = Sysrandom.urlsafe_base64(32)
-    self.is_locked = false
-  end
+  validates :position, presence: true, on: :update
+  validates :institution, presence: true, on: :update
+  validates :degree, presence: true, on: :update
+  validates :degree_institution, presence: true, on: :update
+  validates :contact_number, presence: true, on: :update
+
+  before_validation :set_password, on: :create
 
   def self.evaluator_by_email(email)
     where(email: email).first
@@ -24,4 +25,11 @@ class Evaluator < ApplicationRecord
     first_name + ' ' + last_name
   end
 
+  private
+
+  def set_password
+    generated_password = Devise.friendly_token
+    puts "Contraseña = #{generated_password}"
+    self.password = generated_password
+  end
 end

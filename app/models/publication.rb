@@ -15,7 +15,7 @@ class Publication < ApplicationRecord
   validates :abstract, presence: true
   validates :category, presence: true
   validates :theme, presence: true
-  validates :keyword_publications, :length => {is: 3}
+  #validates :keyword_publications, length: { is: 3 }
 
   # before_validation(on: :create) do
   #   self.application_request_id = 1

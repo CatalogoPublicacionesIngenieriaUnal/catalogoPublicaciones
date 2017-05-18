@@ -1,13 +1,13 @@
   <div class="form-basic">
     <div class="form-title-row">
       <% if category == :carta_presentacion %>
-      <h1><%= "Carta de presentación" %></h1>
+      <h2><%= "Carta de presentación" %></h1>
       <% elsif category == :concepto_editorial_a %>
-      <h1><%= "Concepto editorial" %></h1>
+      <h2><%= "Concepto editorial" %></h1>
       <% elsif category == :concepto_editorial_b %>
-      <h1><%= "Evaluacion editorial" %></h1>
+      <h2><%= "Evaluacion editorial" %></h1>
       <% else %>
-      <h1><%= "Manuscrito" %></h1>
+      <h2><%= "Manuscrito" %></h1>
       <% end %>
     </div>
     <%= form_for [application_request, attatchment] do |f| %>
@@ -33,5 +33,5 @@
     <div class="actions">
       <%= f.submit :"Subir archivo"%>
     </div>
-    <% end %>
   </div>
+    <% end %>

@@ -130,15 +130,19 @@
       <% end %>
       <!-- <div class="col-sm-10" style="padding: 0px 0px 20px 0px"> -->
       <div><hr class="style13"></div>
+      <%- @application_request.attatchments.each do |attatchment| %>
+        <%= render 'attatchments/show', attatchment: attatchment %>
+      <% end %>
       <div class="form-basic-2">
         <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
           <%= link_to 'Evaluar', form_b_path %>
           <%#= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
         </div>
+        <%- if @application_request.form_b?  %>
         <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
           <%= link_to 'Ver evaluacion', show_b_path %>
-          <%#= link_to 'Crear evaluadores', add_evaluator_path(@application_request) %>
         </div>
+        <% end %>
         <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
           <%= link_to 'Volver', application_requests_path %>
         </div>

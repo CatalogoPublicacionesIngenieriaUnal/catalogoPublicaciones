@@ -1,6 +1,6 @@
 class EvaluationsController < ApplicationController
 
-  skip_before_action :require_login, only: [:evaluate, :show]
+  skip_before_action :require_login, only: [:evaluate, :show, :update]
   before_action :authenticate_administrator!, only: [:create, :index, :new]
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
@@ -14,7 +14,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1.json
   def show
   end
-
+  
   # GET /evaluations/new
   def new
     @evaluation = Evaluation.new

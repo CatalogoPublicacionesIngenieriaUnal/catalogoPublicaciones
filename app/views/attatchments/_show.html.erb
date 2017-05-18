@@ -1,2 +1,31 @@
-<%= link_to 'Eliminar', attatchment_url(attatchment.id), data: { confirm: "¿Está seguro que desea eliminar este archivo?" }, :method => :delete %> |
-<%= link_to attatchment.pdf_document.filename, attatchment.pdf_document.url, target: :_blank %>
+<div class="main-content">
+  <div class="form-basic">
+    <div class="form-title-row">
+      <% if attatchment.category == "carta_presentacion" %>
+      <h1><%= "Carta de presentación" %></h1>
+      <% elsif attatchment.category == "concepto_editorial_a" %>
+      <h1><%= "Concepto editorial" %></h1>
+      <% elsif attatchment.category == "concepto_editorial_b" %>
+      <h1><%= "Evaluacion editorial" %></h1>
+      <% else %>
+      <h1><%= "Manuscrito" %></h1>
+      <% end %>
+    </div>
+    <div class="form-row">
+      <label>
+        <span></span>
+        <%= link_to (attatchment.pdf_document.url), target: :_blank do %>
+        <%= fa_icon "file-pdf-o 3x", base: "square-o", class: "btn btn-danger", text: attatchment.pdf_document.filename %>
+        <% end %>
+      </label>
+    </div>
+    <div class="form-row">
+      <label>
+        <span></span>
+        <%= link_to (attatchment_url(attatchment.id)), data: { confirm: "¿Está seguro que desea eliminar este archivo?" }, :method => :delete do %>
+        <%= fa_icon "trash-o 2x", base: "square-o", class: "btn btn-default", text: "Eliminar" %>
+        <% end %>
+      </label>
+    </div>
+  </div>
+</div>

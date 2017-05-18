@@ -57,10 +57,7 @@ class AttatchmentsController < ApplicationController
   # DELETE /attatchments/1.json
   def destroy
     @attatchment.destroy
-    respond_to do |format|
-      format.html { redirect_to attatchments_url, notice: 'Attatchment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to :back
   end
 
   private

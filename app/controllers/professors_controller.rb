@@ -22,8 +22,11 @@ class ProfessorsController < ApplicationController
   end
 
   def home
-    @professors = Professor.all
     @publications = Publication.all
+    @professors = Professor.all
+    if professor_signed_in?
+      @publications = Publication.publications_by_professor(current_professor.id)
+    end
   end
 
   # GET /professors/new

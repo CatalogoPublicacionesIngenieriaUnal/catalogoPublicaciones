@@ -124,12 +124,13 @@
     </div>
   </div>
   <!-- Checkbox para elegir usuario -->
-  <div class="col-sm-3" style="padding:0px 50px 0px 0px">
+  <div class="col-sm-3" style="padding:0px 40px 0px 80px">
+    <label for="loginCheckbox">Profesor</label>
     <label class="switch">
-      <input type="checkbox" name="LoginSelector" id="loginCheckbox" onchange="showLogin(this)" onclick="yesno('loginCheckbox','yesnos');" />
+      <input type="checkbox" name="LoginSelector" id="loginCheckbox" onchange="showLogin(this)" />
       <div class="slider round"></div>
     </label>
-    <label for="loginCheckbox" name="yesnos" id="yesnos">Administrador</label>
+    <label for="loginCheckbox">Administrador</label>
   </div>
   <% else %>
   <div class="col-sm-3" style="padding:0px 50px 0px 0px">
@@ -154,17 +155,6 @@
     } else {
       document.getElementById('professor_login').classList.remove("hidden");
       document.getElementById('administrator_login').classList.add("hidden");
-    }
-  }
-  // Funcion para cambiar el texto del checkbox
-  function yesno(thecheckbox, thelabel) {
-    var checkboxvar = document.getElementById(thecheckbox);
-    var labelvar = document.getElementById(thelabel);
-    if (!checkboxvar.checked) {
-      labelvar.innerHTML = "Administrador";
-    }
-    else {
-      labelvar.innerHTML = "Profesor";
     }
   }
   </script>

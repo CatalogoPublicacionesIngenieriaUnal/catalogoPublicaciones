@@ -5,6 +5,8 @@ class PublicationsController < ApplicationController
   # before_action :set_current_user, only: [:create_pdf]
   before_action :authenticate_administrator!, only: [:destroy]
   before_action :authorized?, only: [:new, :edit, :update, :create, :create_pdf]
+  before_action :set_attributes, only: [:new, :create]
+  before_action :set_attributes_edit, only: [:update, :edit]
 
 
   layout "unal"
@@ -34,6 +36,9 @@ class PublicationsController < ApplicationController
   # GET /publications/1
   # GET /publications/1.json
   def show
+    if @publication.application_request.nil?
+      redirect_to new_application_request_path(publication: @publication)
+    end
   end
 
   # GET /publications/new
@@ -41,6 +46,7 @@ class PublicationsController < ApplicationController
     @publication = Publication.new
     @categories = Category.all
     @themes = Theme.all
+    @appRequest = ApplicationRequest.all
 
     @keywords = Keyword.all
     @words = @publication.keyword_publications.build
@@ -61,17 +67,14 @@ class PublicationsController < ApplicationController
     @publication = Publication.new(publication_params)
 
     params[:keywords][:ids].each do |keyword|
-      if !keyword.empty?
-        @publication.keyword_publications.build(:keyword_id => keyword)
+      unless keyword.empty?
+        @publication.keyword_publications.build(keyword_id: keyword)
       end
     end
-
-    application_request = ApplicationRequest.create(state: 'En espera', professor_id: current_professor.id)
-    @publication.application_request_id = application_request.id
     respond_to do |format|
       if @publication.save
         @publication.professors << current_professor
-        format.html { redirect_to @publication, notice: 'Publication was successfully created.' }
+        format.html { redirect_to new_application_request_path(publication: @publication), notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else
         format.html { render :new }
@@ -145,26 +148,7 @@ class PublicationsController < ApplicationController
     @publications = Publication.all
   end
 
-  def customJson
-    custom_json = []
-    categories = Category.all
-    publications = Publication.all
-    categories.each do |categoria|
-      cuenta = publications.where( :category_id => categoria.id ).count
-      single = {
-        # "category" => categories.where( :id => identif ),
-        "category" => categoria.category,
-        "count" => cuenta
-      }
-      custom_json << single
-    end
-    File.open("public/custom.json","w") do |f|
-      f.write(custom_json.to_json)
-    end
-  end
-  helper_method :customJson
-
-  def dataTest
+  def dataCateg
     custom_json = []
     categories = Category.all
     publications = Publication.all
@@ -181,9 +165,9 @@ class PublicationsController < ApplicationController
     end
 
     respond_to do |format|
-       format.json {
-         render :json => custom_json
-       }
+      format.json {
+        render :json => custom_json
+      }
     end
   end
 
@@ -204,10 +188,112 @@ class PublicationsController < ApplicationController
     end
 
     respond_to do |format|
+      format.json {
+        render :json => custom_json
+      }
+    end
+  end
+
+  def dataCategPie
+    golden_ratio_conjugate = 0.618033988749895
+    h = rand
+    custom_json = []
+    categories = Category.all
+    publications = Publication.all
+    categories.each do |categoria|
+      cuenta = publications.where( :category_id => categoria.id ).count
+      h += golden_ratio_conjugate
+      h %= 1
+      rgb = hsv_to_rgb( h, 0.7, 0.75 )
+      single = {
+        "label" => categoria.category,
+        "value" => cuenta,
+        "color" => rgb_pls( rgb[0], rgb[1], rgb[2] )
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
        format.json {
          render :json => custom_json
        }
     end
+  end
+
+  def dataThemePie
+    golden_ratio_conjugate = 0.618033988749895
+    h = rand
+    custom_json = []
+    themes = Theme.all
+    publications = Publication.all
+    themes.each do |tema|
+      cuenta = publications.where( :theme_id => tema.id ).count
+      h += golden_ratio_conjugate
+      h %= 1
+      rgb = hsv_to_rgb( h, 0.7, 0.75 )
+      single = {
+        "label" => tema.theme,
+        "value" => cuenta,
+        "color" => rgb_pls( rgb[0], rgb[1], rgb[2] )
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
+       format.json {
+         render :json => custom_json
+       }
+    end
+  end
+
+  def dataStatusPie
+    golden_ratio_conjugate = 0.618033988749895
+    h = rand
+    custom_json = []
+    appreq = ApplicationRequest.all
+    estados = ['En creación','En espera', 'En evaluación', 'Aprobado', 'Rechazado']
+    # publications = Publication.all
+    (0..4).each do |estado|
+      cuenta = appreq.where( :state => estado ).count
+      h += golden_ratio_conjugate
+      h %= 1
+      rgb = hsv_to_rgb( h, 0.7, 0.75 )
+      single = {
+        "label" => estados[estado],
+        "value" => cuenta,
+        "color" => rgb_pls( rgb[0], rgb[1], rgb[2] )
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
+       format.json {
+         render :json => custom_json
+       }
+    end
+  end
+
+
+
+  def hsv_to_rgb(h, s, v)
+    h_i = (h * 6).to_i
+    f = h * 6 - h_i
+    p = v * (1 - s)
+    q = v * (1 - f * s)
+    t = v * (1 - (1 - f) * s)
+    r, g, b = v, t, p if h_i==0
+    r, g, b = q, v, p if h_i==1
+    r, g, b = p, v, t if h_i==2
+    r, g, b = p, q, v if h_i==3
+    r, g, b = t, p, v if h_i==4
+    r, g, b = v, p, q if h_i==5
+    [(r*256).to_i, (g*256).to_i, (b*256).to_i]
+  end
+  def rgb_pls( r, g, b )
+    "##{to_hex r}#{to_hex g}#{to_hex b}"
+  end
+  def to_hex(n)
+    n.to_s(16).rjust(2,'0').upcase
   end
 
   private
@@ -215,6 +301,23 @@ class PublicationsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_publication
     @publication = Publication.find(params[:id])
+    @words = @publication.keyword_publications.build
+  end
+
+  def set_attributes
+    @publication = Publication.new
+    @categories = Category.all
+    @themes = Theme.all
+    @professors = Professor.all
+    @keywords = Keyword.all
+    @words = @publication.keyword_publications.build
+  end
+
+  def set_attributes_edit
+    @categories = Category.all
+    @themes = Theme.all
+    @professors = Professor.all
+    @keywords = Keyword.all
   end
   #
   # def set_current_user

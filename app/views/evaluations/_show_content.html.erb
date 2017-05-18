@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-md-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Mis datos</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="info">
+      <ul class="info-list">
+
+        <li>
+          <span class="inf">Titulo de la publicación</span>
+          <span class="value">
+            <%= @evaluation.application_request.publication.title %>
+          </span>
+        </li>
+
+        <li>
+          <span class="inf">Justificacion</span>
+          <span class="value">
+            <%= @evaluation.justification %>
+          </span>
+        </li>
+
+        <li>
+          <span class="inf">Estado</span>
+          <span class="value">
+            <%= @evaluation.state %>
+          </span>
+        </li>
+
+        <!-- <li>
+          <span class="inf">Clasificación de la obra</span>
+          <span class="value">
+            <%#= @evaluation.publication_translated_material %>
+          </span>
+        </li> -->
+
+      </ul>
+    </div>
+  </div>
+</div>

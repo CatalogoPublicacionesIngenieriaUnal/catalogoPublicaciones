@@ -16,6 +16,7 @@ class Professor < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :gender, presence: true
 
+
   enum gender: {Masculino: 1, Femenino: 2}
   enum department:
   { 'Departamento de ingeniería civil y agrícola': 1,

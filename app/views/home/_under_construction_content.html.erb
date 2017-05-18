@@ -15,24 +15,13 @@
       <p>Sentimos los incovenientes.</p>
       <p><%= image_tag "under_construction.png", :alt => "under_construction", :width => "250", :height => "250" %></p>
     </div>
-    <% if professor_signed_in? %>
     <div class="form-basic-2">
       <div><hr class="style13"></div>
       <div class="text-center">
         <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-          <%= link_to 'Volver', professor_home_path %>
+          <%= link_to 'Volver', :back %>
         </div>
       </div>
     </div>
-    <% elsif administrator_signed_in? %>
-    <div class="form-basic-2">
-      <div><hr class="style13"></div>
-      <div class="text-center">
-        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-          <%= link_to 'Volver', administrator_home_path %>
-        </div>
-      </div>
-    </div>
-    <% end %>
   </div>
 </div>

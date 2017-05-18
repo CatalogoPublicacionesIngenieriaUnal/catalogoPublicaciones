@@ -15,7 +15,6 @@ class AttatchmentsController < ApplicationController
 
   # GET /attatchments/new
   def new
-    @application_request = ApplicationRequest.find(params[:application_request_id])
     @attatchment = Attatchment.new
   end
 
@@ -30,11 +29,11 @@ class AttatchmentsController < ApplicationController
     @attatchment.application_request_id = params[:application_request_id]
     respond_to do |format|
       if @attatchment.save
-        format.html { redirect_to :back}
+        format.html {redirect_back(fallback_location: :back)}
         format.json { render :show, status: :created, location: @attatchment }
       else
         puts @attatchment.errors.inspect
-        format.html { render :new }
+        format.html { redirect_back(fallback_location: :back)}
         format.json { render json: @attatchment.errors, status: :unprocessable_entity }
       end
     end
@@ -65,13 +64,13 @@ class AttatchmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_attatchment
-      @attatchment = Attatchment.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_attatchment
+    @attatchment = Attatchment.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def attatchment_params
-      params.require(:attatchment).permit(:url, :category, :application_request_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def attatchment_params
+    params.require(:attatchment).permit(:url, :category, :application_request_id)
+  end
 end

@@ -1,0 +1,22 @@
+<%= form_for(editorial_concept_criterium) do |f| %>
+  <% if editorial_concept_criterium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(editorial_concept_criterium.errors.count, "error") %> prohibited this editorial_concept_criterium from being saved:</h2>
+
+      <ul>
+      <% editorial_concept_criterium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :criterium %>
+    <%= f.text_field :criterium %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

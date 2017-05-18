@@ -1,14 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= render 'static/header_unal_render' %>
 
-<p>
-  <strong>Justification:</strong>
-  <%= @evaluation.justification %>
-</p>
+<%= render 'show_content' %>
 
-<p>
-  <strong>State:</strong>
-  <%= @evaluation.state %>
-</p>
-
-<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
-<%= link_to 'Back', evaluations_path %>
+<%= render 'static/footer_unal_render' %>

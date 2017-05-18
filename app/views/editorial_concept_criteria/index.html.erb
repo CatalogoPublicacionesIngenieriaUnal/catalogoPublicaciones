@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Editorial Concept Criteria</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Criterium</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @editorial_concept_criteria.each do |editorial_concept_criterium| %>
+      <tr>
+        <td><%= editorial_concept_criterium.criterium %></td>
+        <td><%= link_to 'Show', editorial_concept_criterium %></td>
+        <td><%= link_to 'Edit', edit_editorial_concept_criterium_path(editorial_concept_criterium) %></td>
+        <td><%= link_to 'Destroy', editorial_concept_criterium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Editorial Concept Criterium', new_editorial_concept_criterium_path %>

@@ -22,9 +22,7 @@
     <div class="form-row">
       <label>
         <span></span>
-        <%= link_to (attatchment_url(attatchment.id)), data: { confirm: "¿Está seguro que desea eliminar este archivo?" }, :method => :delete do %>
-        <%= fa_icon "trash-o 2x", base: "square-o", class: "btn btn-default", text: "Eliminar" %>
-        <% end %>
+        <%= link_to_unless @publication.application_request.state != 'En creación', (fa_icon "trash-o 2x", base: "square-o", class: "btn btn-default", text: "Eliminar"), attatchment_url(attatchment.id), data: { confirm: "¿Está seguro que desea eliminar este archivo?" }, :method => :delete%>
       </label>
     </div>
   </div>

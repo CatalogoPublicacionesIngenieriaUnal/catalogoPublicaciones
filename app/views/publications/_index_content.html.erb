@@ -51,7 +51,7 @@
               <% end %>
             </td>
             <td><%= link_to 'Ver', publication %></td>
-            <td><%= link_to 'Editar', edit_publication_path(publication) %></td>
+            <td><%= link_to_if publication.application_request.state == 'En creación', 'Editar', edit_publication_path(publication) %></td>
             <td><%= link_to 'Eliminar', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
           <% end %>

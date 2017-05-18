@@ -6,6 +6,7 @@ class AddColumnsToEvaluator < ActiveRecord::Migration[5.0]
       t.string    :degree
       t.string    :degree_institution
       t.string    :contact_number
+      t.boolean   :first_update, default: false
 
     end
 

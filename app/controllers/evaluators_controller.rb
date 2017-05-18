@@ -14,20 +14,27 @@ class EvaluatorsController < ApplicationController
 
   def update_password
     if @evaluator.update_with_password(evaluator_params)
+      @evaluator.update(first_update: true)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in(@evaluator)
       redirect_to home_route
     else
-      render "edit_password"
+      render evaluator_edit_password_path
     end
   end
 
   def edit_password
+    redirect_to edit_current_evaluator_path if @evaluator.institution.nil? || @evaluator.degree.nil?
   end
 
   # GET /evaluators/1
   # GET /evaluators/1.json
   def show
+    if @evaluator.institution.nil? || @evaluator.degree.nil?
+      redirect_to edit_current_evaluator_path
+    elsif !@evaluator.first_update
+      redirect_to evaluator_edit_password_path
+    end
     @languages = Language.all
   end
 

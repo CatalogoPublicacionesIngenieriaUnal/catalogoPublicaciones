@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   devise_for :administrators
   devise_for :evaluators
   resources :publications
-  resources :evaluations do
+  resources :evaluations, except: :edit do
     resources :evaluators, shallow: true
   end
 

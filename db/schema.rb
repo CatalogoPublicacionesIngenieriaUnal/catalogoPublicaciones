@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20170518191843) do
     t.string   "degree"
     t.string   "degree_institution"
     t.string   "contact_number"
+    t.boolean  "first_update"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

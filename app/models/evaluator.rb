@@ -20,4 +20,8 @@ class Evaluator < ApplicationRecord
     where(email: email).first
   end
 
+  def get_name
+    first_name + ' ' + last_name
+  end
+
 end

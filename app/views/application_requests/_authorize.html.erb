@@ -1,0 +1,47 @@
+<div class="main-content" >
+  <div class="form-basic" style="height:500px; width:820px">
+    <div class="form-title-row">
+      <h1><%= "Evaluación" %></h1>
+    </div>
+    <div class="main-content">
+      <div class="form-basic" style="height:100%; width:100%">
+          <% @application_request.evaluations.each do |evaluation| %>
+          <table id="t01" style="width:100%">
+          <tr>
+            <%- if evaluation.evaluator.nil? %>
+            <td colspan="3", align="right" style="background-color:#eee;">
+              <%= link_to "Agregar Evaluador", new_evaluation_evaluator_path(evaluation), remote: true %>
+            </td>
+            <%- else %>
+            <td colspan="7", align="right" style="background-color:#eee;">
+              <%= evaluation.evaluator.get_name %>
+            </td>
+            <% end %>
+          </tr>
+          <% unless evaluation.evaluator.nil? %>
+          <tr>
+            <th>Correo electronico</th>
+            <th>Idioma</th>
+            <th>Cargo</th>
+            <th>Institucion</th>
+            <th>Degree</th>
+            <th>Degree institution</th>
+            <th>Numero de contacto</th>
+          </tr>
+          <tr>
+            <th><%= evaluation.evaluator.email %></th>
+            <th><%= Language.find(evaluation.evaluator.language_id).name %></th>
+            <th><%= evaluation.evaluator.position %></th>
+            <th><%= evaluation.evaluator.institution %></th>
+            <th><%= evaluation.evaluator.degree %></th>
+            <th><%= evaluation.evaluator.degree_institution %></th>
+            <th><%= evaluation.evaluator.contact_number %></th>
+          </tr>
+          <% end %>
+          </table>
+          <br>
+          <%end%>
+      </div>
+    </div>
+  </div>
+</div>

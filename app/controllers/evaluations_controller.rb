@@ -1,6 +1,7 @@
 class EvaluationsController < ApplicationController
 
-  before_action :authenticate_administrator!, except: [:evaluate]
+  skip_before_action :require_login, only: [:evaluate, :show]
+  before_action :authenticate_administrator!, only: [:create, :index, :new]
   before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
 
   # GET /evaluations
@@ -47,7 +48,7 @@ class EvaluationsController < ApplicationController
         evaluations_criterium.score = score[:score]
         evaluations_criterium.save
       end
-      if @evaluation.update(evaluation_params)
+      if @evaluation.update!(evaluation_params)
         format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
@@ -91,6 +92,9 @@ class EvaluationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def evaluation_params
-    params.require(:evaluation).permit(:justification, :state, :application_request_id, evaluations_criteria:[:score])
+    params.require(:evaluation).permit(:justification, :state, :application_request_id,
+    :publication_clasiffication, :publication_translated_material, :publication_synopsis,
+    :general_score_justification, :writing_score_jistification, :aditional_remarks_to_author,
+    :aditional_remarks_to_publisher, :disclosure_degree, :target_audience, :target_audience_remark)
   end
 end

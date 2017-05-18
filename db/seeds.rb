@@ -58,6 +58,16 @@ Criterium.create!([{criterion_type: :general, criterion: "El material constituye
     "sobre los objetivos y problemas que se abordan en el documento"},
   {criterion_type: :writing, criterion:"La extensión del texto es adecuada en función de"\
     "la complejidad del tema, los objetivos y el público lector" }])
+
+EditorialConceptCriterium.create!([{criterium:"Tema"}, {criterium:"Tipo de manuscrito"}, {criterium:"Distribución textual"},
+  {criterium:"Calidad de inédito del manuscrito"}, {criterium:"Observaciones de los pares evaluadores académicos"},
+  {criterium:"Índices analíticos"},{criterium:"Sistema de citación"},{criterium:"Referencias cruzadas"},
+  {criterium:"Corrección de estilo"},{criterium:"Idioma extranjero"},
+  {criterium:"Material gráfico"},{criterium:"Derechos de reproducción y/o de traducción"},
+  {criterium:"Cesión de derechos patrimoniales"},{criterium:"Extensión del manuscrito"},{criterium:"Colección y medio de publicación"},
+  {criterium:"Público objetivo y nichos de mercado"},{criterium:"Tiraje sugerido"},
+  {criterium:"Evaluación de mercado (libros afines de otros sellos editoriales)"},{criterium:"Posible coedición"}])
+
 for i in 0..20
   professor = Professor.find( Faker::Number.between(1, 51))
 

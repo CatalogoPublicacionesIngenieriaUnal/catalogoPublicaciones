@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510234051) do
+ActiveRecord::Schema.define(version: 20170511023048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,24 +36,26 @@ ActiveRecord::Schema.define(version: 20170510234051) do
   end
 
   create_table "application_requests", force: :cascade do |t|
-    t.integer  "state",                         null: false
+    t.integer  "state",                             null: false
     t.date     "authorized_at"
     t.integer  "publication_id"
     t.integer  "professor_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "author_topic"
     t.string   "author_target_audience"
     t.string   "author_positioning_strategies"
     t.string   "author_academic_appreciation"
     t.text     "author_published_titles"
     t.text     "author_final_recomendation"
+    t.text     "editorial_aditional_recomendation"
+    t.text     "editorial_remarks_to_author"
     t.index ["professor_id"], name: "index_application_requests_on_professor_id", using: :btree
     t.index ["publication_id"], name: "index_application_requests_on_publication_id", using: :btree
   end
 
   create_table "attatchments", force: :cascade do |t|
-    t.string   "url",                    null: false
+    t.string   "pdf_document",           null: false
     t.integer  "category",               null: false
     t.integer  "application_request_id"
     t.datetime "created_at",             null: false
@@ -77,12 +79,12 @@ ActiveRecord::Schema.define(version: 20170510234051) do
   create_table "ed_con_app_requests", force: :cascade do |t|
     t.integer  "score"
     t.string   "remark"
-    t.integer  "application_requests_id"
-    t.integer  "editorial_concept_criteria_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.index ["application_requests_id"], name: "index_ed_con_app_requests_on_application_requests_id", using: :btree
-    t.index ["editorial_concept_criteria_id"], name: "index_ed_con_app_requests_on_editorial_concept_criteria_id", using: :btree
+    t.integer  "application_request_id"
+    t.integer  "editorial_concept_criterium_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["application_request_id"], name: "index_ed_con_app_requests_on_application_request_id", using: :btree
+    t.index ["editorial_concept_criterium_id"], name: "index_ed_con_app_requests_on_editorial_concept_criterium_id", using: :btree
   end
 
   create_table "editorial_concept_criteria", force: :cascade do |t|
@@ -223,8 +225,8 @@ ActiveRecord::Schema.define(version: 20170510234051) do
   add_foreign_key "application_requests", "professors"
   add_foreign_key "application_requests", "publications"
   add_foreign_key "attatchments", "application_requests"
-  add_foreign_key "ed_con_app_requests", "application_requests", column: "application_requests_id"
-  add_foreign_key "ed_con_app_requests", "editorial_concept_criteria", column: "editorial_concept_criteria_id"
+  add_foreign_key "ed_con_app_requests", "application_requests"
+  add_foreign_key "ed_con_app_requests", "editorial_concept_criteria"
   add_foreign_key "evaluations", "application_requests"
   add_foreign_key "evaluations_criteria", "criteria"
   add_foreign_key "evaluations_criteria", "evaluations"

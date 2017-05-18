@@ -56,11 +56,13 @@ class AttatchmentsController < ApplicationController
   # DELETE /attatchments/1
   # DELETE /attatchments/1.json
   def destroy
-    @attatchment.destroy
-    respond_to do |format|
-      format.html { redirect_to attatchments_url, notice: 'Attatchment was successfully destroyed.' }
-      format.json { head :no_content }
+    if professor_signed_in?
+      @publications = Publication.publications_by_professor(current_professor.id)
+    else
+      @publications = Publication.search(params[:search],params[:category])
     end
+    @attatchment.destroy
+    redirect_to :back
   end
 
   private
@@ -71,6 +73,6 @@ class AttatchmentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def attatchment_params
-    params.require(:attatchment).permit(:url, :category, :application_request_id)
+    params.require(:attatchment).permit(:category, :application_request_id, :pdf_document)
   end
 end

@@ -1,76 +1,49 @@
-<div class="row">
-  <div class="col-sm-2">
-    <%= render 'static/menu_publicaciones' %>
-  </div>
-  <div class="text-center">
-    <div class="col-md-10" style="padding: 10px 0px 0px 0px;">
-      <h1 style="font-size:200%;">Nuevo evaluador</h1>
-    </div>
-  </div>
-  <div class="col-sm-10">
-    <div><hr class="style13"></div>
-    <div class="main-content">
-      <div class="form-basic">
-
-        <%= form_for([@evaluation, @evaluator], :url => {:action => "create", :id =>@evaluator}) do |f| %>
-        <% if evaluator.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(evaluator.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
-
-          <ul>
-            <% evaluator.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-        <% end %>
-
-        <div class="form-title-row">
-          <h1>Datos básicos del evaluador</h1>
-        </div>
-
-        <div class="form-row">
-          <label>
-            <span>Nombres</span>
-            <%= f.text_field :first_name %>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>
-            <span>Apellidos</span>
-            <%= f.text_field :last_name %>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>
-            <span>Correo electrónico</span>
-            <%= f.text_field :email %>
-          </label>
-        </div>
-
-        <div class="form-row">
-          <label>
-            <span>Idioma evaluador</span>
-            <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"),:prompt => "Seleccione una opción" %>
-          </label>
-        </div>
-
-        <div class="actions">
-          <%= f.submit :"Crear nuevo evaluador", :class=>"button"%>
-        </div>
-
-        <% end %>
+<div id="product-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content" style="height:630px; width:710px">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="text-center">
+        <h4 class="modal-title"><%= title %></h4>
       </div>
-    </div>
-    <div><hr class="style13"></div>
-    <div class="form-basic-2">
-      <div class="text-center">
-        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
-          <%= link_to 'Volver', :back %>
+      </div>
+      <%= form_for([@evaluation, @evaluator],:url => {:action => "create", :id =>@evaluator}, remote: true) do |f| %>
+      <div class="modal-body">
+        <div class="form-basic" style="height:100%; width:100%;">
+          <div class="form-row">
+            <label>
+              <span>Nombres</span>
+              <%= f.text_field :first_name %>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Apellidos</span>
+              <%= f.text_field :last_name %>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Correo electrónico</span>
+              <%= f.text_field :email %>
+            </label>
+          </div>
+          <div class="form-row">
+            <label>
+              <span>Idioma evaluador</span>
+              <%= f.select :language_id, options_from_collection_for_select(@languages, "id", "name"),:prompt => "Seleccione una opción" %>
+            </label>
+          </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <div class="form-basic" style="height:100%; width:100%;">
+          <div class="actions">
+            <%= f.submit :"Crear nuevo evaluador", :class=>"button"%>
+          </div>
+        </div>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>

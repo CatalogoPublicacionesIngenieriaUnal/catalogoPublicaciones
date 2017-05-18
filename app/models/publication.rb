@@ -15,7 +15,7 @@ class Publication < ApplicationRecord
   validates :abstract, presence: true
   validates :category, presence: true
   validates :theme, presence: true
-  # validates :keyword_publications, :length => { :minimum => 3}
+  #validates :keyword_publications, length: { is: 3 }
 
   # before_validation(on: :create) do
   #   self.application_request_id = 1
@@ -24,6 +24,7 @@ class Publication < ApplicationRecord
   # #   self.application_request_id = application_request.id
   # end
 
+
   def request_completeness
     count = 0
     count += application_request.completeness
@@ -31,11 +32,24 @@ class Publication < ApplicationRecord
     count += 1 unless abstract.nil?
     count += 1 unless title.nil?
     count += 1 unless theme_id.nil?
-    return (count*100)/total_request_fields
+    completeness = (count*100)/total_request_fields
+    return completeness
+  end
+
+  def state
+    application_request.state
+  end
+
+  def professors_owner
+    application_request.professor
   end
 
   def total_request_fields
     return total_publication_fields + application_request.total_application_fields
+  end
+
+  def get_attatchment(att_category)
+    application_request.attatchments.where(category: att_category).first unless att_category == :concepto_editorial_b
   end
 
 

@@ -39,7 +39,7 @@ a img{border:none}
 .escudorep {width:90px; height:82px; float:right; margin-left:103px;}
 .depen { margin: 10px auto 0; width:550px; display:table; text-align:center; color:#999; position:relative;  }
 .tipage{ margin: 10px auto 0; width:550px; display:table; text-align:center; font-family:Georgia, "Times New Roman", Times, serif; font-size:20px; }
-.in {height:18px; width:84px; float:left;}
+.in {height:100%; width:100%; margin:auto;}
 .bard {width:313px; height:18px; float:right; background-image:url(images/fill_dark.gif) }
 .pd {width:23px; height:18px; float:right;}
 .cor { margin-left:12px; width:67px; height:18px; float:left; }

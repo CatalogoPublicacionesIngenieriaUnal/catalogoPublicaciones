@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-md-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Calificación editorial</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic" style="width:900px">
+        <table id="t01" style="width:100%">
+          <tr>
+            <th width="25%">Criterio</th>
+            <th>Valoración</th>
+            <th>Observaciones al autor o unidad académica</th>
+          </tr>
+          <tr>
+            <td colspan="3", align="right" style="background-color:#eee;">1. Presentación del manuscrito</td>
+          </tr>
+          <%- @editorial_concept_criteria.each do |ed_criterium| %>
+          <% if ed_criterium.id <= 5 %>
+          <tr>
+            <th><%=ed_criterium.criterium%></th>
+            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).score %></th>
+            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).remark %></th>
+          </tr>
+          <% end %>
+          <% end %>
+          <tr>
+            <td colspan="3", align="right" style="background-color:#eee;">2. Adecuación a la pauta editorial de la Facultad (Manual editorial)</td>
+          </tr>
+          <%- @editorial_concept_criteria.each do |ed_criterium| %>
+          <% if ed_criterium.id > 5 && ed_criterium.id <= 14 %>
+          <tr>
+            <th><%=ed_criterium.criterium%></th>
+            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).score %></th>
+            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).remark %></th>
+          </tr>
+          <% end %>
+          <% end %>
+          <tr>
+            <td colspan="3", align="right" style="background-color:#eee;">3. Viabilidad editorial, económica y comercial</td>
+          </tr>
+          <%- @editorial_concept_criteria.each do |ed_criterium| %>
+          <% if ed_criterium.id > 14%>
+          <tr>
+            <th><%=ed_criterium.criterium%></th>
+            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).score %></th>
+            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).remark %></th>
+          </tr>
+          <% end %>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', @application_request %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

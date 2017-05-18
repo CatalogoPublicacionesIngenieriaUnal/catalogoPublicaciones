@@ -1,0 +1,29 @@
+
+  <div class="form-basic">
+    <div class="form-title-row">
+      <% if attatchment.category == "carta_presentacion" %>
+      <h2><%= "Carta de presentación" %></h1>
+      <% elsif attatchment.category == "concepto_editorial_a" %>
+      <h2><%= "Concepto editorial" %></h1>
+      <% elsif attatchment.category == "concepto_editorial_b" %>
+      <h2><%= "Evaluacion editorial" %></h1>
+      <% else %>
+      <h2><%= "Manuscrito" %></h1>
+      <% end %>
+    </div>
+    <div class="tg-wrap"><table width="100%" >
+        <tr>
+          <th width="80%">
+            <%= link_to (attatchment.pdf_document.url), target: :_blank do %>
+          <%= fa_icon "file-pdf-o 3x", base: "square-o", class: "btn btn-danger", text: attatchment.pdf_document.filename %>
+          <% end %>
+        </th>
+          <th>
+            <%= link_to_unless @publication.application_request.state != 'En creación',
+          (fa_icon "trash-o 2x", base: "square-o", class: "btn pull-left"),
+          attatchment_url(attatchment.id), data: { confirm: "¿Está seguro que desea eliminar este archivo?" },
+          :method => :delete%>
+        </th>
+        </tr>
+      </table></div>
+  </div>

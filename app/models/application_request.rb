@@ -28,6 +28,14 @@ class ApplicationRequest < ApplicationRecord
     return 8
   end
 
+  def form_b?
+    ed_con_app_requests.count == 19 ? true : false
+  end
+
+  def ready_for_evaluation
+    state == 'En espera' && form_b? && attatchments.count == 4 ? true : false
+  end
+
   def self.load_applications_by_state_id(id, page = 1, per_page = 10)
     includes(:state).where("state_id = ?", id)
   end
@@ -42,6 +50,10 @@ class ApplicationRequest < ApplicationRecord
 
   def self.get_professor(professor_id)
     includes(:professors).where(professors:{id: professor_id})
+  end
+
+  def self.ready_requests
+    where(state: :'En espera')
   end
 
   private

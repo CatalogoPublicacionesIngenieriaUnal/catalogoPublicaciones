@@ -34,6 +34,9 @@ class PublicationsController < ApplicationController
     end
   end
 
+  def delete_pdf
+    @publication.delete_attatchment
+  end
   # GET /publications/new
   def new
     @publication = Publication.new

@@ -41,6 +41,10 @@ class Publication < ApplicationRecord
     return total_publication_fields + application_request.total_application_fields
   end
 
+  def delete_attatchment(att_category)
+    application_request.attatchments.where(category: att_category).first.destroy unless att_type == :concepto_editorial_b
+  end
+
 
   scope :publications_by_professor, -> (professor_id){
     includes(:professor_publications,:professors).where(professors:{id: professor_id})

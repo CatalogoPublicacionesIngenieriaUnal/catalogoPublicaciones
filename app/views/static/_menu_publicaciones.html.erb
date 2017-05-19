@@ -46,7 +46,16 @@
   <div class="li-custom">
     <%= link_to 'Ver Estadísticas', statistics_path %>
   </div>
+
+  <% elsif evaluator_signed_in? %>
+  <div class="li-custom">
+    <%= link_to 'Inicio', evaluator_home_path %>
+  </div>
+  <div class="li-custom">
+    <%= link_to 'Mi perfil', show_current_evaluator_path %>
+  </div>
   <% else %>
+
   <div class="li-custom">
     <%= link_to 'Instrucciones para postularse', under_construction_path %>
   </div>
@@ -57,8 +66,7 @@
   <div class="li-custom">
     <a href="/contact">Contacto</a>
   </div>
-  <%- if !anyone_singed_in? %>
-  <% else %>
+  <%- if anyone_singed_in? %>
   <div class="li-custom">
     <%= link_to "Salir", destroy_professor_session_path, method: :delete, :class=>"button" %>
   </div>

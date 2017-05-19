@@ -51,7 +51,6 @@
         <li>
           <span class="inf">Palabras clave</span>
           <span class="value">
-            <%= Keyword.find(@publication.keyword_ids[0]).keyword %>,
             <%= Keyword.find(@publication.keyword_ids[1]).keyword %>,
             <%= Keyword.find(@publication.keyword_ids[2]).keyword %>
           </span>
@@ -93,7 +92,6 @@
     category: :carta_presentacion%>
     <% end %>
 
-<<<<<<< HEAD
     <div><hr class="style13"></div>
     <% if professor_signed_in? %>
     <div class="li-custom" style="width:200px; float:left">
@@ -103,9 +101,6 @@
 
     <center><div style="width:720px"><hr class="style13"></div></center>
     <%- unless @publication.attatchments.get_attachment_by_category(:concepto_editorial_a) %>
-=======
-    <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
->>>>>>> develop
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :concepto_editorial_a%>

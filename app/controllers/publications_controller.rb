@@ -28,7 +28,12 @@ class PublicationsController < ApplicationController
             html: {
               template: 'pdf/headers/header_formulario_15'
             }
-          }
+          },
+          margin:  {  top: 40,
+                      bottom: 30,
+                      left: 30,
+                      right: 30
+                    }
       end
     end
   end
@@ -123,7 +128,13 @@ class PublicationsController < ApplicationController
           html: {
             template: 'pdf/headers/header_formulario_13'
           }
-        }
+        },
+        margin:  {  top: 40,
+                    bottom: 30,
+                    left: 30,
+                    right: 30
+                  }
+
       end
     end
   end
@@ -138,7 +149,12 @@ class PublicationsController < ApplicationController
             html: {
               template: 'pdf/headers/header_formulario_14'
             }
-          }
+          },
+          margin:  {  top: 40,                     # default 10 (mm)
+                      bottom: 30,
+                      left: 30,
+                      right: 30
+                    }
       end
     end
   end

@@ -2,10 +2,42 @@
 <html>
 <head>
 	<title></title>
+	<%= wicked_pdf_stylesheet_link_tag "css/humanas - 24-09-2014" -%>
 	<meta charset="utf-8"></meta>
+	<style>
+	body {
+		font-size: 17px
+	}
+	p {
+		text-align: justify;
+	}
+	h2 {
+		color:#000;
+	}
+
+	table, th, td {
+		border: 1px solid black;
+	}
+
+	th, td {
+		padding: 5px;
+		text-align: left;
+	}
+
+	#title1{
+		text-align: center;
+	}
+
+	#table {
+    border-collapse: collapse;
+		width: 100%;
+		text-align: justify;
+		padding: 5px;
+	}
+	</style>
 </head>
 <body>
-  <h4>Instrucciones<h4>
+  <h2>Instrucciones</h2>
   <p>I. Este formato debe ser diligenciado de manera íntegra (todos los puntos
     son de respuesta obligatoria, salvo que se especifique lo contrario).
   </p>
@@ -17,16 +49,16 @@
     correspondiente), en la parte B.
   </p>
 
-  <h3>B. ESPACIOS A DILIGENCIAR POR PARTE DEL COORDINADOR EDITORIAL DEL MANUSCRITO</h3>
+  <h2>B. ESPACIOS A DILIGENCIAR POR PARTE DEL COORDINADOR EDITORIAL DEL MANUSCRITO</h2>
 
   <p>
   Realice la valoración y las observaciones al autor que haya lugar, en cada uno
 	de los siguientes criterios:<br>
   </p>
 
-  <table border='1'>
+  <table id="table">
     <tr>
-      <th colspan="3">1. Presentación del manuscrito</th>
+      <th colspan="3" id="title1">1. Presentación del manuscrito</th>
     </tr>
     <tr>
       <th>Criterio</th>
@@ -59,7 +91,7 @@
 			<th><%=%></th>
     </tr>
     <tr>
-      <th colspan="3">2.	Adecuación a la pauta editorial de la Facultad (Manual editorial)</th>
+      <th colspan="3" id="title1">2.	Adecuación a la pauta editorial de la Facultad (Manual editorial)</th>
     </tr>
 		<tr>
       <th>a) Índices analíticos</th>
@@ -107,7 +139,7 @@
 			<th><%=%></th>
     </tr>
 		<tr>
-      <th colspan="3">3.	Viabilidad editorial, económica y comercial</th>
+      <th colspan="3" id="title1">3.	Viabilidad editorial, económica y comercial</th>
     </tr>
 		<tr>
       <th>a) Colección y medio de publicación</th>
@@ -139,13 +171,14 @@
     Recomendación final:
   </p>
 
-  <table height='100' width='900' border="1">
-    <tr>
-      <th><%=%></th>
-    <tr>
-  </table>
+	<table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
 
   <p>
+		<br><br><br><br><br><br>
     __________________________
   </p>
 

@@ -2,18 +2,28 @@
 <html>
 <head>
 	<title></title>
+	<%= wicked_pdf_stylesheet_link_tag "css/humanas - 24-09-2014" -%>
 	<meta charset="utf-8"></meta>
+	<style>
+	body {
+		font-size: 17px
+	}
+	p {
+		text-align: justify;
+	}
+	</style>
 </head>
 <body>
+	<p><br><br></p>
 	<p>
-		Yo, <%= current_professor.first_name%> <%= current_professor.last_name %>,
-		mayor de edad, domiciliado en <%=%>, identificado con <%= current_professor.identity_document_type %>
-		número <%= current_professor.identity_document %> expedida en
-		<%= current_professor.identity_document_issued %>, actuando en nombre y
+		Yo, <b><%= current_professor.first_name%> <%= current_professor.last_name %></b>,
+		mayor de edad, domiciliado en <b><%=%></b>, identificado con <b><%= current_professor.identity_document_type %></b>
+		número <b><%= current_professor.identity_document %></b> expedida en
+		<b><%= current_professor.identity_document_issued %></b>, actuando en nombre y
 		representación propia, y que en adelante se conocerá como el AUTOR
-		del manuscrito titulado <%= @publication.title %>, por medio del presente
-		documento pongo a disposición de <%= Administrator.find(1).first_name %>
-		<%= Administrator.find(1).last_name %> el manuscrito ya mencionado a fin de
+		del manuscrito titulado <b><%= @publication.title %></b>, por medio del presente
+		documento pongo a disposición de <b><%= Administrator.find(1).first_name %>
+		<%= Administrator.find(1).last_name %></b> el manuscrito ya mencionado a fin de
 		que el mismo sea evaluado por parte del comité editorial, para luego precisar
 		los términos en que se realizará la publicación. Dichos términos quedarán
 		consignados en el eventual contrato de edición, coedición o cesión de derechos
@@ -23,8 +33,9 @@
 		Es de señalar que el presente documento no es un contrato de edición, ni otro
 		semejante. Ni tampoco tiene por objeto transferir el derecho patrimonial de
 		la obra. Por el contrario, el presente documento es la autorización que le
-		brinda el Autor o titular del derecho patrimonial de autor a <%= Administrator.find(1).first_name%> <%= Administrator.find(1).last_name%>
-		para iniciar las gestiones necesarias para la evaluación académica del manuscrito.<br>
+		brinda el Autor o titular del derecho patrimonial de autor a <b><%= Administrator.find(1).first_name%>
+		<%= Administrator.find(1).last_name%></b> para iniciar las gestiones necesarias
+		para la evaluación académica del manuscrito.<br>
 	</p>
 	<p>
 		Finalmente, hacemos constar que el contenido del manuscrito es inédito y no

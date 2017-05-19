@@ -93,10 +93,10 @@
         <div>Considera que el material debe ser publicado:</div>
         <br>
         <div class="form-row">
-            <%= f.radio_button :disclosure_degree, 1 %> (1) Tal como está <br>
-            <%= f.radio_button :disclosure_degree, 2 %> (2) Con ligeras modificaciones <br>
-            <%= f.radio_button :disclosure_degree, 3 %> (3) Con modificaciones sustanciales <br>
-            <%= f.radio_button :disclosure_degree, 4 %> (4) De ninguna manera <br>
+            <%= f.radio_button :state, :aprobado %> (1) Tal como está <br>
+            <%= f.radio_button :state, :ligeras_modificaciones %> (2) Con ligeras modificaciones <br>
+            <%= f.radio_button :state, :modificaciones_sustanciales %> (3) Con modificaciones sustanciales <br>
+            <%= f.radio_button :state, :rechazado %> (4) De ninguna manera <br>
         </div>
         <table style="width=100%">
             <tr>

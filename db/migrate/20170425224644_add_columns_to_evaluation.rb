@@ -14,6 +14,7 @@ class AddColumnsToEvaluation < ActiveRecord::Migration[5.0]
       t.integer :target_audience
       t.text    :target_audience_remark
       t.text    :extra_target_audience
+      t.boolean :finished
     end
   end
 end

@@ -1,9 +1,9 @@
 class EvaluationsController < ApplicationController
 
   before_action :authenticate!
-  before_action :authenticate_evaluator!, only: [:evaluate, :update]
-  before_action :authenticate_administrator!, only: [:create, :index, :new]
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :authorized?]
+  before_action :authenticate_evaluator!, only: [:evaluate, :update, :finish]
+  before_action :authenticate_administrator!, only: [:create, :index, :new, :show]
+  before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :authorized?, :finish]
   before_action :authorized?, only: [:show, :update]
 
   # GET /evaluations
@@ -75,7 +75,18 @@ class EvaluationsController < ApplicationController
     @evaluation = Evaluation.find(@evaluator.evaluation_id)
     @categories = Category.all
     @evaluations_criteria = EvaluationsCriterium.criteria_by_evaluation(@evaluation)
-   end
+  end
+
+  def finish
+    redirect_to :not_authorized unless @evaluation.evaluator == current_evaluator
+    @evaluation.finish
+    if @evaluation.errors.any?
+      redirect_to @evaluation
+    else
+      current_evaluator.destroy
+      redirect_to not_authorized_path
+    end
+  end
 
   private
 
@@ -99,4 +110,5 @@ class EvaluationsController < ApplicationController
   def authorized?
     redirect_to :not_authorized unless @evaluation.evaluator == current_evaluator
   end
+
 end

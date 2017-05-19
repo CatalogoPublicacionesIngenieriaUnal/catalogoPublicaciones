@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20170518191843) do
     t.integer  "target_audience"
     t.text     "target_audience_remark"
     t.text     "extra_target_audience"
+    t.boolean  "finished"
     t.index ["application_request_id"], name: "index_evaluations_on_application_request_id", using: :btree
   end
 
@@ -124,11 +125,11 @@ ActiveRecord::Schema.define(version: 20170518191843) do
   end
 
   create_table "evaluators", force: :cascade do |t|
-    t.string   "first_name",                          null: false
-    t.string   "last_name",                           null: false
-    t.string   "email",                               null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "first_name",                             null: false
+    t.string   "last_name",                              null: false
+    t.string   "email",                                  null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "language_id"
     t.integer  "evaluation_id"
     t.string   "position"
@@ -136,12 +137,12 @@ ActiveRecord::Schema.define(version: 20170518191843) do
     t.string   "degree"
     t.string   "degree_institution"
     t.string   "contact_number"
-    t.boolean  "first_update"
-    t.string   "encrypted_password",     default: "", null: false
+    t.boolean  "first_update",           default: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"

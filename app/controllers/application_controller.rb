@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
     elsif administrator_signed_in?
       administrator_home_path
     elsif evaluator_signed_in?
-      evaluator_show_path
+      evaluator_home_path
     else
       root_path
     end

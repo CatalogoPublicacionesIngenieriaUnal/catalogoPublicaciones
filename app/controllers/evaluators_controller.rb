@@ -1,10 +1,10 @@
 class EvaluatorsController < ApplicationController
 
   before_action :set_evaluator, only: [:update, :destroy]
-  before_action :set_current_evaluator, only: [:edit, :show, :update_password, :edit_password]
+  before_action :set_current_evaluator, only: [:edit, :show, :update_password, :edit_password, :home]
 
   before_action :authenticate_administrator!, only: [:new, :create, :destroy, :index]
-  before_action :authenticate_evaluator!, only: [:show, :update, :edit, :update_password, :edit_password]
+  before_action :authenticate_evaluator!, only: [:show, :update, :edit, :update_password, :edit_password, :home]
 
   # GET /evaluators
   # GET /evaluators.json
@@ -82,6 +82,11 @@ class EvaluatorsController < ApplicationController
       format.html { redirect_to evaluators_url, notice: 'Evaluator was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def home
+    @evaluation = Evaluation.find(@evaluator.evaluation_id)
+    @attatchment = @evaluation.publication
   end
 
   private

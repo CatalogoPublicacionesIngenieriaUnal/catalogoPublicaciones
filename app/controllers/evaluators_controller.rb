@@ -12,6 +12,9 @@ class EvaluatorsController < ApplicationController
     @evaluators = Evaluator.all
   end
 
+  def home
+  end
+  
   def update_password
     if @evaluator.update_with_password(evaluator_password_params)
       @evaluator.update(first_update: true)

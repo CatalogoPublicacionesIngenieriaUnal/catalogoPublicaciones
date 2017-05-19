@@ -13,7 +13,7 @@ class EvaluatorsController < ApplicationController
   end
 
   def update_password
-    if @evaluator.update_with_password(evaluator_params)
+    if @evaluator.update_with_password(evaluator_password_params)
       @evaluator.update(first_update: true)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in(@evaluator)
@@ -64,7 +64,7 @@ class EvaluatorsController < ApplicationController
   def update
     @languages = Language.all
     respond_to do |format|
-      if @evaluator.update(evaluator_params)
+      if @evaluator.update(evaluator_edit_params)
         format.html { redirect_to @evaluator, notice: 'Evaluator was successfully updated.' }
         format.json { render :show, status: :ok, location: @evaluator }
       else
@@ -97,7 +97,15 @@ class EvaluatorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluator_params
       params.require(:evaluator).permit(:first_name, :last_name, :email, :language_id,
-      :position, :institution, :degree, :degree_institution, :contact_number,
-      :evaluation_id, :password, :password_confirmation, :current_password)
+      :evaluation_id, :password)
+    end
+
+    def evaluator_edit_params
+      params.require(:evaluator).permit(:first_name, :last_name, :email, :language_id,
+      :position, :institution, :degree, :degree_institution, :contact_number)
+    end
+
+    def evaluator_password_params
+      params.require(:evaluator).permit(:password, :password_confirmation, :current_password)
     end
 end

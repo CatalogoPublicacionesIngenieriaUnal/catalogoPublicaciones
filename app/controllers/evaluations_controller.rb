@@ -3,7 +3,8 @@ class EvaluationsController < ApplicationController
   before_action :authenticate!
   before_action :authenticate_evaluator!, only: [:evaluate, :update]
   before_action :authenticate_administrator!, only: [:create, :index, :new]
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
+  before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :authorized?]
+  before_action :authorized?, only: [:show, :update]
 
   # GET /evaluations
   # GET /evaluations.json
@@ -93,5 +94,9 @@ class EvaluationsController < ApplicationController
 
   def authenticate!
     redirect_to :not_authorized_path unless (administrator_signed_in? || evaluator_signed_in?)
+  end
+
+  def authorized?
+    redirect_to :not_authorized unless @evaluation.evaluator == current_evaluator
   end
 end

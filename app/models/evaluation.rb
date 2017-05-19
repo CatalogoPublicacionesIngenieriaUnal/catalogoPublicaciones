@@ -11,8 +11,8 @@ class Evaluation < ApplicationRecord
 
   after_create :create_criteria
 
-  def self.get_publication_by_email(email)
-    includes(:evaluator).where(evaluators:{email: email})
+  def self.publication_by_evaluator(evaluator)
+    includes(:evaluator).where(evaluators:{id: evaluator})
   end
 
   private

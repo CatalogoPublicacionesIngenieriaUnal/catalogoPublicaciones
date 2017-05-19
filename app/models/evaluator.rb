@@ -31,5 +31,6 @@ class Evaluator < ApplicationRecord
     generated_password = Devise.friendly_token
     puts "Contraseña = #{generated_password}"
     self.password = generated_password
+    self.first_update = false
   end
 end

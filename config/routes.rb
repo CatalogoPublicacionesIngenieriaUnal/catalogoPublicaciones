@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'administrators/edit', to: 'administrators#edit', as: :edit_current_administrator
   get 'administrators/home', to: 'administrators#home', as: :administrator_home
 
+  get 'evaluators/evaluate', to: 'evaluations#evaluate', as: :evaluate
   get 'evaluators/show', to: 'evaluators#show', as: :evaluator_show
   get 'evaluators/edit', to: 'evaluators#edit', as: :edit_current_evaluator
   patch 'evaluators/update_password', to: 'evaluators#update_password', as: :evaluator_update_password

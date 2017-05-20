@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get 'evaluators/edit', to: 'evaluators#edit', as: :edit_current_evaluator
   patch 'evaluators/update_password', to: 'evaluators#update_password', as: :evaluator_update_password
   get 'evaluators/edit_password', to: 'evaluators#edit_password', as: :evaluator_edit_password
-  get 'evaluators/home', to: 'evaluators#home', as: :evaluator_home
 
   patch 'evaluations/:id/finish', to: 'evaluations#finish', as: :evaluation_finish
 

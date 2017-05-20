@@ -1,0 +1,235 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%= render 'static/menu_publicaciones' %>
+  </div>
+  <div class="col-md-10">
+    <div class="text-center" style="padding: 10px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Evaluación</h1>
+      <p id="notice"><%= notice %></p>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="info">
+      <ul class="info-list">
+
+        <li>
+          <span class="inf">Titulo de la publicación</span>
+          <span class="value">
+            <%= @evaluation.application_request.publication.title %>
+          </span>
+        </li>
+
+        <li>
+          <span class="inf">Clasificacion de la obra</span>
+          <span class="value">
+            <%= @evaluation.publication_clasiffication %>
+          </span>
+        </li>
+
+        <li>
+          <span class="inf">Tipo de material traducido</span>
+          <span class="value">
+            <%= @evaluation.publication_translated_material %>
+          </span>
+        </li>
+
+        <li>
+          <span class="inf">Sinopsis sobre el contenido del libro</span>
+          <span class="value">
+            <%= @evaluation.publication_synopsis %>
+          </span>
+        </li>
+
+        <li>
+          <p style="padding:10px 5px 5px 5px">Originalidad y relevancia del contenido</p>
+        </li>
+
+        <%- EvaluationsCriterium.curr_evl_gen(@evaluation.id).each do |ev_criteria| %>
+        <li style="width: 100%;">
+          <span class="inf" style="width:80%; text-align:justify; padding:5px 5px 0px 0px ">
+            <%= ev_criteria.criterium.criterion %>
+          </span>
+          <span class="value" style="width:10%;">
+            <%= ev_criteria.score %>
+          </span>
+        </li>
+        <% end %>
+
+        <li>
+          <span class="inf">Justificacion de las calificaciones</span>
+          <span class="value">
+            <%= @evaluation.general_score_justification %>
+          </span>
+        </li>
+
+        <li>
+          <p style="padding:10px 5px 5px 5px">Adecuación de la escritura y presentación</p>
+        </li>
+
+        <%- EvaluationsCriterium.curr_evl_wri(@evaluation.id).each do |ev_criteria| %>
+        <li style="width: 100%;">
+          <span class="inf" style="width:80%; text-align:justify; padding:5px 5px 0px 0px ">
+            <%= ev_criteria.criterium.criterion %>
+          </span>
+          <span class="value" style="width:10%;">
+            <%= ev_criteria.score %>
+          </span>
+        </li>
+        <% end %>
+
+        <li>
+          <span class="inf">Comentarios sobre los aspectos anteriores</span>
+          <span class="value">
+            <%= @evaluation.writing_score_jistification %>
+          </span>
+        </li>
+
+        <li>
+          <p style="padding:10px 5px 5px 5px">DECISIÓN FINAL</p>
+        </li>
+
+        <li>
+          <span class="inf">Estado</span>
+          <%- if @evaluation.state == 'aprobado' %>
+          <span class="value">
+            Aprobado
+          </span>
+          <%- elsif @evaluation.state == 'ligeras_modificaciones' %>
+          <span class="value">
+            Aprobado con ligeras modificaciones
+          </span>
+          <%- elsif @evaluation.state == 'modificaciones_sustanciales' %>
+          <span class="value">
+            Aprobado con modificaciones sustanciales
+          </span>
+          <%- elsif @evaluation.state == 'rechazado' %>
+          <span class="value">
+            Rechazado
+          </span>
+          <% end %>
+        </li>
+
+        <li>
+          <%- if @evaluation.state == 'aprobado' %>
+          <span class="inf">Observaciones</span>
+          <%- elsif @evaluation.state == 'ligeras_modificaciones' || @evaluation.state == 'modificaciones_sustanciales' %>
+          <span class="inf">Modificaciones recomendadas</span>
+          <%- elsif @evaluation.state == 'rechazado' %>
+          <span class="inf">Justificacion rechazo</span>
+          <% end %>
+          <span class="value">
+            <%= @evaluation.justification %>
+          </span>
+        </li>
+
+        <li>
+          <p style="padding:10px 5px 5px 5px">Observaciones adicionales</p>
+        </li>
+
+        <li>
+          <span class="inf">Observaciones para el autor</span>
+          <span class="value">
+            <%= @evaluation.aditional_remarks_to_author %>
+          </span>
+        </li>
+
+        <li>
+          <span class="inf">Observaciones para el editor</span>
+          <span class="value">
+            <%= @evaluation.aditional_remarks_to_publisher %>
+          </span>
+        </li>
+
+        <li></li>
+        <li>
+          <span class="inf">Grado de divulgación de la obra</span>
+          <%- if @evaluation.disclosure_degree == 1 %>
+          <span class="value">
+            Regional
+          </span>
+          <%- elsif @evaluation.disclosure_degree == 2 %>
+          <span class="value">
+            Nacional
+          </span>
+          <%- else %>
+          <span class="value">
+            Internacional
+          </span>
+          <% end %>
+        </li>
+
+        <li>
+          <span class="inf">Publico al que esta dirigida la obra</span>
+          <%- if @evaluation.target_audience == 1 %>
+          <span class="value">
+            Intradisciplinario: público altamente especializado, de modo tal que requiere pertenecer a la misma área para poder comprender el contenido.
+          </span>
+          <%- elsif @evaluation.target_audience == 2 %>
+          <span class="value">
+            Interdisciplinario: público especializado interesado en cruzar las fronteras del conocimiento y de la disciplina (pertenece a la misma disciplina, pero trabaja en áreas diversas).
+          </span>
+          <%- elsif @evaluation.target_audience == 3 %>
+          <span class="value">
+            En formación: estudiantes en una dimensión amplia que abarca todos los niveles del sistema educativo.
+          </span>
+          <%- else %>
+          <span class="value">
+            General: lectores no especializados, interesados en información puntual.
+          </span>
+          <% end %>
+        </li>
+
+        <li>
+          <span class="inf">Observaciones sobre el publico lector</span>
+          <span class="value">
+            <%= @evaluation.target_audience_remark %>
+          </span>
+        </li>
+
+        <li>
+          <span class="inf">Institutos, sociedades, gremios,
+          escuelas, facultades, congresos y otras entidades o eventos
+          cuyos integrantes constituyan un público objetivo importante
+          para la publicación</span>
+          <span class="value">
+            <%= @evaluation.extra_target_audience %>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div><hr class="style13"></div>
+    <div class="form-basic">
+      <div class="tg-wrap">
+        <table width="100%">
+          <tr>
+            <th width="40%">
+              <%= link_to (@attatchment.pdf_document.url), target: :_blank do %>
+              <%= fa_icon "file-pdf-o 3x", base: "square-o", class: "btn btn-danger"%>
+              <% end %>
+            </th>
+            <th width="60%">
+              <%= link_to (@attatchment.pdf_document.url), target: :_blank do %>
+              <div style="font-size:200%;"><%= @attatchment.pdf_document.filename %></div>
+              <% end %>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:250px; margin:auto; padding: 0px 0px 10px 0px">
+          <%= link_to 'Evaluar', evaluate_path %>
+        </div>
+        <div class="li-custom" style="width:200px; margin:auto; padding: 0px 0px 10px 0px">
+          <%= link_to 'Editar contraseña', evaluator_edit_password_path %>
+        </div>
+        <div class="li-custom" style="width:150px; margin:auto; padding: 0px 0px 10px 0px">
+          <%= link_to 'Volver', :back %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

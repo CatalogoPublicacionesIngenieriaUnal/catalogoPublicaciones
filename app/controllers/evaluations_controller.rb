@@ -51,7 +51,7 @@ class EvaluationsController < ApplicationController
         evaluations_criterium.save
       end
       if @evaluation.update!(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
+        format.html { redirect_to evaluator_home_path, notice: 'Se guardo la evaluacion con exito.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -75,6 +75,7 @@ class EvaluationsController < ApplicationController
     @evaluation = Evaluation.find(@evaluator.evaluation_id)
     @categories = Category.all
     @evaluations_criteria = EvaluationsCriterium.criteria_by_evaluation(@evaluation)
+
   end
 
   def finish
@@ -100,7 +101,8 @@ class EvaluationsController < ApplicationController
     params.require(:evaluation).permit(:justification, :state, :application_request_id,
     :publication_clasiffication, :publication_translated_material, :publication_synopsis,
     :general_score_justification, :writing_score_jistification, :aditional_remarks_to_author,
-    :aditional_remarks_to_publisher, :disclosure_degree, :target_audience, :target_audience_remark)
+    :aditional_remarks_to_publisher, :disclosure_degree, :target_audience, :target_audience_remark,
+    :extra_target_audience)
   end
 
   def authenticate!

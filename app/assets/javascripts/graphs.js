@@ -47,7 +47,7 @@ function categPie(){
         svg = d3.select("#graficas");
         svg.selectAll("*").remove();
         svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
         addText( data );
        },
       error: function (result) {
@@ -70,7 +70,7 @@ function themePie(){
         svg = d3.select("#graficas");
         svg.selectAll("*").remove();
         svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
         addText( data );
        },
       error: function (result) {
@@ -93,7 +93,7 @@ function statusPie(){
         svg = d3.select("#graficas");
         svg.selectAll("*").remove();
         svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
         addText( data );
        },
       error: function (result) {
@@ -116,7 +116,7 @@ function profDptoPie(){
         svg = d3.select("#graficas");
         svg.selectAll("*").remove();
         svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
         addText( data );
        },
       error: function (result) {
@@ -139,7 +139,7 @@ function profGenderPie(){
         svg = d3.select("#graficas");
         svg.selectAll("*").remove();
         svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 150, 130, 130, 100, 30, 0.4);
+        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
         addText( data );
        },
       error: function (result) {
@@ -175,22 +175,27 @@ function appReqCreation(){
 function addText( data ){
   svg = d3.select("#graficas");
   for( i = 0; i < Math.ceil(data.length / 8); i++ ){
-    for( j = 0; j < 8; j++ ){
+    for( j = 0; j < 9; j++ ){
       svg.append("text")
-        .text( data[ i * 8 + j ].label )
+        .text( data[ i * 9 + j ].label )
         .attr( "class", "texto" )
         .attr("x", 350 + i * 150 )
-        .attr("y", 30 * j + 50);
+        .attr("y", 30 * j + 40);
       svg.append("rect")
         .attr( "class","barra" )
         .attr( "height", 15 )
         .attr( "width", 15 )
         .attr( "x", 332 + i * 150)
-        .attr( "y", 30 * j + 38 )
-        .attr( "fill", data[ i * 8 + j ].color );
+        .attr( "y", 30 * j + 28 )
+        .attr( "fill", data[ i * 9 + j ].color );
     }
   }
 }
+
+function lineGraph(){
+      
+}
+
 
 function graficar2(data){
   a = d3.select("#graficas").attr("height", data.length * 30 + 10 ).attr("width","80%");
@@ -221,6 +226,6 @@ function graficar2(data){
       .attr("class","texto")
       .attr("x", 10 )
       .attr("y", 30 * i + 25 );
-}
+    }
   //console.log( asda );
 }

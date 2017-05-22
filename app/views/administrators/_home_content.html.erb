@@ -10,13 +10,12 @@
     <div><hr class="style13"></div>
     <div class="form-basic-2">
       <div class="li-custom">
-        <% @administrators.each do |administrator| %>
         <div class="li-custom">
-          <%= link_to 'Ver mis datos personales', administrator %>
+          <%= link_to 'Ver mis datos personales', @administrator %>
         </div>
         <br>
         <div class="li-custom">
-          <%= link_to 'Actualizar datos personales', edit_administrator_path(administrator) %>
+          <%= link_to 'Actualizar datos personales', edit_administrator_path(@administrator) %>
         </div>
         <br>
         <div class="li-custom">
@@ -38,7 +37,6 @@
         <div class="li-custom">
           <%= link_to 'Ver Estadísticas', statistics_path %>
         </div>
-        <% end %>
       </div>
     </div>
   </div>

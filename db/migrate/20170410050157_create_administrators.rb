@@ -5,6 +5,7 @@ class CreateAdministrators < ActiveRecord::Migration[5.0]
       t.string :first_name, null: false
       t.string :last_name,  null: false
       t.string :email,      null: false, uniqueness: true
+      t.boolean   :first_update, default: false
 
       t.timestamps
     end

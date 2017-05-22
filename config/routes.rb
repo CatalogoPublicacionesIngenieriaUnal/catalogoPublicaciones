@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'administrators/profile', to: 'administrators#show', as: :show_current_administrator
   get 'administrators/edit', to: 'administrators#edit', as: :edit_current_administrator
   get 'administrators/home', to: 'administrators#home', as: :administrator_home
+  patch 'administrators/update_password', to: 'administrators#update_password', as: :administrator_update_password
+  get 'administrators/edit_password', to: 'administrators#edit_password', as: :administrator_edit_password
 
   get 'evaluators/profile', to: 'evaluators#show', as: :show_current_evaluator
   get 'evaluators/home', to: 'evaluators#home', as: :evaluator_home

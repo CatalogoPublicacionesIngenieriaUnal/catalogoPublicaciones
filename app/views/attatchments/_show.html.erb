@@ -12,12 +12,21 @@
           <div style="font-size:200%;"><%= attatchment.pdf_document.filename %></div>
           <% end %>
         </th>
+        <%- if professor_signed_in? %>
         <th>
           <%= link_to_unless attatchment.application_request.state != 'En creación',
           (fa_icon "trash-o 2x", base: "square-o", class: "btn pull-left"),
           attatchment_url(attatchment.id), data: { confirm: "¿Está seguro que desea eliminar este archivo?" },
           :method => :delete%>
         </th>
+        <%- elsif administrator_signed_in? && attatchment.category == 'concepto_editorial_b' %>
+        <th>
+          <%= link_to_unless attatchment.application_request.state != 'En espera',
+          (fa_icon "trash-o 2x", base: "square-o", class: "btn pull-left"),
+          attatchment_url(attatchment.id), data: { confirm: "¿Está seguro que desea eliminar este archivo?" },
+          :method => :delete%>
+        </th>
+        <% end %>
       </tr>
     </table>
   </div>

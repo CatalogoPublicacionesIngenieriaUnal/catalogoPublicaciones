@@ -12,11 +12,10 @@
 
       <table class="table-custom">
         <tr>
-          <th>User</th>
-          <th>Name</th>
-          <th>Lastname</th>
-          <th>Email</th>
-          <th>Created at</th>
+          <th>Usuario</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Correo electrónico</th>
           <th colspan="3"></th>
         </tr>
         <tbody>
@@ -26,14 +25,24 @@
             <td><%= administrator.first_name %></td>
             <td><%= administrator.last_name %></td>
             <td><%= administrator.email %></td>
-            <td><%= administrator.created_at %></td>
-            <td><%= link_to 'Show', administrator %></td>
-            <td><%= link_to 'Edit', edit_administrator_path(administrator) %></td>
-            <td><%= link_to 'Destroy', administrator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Ver', administrator %></td>
+            <td><%= link_to 'Editar', edit_administrator_path(administrator) %></td>
+            <td><%= link_to 'Eliminar', administrator, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="form-basic-2">
+      <div class="text-center">
+        <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Nuevo administrador', new_administrator_path %>
+        </div>
+        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+          <%= link_to 'Volver', :back %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

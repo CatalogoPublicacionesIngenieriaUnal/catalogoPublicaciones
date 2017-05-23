@@ -8,7 +8,7 @@
 
 # SEEDS PARA DESARROLLO
 #Super Usuario
-Administrator.create!(username: "root", email: "correofalso@unal.edu.co", first_name: "super", last_name: "usuario", password: "123456789",password_confirmation: "123456789")
+Administrator.create!(username: "root", email: "correofalso@unal.edu.co", first_name: "super", last_name: "usuario")
 
 Language.create!([{name: "Español"},{name: "Inglés"},{name: "Francés"},
   {name: "Alemán"},{name: "Ruso"}, {name: "Portugués"}])

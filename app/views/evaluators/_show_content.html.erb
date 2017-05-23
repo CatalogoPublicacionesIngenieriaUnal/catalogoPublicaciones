@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-10">
     <div class="text-center" style="padding: 10px 0px 0px 0px;">
-      <h1 style="font-size:200%;">Datos evaluador</h1>
+      <h1 style="font-size:200%;">Mis datos</h1>
       <p id="notice"><%= notice %></p>
     </div>
     <div><hr class="style13"></div>
@@ -59,12 +59,18 @@
             <%= @evaluator.contact_number %>
           </span>
         </li>
-    </ul>
+      </ul>
     </div>
     <div><hr class="style13"></div>
     <div class="form-basic-2">
       <div class="text-center">
-        <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px">
+        <div class="li-custom" style="width:250px; margin:auto; padding: 0px 0px 10px 0px">
+          <%= link_to 'Actualizar datos personales', edit_current_evaluator_path %>
+        </div>
+        <div class="li-custom" style="width:200px; margin:auto; padding: 0px 0px 10px 0px">
+          <%= link_to 'Editar contraseña', evaluator_edit_password_path %>
+        </div>
+        <div class="li-custom" style="width:150px; margin:auto; padding: 0px 0px 10px 0px">
           <%= link_to 'Volver', :back %>
         </div>
       </div>

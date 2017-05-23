@@ -10,23 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511023048) do
+ActiveRecord::Schema.define(version: 20170522205132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "administrators", force: :cascade do |t|
-    t.string   "username",                            null: false
-    t.string   "first_name",                          null: false
-    t.string   "last_name",                           null: false
-    t.string   "email",                               null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "username",                               null: false
+    t.string   "first_name",                             null: false
+    t.string   "last_name",                              null: false
+    t.string   "email",                                  null: false
+    t.boolean  "first_update",           default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -93,6 +94,15 @@ ActiveRecord::Schema.define(version: 20170511023048) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "evaluation_attatchments", force: :cascade do |t|
+    t.string   "pdf_document"
+    t.string   "evaluator"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "evaluation_id"
+    t.index ["evaluation_id"], name: "index_evaluation_attatchments_on_evaluation_id", using: :btree
+  end
+
   create_table "evaluations", force: :cascade do |t|
     t.text     "justification"
     t.integer  "state",                           null: false
@@ -110,6 +120,7 @@ ActiveRecord::Schema.define(version: 20170511023048) do
     t.integer  "target_audience"
     t.text     "target_audience_remark"
     t.text     "extra_target_audience"
+    t.boolean  "finished"
     t.index ["application_request_id"], name: "index_evaluations_on_application_request_id", using: :btree
   end
 
@@ -124,29 +135,32 @@ ActiveRecord::Schema.define(version: 20170511023048) do
   end
 
   create_table "evaluators", force: :cascade do |t|
-    t.string   "first_name",                         null: false
-    t.string   "last_name",                          null: false
-    t.string   "email",                              null: false
-    t.string   "code",                               null: false
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "first_name",                             null: false
+    t.string   "last_name",                              null: false
+    t.string   "email",                                  null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "language_id"
     t.integer  "evaluation_id"
-    t.string   "url_token",                          null: false
     t.string   "position"
     t.string   "institution"
     t.string   "degree"
     t.string   "degree_institution"
     t.string   "contact_number"
-    t.integer  "sign_in_count",      default: 0,     null: false
-    t.integer  "failed_attempts",    default: 0,     null: false
+    t.boolean  "first_update",           default: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.datetime "code_asigned_at"
-    t.boolean  "is_locked",          default: false, null: false
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
     t.index ["email"], name: "index_evaluators_on_email", unique: true, using: :btree
     t.index ["evaluation_id"], name: "index_evaluators_on_evaluation_id", using: :btree
     t.index ["language_id"], name: "index_evaluators_on_language_id", using: :btree
-    t.index ["url_token"], name: "index_evaluators_on_url_token", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_evaluators_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "keyword_publications", force: :cascade do |t|
@@ -227,6 +241,7 @@ ActiveRecord::Schema.define(version: 20170511023048) do
   add_foreign_key "attatchments", "application_requests"
   add_foreign_key "ed_con_app_requests", "application_requests"
   add_foreign_key "ed_con_app_requests", "editorial_concept_criteria"
+  add_foreign_key "evaluation_attatchments", "evaluations"
   add_foreign_key "evaluations", "application_requests"
   add_foreign_key "evaluations_criteria", "criteria"
   add_foreign_key "evaluations_criteria", "evaluations"

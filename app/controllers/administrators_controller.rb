@@ -1,7 +1,7 @@
 class AdministratorsController < ApplicationController
 
   before_filter :authenticate_administrator!
-  before_action :set_current_administrator, only: [:edit, :show]
+  before_action :set_current_administrator, only: [:edit, :show, :update_password, :edit_password, :home]
   before_action :set_administrator, only: [:update, :destroy]
 
   layout "unal"
@@ -12,13 +12,27 @@ class AdministratorsController < ApplicationController
     @administrators = Administrator.all
   end
 
+  def update_password
+    if @administrator.update_with_password(administrator_password_params)
+      @administrator.update(first_update: true)
+      # Sign in the user by passing validation in case their password changed
+      bypass_sign_in(@administrator)
+      redirect_to home_route
+    else
+      render administrator_edit_password_path
+    end
+  end
+
+  def edit_password
+  end
+
   # GET /administrators/1
   # GET /administrators/1.json
   def show
   end
 
   def home
-    @administrators = Administrator.all
+    redirect_to administrator_edit_password_path unless @administrator.first_update
   end
 
   # GET /administrators/new
@@ -83,5 +97,9 @@ class AdministratorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def administrator_params
       params.require(:administrator).permit(:username, :first_name, :last_name, :email)
+    end
+
+    def administrator_password_params
+      params.require(:administrator).permit(:password, :password_confirmation, :current_password)
     end
 end

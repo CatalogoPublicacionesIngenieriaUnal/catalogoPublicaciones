@@ -1,8 +1,10 @@
 class EvaluationsController < ApplicationController
 
-  skip_before_action :require_login, only: [:evaluate, :show, :update]
-  before_action :authenticate_administrator!, only: [:create, :index, :new]
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate!
+  before_action :authenticate_evaluator!, only: [:evaluate, :update, :finish]
+  before_action :authenticate_administrator!, only: [:create, :index, :new, :show]
+  before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :authorized?, :finish, :upload_pdf]
+  before_action :authorized?, only: [:show, :update]
 
   # GET /evaluations
   # GET /evaluations.json
@@ -14,7 +16,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1.json
   def show
   end
-  
+
   # GET /evaluations/new
   def new
     @evaluation = Evaluation.new
@@ -49,7 +51,7 @@ class EvaluationsController < ApplicationController
         evaluations_criterium.save
       end
       if @evaluation.update!(evaluation_params)
-        format.html { redirect_to @evaluation, notice: 'Evaluation was successfully updated.' }
+        format.html { redirect_to evaluator_home_path, notice: 'Se guardo la evaluacion con exito.' }
         format.json { render :show, status: :ok, location: @evaluation }
       else
         format.html { render :edit }
@@ -69,19 +71,28 @@ class EvaluationsController < ApplicationController
   end
 
   def evaluate
-    @evaluator = Evaluator.evaluator_by_email(params[:evaluation][:email])
-    unless @evaluator.nil?
-       if(params[:evaluation][:code] == @evaluator.code && params[:evaluation][:url_token] == @evaluator.url_token)
-         @evaluation = Evaluation.find(@evaluator.evaluation_id)
-         @categories = Category.all
-         @evaluations_criteria = EvaluationsCriterium.criteria_by_evaluation(@evaluation)
-       else
-         redirect_to not_authorized_path
-       end
-     else
-       redirect_to :back
-     end
-   end
+    @evaluator = current_evaluator
+    @evaluation = Evaluation.find(@evaluator.evaluation_id)
+    @categories = Category.all
+    @evaluations_criteria = EvaluationsCriterium.criteria_by_evaluation(@evaluation)
+
+  end
+
+  def finish
+    redirect_to :not_authorized unless @evaluation.evaluator == current_evaluator
+    @evaluation.finish
+    if @evaluation.errors.any?
+      redirect_to @evaluation
+    else
+      current_evaluator.destroy
+      redirect_to not_authorized_path
+    end
+  end
+
+  def upload_pdf
+    EvaluationAttatchment.create(pdf_document: params[:evaluation_attatchment][:pdf_evaluation],
+    evaluator: current_evaluator.get_name, evaluation_id: @evaluation.id)
+  end
 
   private
 
@@ -95,6 +106,16 @@ class EvaluationsController < ApplicationController
     params.require(:evaluation).permit(:justification, :state, :application_request_id,
     :publication_clasiffication, :publication_translated_material, :publication_synopsis,
     :general_score_justification, :writing_score_jistification, :aditional_remarks_to_author,
-    :aditional_remarks_to_publisher, :disclosure_degree, :target_audience, :target_audience_remark)
+    :aditional_remarks_to_publisher, :disclosure_degree, :target_audience, :target_audience_remark,
+    :extra_target_audience)
   end
+
+  def authenticate!
+    redirect_to :not_authorized_path unless (administrator_signed_in? || evaluator_signed_in?)
+  end
+
+  def authorized?
+    redirect_to :not_authorized unless @evaluation.evaluator == current_evaluator
+  end
+
 end

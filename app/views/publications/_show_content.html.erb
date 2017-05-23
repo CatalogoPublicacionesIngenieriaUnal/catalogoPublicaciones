@@ -89,46 +89,48 @@
     <div><hr class="style13"></div>
     <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
-      application_request: @publication.application_request,
-      category: :carta_presentacion%>
-  <%- else %>
+    application_request: @publication.application_request,
+    category: :carta_presentacion%>
+    <%- else %>
     <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
     <% end %>
 
     <br>
     <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
-      application_request: @publication.application_request,
-      category: :concepto_editorial_a%>
-  <%- else %>
+    application_request: @publication.application_request,
+    category: :concepto_editorial_a%>
+    <%- else %>
     <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:concepto_editorial_a)%>
     <% end %>
 
     <br>
     <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
-      application_request: @publication.application_request,
-      category: :manuscrito%>
-  <%- else %>
+    application_request: @publication.application_request,
+    category: :manuscrito%>
+    <%- else %>
     <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:manuscrito)%>
+    <% end %>
+
+    <div><hr class="style13"></div>
+    <% if professor_signed_in? %>
+    <div class="li-custom" style="width:100px; margin:auto; text-align:center">
+      <%= link_to('Crear PDF', create_pdf_path) %>
+    </div>
+    <br>
+    <div class="li-custom" style="width:100px; margin:auto; padding:0px 0px 10px 0px; text-align:center">
+      <%= link_to 'Volver', publications_path %>
+    </div>
+    <% if @publication.application_request.state == 'En creación' %>
+    <div class="li-custom" style="width:150px; margin:auto; padding:0px 10px 10px 10px; text-align:center">
+      <%= link_to 'Editar publicación',edit_publication_path(@publication.id)%>
+    </div>
+    <% end %>
+    <% elsif administrator_signed_in? %>
+    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px; text-align:center">
+      <%= link_to 'Volver', :back %>
+    </div>
     <% end %>
   </div>
 </div>
-
-<div><hr class="style13"></div>
-<% if professor_signed_in? %>
-<div class="li-custom" style="width:100px; margin:auto; text-align:center">
-  <%= link_to('Crear PDF', create_pdf_path) %>
-</div>
-<br>
-<div class="li-custom" style="width:100px; margin:auto; text-align:center">
-  <%= link_to 'Volver', publications_path %>
-</div>
-<div class="li-custom" style="width:100px; margin:auto; text-align:center">
-  <%= link_to 'Editar publicación',edit_publication_path(@publication.id) %>
-</div>
-<% elsif administrator_signed_in? %>
-<div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px; text-align:center">
-  <%= link_to 'Volver', :back %>
-</div>
-<% end %>

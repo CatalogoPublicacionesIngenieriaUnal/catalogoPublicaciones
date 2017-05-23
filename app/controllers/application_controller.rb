@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    unless (professor_signed_in? || administrator_signed_in?)
+    unless (professor_signed_in? || administrator_signed_in? || evaluator_signed_in?)
       flash[:error] = "You must be logged in to access this section"
       authenticate_professor!
     end
@@ -55,6 +55,8 @@ class ApplicationController < ActionController::Base
       professor_home_path
     elsif administrator_signed_in?
       administrator_home_path
+    elsif evaluator_signed_in?
+      evaluator_home_path
     else
       root_path
     end
@@ -65,8 +67,8 @@ class ApplicationController < ActionController::Base
       edit_current_professor_path
     elsif administrator_signed_in?
       administrator_home_path
-    else
-      root_path
+    elsif evaluator_signed_in?
+      edit_current_evaluator_path
     end
   end
 

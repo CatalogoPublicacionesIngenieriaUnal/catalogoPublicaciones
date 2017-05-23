@@ -1,0 +1,13 @@
+<%= form_for(EvaluationAttatchment.new, :url => evaluations_upload_pdf_path(@evaluation)) do |f| %>
+  <div class="form-row">
+    <label>
+      <span>Cargar PDF</span>
+      <div class="text-center" style="display: inline-block">
+        <%= f.file_field :pdf_document%>
+      </div>
+    </label>
+  </div>
+  <div class="actions">
+    <%= f.submit :"Subir archivo"%>
+  </div>
+<% end %>

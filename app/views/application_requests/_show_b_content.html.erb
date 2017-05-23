@@ -23,8 +23,8 @@
           <% if ed_criterium.id <= 5 %>
           <tr>
             <th><%=ed_criterium.criterium%></th>
-            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).score %></th>
-            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).remark %></th>
+            <th><%= EdConAppRequest.crit_app(application_request.id, ed_criterium.id).score %></th>
+            <th><%= EdConAppRequest.crit_app(application_request.id, ed_criterium.id).remark %></th>
           </tr>
           <% end %>
           <% end %>
@@ -35,8 +35,8 @@
           <% if ed_criterium.id > 5 && ed_criterium.id <= 14 %>
           <tr>
             <th><%=ed_criterium.criterium%></th>
-            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).score %></th>
-            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).remark %></th>
+            <th><%= EdConAppRequest.crit_app(application_request.id, ed_criterium.id).score %></th>
+            <th><%= EdConAppRequest.crit_app(application_request.id, ed_criterium.id).remark %></th>
           </tr>
           <% end %>
           <% end %>
@@ -47,8 +47,8 @@
           <% if ed_criterium.id > 14%>
           <tr>
             <th><%=ed_criterium.criterium%></th>
-            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).score %></th>
-            <th><%= EdConAppRequest.crit_shit(application_request.id, ed_criterium.id).remark %></th>
+            <th><%= EdConAppRequest.crit_app(application_request.id, ed_criterium.id).score %></th>
+            <th><%= EdConAppRequest.crit_app(application_request.id, ed_criterium.id).remark %></th>
           </tr>
           <% end %>
           <% end %>

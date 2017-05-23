@@ -5,8 +5,7 @@ class CreateEvaluators < ActiveRecord::Migration[5.0]
       t.string :first_name, null: false
       t.string :last_name,  null: false
       t.string :email,      null: false, uniqueness: true
-      t.string :code,       null: false
-
+      
       t.timestamps
       t.belongs_to :language, foreign_key:true
       t.belongs_to :evaluation, foreign_key: true

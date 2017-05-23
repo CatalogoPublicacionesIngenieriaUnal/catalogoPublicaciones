@@ -1,24 +1,31 @@
 Rails.application.routes.draw do
 
-  resources :editorial_concept_criteria
-  resources :criteria
+
   devise_scope :professor do
     get "/logout" => "devise/sessions#destroy", as: :destroy_proffesor_session
   end
   root to: "home#index"
 
-  get 'administrators/profile', to: 'administrators#show', :as => :show_current_administrator
-  get 'administrators/edit', to: 'administrators#edit', :as => :edit_current_administrator
-  get 'administrators/home', to: 'administrators#home', :as => :administrator_home
+  get 'administrators/profile', to: 'administrators#show', as: :show_current_administrator
+  get 'administrators/edit', to: 'administrators#edit', as: :edit_current_administrator
+  get 'administrators/home', to: 'administrators#home', as: :administrator_home
+  patch 'administrators/update_password', to: 'administrators#update_password', as: :administrator_update_password
+  get 'administrators/edit_password', to: 'administrators#edit_password', as: :administrator_edit_password
 
+  get 'evaluators/profile', to: 'evaluators#show', as: :show_current_evaluator
+  get 'evaluators/home', to: 'evaluators#home', as: :evaluator_home
+  get 'evaluators/evaluate', to: 'evaluations#evaluate', as: :evaluate
+  get 'evaluators/show', to: 'evaluators#show', as: :evaluator_show
+  get 'evaluators/edit', to: 'evaluators#edit', as: :edit_current_evaluator
+  patch 'evaluators/update_password', to: 'evaluators#update_password', as: :evaluator_update_password
+  get 'evaluators/edit_password', to: 'evaluators#edit_password', as: :evaluator_edit_password
 
-  get 'evaluate/:id', to: 'evaluators#authenticate_evaluator', as: :authenticate_evaluator
-  post 'evaluations/evaluate', to: 'evaluations#evaluate', as: :evaluate_publication
+  patch 'evaluations/:id/finish', to: 'evaluations#finish', as: :evaluation_finish
+  post 'evaluations/:id/upload_pdf', to: 'evaluations#upload_pdf', as: :evaluations_upload_pdf
 
-
-  get 'professors/home', to: 'professors#home', :as => :professor_home
-  get 'professors/profile', to: 'professors#show', :as => :show_current_professor
-  get 'professors/edit', to: 'professors#edit', :as => :edit_current_professor
+  get 'professors/home', to: 'professors#home', as: :professor_home
+  get 'professors/profile', to: 'professors#show', as: :show_current_professor
+  get 'professors/edit', to: 'professors#edit', as: :edit_current_professor
 
   patch 'publications/:id/evaluate', to: 'publications#evaluate', as: :publication_to_evaluation
   get 'publications/statistics', to: 'publications#statistics', :as => :statistics
@@ -39,8 +46,9 @@ Rails.application.routes.draw do
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators
+  devise_for :evaluators
   resources :publications
-  resources :evaluations do
+  resources :evaluations, except: :edit do
     resources :evaluators, shallow: true
   end
 
@@ -59,6 +67,8 @@ Rails.application.routes.draw do
   resources :themes
   resources :categories
   resources :keywords
+  resources :editorial_concept_criteria
+  resources :criteria
 
   get 'not_authorized', to: 'professors#not_authorized', as:  :not_authorized
   get 'under_construction', to: 'home#under_construction', as:  :under_construction

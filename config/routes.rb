@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'evaluators/edit_password', to: 'evaluators#edit_password', as: :evaluator_edit_password
 
   patch 'evaluations/:id/finish', to: 'evaluations#finish', as: :evaluation_finish
+  post 'evaluations/:id/upload_pdf', to: 'evaluations#upload_pdf', as: :evaluations_upload_pdf
 
   get 'professors/home', to: 'professors#home', as: :professor_home
   get 'professors/profile', to: 'professors#show', as: :show_current_professor

@@ -11,7 +11,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{model.application_request.id}"
+    "uploads/#{model.application_request.id}-#{model.publication_title}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -43,7 +43,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-     "#{model.category}.pdf"
+     "#{model.publication_title}: #{model.category}.pdf"
   end
 
 end

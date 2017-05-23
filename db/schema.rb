@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518191843) do
+ActiveRecord::Schema.define(version: 20170522205132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,15 @@ ActiveRecord::Schema.define(version: 20170518191843) do
     t.string   "criterium"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "evaluation_attatchments", force: :cascade do |t|
+    t.string   "pdf_document"
+    t.string   "evaluator"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "evaluation_id"
+    t.index ["evaluation_id"], name: "index_evaluation_attatchments_on_evaluation_id", using: :btree
   end
 
   create_table "evaluations", force: :cascade do |t|
@@ -231,6 +240,7 @@ ActiveRecord::Schema.define(version: 20170518191843) do
   add_foreign_key "attatchments", "application_requests"
   add_foreign_key "ed_con_app_requests", "application_requests"
   add_foreign_key "ed_con_app_requests", "editorial_concept_criteria"
+  add_foreign_key "evaluation_attatchments", "evaluations"
   add_foreign_key "evaluations", "application_requests"
   add_foreign_key "evaluations_criteria", "criteria"
   add_foreign_key "evaluations_criteria", "evaluations"

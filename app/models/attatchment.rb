@@ -3,11 +3,15 @@ class Attatchment < ApplicationRecord
   validates :category, presence: true
   validate :document_already_loaded?
 
-  enum category: [:carta_presentacion, :concepto_editorial_a, :concepto_editorial_b, :manuscrito ]
+  enum category: [:carta_presentacion, :concepto_editorial_a, :concepto_editorial_b, :manuscrito]
   mount_uploader :pdf_document, AttachmentUploader
 
   def self.get_attachment_by_category(category)
     where(category: category).first
+  end
+
+  def publication_title
+    application_request.publication.title
   end
 
   private

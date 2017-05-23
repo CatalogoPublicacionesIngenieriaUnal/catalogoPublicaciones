@@ -92,16 +92,15 @@ class ApplicationRequestsController < ApplicationController
   end
 
   def create_evaluator
-    @application_request.state = 'En evaluación'
     redirect_to new_evaluation_evaluator_path(evaluation.id)
   end
 
   def authorize
-    @application_request.update!(state: :'En evaluación')
     if @application_request.evaluations.count < 2
-      Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id, justification: "fghjkl")
+      Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
       Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
     end
+    @application_request.update!(state: :'En evaluación', authorized_at: DateTime.now)
     redirect_to @application_request
   end
 

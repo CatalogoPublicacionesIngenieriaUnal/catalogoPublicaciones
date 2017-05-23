@@ -1,5 +1,7 @@
 class Evaluation < ApplicationRecord
-  has_one    :evaluator
+  has_one :evaluator
+  has_one :evaluation_attatchment
+
   belongs_to :application_request
 
   has_many :evaluations_criteria
@@ -27,6 +29,11 @@ class Evaluation < ApplicationRecord
     errors.add(:disclosure_degree, :blank, message: "Debe seleccionar al menos un grado de divulgacion") if disclosure_degree.blank?
     errors.add(:target_audience, :blank, message: "Debe seleccionar al menos una audiencia objetivo") if target_audience.blank?
     errors.add(:target_audience_remark, :blank, message: "No debe dejar campos en blanco") if target_audience_remark.blank?
+  end
+  
+
+  def title
+    application_request.publication.title
   end
 
   private

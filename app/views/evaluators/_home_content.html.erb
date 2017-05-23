@@ -2,11 +2,33 @@
   <div class="col-sm-2">
     <%= render 'static/menu_publicaciones' %>
   </div>
+
   <div class="col-md-10">
     <div class="text-center" style="padding: 10px 0px 0px 0px;">
       <h1 style="font-size:200%;">Evaluación</h1>
       <p id="notice"><%= notice %></p>
     </div>
+    <%= render 'evaluations/upload_pdf', evaluation: @evaluation %>
+    <div><hr class="style13"></div>
+    <div class="form-basic">
+      <div class="tg-wrap">
+        <table width="100%">
+          <tr>
+            <th width="40%">
+              <%= link_to (@attatchment.pdf_document.url), target: :_blank do %>
+              <%= fa_icon "file-pdf-o 3x", base: "square-o", class: "btn btn-danger"%>
+              <% end %>
+            </th>
+            <th width="60%">
+              <%= link_to (@attatchment.pdf_document.url), target: :_blank do %>
+              <div style="font-size:200%;"><%= @attatchment.pdf_document.filename %></div>
+              <% end %>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
     <div><hr class="style13"></div>
     <div class="info">
       <ul class="info-list">
@@ -195,26 +217,6 @@
           </span>
         </li>
       </ul>
-    </div>
-
-    <div><hr class="style13"></div>
-    <div class="form-basic">
-      <div class="tg-wrap">
-        <table width="100%">
-          <tr>
-            <th width="40%">
-              <%= link_to (@attatchment.pdf_document.url), target: :_blank do %>
-              <%= fa_icon "file-pdf-o 3x", base: "square-o", class: "btn btn-danger"%>
-              <% end %>
-            </th>
-            <th width="60%">
-              <%= link_to (@attatchment.pdf_document.url), target: :_blank do %>
-              <div style="font-size:200%;"><%= @attatchment.pdf_document.filename %></div>
-              <% end %>
-            </th>
-          </tr>
-        </table>
-      </div>
     </div>
 
     <div><hr class="style13"></div>

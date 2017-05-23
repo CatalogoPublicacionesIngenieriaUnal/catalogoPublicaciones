@@ -25,6 +25,7 @@ class Evaluator < ApplicationRecord
     first_name + ' ' + last_name
   end
 
+
   private
 
   def set_password

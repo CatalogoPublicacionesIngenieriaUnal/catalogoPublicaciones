@@ -100,6 +100,8 @@ class PublicationsController < ApplicationController
   end
 
   def evaluate
+    @administrators = Administrator.all
+    SendEvaluationMailer.sendEmailEvaluation(@administrators, @publication, current_professor)
     @publication.application_request.update(state: 'En espera') if @publication.request_completeness == 100
     redirect_to @publication
   end

@@ -16,7 +16,7 @@ class Administrator < ApplicationRecord
 
   def set_password
     generated_password = Devise.friendly_token
-    puts "Contraseña = #{generated_password}"
+    puts "Contraseña de #{username} es: #{generated_password}"
     self.password = generated_password
     self.first_update = false
   end

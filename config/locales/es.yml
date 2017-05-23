@@ -8,6 +8,6 @@ en:
       credentials_2: 'Su usuario de acceso es: %{username}'
       credentials_3: 'Su código de acceso es: %{password}'
       evaluation_1: 'Su publicación es: %{evaluation}'
-      evaluation_1: 'Para acceder al sitio web de la publicación haga <a><href = "localhost:3000/evaluate/id">click aquí %{url_token}'
+      evaluation_2: 'Para acceder al sitio web de la publicación haga <a><href = "localhost:3000/evaluate/id">click aquí %{url_token}'
       greeting_2: 'Atentamente:'
       faculty: 'Facultad de Ingeniería'

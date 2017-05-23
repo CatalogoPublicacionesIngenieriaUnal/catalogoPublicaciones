@@ -29,6 +29,6 @@ en:
       credentials_2: 'Your username is: %{username}'
       credentials_3: 'Your password is: %{password}'
       evaluation_1: 'The publication to evaluate is: %{evaluation}'
-      evaluation_1: 'To access the website of the publication make <a><href = "localhost:3000/evaluate/id">click here %{url_token}'
+      evaluation_2: 'To access the website of the publication make <a><href = "localhost:3000/evaluate/id">click here %{url_token}'
       greeting_2: 'Sincerely:'
       faculty: 'Faculty of Engineering'

@@ -77,12 +77,16 @@ class EvaluatorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluator
-      @evaluator = Evaluator.find(params[:id])
+      #@evaluator = Evaluator.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def evaluator_params
       params.require(:evaluator).permit(:first_name, :last_name, :email, :language_id,
       :code, :url_token, :failed_attempts, :is_locked, :code_asigned_at, :evaluation_id)
+    end
+
+    def set_locale
+      I18n.locale = http_accept_language.compatible_language_from(I18n.available_locales)
     end
 end

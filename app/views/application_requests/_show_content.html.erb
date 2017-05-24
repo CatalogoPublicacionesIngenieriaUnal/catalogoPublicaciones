@@ -133,12 +133,14 @@
     <%- @application_request.attatchments.each do |attatchment| %>
     <%= render 'attatchments/show', attatchment: attatchment %>
     <% end %>
-    
+
     <div><hr class="style13"></div>
     <div class="form-basic-2">
+      <%- if @application_request.state == 'En espera' %>
       <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
         <%= link_to 'Evaluar', form_b_path %>
       </div>
+      <% end %>
       <%- if @application_request.form_b?  %>
       <div class="li-custom" style="width:200px; margin:auto; padding:10px 10px 10px 10px">
         <%= link_to 'Ver evaluacion', show_b_path %>

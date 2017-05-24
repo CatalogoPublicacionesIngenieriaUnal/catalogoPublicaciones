@@ -8,17 +8,27 @@ class Evaluation < ApplicationRecord
   has_many :criteria, through: :evaluations_criteria
 
   validates :state, presence: true, on: :create
+  validates :finished, default: false
 
   enum state: [:sin_evaluar, :aprobado, :ligeras_modificaciones, :modificaciones_sustanciales, :rechazado]
-
   after_create :create_criteria
 
   def self.publication_by_evaluator(evaluator)
     includes(:evaluator).where(evaluators:{id: evaluator})
   end
 
+  def self.completed
+    where(finished: true)
+  end
+
   def publication
     application_request.attatchments.where(category: :manuscrito).first
+  end
+
+  def evaluation_complete
+    self.update(finished: true)
+    evaluator.update(locked_at: DateTime.now)
+    application_request.evaluation_complete
   end
 
   def finish
@@ -29,8 +39,8 @@ class Evaluation < ApplicationRecord
     errors.add(:disclosure_degree, :blank, message: "Debe seleccionar al menos un grado de divulgacion") if disclosure_degree.blank?
     errors.add(:target_audience, :blank, message: "Debe seleccionar al menos una audiencia objetivo") if target_audience.blank?
     errors.add(:target_audience_remark, :blank, message: "No debe dejar campos en blanco") if target_audience_remark.blank?
+    errors.add(:evaluation_attatchment, :nil, message: "Debe cargar la evaluación firmada") if evaluation_attatchment.nil?
   end
-  
 
   def title
     application_request.publication.title
@@ -39,7 +49,6 @@ class Evaluation < ApplicationRecord
   private
 
   def create_criteria
-    self.finished = false
     Criterium.all.each do |criterium|
       EvaluationsCriterium.create!(evaluation_id: self.id, criterium_id: criterium.id, score: 0)
     end

@@ -7,7 +7,7 @@
         <h4 class="modal-title"><%= title %></h4>
       </div>
       </div>
-      <%= form_for([@evaluation, @evaluator],:url => {:action => "create", :id =>@evaluator}, remote: true) do |f| %>
+      <%= form_for([@evaluation, @evaluator], url: evaluation_evaluators_path(@evaluation), remote: true) do |f| %>
       <div class="modal-body">
         <div class="form-basic" style="height:100%; width:100%;">
           <div class="form-row">

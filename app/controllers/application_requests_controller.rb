@@ -23,7 +23,7 @@ class ApplicationRequestsController < ApplicationController
   # GET /application_requests/1
   # GET /application_requests/1.json
   def show
-    redirect_to final_concept_form(@application_request) if @application_request.state == 'En evaluación' && @application_request.evaluations_completed?
+    redirect_to final_concept_form_path(@application_request) if @application_request.state == 'En evaluación' && @application_request.evaluations_completed?
   end
 
   # GET /application_requests/new

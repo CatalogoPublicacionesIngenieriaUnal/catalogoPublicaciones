@@ -1,7 +1,7 @@
 class EvaluatorsController < ApplicationController
 
-  before_action :set_evaluator, only: [:update, :destroy]
-  before_action :set_current_evaluator, only: [:edit, :show, :update_password, :edit_password, :home]
+  before_action :set_evaluator, only: [:destroy]
+  before_action :set_current_evaluator, only: [:edit, :show, :update, :update_password, :edit_password, :home]
 
   before_action :authenticate_administrator!, only: [:new, :create, :destroy, :index]
   before_action :authenticate_evaluator!, only: [:show, :update, :edit, :update_password, :edit_password, :home]

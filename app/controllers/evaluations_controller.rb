@@ -90,8 +90,8 @@ class EvaluationsController < ApplicationController
   end
 
   def upload_pdf
-    EvaluationAttatchment.create(pdf_document: params[:evaluation_attatchment][:pdf_evaluation],
-    evaluator: current_evaluator.get_name, evaluation_id: @evaluation.id)
+    EvaluationAttatchment.create!(pdf_document: params[:evaluation_attatchment][:pdf_document],
+    evaluator: current_evaluator.get_name, evaluation: @evaluation)
   end
 
   private

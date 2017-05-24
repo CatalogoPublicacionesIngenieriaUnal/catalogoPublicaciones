@@ -2,7 +2,6 @@ class EvaluationAttatchment < ApplicationRecord
   belongs_to :evaluation
   mount_uploader :pdf_document, EvaluationPdfUploader
 
-  validates :evaluator, presence: true
 
   def title
     evaluation.application_request.publication.title

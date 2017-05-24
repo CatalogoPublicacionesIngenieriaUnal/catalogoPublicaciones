@@ -1,0 +1,196 @@
+<div class="row">
+  <div class="col-sm-2">
+    <%=render 'static/menu_publicaciones'%>
+  </div>
+  <div class="text-center">
+    <div class="col-md-10" style="padding: 15px 0px 0px 0px;">
+      <h1 style="font-size:200%;">Concepto final</h1>
+    </div>
+  </div>
+  <div class="col-sm-10">
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic">
+        <div class="form-title-row">
+          <h1><%= "Documentos" %></h1>
+        </div>
+        <ul class="info-list">
+          <%- @application_request.attatchments.each do |attatchment| %>
+          <li>
+            <%= render 'attatchments/show', attatchment: attatchment %>
+          </li>
+          <% end %>
+          <%- @application_request.evaluations.each do |evaluation| %>
+          <%- @evaluation = evaluation %>
+          <li>
+            <%= render 'evaluations/show_attatchment', evaluation: @evaluation %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div><hr class="style13"></div>
+    <div class="info">
+      <div class="form-title-row">
+        <h1><%= "Resumen de la publicación" %></h1>
+      </div>
+      <ul class="info-list ">
+        <li>
+          <span class="inf">Titulo</span>
+          <span class="value">
+            <%= @application_request.publication.title %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Resumen</span>
+          <span class="value">
+            <%= @application_request.publication.abstract %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Docente que publica</span>
+          <span class="value">
+            <%= "#{@application_request.professor.first_name}#{" "}#{@application_request.professor.last_name}" %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Estado</span>
+          <span class="value">
+            <%= @application_request.state %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Tema</span>
+          <span class="value">
+            <%= @application_request.author_topic %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Publico al cual va dirigido</span>
+          <span class="value">
+            <%= @application_request.author_target_audience %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Valoracion academica</span>
+          <span class="value">
+            <%= @application_request.author_academic_appreciation %>
+          </span>
+        </li>
+        <li>
+          <span class="inf">Recomendacion final</span>
+          <span class="value">
+            <%= @application_request.author_final_recomendation %>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic" style="width:1000px">
+        <div class="form-title-row">
+          <h1><%= "Resultados de la evaluación" %></h1>
+        </div>
+        <table id="t01" style="width:100%">
+          <tr>
+            <td colspan="4", align="right" style="background-color:#808080;">Resultados de evaluaciones</td>
+          </tr>
+          <tr>
+            <th rowspan="2", width=25% style="background-color:#adad85">Criterio</th>
+            <th colspan="3", style="background-color:#adad85">Evaluadores</th>
+          </tr>
+          <tr width=100%>
+            <%- @application_request.evaluations.each do |evaluation| %>
+            <th width=25%><%= "#{evaluation.evaluator.first_name}#{" "}#{evaluation.evaluator.last_name}" %></th>
+            <% end %>
+          </tr>
+          <tr>
+            <td colspan="4", style="background-color:#ccc"> DESICIÓN FINAL </td>
+          </th>
+          <tr>
+            <td style="background-color:#adad85">Estado</td>
+            <%- @application_request.evaluations.each do |evaluation| %>
+            <%- if evaluation.state == 'aprobado' %>
+            <td>Aprobado</td>
+            <%- elsif evaluation.state == 'ligeras_modificaciones' %>
+            <td>Aprobado con ligeras modificaciones</td>
+            <%- elsif evaluation.state == 'modificaciones_sustanciales' %>
+            <td>Aprobado con modificaciones sustanciales</td>
+            <%- elsif evaluation.state == 'rechazado' %>
+            <td>Rechazado</td>
+            <% end %>
+            <% end %>
+          </tr>
+          <tr>
+            <td style="background-color:#adad85">Observaciones</td>
+            <%- @application_request.evaluations.each do |evaluation| %>
+            <td><%= evaluation.justification %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td colspan="4", style="background-color:#ccc"> Observaciones adicionales </td>
+          </th>
+          <tr>
+            <td style="background-color:#adad85">Observaciones para el autor</td>
+            <%- @application_request.evaluations.each do |evaluation| %>
+            <td><%= evaluation.aditional_remarks_to_author %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td style="background-color:#adad85">Observaciones para el editor</td>
+            <%- @application_request.evaluations.each do |evaluation| %>
+            <td><%= evaluation.aditional_remarks_to_publisher %></td>
+            <% end %>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div><hr class="style13"></div>
+    <div class="main-content">
+      <div class="form-basic" style="width:900px">
+        <div class="form-title-row">
+          <h1><%= "Veredicto final" %></h1>
+        </div>
+        <%= form_for(@application_request, :url => application_final_concept_path) do |f| %>
+        <table style="width:100%">
+          <span>El veredicto final para la obra es:</span>
+          <tr>
+            <th></th>
+            <th><center>Selección</center></th>
+          </tr>
+          <tr>
+            <td style="text-align:justify">Aprobada</td>
+            <td><center><%= f.radio_button :state, :'Aprobado' %></center></td>
+          </tr>
+          <tr>
+            <td style="text-align:justify">Aprobada con modificaciones menores</td>
+            <td><center><%= f.radio_button :state, :'Menores' %></center></td>
+          </tr>
+          <tr>
+            <td style="text-align:justify">Aprobada con modificaciones mayores</td>
+            <td><center><%= f.radio_button :state, :'Mayores' %></center></td>
+          </tr>
+          <tr>
+            <td style="text-align:justify">Rechazada</td>
+            <td><center><%= f.radio_button :state, :'Rechazado' %></center></td>
+          </tr>
+        </table>
+        <%= f.label "Notas para el autor" %>
+        <div class="field">
+          <%=f.text_area :editorial_remarks_to_author, :required => true, style: :"height:400px;
+          width: 600px;" %>
+        </div>
+        <br>
+        <div class="actions">
+          <%= f.submit :'Calificar y terminar' %>
+        </div>
+        <% end %>
+        <%- if @application_request.evaluators.count < 3 %>
+        <%= link_to "Crear tercer evaluador", create_third_evaluator_path(@application_request), remote: true%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -44,7 +44,7 @@ class ApplicationRequest < ApplicationRecord
   end
 
   def evaluations_completed?
-    evaluations.completed.count == 2
+    evaluations.completed.count > 2
   end
 
   def self.load_applications_by_state_id(id, page = 1, per_page = 10)

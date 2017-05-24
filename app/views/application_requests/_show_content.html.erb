@@ -38,19 +38,13 @@
         <li>
           <span class="inf">Titulo</span>
           <span class="value">
-            <% unless @application_request.publication %>
-            <% else %>
             <%= @application_request.publication.title %>
-            <% end %>
           </span>
         </li>
         <li>
           <span class="inf">Resumen</span>
           <span class="value">
-            <% unless @application_request.publication %>
-            <% else %>
             <%= @application_request.publication.abstract %>
-            <% end %>
           </span>
         </li>
         <li>
@@ -113,12 +107,6 @@
             <%= @application_request.author_final_recomendation %>
           </span>
         </li>
-        <li>
-          <span class="inf">Autorizado por: </span>
-          <span class="value">
-            <%= @application_request.authorized_at %>
-          </span>
-        </li>
       </ul>
     </div>
 
@@ -130,9 +118,20 @@
     <% end %>
 
     <div><hr class="style13"></div>
-    <%- @application_request.attatchments.each do |attatchment| %>
-    <%= render 'attatchments/show', attatchment: attatchment %>
-    <% end %>
+    <div class="main-content">
+      <div class="form-basic">
+        <div class="form-title-row">
+          <h1><%= "Documentos" %></h1>
+        </div>
+        <ul>
+          <%- @application_request.attatchments.each do |attatchment| %>
+          <li>
+            <%= render 'attatchments/show', attatchment: attatchment %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
     <div><hr class="style13"></div>
     <div class="form-basic-2">

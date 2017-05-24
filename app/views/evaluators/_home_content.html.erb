@@ -223,7 +223,14 @@
       <%- if @evaluation.evaluation_attatchment.nil? %>
       <%= render 'evaluations/upload_pdf', evaluation: @evaluation %>
       <%- else %>
-      <%= render 'evaluations/show_attatchment', evaluation: @evaluation %>
+      <div class="main-content">
+        <div class="form-basic">
+          <div class="form-title-row">
+            <h1><%= "Evaluación" %></h1>
+          </div>
+          <%= render 'evaluations/show_attatchment', evaluation: @evaluation %>
+        </div>
+      </div>
       <% end %>
 
       <div><hr class="style13"></div>
@@ -233,7 +240,8 @@
             <%= link_to 'Evaluar', evaluate_path %>
           </div>
           <div class="li-custom" style="width:200px; margin:auto; padding: 0px 0px 10px 0px">
-            <%= link_to 'Terminar todo', evaluation_finish_path(@evaluation), data: { confirm: "¿Está seguro que desea terminar todo?" }, method: :patch %>
+            <%= link_to 'Terminar todo', evaluation_finish_path(@evaluation),
+            data: { confirm: "¿Está seguro que desea terminar todo? Tenga en cuenta que ya no podra entrar a evaluar de nuevo" }, method: :patch %>
           </div>
           <div class="li-custom" style="width:150px; margin:auto; padding: 0px 0px 10px 0px">
             <%= link_to 'Volver', :back %>

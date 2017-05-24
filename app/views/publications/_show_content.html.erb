@@ -23,7 +23,7 @@
       </div>
     </center>
     <%- if @publication.request_completeness == 100 && @publication.state == 'En creación' %>
-    <div class="main-content" style="height:170px">
+    <div class="main-content">
       <div class="form-basic" style="height:220px">
         Su publicación está lista para ser enviada para evaluación.
         <div><hr class="style13"></div>
@@ -98,7 +98,11 @@
     application_request: @publication.application_request,
     category: :carta_presentacion%>
     <%- else %>
-    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
+      </div>
+    </div>
     <% end %>
 
     <div><hr class="style13"></div>
@@ -114,17 +118,24 @@
     application_request: @publication.application_request,
     category: :concepto_editorial_a%>
     <%- else %>
-    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:concepto_editorial_a)%>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:concepto_editorial_a)%>
+      </div>
+    </div>
     <% end %>
 
-    <br>
     <div><hr class="style13"></div>
     <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :manuscrito%>
     <%- else %>
-    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:manuscrito)%>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:manuscrito)%>
+      </div>
+    </div>
     <% end %>
 
     <div><hr class="style13"></div>

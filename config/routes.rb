@@ -67,6 +67,7 @@ Rails.application.routes.draw do
   end
 
   resources :administrators
+  resources :evaluators
   resources :languages
   resources :themes
   resources :categories

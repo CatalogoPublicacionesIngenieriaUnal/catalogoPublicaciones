@@ -9,7 +9,8 @@ class EvaluatorsController < ApplicationController
   # GET /evaluators
   # GET /evaluators.json
   def index
-    @evaluators = Evaluator.all
+    @evaluators = Evaluator.page(params[:page]).per_page(5)
+    # @evaluators = Evaluator.all
   end
 
   def home

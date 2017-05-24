@@ -40,7 +40,7 @@ Rails.application.routes.draw do
   get 'application_requests/:id/form_b', to: 'application_requests#form_b', as: :form_b
   get 'application_requests/:id/show_b/', to: 'application_requests#show_b', as: :show_b
   get 'application_requests/:id/reject', to: 'application_requests#reject', as: :application_request_reject_form
-  get 'application_requests/:id/final_concept_form', to: 'application_requests#final_concept'
+  get 'application_requests/:id/final_concept_form', to: 'application_requests#final_concept', as: :final_concept_form
   get 'application_requests/:id/third_evaluator', to: 'application_requests#third_evaluator', as: :create_third_evaluator
   patch 'application_requests/:id/form_b_create', to: 'application_requests#form_b_create', as: :form_b_create
   patch 'application_request/:id/authorize', to: 'application_requests#authorize', as: :application_request_authorize

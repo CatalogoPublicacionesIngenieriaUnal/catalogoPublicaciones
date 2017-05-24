@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   patch 'evaluations/:id/finish', to: 'evaluations#finish', as: :evaluation_finish
   post 'evaluations/:id/upload_pdf', to: 'evaluations#upload_pdf', as: :evaluations_upload_pdf
+  delete 'evaluations/:id/destroy_pdf', to: 'evaluations#destroy_pdf', as: :evaluations_destroy_pdf
 
   get 'professors/home', to: 'professors#home', as: :professor_home
   get 'professors/profile', to: 'professors#show', as: :show_current_professor

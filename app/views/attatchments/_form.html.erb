@@ -1,37 +1,37 @@
-  <div class="form-basic">
-    <div class="form-title-row">
-      <% if category == :carta_presentacion %>
+<div class="form-basic">
+  <div class="form-title-row">
+    <% if category == :carta_presentacion %>
       <h2><%= "Carta de presentación" %></h1>
-      <% elsif category == :concepto_editorial_a %>
+    <% elsif category == :concepto_editorial_a %>
       <h2><%= "Concepto editorial" %></h1>
-      <% elsif category == :concepto_editorial_b %>
+    <% elsif category == :concepto_editorial_b %>
       <h2><%= "Evaluacion editorial" %></h1>
-      <% else %>
+    <% else %>
       <h2><%= "Manuscrito" %></h1>
-      <% end %>
-    </div>
-    <%= form_for [application_request, attatchment] do |f| %>
-    <% if attatchment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(attatchment.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
-      <ul>
-        <% attatchment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
     <% end %>
-    <%= f.hidden_field :category, value: category %>
-    <div class="form-row">
-      <label>
-        <span>Cargar solicitud</span>
-        <div class="text-center" style="display: inline-block">
-          <%= f.file_field :pdf_document%>
-        </div>
-      </label>
-    </div>
-    <div class="actions">
-      <%= f.submit :"Subir archivo"%>
-    </div>
   </div>
-    <% end %>
+  <%= form_for [application_request, attatchment] do |f| %>
+  <% if attatchment.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(attatchment.errors.count, "error") %> prohibited this evaluator from being saved:</h2>
+    <ul>
+      <% attatchment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <%= f.hidden_field :category, value: category %>
+  <div class="form-row">
+    <label>
+      <span>Cargar solicitud</span>
+      <div class="text-center" style="display: inline-block">
+        <%= f.file_field :pdf_document%>
+      </div>
+    </label>
+  </div>
+  <div class="actions">
+    <%= f.submit :"Subir archivo"%>
+  </div>
+  <% end %>
+</div>

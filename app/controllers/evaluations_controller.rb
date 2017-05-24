@@ -1,9 +1,9 @@
 class EvaluationsController < ApplicationController
 
   before_action :authenticate!
-  before_action :authenticate_evaluator!, only: [:evaluate, :update, :finish]
+  before_action :authenticate_evaluator!, only: [:evaluate, :update, :finish, :upload_pdf, :destroy_pdf]
   before_action :authenticate_administrator!, only: [:create, :index, :new, :show]
-  before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :authorized?, :finish, :upload_pdf]
+  before_action :set_evaluation, only: [:show, :edit, :update, :destroy, :authorized?, :finish, :upload_pdf, :destroy_pdf]
   before_action :authorized?, only: [:show, :update]
 
   # GET /evaluations
@@ -90,8 +90,15 @@ class EvaluationsController < ApplicationController
   end
 
   def upload_pdf
-    EvaluationAttatchment.create(pdf_document: params[:evaluation_attatchment][:pdf_evaluation],
+    EvaluationAttatchment.create(pdf_document: params[:evaluation_attatchment][:pdf_document],
     evaluator: current_evaluator.get_name, evaluation_id: @evaluation.id)
+    redirect_to evaluator_home_path
+  end
+
+  def destroy_pdf
+    @evaluation_attatchment = @evaluation.evaluation_attatchment
+    @evaluation_attatchment.destroy!
+    redirect_to evaluator_home_path
   end
 
   private

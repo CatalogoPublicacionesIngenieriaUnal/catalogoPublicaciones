@@ -17,7 +17,7 @@
       <tr>
         <td bgcolor="#444444" height="60">
           <div style="float:right;text-align:right;margin-right:15px;color:#fff;font-size:14px;font-family:Georgia,serif;line-height:14px;max-height:60px;overflow:hidden">
-            CATALOGO DE PUBLICACIONES - FACULTAD DE INGENIERIA
+            <%= t('judge_mailer.welcome.header_name') %>
           </div>
         </td>
       </tr>
@@ -30,18 +30,18 @@
   </table>
 
   <div>
-    <h3>Bienvienido Evaluador, <%= @evaluator.first_name %> <%= @evaluator.last_name %></h3>
+    <h3><%= t('judge_mailer.welcome.greeting_1', name: @evaluator.first_name, last_name: @evaluator.last_name) %></h3>
     <p>
-      Ha sido registrado de manera exitosa en el sistema de evaluación de publicaciones de la Universidad Nacional
-      Su usuario de acceso es: <%= @evaluator.email %>.
-      Su código de acceso es: <%= @evaluator.code %><br>
+      <%=t('judge_mailer.welcome.credentials_1')%><br>
+      <%= t('judge_mailer.welcome.credentials_2', username: @evaluator.email) %>.<br>
+      <%= t('judge_mailer.welcome.credentials_3', password: @evaluator.code) %>.<br>
     </p>
     <p>
-      Su publicación es: .
-      Para acceder al sitio web de la publicación haga <a><href = "localhost:3000/evaluate/id">click aquí <%= @evaluator.url_token %><br></a>
+      <%= t('judge_mailer.welcome.evaluation_1', evaluation: 'Esta') %><br>.
+      <%= t('judge_mailer.welcome.evaluation_2')%><a><href = "localhost:3000/evaluate/id/<%=@evaluator.url_token%>"><%= t('judge_mailer.welcome.evaluation_3')%></a><br>
       </p>
-      <p>Atentamente:</p>
-      <p>Facultad de Ingeniería</p>
+      <p> <%= t('judge_mailer.welcome.greeting_2') %></p>
+      <p><%= t('judge_mailer.welcome.faculty') %></p>
     </div>
   </body>
   </html>

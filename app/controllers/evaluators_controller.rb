@@ -95,7 +95,7 @@ class EvaluatorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluator
-      @evaluator = Evaluator.find(params[:id])
+      #@evaluator = Evaluator.find(params[:id])
     end
 
     def set_current_evaluator

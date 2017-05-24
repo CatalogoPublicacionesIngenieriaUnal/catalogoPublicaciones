@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<%= wicked_pdf_stylesheet_link_tag "css/humanas - 24-09-2014" -%>
+	<meta charset="utf-8"></meta>
+	<style>
+	body {
+		font-size: 17px
+	}
+	p {
+		text-align: justify;
+	}
+	h2 {
+		color:#000;
+	}
+
+	table, th, td {
+		border: 1px solid black;
+	}
+
+	th, td {
+		padding: 5px;
+		text-align: justify;
+	}
+
+	input{
+		width: 15px;
+		padding: 5px;
+	}
+
+	#title1{
+		text-align: center;
+	}
+
+	#table {
+    border-collapse: collapse;
+		width: 100%;
+		text-align: justify;
+		padding: 5px;
+	}
+	</style>
+</head>
+<body>
+  <h2>Instrucciones</h2>
+  <p>I. Este formato debe ser diligenciado de manera íntegra (todos los puntos
+    son de respuesta obligatoria, salvo que se especifique lo contrario).
+  </p>
+
+  <p>II. Para que la evaluación se considere válida, el formato debe quedar
+    debidamente firmado por el evaluador.
+  </p>
+
+  <h2>A. IDENTIFICACIÓN DEL EVALUADOR</h2>
+
+  <p>
+    1. Nombre del evaluador: <%=%><br>
+    2. Vinculación institucional del evaluador (cargo e institución): <%=  %><br>
+    3. Título académico e institución que lo expide: <%=%><br>
+    4. Teléfonos y correo electrónico: <%= %><br>
+  </p>
+
+  <h2>B. IDENTIFICACIÓN DE LA EVALUACIÓN</h2>
+
+  <p>
+    5. Título del libro:  <%=%><br>
+    6. Fecha de entrega del original al evaluador: <%=  %><br>
+    7. Fecha de entrega de la evaluación a la Editorial:  <%=%><br>
+  </p>
+
+  <h2>C. CLASIFICACIÓN DE LA OBRA</h2>
+
+  <p>
+    8. Seleccione la opción según corresponda:<br><br>
+    <input type="text" value="X"> Libro resultado de investigación <br>
+    <input type="text"> Compilación de artículos de investigación <br>
+    <input type="text"> Compilación de ensayos      <br>
+    <input type="text"> Libro de texto de pregrado      <br>
+    <input type="text"> Libro de texto de posgrado      <br>
+    <input type="text"> Antología de ponencias      <br>
+    <input type="text"> Libro de referencia <br>
+    <input type="text"> Traducción   <br>
+    <input type="text"> Edición académica de un texto literario      <br>
+    <input type="text"> Otro     <br>
+  </p>
+
+  <p>En caso de haber seleccionado ‘Otro’, especifique de qué tipo de material se trata:</p>
+
+	<table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
+
+  <p>
+    9. En caso de que se trate de una traducción, especifique qué tipo de material
+    fue traducido:<br><br>
+    <input type="text"> Libro resultado de investigación <br>
+    <input type="text"> Compilación de artículos de investigación <br>
+    <input type="text"> Compilación de ensayos      <br>
+    <input type="text"> Libro de texto de pregrado      <br>
+    <input type="text"> Libro de texto de posgrado      <br>
+    <input type="text"> Antología de ponencias      <br>
+    <input type="text"> Libro de referencia <br>
+    <input type="text"> Traducción   <br>
+    <input type="text"> Edición académica de un texto literario      <br>
+    <input type="text"> Otro     <br>
+  </p>
+
+  <p>10. Elabore una sinopsis que dé cuenta del contenido del libro evaluado
+    (tema, disciplina, propósito, alcances, etc.).</p>
+
+	<table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
+
+  <h2>C. CLASIFICACIÓN DE LA OBRA</h2>
+
+  <p>11. Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</p>
+
+  <table id="table">
+    <tr>
+      <th rowspan="2" id="title1">Criterio</th>
+      <th id="title1">Excelente</th>
+      <th id="title1">Aceptable</th>
+      <th id="title1">Deficiente</th>
+      <th rowspan="2" id="title1">N/A</th>
+    </tr>
+		<tr>
+	    <th id="title1">[100-90]</th>
+	    <th id="title1">[89-60]</th>
+	    <th id="title1">[59-0]</th>
+  	</tr>
+    <tr>
+      <th>a) El material constituye un aporte válido, vigente y relevante para
+        el área de conocimiento en la cual se inscribe.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>b) El material es resultado de un proceso maduro de investigación o
+        reflexión: su contenido es producto de un desarrollo conceptual completo
+         y del contraste crítico con otras investigaciones afines.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>c) Está debidamente estructurado y argumentado (planteamiento del
+        problema, metodología y resultados) en relación con las prácticas de la
+         disciplina a la que pertenece.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>d) La originalidad de los aportes y reflexiones del autor le confieren
+         un valor agregado al material. </th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>e) Las referencias bibliográficas cumplen con la exactitud, pertinencia
+         y actualidad requeridas.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>f ) EI texto reúne las condiciones para ser parte de la bibliografía
+        más reconocida y necesaria sobre el tema.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </table>
+
+  <p>12. Redacte una argumentación en la que consten las razones por las cuales
+    otorgó las calificaciones dadas en el punto anterior. (Puede usar hojas
+    adicionales al final del documento).</p>
+
+	<table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
+
+  <h2>D. ADECUACIÓN DE LA ESCRITURA Y PRESENTACIÓN</h2>
+
+  <p>11. Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</p>
+
+  <table id="table">
+		<tr>
+      <th rowspan="2" id="title1">Criterio</th>
+      <th id="title1">Excelente</th>
+      <th id="title1">Aceptable</th>
+      <th id="title1">Deficiente</th>
+      <th rowspan="2" id="title1">N/A</th>
+    </tr>
+		<tr>
+	    <th id="title1">[100-90]</th>
+	    <th id="title1">[89-60]</th>
+	    <th id="title1">[59-0]</th>
+  	</tr>
+    <tr>
+      <th>a) Es adecuado el título de la obra.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>b) La escritura presenta las calidades esperadas para el nivel de formación
+        (apropiada redacción, léxico, ortografía, claridad conceptual, etc.).</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>c) El material gráfico que acompaña los textos (imágenes de toda índole
+        y tablas) es relevante, clarifica y añade valor en todos los casos.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>d) El texto presenta una introducción clara y precisa sobre los
+        objetivos y problemas que se abordan en el documento.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>e) La extensión del texto es adecuada en función de la complejidad del
+         tema, los objetivos y el público lector.</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </table>
+
+  <p>14. Realice comentarios u observaciones puntuales sobre los aspectos evaluados
+    en el punto anterior. (Puede usar hojas adicionales al final del documento).</p>
+
+	<table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
+
+  <h2>E. DECISIÓN FINAL</h2>
+
+  <p>
+    15. Considera que el material debe ser publicado:<br>
+    <input type="text"> (1) Tal como está <br>
+    <input type="text"> (2) Con ligeras modificaciones     <br>
+    <input type="text"> (3) Con modificaciones sustanciales           <br>
+    <input type="text"> (4) De ninguna manera       <br>
+  </p>
+
+  <p>16. En caso de haber escogido las opciones 2 o 3 en el punto anterior, por
+    favor especifique el tipo de modificación o modificaciones a realizar. En caso
+    de haber escogido la opción 4, por favor realice el comentario pertinente.
+     (Puede usar páginas adicionales al final del documento).</p>
+
+	 <table id="table">
+	 	<tr>
+	 		<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+	 	</tr>
+	 </table>
+
+  <p>17. Optativamente, el evaluador podrá utilizar este espacio para realizar
+    cualquier tipo de observación adicional para el autor o para el editor acerca
+    del manuscrito. (Puede utilizar más páginas al final de este documento)</p>
+
+  <p>Observaciones para el autor:</p>
+
+	<table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
+
+  <p>Observaciones para el editor: </p>
+
+	<table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
+
+  <p>
+    18. El grado de divulgación de la obra es:<br>
+    <input type="text"> Regional <br>
+    <input type="text"> Nacional      <br>
+    <input type="text"> Internacional            <br>
+  </p>
+
+  <p>11. Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</p>
+
+  <table id="table">
+    <tr>
+      <th>Público lector</th>
+      <th>Selección</th>
+    </tr>
+  </tr>
+    <tr>
+      <th>Intradisciplinario: público altamente especializado, de modo tal que
+        requiere pertenecer a la misma área para poder comprender el contenido.</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>Interdisciplinario: público especializado interesado en cruzar las fronteras
+        del conocimiento y de la disciplina (pertenece a la misma disciplina,
+        pero trabaja en áreas diversas).</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>En formación: estudiantes en una dimensión amplia que abarca todos los
+        niveles del sistema educativo.</th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>General: lectores no especializados, interesados en información puntual.</th>
+      <th></th>
+    </tr>
+  </table>
+
+  <p>Opcionalmente puede hacer observaciones sobre este punto:</p>
+
+	<table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
+
+  <p>20. Mencione a continuación institutos, sociedades, gremios, escuelas, facultades,
+    congresos y otras entidades o eventos cuyos integrantes constituyan un público
+    objetivo importante para la publicación (especifique ubicación geográfica y,
+    de ser pertinente, fecha):</p>
+
+		<table id="table">
+			<tr>
+				<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			</tr>
+		</table>
+
+  <p>
+    Firma
+  </p>
+
+	<p>
+		<br><br><br><br><br><br>
+    __________________________
+  </p>
+
+	<p>
+		<%= Administrator.find(1).first_name %> <%= Administrator.find(1).last_name %><br>
+    C.C. <%=%> de <%=%><br>
+  </p>
+
+</body>
+</html>

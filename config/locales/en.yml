@@ -20,4 +20,16 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  judge_mailer:
+    welcome:
+      subject: 'Publications Catalog - New Evaluator!'
+      header_name: 'PUBLICATIONS CATALOG - FACULTY OF ENGINEERING'
+      greeting_1: 'Welcome Evaluator, %{name} %{last_name}'
+      credentials_1: 'You has been sucessfully registered in the publication evualuation system of the National University'
+      credentials_2: 'Your username is: %{username}'
+      credentials_3: 'Your password is: %{password}'
+      evaluation_1: 'The publication to evaluate is: %{evaluation}'
+      evaluation_2: 'To access the website of the publication make'
+      evaluation_3: 'click here'
+      greeting_2: 'Sincerely:'
+      faculty: 'Faculty of Engineering'

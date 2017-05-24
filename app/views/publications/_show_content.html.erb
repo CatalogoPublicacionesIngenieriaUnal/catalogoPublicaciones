@@ -66,7 +66,6 @@
         <li>
           <span class="inf">Palabras clave</span>
           <span class="value">
-            <%= Keyword.find(@publication.keyword_ids[0]).keyword %>,
             <%= Keyword.find(@publication.keyword_ids[1]).keyword %>,
             <%= Keyword.find(@publication.keyword_ids[2]).keyword %>
           </span>
@@ -87,6 +86,20 @@
     </div>
 
     <div><hr class="style13"></div>
+    <% if professor_signed_in? %>
+    <div class="li-custom" style="width:200px; float:left">
+      <%= link_to('Crear Carta de Presentación', create_carta_de_presentacion_path(format: :pdf)) %>
+    </div>
+    <br>
+    <div class="li-custom" style="width:100px; margin:auto; text-align:center">
+      <%= link_to 'Volver', :back %>
+    </div>
+    <% elsif administrator_signed_in? %>
+    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px; text-align:center">
+      <%= link_to 'Volver', :back %>
+    </div>
+    <% end %>
+
     <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
@@ -95,8 +108,15 @@
     <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
     <% end %>
 
-    <br>
-    <%- unless @publication.application_request.document_loaded?(:concepto_editorial_a) %>
+    <div><hr class="style13"></div>
+    <% if professor_signed_in? %>
+    <div class="li-custom" style="width:200px; float:left">
+      <%= link_to('Crear Concepto Editorial', create_concepto_editorial_path(format: :pdf)) %>
+    </div>
+    <% end %>
+
+    <center><div style="width:720px"><hr class="style13"></div></center>
+    <%- unless @publication.attatchments.get_attachment_by_category(:concepto_editorial_a) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :concepto_editorial_a%>

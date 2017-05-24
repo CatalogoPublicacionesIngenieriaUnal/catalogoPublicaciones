@@ -1,10 +1,16 @@
 class ApplicationRequestsController < ApplicationController
+
+  protect_from_forgery except: :third_evaluator
   before_action :set_application_request, only: [:show, :edit, :update, :destroy,
-    :create_evaluator, :form_b, :form_b_create, :show_b, :authorize, :reject]
+    :create_evaluator, :form_b, :form_b_create, :show_b, :authorize, :reject,
+    :final_concept, :final_concept_create, :evaluation_ended?, :third_evaluator]
+
   before_action :authorized?, only: [:new, :edit, :update, :create]
-  before_action :authenticate_administrator!, except: [:new, :edit, :update, :create]
+  before_action :authenticate_administrator!, except: [:new, :edit, :update, :create, :final_concept, :final_concept_create]
   before_action :in_evaluation?, except: [:show, :index, :show_b, :authorize, :reject_form]
   before_action :ready_to_evaluate?, only: :show
+  before_action :evaluation_ended?, only: [:final_concept_create, :final_concept]
+
   layout "unal"
   # GET /application_requests
   # GET /application_requests.json
@@ -17,6 +23,7 @@ class ApplicationRequestsController < ApplicationController
   # GET /application_requests/1
   # GET /application_requests/1.json
   def show
+    redirect_to final_concept_form(@application_request) if @application_request.state == 'En evaluación' && @application_request.evaluations_completed?
   end
 
   # GET /application_requests/new
@@ -97,8 +104,8 @@ class ApplicationRequestsController < ApplicationController
 
   def authorize
     if @application_request.evaluations.count < 2
-      Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
-      Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id)
+      Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id, finished: false)
+      Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id, finished: false)
     end
     @application_request.update!(state: :'En evaluación', authorized_at: DateTime.now)
     redirect_to @application_request
@@ -111,6 +118,29 @@ class ApplicationRequestsController < ApplicationController
     remarks = params[:application_request][:editorial_remarks_to_authoreditorial_remarks_to_author]
     application_request.update!(editorial_remarks_to_author: remarks, state: 'Rechazado')
     redirect_to application_request
+  end
+
+  def third_evaluator
+    if @application_request.evaluators.count < 3
+      if @application_request.evaluations.count < 3
+        @evaluation = Evaluation.create!(state: :sin_evaluar, application_request_id: @application_request.id, finished: false)
+      else
+        @evaluation = @application_request.evaluations.last
+      end
+      @languages = Language.all
+      @evaluator = Evaluator.new
+    else
+      redirect_to :back
+    end
+  end
+
+  def final_concept_create
+    @application_request.update(state: params[:application_request][:state],
+      editorial_remarks_to_author: params[:application_request][:editorial_remarks_to_author])
+      redirect_to home_route
+  end
+
+  def final_concept
   end
 
   private
@@ -137,6 +167,10 @@ class ApplicationRequestsController < ApplicationController
   def ready_to_evaluate?
     @application_request = ApplicationRequest.find(params[:id])
     @application_request.ready_for_evaluation
+  end
+
+  def evaluation_ended?
+    redirect_to @application_request unless @application_request.state == 'En evaluación' && @application_request.evaluations_completed?
   end
 
 end

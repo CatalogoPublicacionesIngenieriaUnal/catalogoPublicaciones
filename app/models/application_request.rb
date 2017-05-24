@@ -12,7 +12,14 @@ class ApplicationRequest < ApplicationRecord
 
   validates :state, presence: true
 
-  enum state: ['En creación', 'En espera', 'En evaluación', 'Aprobado', 'Rechazado']
+  enum state: ['En creación', 'En espera', 'En evaluación', 'Aprobado', 'Rechazado',
+               'Menores', 'Mayores']
+
+  def evaluation_complete
+    if evaluations_completed?
+      # TODO: Mandar correo a administrador
+    end
+  end
 
   def document_loaded?(doc_category)
     !attatchments.where(category: doc_category).first.nil?
@@ -34,6 +41,10 @@ class ApplicationRequest < ApplicationRecord
 
   def ready_for_evaluation
     state == 'En espera' && form_b? && attatchments.count == 4 ? true : false
+  end
+
+  def evaluations_completed?
+    evaluations.completed.count == 2
   end
 
   def self.load_applications_by_state_id(id, page = 1, per_page = 10)

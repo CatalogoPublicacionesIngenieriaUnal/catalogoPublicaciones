@@ -82,9 +82,9 @@ class EvaluationsController < ApplicationController
     redirect_to :not_authorized unless @evaluation.evaluator == current_evaluator
     @evaluation.finish
     if @evaluation.errors.any?
-      redirect_to @evaluation
+      redirect_to evaluator_home_path
     else
-      current_evaluator.destroy
+      @evaluation.evaluation_complete
       redirect_to not_authorized_path
     end
   end

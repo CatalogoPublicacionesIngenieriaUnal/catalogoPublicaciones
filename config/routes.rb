@@ -9,16 +9,16 @@ Rails.application.routes.draw do
   get 'administrators/profile', to: 'administrators#show', as: :show_current_administrator
   get 'administrators/edit', to: 'administrators#edit', as: :edit_current_administrator
   get 'administrators/home', to: 'administrators#home', as: :administrator_home
-  patch 'administrators/update_password', to: 'administrators#update_password', as: :administrator_update_password
   get 'administrators/edit_password', to: 'administrators#edit_password', as: :administrator_edit_password
+  patch 'administrators/update_password', to: 'administrators#update_password', as: :administrator_update_password
 
   get 'evaluators/profile', to: 'evaluators#show', as: :show_current_evaluator
   get 'evaluators/home', to: 'evaluators#home', as: :evaluator_home
   get 'evaluators/evaluate', to: 'evaluations#evaluate', as: :evaluate
   get 'evaluators/show', to: 'evaluators#show', as: :evaluator_show
   get 'evaluators/edit', to: 'evaluators#edit', as: :edit_current_evaluator
-  patch 'evaluators/update_password', to: 'evaluators#update_password', as: :evaluator_update_password
   get 'evaluators/edit_password', to: 'evaluators#edit_password', as: :evaluator_edit_password
+  patch 'evaluators/update_password', to: 'evaluators#update_password', as: :evaluator_update_password
 
   patch 'evaluations/:id/finish', to: 'evaluations#finish', as: :evaluation_finish
   post 'evaluations/:id/upload_pdf', to: 'evaluations#upload_pdf', as: :evaluations_upload_pdf
@@ -39,10 +39,13 @@ Rails.application.routes.draw do
   get 'application_requests/:id/new_evaluator/', to: 'application_requests#create_evaluator', as:  :add_evaluator
   get 'application_requests/:id/form_b', to: 'application_requests#form_b', as: :form_b
   get 'application_requests/:id/show_b/', to: 'application_requests#show_b', as: :show_b
+  get 'application_requests/:id/reject', to: 'application_requests#reject', as: :application_request_reject_form
+  get 'application_requests/:id/final_concept_form', to: 'application_requests#final_concept'
+  get 'application_requests/:id/third_evaluator', to: 'application_requests#third_evaluator', as: :create_third_evaluator
   patch 'application_requests/:id/form_b_create', to: 'application_requests#form_b_create', as: :form_b_create
   patch 'application_request/:id/authorize', to: 'application_requests#authorize', as: :application_request_authorize
   patch 'application_request/:id/reject_create', to: 'application_requests#reject_create', as: :application_request_reject
-  get 'application_request/:id/reject', to: 'application_requests#reject', as: :application_request_reject_form
+  patch 'application_request/:id/final_concept', to:'application_requests#final_concept_create', as: :application_final_concept
 
   devise_for :professors, path: '', path_names: { sign_in: '', sign_out: 'logout'}
   devise_for :administrators

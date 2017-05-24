@@ -157,6 +157,7 @@ ActiveRecord::Schema.define(version: 20170522205132) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
+    t.datetime "locked_at"
     t.index ["email"], name: "index_evaluators_on_email", unique: true, using: :btree
     t.index ["evaluation_id"], name: "index_evaluators_on_evaluation_id", using: :btree
     t.index ["language_id"], name: "index_evaluators_on_language_id", using: :btree

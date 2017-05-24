@@ -82,7 +82,7 @@ for i in 0..20
 
   for i in 0..Faker::Number.between(0, 5)
     ProfessorPublication.create!(publication_id: publication.id,
-    professor_id: Professor.find( Faker::Number.between(1, 51)))
+    professor_id: professor.id)
   end
 
 end
@@ -105,7 +105,7 @@ for i in 0..20
 
   for i in 0..Faker::Number.between(0, 5)
     ProfessorPublication.create!(publication_id: publication.id,
-    professor_id: Professor.find( Faker::Number.between(1, 51)))
+    professor_id: professor.id)
   end
 
 end
@@ -129,7 +129,7 @@ for i in 0..20
 
   for i in 0..Faker::Number.between(0, 5)
     ProfessorPublication.create!(publication_id: publication.id,
-    professor_id: Professor.find( Faker::Number.between(1, 51)))
+    professor_id: professor.id)
   end
 
   for j in 0..1

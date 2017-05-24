@@ -1,4 +1,4 @@
-<div class="login-form" style="height:350px">
+cd<div class="login-form" style="height:350px">
   <%= form_for(resource_admin, :as => resource_name_admin, :url => new_session_path(resource_name_admin)) do |f| %>
   <div class="text-center">
     <h4>Iniciar sesión de Administrador</h4>
@@ -7,11 +7,11 @@
   <div class="sign-in-htm">
     <div class="group">
       <label for="user" class="label">Usuario</label>
-      <%= f.text_field :username, :id=>"user", :type=>"text", :class=>"input",autofocus: true %>
+      <%= f.text_field :username, :id=>"admin_username", :type=>"text", :class=>"input",autofocus: true %>
     </div>
     <div class="group">
       <label for="pass" class="label">Contraseña</label>
-      <%= f.password_field :password,:id=>"pass", :type=>"password", :class=>"input", autocomplete: "off" %>
+      <%= f.password_field :password,:id=>"admin_password", :type=>"password", :class=>"input", autocomplete: "off" %>
     </div>
     <div class="group text-center">
       <% if devise_mapping.rememberable? -%>
@@ -21,7 +21,7 @@
     </div>
     <div class="group">
       <div class="actions">
-        <%= f.submit "Ingresar", :class=>"button"%>
+        <%= f.submit "Ingresar", :id=>"login", :class=>"button"%>
       </div>
       <% end %>
     </div>

@@ -1,0 +1,14 @@
+en:
+  judge_mailer:
+    welcome:
+      subject: 'Catalogo de publicaciones - Nuevo evaluador!'
+      header_name: 'CATALOGO DE PUBLICACIONES - FACULTAD DE INGENIERIA'
+      greeting_1: 'Bienvienido Evaluador, %{name} %{last_name}'
+      credentials_1: 'Ha sido registrado de manera exitosa en el sistema de evaluación de publicaciones de la Universidad Nacional'
+      credentials_2: 'Su usuario de acceso es: %{username}'
+      credentials_3: 'Su código de acceso es: %{password}'
+      evaluation_1: 'Su publicación es: %{evaluation}'
+      evaluation_2: 'Para acceder a la publicación haga'
+      evaluation_3: 'click aquí'
+      greeting_2: 'Atentamente:'
+      faculty: 'Facultad de Ingeniería'

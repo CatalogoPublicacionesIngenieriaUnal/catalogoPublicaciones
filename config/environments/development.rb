@@ -53,7 +53,6 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.action_controller.include_all_helpers = true
 
-
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
@@ -61,10 +60,13 @@ Rails.application.configure do
    port:                 587,
    user_name:            ENV['GMAIL_MAIL'],
    password:             ENV['GMAIL_PASSWORD'],
-   authentication:          :login,
-  enable_starttls_auto: true
+   authentication:       :plain,
+   enable_starttls_auto: true
   }
 
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
+
+  config.i18n.default_locale = 'en'
+  config.i18n.available_locales = [:en, :es]
 
 end

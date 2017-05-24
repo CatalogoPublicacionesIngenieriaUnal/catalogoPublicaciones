@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<%= wicked_pdf_stylesheet_link_tag "css/humanas - 24-09-2014" -%>
+	<meta charset="utf-8"></meta>
+	<style>
+	body {
+		font-size: 17px
+	}
+	p {
+		text-align: justify;
+	}
+	h2 {
+		color:#000;
+	}
+
+	table, th, td {
+		border: 1px solid black;
+	}
+
+	th, td {
+		padding: 5px;
+		text-align: left;
+	}
+
+	#title1{
+		text-align: center;
+	}
+
+	#table {
+    border-collapse: collapse;
+		width: 100%;
+		text-align: justify;
+		padding: 5px;
+	}
+	</style>
+</head>
+<body>
+  <h2>Instrucciones</h2>
+
+  <p>I. Este formato debe ser diligenciado de manera íntegra (todos los puntos
+    son de respuesta obligatoria, salvo que se especifique lo contrario).
+  </p>
+
+  <p>II. Para que el concepto editorial se considere válido, el formato debe
+    presentar firma, cédula y cargo de quien lo diligencia, es decir, el autor
+    del manuscrito en la parte A, o el editor, coordinador editorial, director
+    del comité editorial o del centro editorial de la unidad editora
+    correspondiente), en la parte B.
+  </p>
+
+  <h2>Identificación del manuscrito</h2>
+
+  <p>
+    1. Fecha de elaboración de la evaluación: <%=%><br>
+    2. Título del manuscrito: <%= @publication.title %><br>
+    3. Autor: <%=%><br>
+    3. Unidad editorial: <%= @publication.publishing_unit %><br>
+  </p>
+
+  <h2>A. Espacios a diligenciar por parte del autor del manuscrito</h2>
+
+  <p>
+    Realice las observaciones que haya lugar, en cada uno de los siguientes criterios:
+  </p>
+
+  <table>
+    <tr>
+      <th colspan="2" id="title1">1. Presentación del manuscrito</th>
+    </tr>
+    <tr>
+      <th id="title1" style="width:200px;">Criterio</th>
+      <th id="title1">Observaciones</th>
+    </tr>
+    <tr>
+      <th>a) Tema</th>
+      <th><%=%></th>
+    </tr>
+    <tr>
+      <th>b) Público al cual va dirigido</th>
+      <th><%=%></th>
+    </tr>
+    <tr>
+      <th>c) Estrategias de posicionamiento</th>
+      <th><%=%></th>
+    </tr>
+    <tr>
+      <th>d) Valoración académica</th>
+      <th><%=%></th>
+    </tr>
+    <tr>
+      <th colspan="2" id="title1">2.	Referencia de otros títulos publicados</th>
+    </tr>
+    <tr>
+      <th style="text-align:justify">Referenciar otros títulos publicados, con características similares
+        al manuscrito, que se encuentren disponibles comercialmente </th>
+      <th><%=%></th>
+    </tr>
+  </table>
+  <p>
+    Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación)
+  </p>
+
+  <table id="table">
+		<tr>
+			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+		</tr>
+	</table>
+
+  <p>
+		<br><br><br><br><br><br>
+    __________________________
+  </p>
+
+  <p>
+    <%= current_professor.first_name%> <%= current_professor.last_name %><br>
+    <%= current_professor.identity_document_type %> <%= current_professor.identity_document %> de <%= current_professor.identity_document_issued %><br>
+  </p>
+</body>
+</html>

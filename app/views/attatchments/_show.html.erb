@@ -23,12 +23,12 @@
         <%- elsif professor_signed_in? && attatchment.application_request.state != 'En creación' ||
         administrator_signed_in? && attatchment.category == 'concepto_editorial_b' &&
         attatchment.application_request.state != 'En espera' %>
-          <th>
-            <%= link_to_unless attatchment.application_request.state != 'En espera',
+          <!-- <th> -->
+            <%#= link_to_unless attatchment.application_request.state != 'En espera',
             (fa_stacked_icon "trash-o", base: "ban", class: "fa-2x text-danger"),
             attatchment_url(attatchment.id), data: { confirm: "¿Está seguro que desea eliminar este archivo?" },
             :method => :delete%>
-          </th>
+          <!-- </th> -->
         <% end %>
       </tr>
     </table>

@@ -23,7 +23,7 @@
       </div>
     </center>
     <%- if @publication.request_completeness == 100 && @publication.state == 'En creación' %>
-    <div class="main-content" style="height:170px">
+    <div class="main-content">
       <div class="form-basic" style="height:220px">
         Su publicación está lista para ser enviada para evaluación.
         <div><hr class="style13"></div>
@@ -86,18 +86,11 @@
     </div>
 
     <div><hr class="style13"></div>
-    <% if professor_signed_in? %>
-    <div class="li-custom" style="width:200px; float:left">
-      <%= link_to('Crear Carta de Presentación', create_carta_de_presentacion_path(format: :pdf)) %>
+    <% if professor_signed_in? && @publication.application_request.state == 'En creación' %>
+    <div class="li-custom" style="width:200px; margin:auto; text-align:center">
+      <%= link_to('Crear Carta de Presentación', create_carta_de_presentacion_path(format: :pdf), target: :_blank) %>
     </div>
     <br>
-    <div class="li-custom" style="width:100px; margin:auto; text-align:center">
-      <%= link_to 'Volver', :back %>
-    </div>
-    <% elsif administrator_signed_in? %>
-    <div class="li-custom" style="width:100px; margin:auto; padding:10px 10px 10px 10px; text-align:center">
-      <%= link_to 'Volver', :back %>
-    </div>
     <% end %>
 
     <%- unless @publication.application_request.document_loaded?(:carta_presentacion) %>
@@ -105,32 +98,44 @@
     application_request: @publication.application_request,
     category: :carta_presentacion%>
     <%- else %>
-    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
-    <% end %>
-
-    <div><hr class="style13"></div>
-    <% if professor_signed_in? %>
-    <div class="li-custom" style="width:200px; float:left">
-      <%= link_to('Crear Concepto Editorial', create_concepto_editorial_path(format: :pdf)) %>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:carta_presentacion)%>
+      </div>
     </div>
     <% end %>
 
-    <center><div style="width:720px"><hr class="style13"></div></center>
+    <div><hr class="style13"></div>
+    <% if professor_signed_in? && @publication.application_request.state == 'En creación' %>
+    <div class="li-custom" style="width:200px; margin:auto; text-align:center">
+      <%= link_to('Crear Concepto Editorial', create_concepto_editorial_path(format: :pdf), target: :_blank) %>
+    </div>
+    <br>
+    <% end %>
+
     <%- unless @publication.attatchments.get_attachment_by_category(:concepto_editorial_a) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :concepto_editorial_a%>
     <%- else %>
-    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:concepto_editorial_a)%>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:concepto_editorial_a)%>
+      </div>
+    </div>
     <% end %>
 
-    <br>
+    <div><hr class="style13"></div>
     <%- unless @publication.application_request.document_loaded?(:manuscrito) %>
     <%= render 'attatchments/form', attatchment: Attatchment.new,
     application_request: @publication.application_request,
     category: :manuscrito%>
     <%- else %>
-    <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:manuscrito)%>
+    <div class="main-content">
+      <div class="form-basic">
+        <%= render 'attatchments/show', attatchment: @publication.get_attatchment(:manuscrito)%>
+      </div>
+    </div>
     <% end %>
 
     <div><hr class="style13"></div>

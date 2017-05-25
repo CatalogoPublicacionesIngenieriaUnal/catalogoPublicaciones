@@ -1,23 +1,21 @@
-<div class="form-basic">
-  <div class="tg-wrap">
-    <table width="100%" >
-      <tr>
-        <th width="30%">
-          <%= link_to (@evaluation.evaluation_attatchment.pdf_document.url), target: :_blank do %>
-          <%= fa_icon "file-pdf-o 3x", base: "square-o", class: "btn btn-danger"%>
-          <% end %>
-        </th>
-        <th width="70%">
-          <%= link_to (@evaluation.evaluation_attatchment.pdf_document.url), target: :_blank do %>
-          <div style="font-size:200%;"><%= @evaluation.evaluation_attatchment.pdf_document.filename %></div>
-          <% end %>
-        </th>
-        <th>
-          <%= link_to evaluations_destroy_pdf_path(@evaluation), data: { confirm: "¿Está seguro que desea eliminar este archivo?" },:method => :delete do %>
-          <% fa_icon "trash-o 2x", base: "square-o", class: "btn pull-left" %>
-          <% end %>
-        </th>
-      </tr>
-    </table>
-  </div>
-</div>
+<table width="100%" >
+  <tr>
+    <th width="30%">
+      <%= link_to (@evaluation.evaluation_attatchment.pdf_document.url), target: :_blank do %>
+      <%= fa_icon "file-pdf-o 2x", base: "square-o", class: "btn btn-danger"%>
+      <% end %>
+    </th>
+    <th width="70%">
+      <%= link_to (@evaluation.evaluation_attatchment.pdf_document.url), target: :_blank do %>
+      <div style="font-size:200%;"><%= @evaluation.evaluation_attatchment.pdf_document.filename %></div>
+      <% end %>
+    </th>
+    <%- if evaluator_signed_in? %>
+    <th>
+      <%= link_to evaluations_destroy_pdf_path(@evaluation), data: { confirm: "¿Está seguro que desea eliminar este archivo?" },:method => :delete do %>
+      <% fa_icon "trash-o 2x", base: "square-o", class: "btn pull-left" %>
+      <% end %>
+    </th>
+    <% end %>
+  </tr>
+</table>  

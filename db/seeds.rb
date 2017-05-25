@@ -31,6 +31,7 @@ for i in 0..50
   Professor.create!(username: Faker::Internet.unique.user_name, first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, email: Faker::Internet.unique.email,
     contact_number: Faker::Number.number(10),is_authorized: Faker::Boolean.boolean(0.8),
+    gender: Faker::Number.between(1,2), department: Faker::Number.between(1, 6),
     password: "123456", password_confirmation: "123456")
 end
 
@@ -72,10 +73,11 @@ for i in 0..20
   professor = Professor.find( Faker::Number.between(1, 51))
 
   publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
-  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
+  category_id: Faker::Number.between(1, 9), theme_id:Faker::Number.between(1, 20))
 
   application_requests = ApplicationRequest.create!(state: :'En creación',
   professor_id: professor.id, publication_id: publication.id)
+  # application_requests.update_attribute :created_at, (Faker::Number.between(50,365)).days.ago
 
   ProfessorPublication.create!(publication_id: publication.id,
   professor_id: professor.id)
@@ -139,6 +141,11 @@ for i in 0..20
     language_id: Faker::Number.between(1, 6), evaluation_id: evaluation.id ,position: Faker::Job.title,
     institution: Faker::Company.name, degree: Faker::Company.profession,
     degree_institution: Faker::University.name )
+  end
+
+  appreq = ApplicationRequest.all
+  appreq.each do |appl|
+    appl.update_attribute :created_at, (Faker::Number.between(1,365)).days.ago
   end
 
 end

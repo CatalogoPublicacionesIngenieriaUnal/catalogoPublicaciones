@@ -83,6 +83,85 @@ class ProfessorsController < ApplicationController
     redirect_to home_route
   end
 
+  def dataDepartmentPie
+    golden_ratio_conjugate = 0.618033988749895
+    h = rand
+    custom_json = []
+    departamento = ['nope','Departamento de ingeniería civil y agrícola',
+      'Departamento de ingeniería de sistemas e industrial',
+      'Departamento de ingeniería eléctrica y electrónica',
+      'Departamento de ingeniería mecánica y mecatrónica',
+      'Departamento de ingeniería química y ambiental',
+      'Instituto de extensión e investigación IEI']
+    professors = Professor.all
+    (1..6).each do |dpto|
+      cuenta = professors.where( :department => dpto ).count
+      h += golden_ratio_conjugate
+      h %= 1
+      rgb = hsv_to_rgb( h, 0.7, 0.75 )
+      single = {
+        "label" => departamento[dpto],
+        "value" => cuenta,
+        "color" => rgb_pls( rgb[0], rgb[1], rgb[2] )
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
+       format.json {
+         render :json => custom_json
+       }
+    end
+  end
+
+  def dataGenderPie
+    golden_ratio_conjugate = 0.618033988749895
+    h = rand
+    custom_json = []
+    genero = ['nope','Masculino','Femenino']
+    professors = Professor.all
+    (1..2).each do |gene|
+      cuenta = professors.where( :gender => gene ).count
+      h += golden_ratio_conjugate
+      h %= 1
+      rgb = hsv_to_rgb( h, 0.7, 0.75 )
+      single = {
+        "label" => genero[gene],
+        "value" => cuenta,
+        "color" => rgb_pls( rgb[0], rgb[1], rgb[2] )
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
+       format.json {
+         render :json => custom_json
+       }
+    end
+  end
+
+
+  def hsv_to_rgb(h, s, v)
+    h_i = (h * 6).to_i
+    f = h * 6 - h_i
+    p = v * (1 - s)
+    q = v * (1 - f * s)
+    t = v * (1 - (1 - f) * s)
+    r, g, b = v, t, p if h_i==0
+    r, g, b = q, v, p if h_i==1
+    r, g, b = p, v, t if h_i==2
+    r, g, b = p, q, v if h_i==3
+    r, g, b = t, p, v if h_i==4
+    r, g, b = v, p, q if h_i==5
+    [(r*256).to_i, (g*256).to_i, (b*256).to_i]
+  end
+  def rgb_pls( r, g, b )
+    "##{to_hex r}#{to_hex g}#{to_hex b}"
+  end
+  def to_hex(n)
+    n.to_s(16).rjust(2,'0').upcase
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_professor

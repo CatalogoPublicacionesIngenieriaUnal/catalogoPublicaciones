@@ -10,12 +10,15 @@
     <div><hr class="style13"></div>
     <%= javascript_include_tag "graphs" %>
     <center>
-      <!-- <button class="button1 button2" onclick="categ()">Categoria</button>
-      <button class="button1 button2" onclick="them()">Tema</button> -->
       <button class="button1 button2" onclick="categPie()">Categoría</button>
       <button class="button1 button2" onclick="themePie()">Tema</button>
       <button class="button1 button2" onclick="statusPie()">Estado</button>
-      <br><br>
+      <button class="button1 button2" onclick="profDptoPie()">Departamento</button>
+      <button class="button1 button2" onclick="profGenderPie()">Género</button>
+      <button class="button1 button2" onclick="appReqCreation()">App Req</button>
+      <div><hr class="style13"></div>
+      <div id="addButtons"></div>
+      <div id="monthChart"></div>
       <svg id="graficas" height=300px width="80%"></svg>
     </center>
 

@@ -1,3 +1,5 @@
+require 'set'
+
 class ApplicationRequestsController < ApplicationController
 
   protect_from_forgery except: :third_evaluator
@@ -141,6 +143,48 @@ class ApplicationRequestsController < ApplicationController
   end
 
   def final_concept
+  end
+
+  def dataRequestCreation
+    custom_json = []
+    años = Set.new
+    meses = Set.new
+    am = Set.new
+    appreq = ApplicationRequest.all
+    appreq.each do |apprequest|
+      años.add( apprequest.created_at.year )
+      meses.add( apprequest.created_at.month )
+      am.add( [apprequest.created_at.year, apprequest.created_at.month] )
+    end
+    añossa = años.to_a
+    data = Hash.new()
+    añossa.each do |año|
+      data[año] = Hash.new()
+      (1..12).each do |mes|
+        data[año][mes] = 0
+      end
+    end
+
+    appreq.each do |apprequest|
+      data[ apprequest.created_at.year ][ apprequest.created_at.month ] = data[ apprequest.created_at.year ][ apprequest.created_at.month ] + 1
+    end
+
+    sth = [1, 2, 3]
+
+    data.each do | key, array |
+      single = {
+        "label" => key,
+        "data" => array.values
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
+      format.json {
+        render :json => custom_json
+        #render :json => single
+      }
+    end
   end
 
   private

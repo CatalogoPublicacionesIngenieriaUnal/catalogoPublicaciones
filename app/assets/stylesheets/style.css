@@ -692,3 +692,48 @@ input:checked + .slider:before {
   background-color: #97aac9;
   color: white;
 }
+
+/* --------------- */
+
+#monthChart{
+	text-align: center;
+}
+
+#monthChart .line {
+	stroke: #0071a8;
+	stroke-width: 2;
+	fill: none;
+}
+
+#monthChart .axis {
+  shape-rendering: crispEdges;
+}
+
+#monthChart .x.axis line {
+  stroke: rgba(88, 89, 93, .35);
+}
+
+#monthChart .x.axis .minor {
+  stroke-opacity: 1;
+}
+
+#monthChart .x.axis path {
+  display: none;
+}
+
+#monthChart .y.axis line, .y.axis path {
+  fill: none;
+  stroke: rgba(88, 89, 93, 1);
+}
+
+#monthChart .axis path,
+#monthChart .axis line {
+  fill: none;
+  stroke: rgba(88, 89, 93, 1);
+  shape-rendering: crispEdges;
+}
+
+#monthChart .axis text {
+  font: 12px "Ancizar serif";
+  fill: rgba(88, 89, 93, 1);
+}

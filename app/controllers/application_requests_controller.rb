@@ -75,8 +75,6 @@ class ApplicationRequestsController < ApplicationController
   end
 
   def dataRequestCreation
-    golden_ratio_conjugate = 0.618033988749895
-    h = rand
     custom_json = []
     años = Set.new
     meses = Set.new
@@ -86,21 +84,6 @@ class ApplicationRequestsController < ApplicationController
       años.add( apprequest.created_at.year )
       meses.add( apprequest.created_at.month )
       am.add( [apprequest.created_at.year, apprequest.created_at.month] )
-
-
-      # cuenta = publications.where( :category_id => categoria.id ).count
-      # h += golden_ratio_conjugate
-      # h %= 1
-      # rgb = hsv_to_rgb( h, 0.7, 0.75 )
-      # single = {
-      #   "añito" => años,
-      #   "mesesito" => meses,
-      #   "am" => am
-      #
-      #   # "value" => cuenta,
-      #   # "color" => rgb_pls( rgb[0], rgb[1], rgb[2] )
-      # }
-      # custom_json << single
     end
     añossa = años.to_a
     data = Hash.new()
@@ -115,17 +98,20 @@ class ApplicationRequestsController < ApplicationController
       data[ apprequest.created_at.year ][ apprequest.created_at.month ] = data[ apprequest.created_at.year ][ apprequest.created_at.month ] + 1
     end
 
-    single = {
-      "añito" => años,
-      "mesesito" => meses,
-      "am" => am,
-      "hash" => data
-    }
+    sth = [1, 2, 3]
+
+    data.each do | key, array |
+      single = {
+        "label" => key,
+        "data" => array.values
+      }
+      custom_json << single
+    end
 
     respond_to do |format|
       format.json {
-        # render :json => custom_json
-        render :json => single
+        render :json => custom_json
+        #render :json => single
       }
     end
   end

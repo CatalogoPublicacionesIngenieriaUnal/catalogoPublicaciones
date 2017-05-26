@@ -1,164 +1,176 @@
 function categPie(){
+  del = document.getElementById("graficas").style.display = "";
   lediv = document.getElementById("addButtons").innerHTML = "";
+  lediv2 = document.getElementById("addButtonsApRe").innerHTML = "";
   $.ajax({
-       type: "GET",
-       contentType: "application/json; charset=utf-8",
-       url: 'dataCategPie',
-       dataType: 'json',
-       success: function (data) {
-        //json_data = data;
-        console.log(data);
-        //graficarPie(data);
-        svg = d3.select("#graficas");
-        svg.selectAll("*").remove();
-        svg2 = d3.select("#monthChart");
-        svg2.selectAll("*").remove();
-        svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
-        addText( data );
-       },
-      error: function (result) {
-        console.log("error");
-      },
-      async: false
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: 'dataCategPie',
+    dataType: 'json',
+    success: function (data) {
+      titulo = document.getElementById("tituloEst").innerHTML = "Proporción de Publicaciones por Categoría";
+      console.log(data);
+      svg = d3.select("#graficas");
+      svg.selectAll("*").remove();
+      svg2 = d3.select("#monthChart");
+      svg2.selectAll("*").remove();
+      svg.append("g").attr("id","donuTest");
+      Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
+      addText( data );
+    },
+    error: function (result) {
+      console.log("error");
+    },
+    async: false
   });
 }
 
 function themePie(){
+  del = document.getElementById("graficas").style.display = "";
   lediv = document.getElementById("addButtons").innerHTML = "";
+  lediv2 = document.getElementById("addButtonsApRe").innerHTML = "";
   $.ajax({
-       type: "GET",
-       contentType: "application/json; charset=utf-8",
-       url: 'dataThemePie',
-       dataType: 'json',
-       success: function (data) {
-        //json_data = data;
-        console.log(data);
-        //graficarPie(data);
-        svg = d3.select("#graficas");
-        svg.selectAll("*").remove();
-        svg2 = d3.select("#monthChart");
-        svg2.selectAll("*").remove();
-        svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
-        addText( data );
-       },
-      error: function (result) {
-        console.log("error");
-      },
-      async: false
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: 'dataThemePie',
+    dataType: 'json',
+    success: function (data) {
+      titulo = document.getElementById("tituloEst").innerHTML = "Proporción de Publicaciones por Tema";
+      console.log(data);
+      svg = d3.select("#graficas");
+      svg.selectAll("*").remove();
+      svg2 = d3.select("#monthChart");
+      svg2.selectAll("*").remove();
+      svg.append("g").attr("id","donuTest");
+      Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
+      addText( data );
+    },
+    error: function (result) {
+      console.log("error");
+    },
+    async: false
   });
 }
 
 function statusPie(){
+  del = document.getElementById("graficas").style.display = "";
   lediv = document.getElementById("addButtons").innerHTML = "";
+  lediv2 = document.getElementById("addButtonsApRe").innerHTML = "";
   $.ajax({
-       type: "GET",
-       contentType: "application/json; charset=utf-8",
-       url: 'dataStatusPie',
-       dataType: 'json',
-       success: function (data) {
-        //json_data = data;
-        console.log(data);
-        //graficarPie(data);
-        svg2 = d3.select("#monthChart");
-        svg2.selectAll("*").remove();
-        svg = d3.select("#graficas");
-        svg.selectAll("*").remove();
-        svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
-        addText( data );
-       },
-      error: function (result) {
-        console.log("error");
-      },
-      async: false
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: 'dataStatusPie',
+    dataType: 'json',
+    success: function (data) {
+      titulo = document.getElementById("tituloEst").innerHTML = "Proporción de Publicaciones por Estado";
+      console.log(data);
+      svg2 = d3.select("#monthChart");
+      svg2.selectAll("*").remove();
+      svg = d3.select("#graficas");
+      svg.selectAll("*").remove();
+      svg.append("g").attr("id","donuTest");
+      Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
+      addText( data );
+    },
+    error: function (result) {
+      console.log("error");
+    },
+    async: false
   });
 }
 
 function profDptoPie(){
+  del = document.getElementById("graficas").style.display = "";
   lediv = document.getElementById("addButtons").innerHTML = "";
+  lediv2 = document.getElementById("addButtonsApRe").innerHTML = "";
   $.ajax({
-       type: "GET",
-       contentType: "application/json; charset=utf-8",
-       url: '../professors/dataDepartmentPie',
-       dataType: 'json',
-       success: function (data) {
-        //json_data = data;
-        console.log(data);
-        //graficarPie(data);
-        svg2 = d3.select("#monthChart");
-        svg2.selectAll("*").remove();
-        svg = d3.select("#graficas");
-        svg.selectAll("*").remove();
-        svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
-        addText( data );
-       },
-      error: function (result) {
-        console.log("error");
-      },
-      async: false
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: '../professors/dataDepartmentPie',
+    dataType: 'json',
+    success: function (data) {
+      titulo = document.getElementById("tituloEst").innerHTML = "Proporción de Profesores por Departamento";
+      console.log(data);
+      svg2 = d3.select("#monthChart");
+      svg2.selectAll("*").remove();
+      svg = d3.select("#graficas");
+      svg.selectAll("*").remove();
+      svg.append("g").attr("id","donuTest");
+      Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
+      addText( data );
+    },
+    error: function (result) {
+      console.log("error");
+    },
+    async: false
   });
 }
 
 function profGenderPie(){
+  del = document.getElementById("graficas").style.display = "";
   lediv = document.getElementById("addButtons").innerHTML = "";
+  lediv2 = document.getElementById("addButtonsApRe").innerHTML = "";
   $.ajax({
-       type: "GET",
-       contentType: "application/json; charset=utf-8",
-       url: '../professors/dataGenderPie',
-       dataType: 'json',
-       success: function (data) {
-        //json_data = data;
-        console.log(data);
-        svg2 = d3.select("#monthChart");
-        svg2.selectAll("*").remove();
-        svg = d3.select("#graficas");
-        svg.selectAll("*").remove();
-        svg.append("g").attr("id","donuTest");
-        Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
-        addText( data );
-       },
-      error: function (result) {
-        console.log("error");
-      },
-      async: false
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: '../professors/dataGenderPie',
+    dataType: 'json',
+    success: function (data) {
+      titulo = document.getElementById("tituloEst").innerHTML = "Proporción de Profesores por Género";
+      console.log(data);
+      svg2 = d3.select("#monthChart");
+      svg2.selectAll("*").remove();
+      svg = d3.select("#graficas");
+      svg.selectAll("*").remove();
+      svg.append("g").attr("id","donuTest");
+      Donut3D.draw("donuTest", data, 160, 140, 150, 120, 30, 0.3);
+      addText( data );
+    },
+    error: function (result) {
+      console.log("error");
+    },
+    async: false
   });
 }
 
 function appReqCreation(){
   lediv = document.getElementById("addButtons").innerHTML = "";
+  lediv2 = document.getElementById("addButtonsApRe").innerHTML = "";
   $.ajax({
-       type: "GET",
-       contentType: "application/json; charset=utf-8",
-       url: '../application_requests/dataRequestCreation',
-       dataType: 'json',
-       success: function (data) {
-        svg = d3.select("#graficas");
-        svg.selectAll("*").remove();
-        lediv = document.getElementById("addButtons");
-        for( i = 0; i < data.length; i++ ){
-          btn = document.createElement("button");
-          btn.innerHTML = data[i].label;
-          btn.className += "button1 button2";
-          btn.id = data[i].label;
-          btn.onclick = function(){
-            svg2 = d3.select("#monthChart");
-            svg2.selectAll("*").remove();
-            appReqCreationAux( data, this.id )
-          };
-          lediv.appendChild( btn );
-        }
-       },
-      error: function (result) {
-        console.log("error");
-      },
-      async: false
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: '../application_requests/dataRequestCreation',
+    dataType: 'json',
+    success: function (data) {
+      titulo = document.getElementById("tituloEst").innerHTML = "";
+      console.log(data);
+      svg = d3.select("#graficas");
+      svg.selectAll("*").remove();
+      lediv = document.getElementById("addButtons");
+      for( i = 0; i < data.length; i++ ){
+        btn = document.createElement("button");
+        btn.innerHTML = data[i].label;
+        btn.className += "button1 button2";
+        btn.id = data[i].label;
+        btn.onclick = function(){
+          titulo = document.getElementById("tituloEst").innerHTML = "Número de Solicitudes Mensuales en el Año "+this.id;
+          svg2 = d3.select("#monthChart");
+          svg2.selectAll("*").remove();
+          appReqCreationAux( data, this.id )
+        };
+        lediv.appendChild( btn );
+      }
+    },
+    error: function (result) {
+      console.log("error");
+    },
+    async: false
   });
 }
 
 function appReqCreationAux( dato, label ){
+
+  del = document.getElementById("graficas").style.display = "none";
 
   var es_ES = {
     "decimal": ",",
@@ -187,45 +199,143 @@ function appReqCreationAux( dato, label ){
   console.log(graphdata.data);
 
   var m = [80, 80, 80, 80];
-	var w = 850 - m[1] - m[3];
-	var h = 400 - m[0] - m[2];
+  var w = 850 - m[1] - m[3];
+  var h = 400 - m[0] - m[2];
 
   data = graphdata.data
 
-	var xLabels = d3.time.scale().domain([new Date(parseInt(label), 0, 1), new Date(parseInt(label), 11, 31)]).range([0, w]);
-	var x = d3.scale.linear().domain([0, data.length]).range([0, w]);
-	var y = d3.scale.linear().domain([0, d3.max(data)]).range([h, 0]);
+  var xLabels = d3.time.scale().domain([new Date(parseInt(label), 0, 1), new Date(parseInt(label), 11, 31)]).range([0, w]);
+  var x = d3.scale.linear().domain([0, data.length]).range([0, w]);
+  var y = d3.scale.linear().domain([0, d3.max(data)]).range([h, 0]);
 
-	var line = d3.svg.line()
-		.x(function(d,i) {
-			return x(i);
-		})
-		.y(function(d) {
-			return y(d);
-		})
+  var line = d3.svg.line()
+  .x(function(d,i) {
+    return x(i);
+  })
+  .y(function(d) {
+    return y(d);
+  })
 
-	var graph = d3.select("#monthChart")
-    .append("svg:svg")
-	      .attr("width", w + m[1] + m[3])
-	      .attr("height", h + m[0] + m[2])
-	    .append("svg:g")
-	      .attr("transform", "translate(" + 120 + "," + m[0] + ")");
+  var graph = d3.select("#monthChart")
+  .append("svg:svg")
+  .attr("width", w + m[1] + m[3])
+  .attr("height", h + m[0] + m[2])
+  .append("svg:g")
+  .attr("transform", "translate(" + 120 + "," + m[0] + ")");
 
-	var xAxis = d3.svg.axis().scale(xLabels).ticks(d3.time.months).tickFormat(ES.timeFormat("%B")).tickSize(-h).tickSubdivide(true);
-	graph.append("svg:g")
-	      .attr("class", "x axis")
-	      .attr("transform", "translate(0," + h + ")")
-	      .call(xAxis);
+  var xAxis = d3.svg.axis().scale(xLabels).ticks(d3.time.months).tickFormat(ES.timeFormat("%B")).tickSize(-h).tickSubdivide(true);
+  graph.append("svg:g")
+  .attr("class", "x axis")
+  .attr("transform", "translate(0," + h + ")")
+  .call(xAxis);
 
-	var yAxisLeft = d3.svg.axis().scale(y).ticks(7).orient("left");
-	graph.append("svg:g")
-	      .attr("class", "y axis")
-	      .attr("transform", "translate(-25,0)")
-	      .call(yAxisLeft);
+  var yAxisLeft = d3.svg.axis().scale(y).ticks(7).orient("left");
+  graph.append("svg:g")
+  .attr("class", "y axis")
+  .attr("transform", "translate(-25,0)")
+  .call(yAxisLeft);
 
-		graph.append("svg:path")
-			.attr("d", line(data))
-			.attr('class', 'line');
+  graph.append("svg:path")
+  .attr("d", line(data))
+  .attr('class', 'line');
+}
+
+function appReqState(){
+  lediv = document.getElementById("addButtons").innerHTML = "";
+  lediv2 = document.getElementById("addButtonsApRe").innerHTML = "";
+  titulo = document.getElementById("tituloEst").innerHTML = "";
+  svg = d3.select("#graficas");
+  svg.selectAll("*").remove();
+  svg2 = d3.select("#monthChart");
+  svg2.selectAll("*").remove();
+  lediv = document.getElementById("addButtonsApRe");
+  btn = document.createElement("button");
+  btn.innerHTML = "Aprobadas";
+  btn.className += "button1 button2";
+  btn.onclick = function(){
+    titulo = document.getElementById("tituloEst").innerHTML = "";
+    appReqStateAp();
+  };
+  lediv.appendChild( btn );
+
+  btn2 = document.createElement("button");
+  btn2.innerHTML = "Rechazadas";
+  btn2.className += "button1 button2";
+  btn2.onclick = function(){
+    titulo = document.getElementById("tituloEst").innerHTML = "";
+    appReqStateRe();
+  };
+  lediv.appendChild( btn2 );
+}
+
+function appReqStateAp(){
+  lediv = document.getElementById("addButtons").innerHTML = "";
+  $.ajax({
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: '../application_requests/dataRequestStateDateAp',
+    dataType: 'json',
+    success: function (data) {
+      console.log(data);
+      svg = d3.select("#graficas");
+      svg.selectAll("*").remove();
+      svg2 = d3.select("#monthChart");
+      svg2.selectAll("*").remove();
+      lediv = document.getElementById("addButtons");
+      for( i = 0; i < data.length; i++ ){
+        btn = document.createElement("button");
+        btn.innerHTML = data[i].label;
+        btn.className += "button1 button2";
+        btn.id = data[i].label;
+        btn.onclick = function(){
+          titulo = document.getElementById("tituloEst").innerHTML = "Número de solicitudes Aprobadas Mensualmente en el Año "+this.id;
+          svg2 = d3.select("#monthChart");
+          svg2.selectAll("*").remove();
+          appReqCreationAux( data, this.id )
+        };
+        lediv.appendChild( btn );
+      }
+    },
+    error: function (result) {
+      console.log("error");
+    },
+    async: false
+  });
+}
+
+function appReqStateRe(){
+  lediv = document.getElementById("addButtons").innerHTML = "";
+  $.ajax({
+    type: "GET",
+    contentType: "application/json; charset=utf-8",
+    url: '../application_requests/dataRequestStateDateRe',
+    dataType: 'json',
+    success: function (data) {
+      console.log(data);
+      svg = d3.select("#graficas");
+      svg.selectAll("*").remove();
+      svg2 = d3.select("#monthChart");
+      svg2.selectAll("*").remove();
+      lediv = document.getElementById("addButtons");
+      for( i = 0; i < data.length; i++ ){
+        btn = document.createElement("button");
+        btn.innerHTML = data[i].label;
+        btn.className += "button1 button2";
+        btn.id = data[i].label;
+        btn.onclick = function(){
+          titulo = document.getElementById("tituloEst").innerHTML = "Número de solicitudes Rechazadas Mensualmente en el Año "+this.id;
+          svg2 = d3.select("#monthChart");
+          svg2.selectAll("*").remove();
+          appReqCreationAux( data, this.id )
+        };
+        lediv.appendChild( btn );
+      }
+    },
+    error: function (result) {
+      console.log("error");
+    },
+    async: false
+  });
 }
 
 function addText( data ){
@@ -233,17 +343,17 @@ function addText( data ){
   for( i = 0; i < Math.ceil(data.length / 8); i++ ){
     for( j = 0; j < 9; j++ ){
       svg.append("text")
-        .text( data[ i * 9 + j ].label )
-        .attr( "class", "texto" )
-        .attr("x", 350 + i * 150 )
-        .attr("y", 30 * j + 40);
+      .text( data[ i * 9 + j ].label )
+      .attr( "class", "texto" )
+      .attr("x", 350 + i * 150 )
+      .attr("y", 30 * j + 40);
       svg.append("rect")
-        .attr( "class","barra" )
-        .attr( "height", 15 )
-        .attr( "width", 15 )
-        .attr( "x", 332 + i * 150)
-        .attr( "y", 30 * j + 28 )
-        .attr( "fill", data[ i * 9 + j ].color );
+      .attr( "class","barra" )
+      .attr( "height", 15 )
+      .attr( "width", 15 )
+      .attr( "x", 332 + i * 150)
+      .attr( "y", 30 * j + 28 )
+      .attr( "fill", data[ i * 9 + j ].color );
     }
   }
 }

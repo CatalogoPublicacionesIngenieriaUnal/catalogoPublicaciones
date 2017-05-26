@@ -1,11 +1,10 @@
-require 'set'
 
 class ApplicationRequestsController < ApplicationController
 
   protect_from_forgery except: :third_evaluator
   before_action :set_application_request, only: [:show, :edit, :update, :destroy,
     :create_evaluator, :form_b, :form_b_create, :show_b, :authorize, :reject,
-    :final_concept, :final_concept_create, :evaluation_ended?, :third_evaluator, :create_clasificacion_editorial]
+    :final_concept, :final_concept_create, :evaluation_ended?, :third_evaluator]
 
   before_action :authorized?, only: [:new, :edit, :update, :create]
   before_action :authenticate_administrator!, except: [:new, :edit, :update, :create, :final_concept, :final_concept_create]
@@ -20,7 +19,7 @@ class ApplicationRequestsController < ApplicationController
     @application_requests = ApplicationRequest.ready_requests.page(params[:page]).per_page(5)
   end
   def index_others
-    @application_requests = ApplicationRequest.all.page(params[:page]).per_page(5)
+    @application_requests = ApplicationRequest.all
   end
   # GET /application_requests/1
   # GET /application_requests/1.json
@@ -52,7 +51,6 @@ class ApplicationRequestsController < ApplicationController
     params[:edit_criteria].each do |id, ec|
       EdConAppRequest.find(id).update!(score: ec.values[1], remark: ec.values[2])
     end
-    @application_request.update!(editorial_aditional_recomendation: params[:editorial_aditional_recomendation])
     redirect_to show_b_url
   end
 
@@ -170,12 +168,13 @@ class ApplicationRequestsController < ApplicationController
       data[ apprequest.created_at.year ][ apprequest.created_at.month ] = data[ apprequest.created_at.year ][ apprequest.created_at.month ] + 1
     end
 
-    sth = [1, 2, 3]
+    arrKeys = data.keys
+    arrKeys = arrKeys.sort
 
-    data.each do | key, array |
+    arrKeys.each do |key|
       single = {
         "label" => key,
-        "data" => array.values
+        "data" => data[key].values
       }
       custom_json << single
     end
@@ -183,28 +182,93 @@ class ApplicationRequestsController < ApplicationController
     respond_to do |format|
       format.json {
         render :json => custom_json
-        #render :json => single
       }
     end
   end
 
-  def create_clasificacion_editorial
-    respond_to do |format|
-      format.html
-      format.json
-      format.pdf do
-        render template: 'pdf/formulario_14_B', pdf:'formulario_14_B', page_size: 'Letter',
-          header: {
-            html: {
-              template: 'pdf/headers/header_formulario_14'
-            }
-          },
-          margin:  {  top: 40,
-                      bottom: 30,
-                      left: 30,
-                      right: 30
-                    }
+  def dataRequestStateDateAp
+    custom_json = []
+    aprobadas = ApplicationRequest.where( state: "Aprobado" )
+
+    añosap = Set.new
+
+    aprobadas.each do |apprequest|
+      añosap.add( apprequest.final_concept_date.year )
+    end
+
+    añosa = añosap.to_a
+
+    dataap = Hash.new()
+
+    añosa.each do |año|
+      dataap[año] = Hash.new()
+      (1..12).each do |mes|
+        dataap[año][mes] = 0
       end
+    end
+
+    aprobadas.each do |apprequest|
+      dataap[ apprequest.final_concept_date.year ][ apprequest.final_concept_date.month ] = dataap[ apprequest.final_concept_date.year ][ apprequest.final_concept_date.month ] + 1
+    end
+
+    apKeys = dataap.keys
+    apKeys = apKeys.sort
+
+    apKeys.each do |key|
+      single = {
+        "label" => key,
+        "data" => dataap[key].values
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
+      format.json {
+        render :json => custom_json
+      }
+    end
+  end
+
+  def dataRequestStateDateRe
+    custom_json = []
+    rechazadas = ApplicationRequest.where( state: "Rechazado" )
+
+    añosre = Set.new
+
+    rechazadas.each do |apprequest|
+      añosre.add( apprequest.final_concept_date.year )
+    end
+
+    añosr = añosre.to_a
+
+    datare = Hash.new()
+
+    añosr.each do |año|
+      datare[año] = Hash.new()
+      (1..12).each do |mes|
+        datare[año][mes] = 0
+      end
+    end
+
+    rechazadas.each do |apprequest|
+      datare[ apprequest.final_concept_date.year ][ apprequest.final_concept_date.month ] = datare[ apprequest.final_concept_date.year ][ apprequest.final_concept_date.month ] + 1
+    end
+
+    reKeys = datare.keys
+    reKeys = reKeys.sort
+
+    reKeys.each do |key|
+      single = {
+        "label" => key,
+        "data" => datare[key].values
+      }
+      custom_json << single
+    end
+
+    respond_to do |format|
+      format.json {
+        render :json => custom_json
+      }
     end
   end
 

@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20170522205132) do
     t.integer  "professor_id"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+    t.date     "final_concept_date"
     t.string   "author_topic"
     t.string   "author_target_audience"
     t.string   "author_positioning_strategies"

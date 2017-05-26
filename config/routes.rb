@@ -30,8 +30,6 @@ Rails.application.routes.draw do
 
   patch 'publications/:id/evaluate', to: 'publications#evaluate', as: :publication_to_evaluation
   get 'publications/statistics', to: 'publications#statistics', :as => :statistics
-  get 'publications/dataCateg', :defaults => { :format => 'json' }
-  get 'publications/dataTheme', :defaults => { :format => 'json' }
   get 'publications/dataCategPie', :defaults => { :format => 'json' }
   get 'publications/dataThemePie', :defaults => { :format => 'json' }
   get 'publications/dataStatusPie', :defaults => { :format => 'json' }
@@ -39,6 +37,8 @@ Rails.application.routes.draw do
   get 'professors/dataDepartmentPie', :defaults => { :format => 'json' }
   get 'professors/dataGenderPie', :defaults => { :format => 'json' }
   get 'application_requests/dataRequestCreation', :defaults => { :format => 'json' }
+  get 'application_requests/dataRequestStateDateAp', :defaults => { :format => 'json' }
+  get 'application_requests/dataRequestStateDateRe', :defaults => { :format => 'json' }
 
   get 'application_requests/:id/new_evaluator/', to: 'application_requests#create_evaluator', as:  :add_evaluator
   get 'application_requests/:id/form_b', to: 'application_requests#form_b', as: :form_b

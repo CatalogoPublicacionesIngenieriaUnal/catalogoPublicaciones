@@ -54,57 +54,57 @@
   <h2>A. IDENTIFICACIÓN DEL EVALUADOR</h2>
 
   <p>
-    1. Nombre del evaluador: <%=%><br>
-    2. Vinculación institucional del evaluador (cargo e institución): <%=  %><br>
-    3. Título académico e institución que lo expide: <%=%><br>
-    4. Teléfonos y correo electrónico: <%= %><br>
+    1. Nombre del evaluador: <%=current_evaluator.first_name%> <%=current_evaluator.last_name%>.<br>
+    2. Vinculación institucional del evaluador (cargo e institución): <%=current_evaluator.position%>/<%= current_evaluator.institution 	%><br>
+    3. Título académico e institución que lo expide: <%=current_evaluator.degree%>/<%=current_evaluator.degree_institution%><br>
+    4. Teléfonos y correo electrónico: <%= current_evaluator.contact_number%>/<%=current_evaluator.email %><br>
   </p>
 
   <h2>B. IDENTIFICACIÓN DE LA EVALUACIÓN</h2>
 
   <p>
-    5. Título del libro:  <%=%><br>
-    6. Fecha de entrega del original al evaluador: <%=  %><br>
-    7. Fecha de entrega de la evaluación a la Editorial:  <%=%><br>
+    5. Título del libro:  <%=Publication.find(Evaluation.find(@evaluator.evaluation_id).application_request_id).title%><br>
+    6. Fecha de entrega del original al evaluador: <%= current_evaluator.created_at %><br>
+    7. Fecha de entrega de la evaluación a la Editorial: <%=t(Date.today.day.to_words)%> del mes <%= Date.today.month %> del <%=Date.today.year%>.<br>
   </p>
 
   <h2>C. CLASIFICACIÓN DE LA OBRA</h2>
 
   <p>
     8. Seleccione la opción según corresponda:<br><br>
-    <input type="text" value="X"> Libro resultado de investigación <br>
-    <input type="text"> Compilación de artículos de investigación <br>
-    <input type="text"> Compilación de ensayos      <br>
-    <input type="text"> Libro de texto de pregrado      <br>
-    <input type="text"> Libro de texto de posgrado      <br>
-    <input type="text"> Antología de ponencias      <br>
-    <input type="text"> Libro de referencia <br>
-    <input type="text"> Traducción   <br>
-    <input type="text"> Edición académica de un texto literario      <br>
-    <input type="text"> Otro     <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Libro resultado de investigación" %>X<% end%>"> Libro resultado de investigación <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Compilación de artículos de investigación" %>X<% end%>"> Compilación de artículos de investigación <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Compilación de ensayos" %>X<% end%>"> Compilación de ensayos      <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Libro de texto de pregrado" %>X<% end%>"> Libro de texto de pregrado      <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Libro de texto de posgrado" %>X<% end%>"> Libro de texto de posgrado      <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Antología de ponencias " %>X<% end%>"> Antología de ponencias      <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Libro de referencia" %>X<% end%>"> Libro de referencia <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Traducción " %>X<% end%>"> Traducción   <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Edición académica de un texto literario " %>X<% end%>"> Edición académica de un texto literario      <br>
+    <input type="text" value="<% if @evaluation.publication_clasiffication == "Otro" %>X<% end%>"> Otro     <br>
   </p>
 
   <p>En caso de haber seleccionado ‘Otro’, especifique de qué tipo de material se trata:</p>
 
 	<table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"></th>
 		</tr>
 	</table>
 
   <p>
     9. En caso de que se trate de una traducción, especifique qué tipo de material
     fue traducido:<br><br>
-    <input type="text"> Libro resultado de investigación <br>
-    <input type="text"> Compilación de artículos de investigación <br>
-    <input type="text"> Compilación de ensayos      <br>
-    <input type="text"> Libro de texto de pregrado      <br>
-    <input type="text"> Libro de texto de posgrado      <br>
-    <input type="text"> Antología de ponencias      <br>
-    <input type="text"> Libro de referencia <br>
-    <input type="text"> Traducción   <br>
-    <input type="text"> Edición académica de un texto literario      <br>
-    <input type="text"> Otro     <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Libro resultado de investigación" %>X<% end%>"> Libro resultado de investigación <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Compilación de artículos de investigación" %>X<% end%>"> Compilación de artículos de investigación <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Compilación de ensayos" %>X<% end%>"> Compilación de ensayos      <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Libro de texto de pregrado" %>X<% end%>"> Libro de texto de pregrado      <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Libro de texto de posgrado" %>X<% end%>"> Libro de texto de posgrado      <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Antología de ponencias " %>X<% end%>"> Antología de ponencias      <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Libro de referencia" %>X<% end%>"> Libro de referencia <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Traducción" %>X<% end%>"> Traducción   <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Edición académica de un texto literario " %>X<% end%>"> Edición académica de un texto literario      <br>
+    <input type="text" value="<% if @evaluation.publication_translated_material == "Otro" %>X<% end%>"> Otro     <br>
   </p>
 
   <p>10. Elabore una sinopsis que dé cuenta del contenido del libro evaluado
@@ -112,11 +112,11 @@
 
 	<table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"><%=@evaluation.publication_synopsis%> </th>
 		</tr>
 	</table>
 
-  <h2>C. CLASIFICACIÓN DE LA OBRA</h2>
+  <h2>D. ORIGINALIDAD Y RELEVANCIA DEL CONTENIDO</h2>
 
   <p>11. Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</p>
 
@@ -133,56 +133,15 @@
 	    <th id="title1">[89-60]</th>
 	    <th id="title1">[59-0]</th>
   	</tr>
-    <tr>
-      <th>a) El material constituye un aporte válido, vigente y relevante para
-        el área de conocimiento en la cual se inscribe.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+		<%- EvaluationsCriterium.curr_evl_gen(@evaluation.id).order(id: :asc).each do |ev_criteria| %>
+		<tr>
+			<th><%= ev_criteria.criterium.criterion %></th>
+      <th><%if ev_criteria.score <=100 && ev_criteria.score >= 90 %> <%=ev_criteria.score%> <%end%></th>
+      <th><%if ev_criteria.score <=89 && ev_criteria.score >= 60 %><%=ev_criteria.score%><%end%></th>
+      <th><%if ev_criteria.score <59 && ev_criteria.score > 0 %><%=ev_criteria.score%><%end%></th>
+      <th><%if ev_criteria.score == "" || ev_criteria.score > 100 || ev_criteria.score == 0 %> X <%end%></th>
     </tr>
-    <tr>
-      <th>b) El material es resultado de un proceso maduro de investigación o
-        reflexión: su contenido es producto de un desarrollo conceptual completo
-         y del contraste crítico con otras investigaciones afines.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>c) Está debidamente estructurado y argumentado (planteamiento del
-        problema, metodología y resultados) en relación con las prácticas de la
-         disciplina a la que pertenece.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>d) La originalidad de los aportes y reflexiones del autor le confieren
-         un valor agregado al material. </th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>e) Las referencias bibliográficas cumplen con la exactitud, pertinencia
-         y actualidad requeridas.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>f ) EI texto reúne las condiciones para ser parte de la bibliografía
-        más reconocida y necesaria sobre el tema.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+		<%end%>
   </table>
 
   <p>12. Redacte una argumentación en la que consten las razones por las cuales
@@ -191,13 +150,13 @@
 
 	<table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"><%=@evaluation.general_score_justification%> </th>
 		</tr>
 	</table>
 
   <h2>D. ADECUACIÓN DE LA ESCRITURA Y PRESENTACIÓN</h2>
 
-  <p>11. Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</p>
+  <p>13. Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</p>
 
   <table id="table">
 		<tr>
@@ -212,45 +171,15 @@
 	    <th id="title1">[89-60]</th>
 	    <th id="title1">[59-0]</th>
   	</tr>
-    <tr>
-      <th>a) Es adecuado el título de la obra.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>b) La escritura presenta las calidades esperadas para el nivel de formación
-        (apropiada redacción, léxico, ortografía, claridad conceptual, etc.).</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>c) El material gráfico que acompaña los textos (imágenes de toda índole
-        y tablas) es relevante, clarifica y añade valor en todos los casos.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>d) El texto presenta una introducción clara y precisa sobre los
-        objetivos y problemas que se abordan en el documento.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <th>e) La extensión del texto es adecuada en función de la complejidad del
-         tema, los objetivos y el público lector.</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
+		<%- EvaluationsCriterium.curr_evl_wri(@evaluation.id).each do |ev_criteria| %>
+			<tr>
+	      <th><%= ev_criteria.criterium.criterion %></th>
+				<th><%if ev_criteria.score <=100 && ev_criteria.score >= 90 %> <%=ev_criteria.score%> <%end%></th>
+	      <th><%if ev_criteria.score <=89 && ev_criteria.score >= 60 %><%=ev_criteria.score%><%end%></th>
+	      <th><%if ev_criteria.score <59 && ev_criteria.score > 0 %><%=ev_criteria.score%><%end%></th>
+	      <th><%if ev_criteria.score == "" || ev_criteria.score > 100 || ev_criteria.score == 0 %> X <%end%></th>
+	    </tr>
+		<% end %>
   </table>
 
   <p>14. Realice comentarios u observaciones puntuales sobre los aspectos evaluados
@@ -258,7 +187,7 @@
 
 	<table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"><%= @evaluation.writing_score_jistification %> </th>
 		</tr>
 	</table>
 
@@ -266,32 +195,31 @@
 
   <p>
     15. Considera que el material debe ser publicado:<br>
-    <input type="text"> (1) Tal como está <br>
-    <input type="text"> (2) Con ligeras modificaciones     <br>
-    <input type="text"> (3) Con modificaciones sustanciales           <br>
-    <input type="text"> (4) De ninguna manera       <br>
+    <input type="text" value="<%- if @evaluation.state == 'aprobado' %> X <%end%>"> (1) Tal como está <br>
+    <input type="text" value="<%- if @evaluation.state == 'ligeras_modificaciones' %> X <%end%>"> (2) Con ligeras modificaciones     <br>
+    <input type="text" value="<%- if @evaluation.state == 'modificaciones_sustanciales' %> X <%end%>"> (3) Con modificaciones sustanciales           <br>
+    <input type="text" value="<%- if @evaluation.state == 'rechazado' %> X <%end%>"> (4) De ninguna manera       <br>
   </p>
 
   <p>16. En caso de haber escogido las opciones 2 o 3 en el punto anterior, por
     favor especifique el tipo de modificación o modificaciones a realizar. En caso
-    de haber escogido la opción 4, por favor realice el comentario pertinente.
-     (Puede usar páginas adicionales al final del documento).</p>
+    de haber escogido la opción 4, por favor realice el comentario pertinente.</p>
 
 	 <table id="table">
 	 	<tr>
-	 		<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+	 		<th style="text-align:justify"><%=@evaluation.justification%></th>
 	 	</tr>
 	 </table>
 
   <p>17. Optativamente, el evaluador podrá utilizar este espacio para realizar
     cualquier tipo de observación adicional para el autor o para el editor acerca
-    del manuscrito. (Puede utilizar más páginas al final de este documento)</p>
+    del manuscrito.</p>
 
   <p>Observaciones para el autor:</p>
 
 	<table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"><%= @evaluation.aditional_remarks_to_author %> </th>
 		</tr>
 	</table>
 
@@ -299,18 +227,18 @@
 
 	<table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"><%= @evaluation.aditional_remarks_to_publisher %></th>
 		</tr>
 	</table>
 
   <p>
     18. El grado de divulgación de la obra es:<br>
-    <input type="text"> Regional <br>
-    <input type="text"> Nacional      <br>
-    <input type="text"> Internacional            <br>
+    <input type="text" value="<%- if @evaluation.disclosure_degree == 1 %>X<%end%>"> Regional <br>
+    <input type="text" value="<%- if @evaluation.disclosure_degree == 2 %>X<%end%>"> Nacional      <br>
+    <input type="text" value="<%- if @evaluation.disclosure_degree == 3 %>X	<%end%>"> Internacional            <br>
   </p>
 
-  <p>11. Escriba la calificación en números (de 0 a 100) en la casilla que corresponda.</p>
+  <p>19. Seleccione en la casilla que corresponda.</p>
 
   <table id="table">
     <tr>
@@ -321,22 +249,22 @@
     <tr>
       <th>Intradisciplinario: público altamente especializado, de modo tal que
         requiere pertenecer a la misma área para poder comprender el contenido.</th>
-      <th></th>
+      <th><%- if @evaluation.target_audience == 1 %>X<%end%></th>
     </tr>
     <tr>
       <th>Interdisciplinario: público especializado interesado en cruzar las fronteras
         del conocimiento y de la disciplina (pertenece a la misma disciplina,
         pero trabaja en áreas diversas).</th>
-      <th></th>
+      <th><%- if @evaluation.target_audience == 2 %>X<%end%></th>
     </tr>
     <tr>
       <th>En formación: estudiantes en una dimensión amplia que abarca todos los
         niveles del sistema educativo.</th>
-      <th></th>
+      <th><%- if @evaluation.target_audience == 3 %>X<%end%></th>
     </tr>
     <tr>
       <th>General: lectores no especializados, interesados en información puntual.</th>
-      <th></th>
+      <th><%- if @evaluation.target_audience == 4 %>X<%end%></th>
     </tr>
   </table>
 
@@ -344,7 +272,7 @@
 
 	<table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"><%= @evaluation.target_audience_remark %></th>
 		</tr>
 	</table>
 
@@ -355,11 +283,12 @@
 
 		<table id="table">
 			<tr>
-				<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+				<th style="text-align:justify"><%= @evaluation.extra_target_audience %></th>
 			</tr>
 		</table>
 
   <p>
+		<br><br>
     Firma
   </p>
 
@@ -369,8 +298,7 @@
   </p>
 
 	<p>
-		<%= Administrator.find(1).first_name %> <%= Administrator.find(1).last_name %><br>
-    C.C. <%=%> de <%=%><br>
+		<%=current_evaluator.first_name%> <%=current_evaluator.last_name%>.<br>
   </p>
 
 </body>

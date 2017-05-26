@@ -19,23 +19,6 @@ class PublicationsController < ApplicationController
     else
       @publications = Publication.search(params[:search],params[:category]).page(params[:page]).per_page(5)
     end
-    respond_to do |format|
-      format.html
-      format.json
-      format.pdf do
-        render template: 'pdf/formulario_15', pdf:'formulario_15', page_size: 'Letter',
-          header: {
-            html: {
-              template: 'pdf/headers/header_formulario_15'
-            }
-          },
-          margin:  {  top: 40,
-                      bottom: 30,
-                      left: 30,
-                      right: 30
-                    }
-      end
-    end
   end
 
   # GET /publications/1

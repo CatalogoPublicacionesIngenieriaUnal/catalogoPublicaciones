@@ -3,7 +3,7 @@ class ApplicationRequestsController < ApplicationController
   protect_from_forgery except: :third_evaluator
   before_action :set_application_request, only: [:show, :edit, :update, :destroy,
     :create_evaluator, :form_b, :form_b_create, :show_b, :authorize, :reject,
-    :final_concept, :final_concept_create, :evaluation_ended?, :third_evaluator]
+    :final_concept, :final_concept_create, :evaluation_ended?, :third_evaluator, :create_clasificacion_editorial]
 
   before_action :authorized?, only: [:new, :edit, :update, :create]
   before_action :authenticate_administrator!, except: [:new, :edit, :update, :create, :final_concept, :final_concept_create]
@@ -50,6 +50,7 @@ class ApplicationRequestsController < ApplicationController
     params[:edit_criteria].each do |id, ec|
       EdConAppRequest.find(id).update!(score: ec.values[1], remark: ec.values[2])
     end
+    @application_request.update!(editorial_aditional_recomendation: params[:editorial_aditional_recomendation])
     redirect_to show_b_url
   end
 
@@ -141,6 +142,26 @@ class ApplicationRequestsController < ApplicationController
   end
 
   def final_concept
+  end
+
+  def create_clasificacion_editorial
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render template: 'pdf/formulario_14_B', pdf:'formulario_14_B', page_size: 'Letter',
+          header: {
+            html: {
+              template: 'pdf/headers/header_formulario_14'
+            }
+          },
+          margin:  {  top: 40,
+                      bottom: 30,
+                      left: 30,
+                      right: 30
+                    }
+      end
+    end
   end
 
   private

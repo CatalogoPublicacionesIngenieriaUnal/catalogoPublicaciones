@@ -1,7 +1,7 @@
 class EvaluatorsController < ApplicationController
 
   before_action :set_evaluator, only: [:destroy]
-  before_action :set_current_evaluator, only: [:edit, :show, :update, :update_password, :edit_password, :home]
+  before_action :set_current_evaluator, only: [:edit, :show, :update, :update_password, :edit_password, :home, :create_evaluation]
 
   before_action :authenticate_administrator!, only: [:new, :create, :destroy, :index]
   before_action :authenticate_evaluator!, only: [:show, :update, :edit, :update_password, :edit_password, :home]
@@ -60,6 +60,7 @@ class EvaluatorsController < ApplicationController
     @evaluator = Evaluator.new(evaluator_params)
     @evaluator.evaluation_id = params[:evaluation_id]
     @evaluator.save
+    Evaluator.mailer(@evaluator)
   end
 
   # PATCH/PUT /evaluators/1
@@ -92,6 +93,27 @@ class EvaluatorsController < ApplicationController
     @attatchment = @evaluation.publication
   end
 
+  def create_evaluation
+    @evaluation = Evaluation.find(@evaluator.evaluation_id)
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        render template: 'pdf/formulario_15', pdf:'formulario_5', page_size: 'Letter',
+          header: {
+            html: {
+              template: 'pdf/headers/header_formulario_15'
+            }
+          },
+          margin:  {  top: 40,
+                      bottom: 30,
+                      left: 30,
+                      right: 30
+                    }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_evaluator
@@ -116,4 +138,5 @@ class EvaluatorsController < ApplicationController
     def evaluator_password_params
       params.require(:evaluator).permit(:password, :password_confirmation, :current_password)
     end
+
 end

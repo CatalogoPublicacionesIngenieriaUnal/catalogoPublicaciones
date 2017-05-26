@@ -53,10 +53,10 @@
   <h2>Identificación del manuscrito</h2>
 
   <p>
-    1. Fecha de elaboración de la evaluación: <%=%><br>
-    2. Título del manuscrito: <%= @publication.title %><br>
-    3. Autor: <%=%><br>
-    3. Unidad editorial: <%= @publication.publishing_unit %><br>
+    <b>1. Fecha de elaboración de la evaluación:</b> <%=t(Date.today.day.to_words)%> del mes <%= Date.today.month %> del <%=Date.today.year%>.<br>
+    <b>2. Título del manuscrito:</b> <%= @publication.title %><br>
+    <b>3. Autor:</b> <%= current_professor.first_name%> <%= current_professor.last_name %><br>
+    <b>3. Unidad editorial:</b> <%= @publication.publishing_unit %><br>
   </p>
 
   <h2>A. Espacios a diligenciar por parte del autor del manuscrito</h2>
@@ -75,19 +75,19 @@
     </tr>
     <tr>
       <th>a) Tema</th>
-      <th><%=%></th>
+      <th><%= ApplicationRequest.find_by(publication_id: @publication.id).author_topic %></th>
     </tr>
     <tr>
       <th>b) Público al cual va dirigido</th>
-      <th><%=%></th>
+      <th><%= ApplicationRequest.find_by(publication_id: @publication.id).author_target_audience %></th>
     </tr>
     <tr>
       <th>c) Estrategias de posicionamiento</th>
-      <th><%=%></th>
+      <th><%= ApplicationRequest.find_by(publication_id: @publication.id).author_positioning_strategies%></th>
     </tr>
     <tr>
       <th>d) Valoración académica</th>
-      <th><%=%></th>
+      <th><%= ApplicationRequest.find_by(publication_id: @publication.id).author_academic_appreciation %></th>
     </tr>
     <tr>
       <th colspan="2" id="title1">2.	Referencia de otros títulos publicados</th>
@@ -95,7 +95,7 @@
     <tr>
       <th style="text-align:justify">Referenciar otros títulos publicados, con características similares
         al manuscrito, que se encuentren disponibles comercialmente </th>
-      <th><%=%></th>
+      <th><%= ApplicationRequest.find_by(publication_id: @publication.id).author_published_titles %></th>
     </tr>
   </table>
   <p>
@@ -104,7 +104,7 @@
 
   <table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"><%= ApplicationRequest.find_by(publication_id: @publication.id).author_final_recomendation %></th>
 		</tr>
 	</table>
 

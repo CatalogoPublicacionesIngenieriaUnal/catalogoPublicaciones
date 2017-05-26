@@ -28,7 +28,7 @@ class ApplicationRequest < ApplicationRecord
   def completeness
     documents_loaded + professor_concept_completeness
   end
-
+  
   def total_application_fields
     # 3 documentos
     # 5 campos de concepto_editorial

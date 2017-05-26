@@ -95,23 +95,28 @@
         </div>
         <table id="t01" style="width:100%">
           <tr>
-            <td colspan="4", align="right" style="background-color:#808080;">Resultados de evaluaciones</td>
+            <td colspan="4" , align="right" style="background-color:#808080;">Resultados de evaluaciones</td>
           </tr>
           <tr>
-            <th rowspan="2", width=25% style="background-color:#adad85">Criterio</th>
-            <th colspan="3", style="background-color:#adad85">Evaluadores</th>
+            <th rowspan="2" , width=25% style="background-color:#adad85">Criterio</th>
+            <th colspan="3" , style="background-color:#adad85">Evaluadores</th>
           </tr>
           <tr width=100%>
             <%- @application_request.evaluations.each do |evaluation| %>
+            <%- unless evaluation.evaluator.nil? %>
             <th width=25%><%= "#{evaluation.evaluator.first_name}#{" "}#{evaluation.evaluator.last_name}" %></th>
+            <% end %>
             <% end %>
           </tr>
           <tr>
-            <td colspan="4", style="background-color:#ccc"> DESICIÓN FINAL </td>
+            <td colspan="4" , style="background-color:#ccc">
+              DESICIÓN FINAL
+            </td>
           </th>
           <tr>
             <td style="background-color:#adad85">Estado</td>
             <%- @application_request.evaluations.each do |evaluation| %>
+            <%- unless evaluation.evaluator.nil? %>
             <%- if evaluation.state == 'aprobado' %>
             <td>Aprobado</td>
             <%- elsif evaluation.state == 'ligeras_modificaciones' %>
@@ -120,28 +125,39 @@
             <td>Aprobado con modificaciones sustanciales</td>
             <%- elsif evaluation.state == 'rechazado' %>
             <td>Rechazado</td>
+            <%- elsif evaluation.state == 'sin_evaluar' %>
+            <td>En evaluación</td>
+            <% end %>
             <% end %>
             <% end %>
           </tr>
           <tr>
             <td style="background-color:#adad85">Observaciones</td>
             <%- @application_request.evaluations.each do |evaluation| %>
+            <%- unless evaluation.evaluator.nil? %>
             <td><%= evaluation.justification %></td>
+            <% end %>
             <% end %>
           </tr>
           <tr>
-            <td colspan="4", style="background-color:#ccc"> Observaciones adicionales </td>
+            <td colspan="4" , style="background-color:#ccc">
+              Observaciones adicionales
+            </td>
           </th>
           <tr>
             <td style="background-color:#adad85">Observaciones para el autor</td>
             <%- @application_request.evaluations.each do |evaluation| %>
+            <%- unless evaluation.evaluator.nil? %>
             <td><%= evaluation.aditional_remarks_to_author %></td>
+            <% end %>
             <% end %>
           </tr>
           <tr>
             <td style="background-color:#adad85">Observaciones para el editor</td>
             <%- @application_request.evaluations.each do |evaluation| %>
+            <%- unless evaluation.evaluator.nil? %>
             <td><%= evaluation.aditional_remarks_to_publisher %></td>
+            <% end %>
             <% end %>
           </tr>
         </table>
@@ -158,23 +174,33 @@
           <span>El veredicto final para la obra es:</span>
           <tr>
             <th></th>
-            <th><center>Selección</center></th>
+            <th>
+              <center>Selección</center>
+            </th>
           </tr>
           <tr>
             <td style="text-align:justify">Aprobada</td>
-            <td><center><%= f.radio_button :state, :'Aprobado' %></center></td>
+            <td>
+              <center><%= f.radio_button :state, :'Aprobado' %></center>
+            </td>
           </tr>
           <tr>
             <td style="text-align:justify">Aprobada con modificaciones menores</td>
-            <td><center><%= f.radio_button :state, :'Menores' %></center></td>
+            <td>
+              <center><%= f.radio_button :state, :'Menores' %></center>
+            </td>
           </tr>
           <tr>
             <td style="text-align:justify">Aprobada con modificaciones mayores</td>
-            <td><center><%= f.radio_button :state, :'Mayores' %></center></td>
+            <td>
+              <center><%= f.radio_button :state, :'Mayores' %></center>
+            </td>
           </tr>
           <tr>
             <td style="text-align:justify">Rechazada</td>
-            <td><center><%= f.radio_button :state, :'Rechazado' %></center></td>
+            <td>
+              <center><%= f.radio_button :state, :'Rechazado' %></center>
+            </td>
           </tr>
         </table>
         <%= f.label "Notas para el autor" %>

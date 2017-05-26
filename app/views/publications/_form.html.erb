@@ -46,19 +46,20 @@
             <%= f.select :category_id, options_from_collection_for_select(@categories, "id", "category"),:prompt => "Seleccione una opción" %>
           </label>
         </div>
-
         <div class="form-row">
           <label>
             <span>Tema</span>
             <%= f.select :theme_id, options_from_collection_for_select(@themes, "id", "theme"),:prompt => "Seleccione una opción" %>
           </label>
         </div>
+        <hr width=70% align="center">
         <div><span>Seleccione a los docentes que hacen parte de la publicación: </span></div>
+        <br>
         <div>
             <%= f.select :professors,
                 Professor.all.map{ |u| ["#{u.first_name}#{" "}#{u.last_name}", u.id] },
                 { include_blank: true},
-                { class: 'chosen-select', :multiple => true, data: { :placeholder => "Profesores" }}
+                { class: 'chosen-select', :multiple => true, data: {:placeholder => "Seleccione los docentes"} }
             %>
         </div>
         <div class="form-row">
@@ -67,27 +68,18 @@
             <span>Por favor ingrese tres palabras clave para la búsqueda de su publicación</span>
           </center>
         </div>
-
+        <br>
         <%= fields_for(@words) do |ab| %>
-        <div class="form-row">
-          <label>
-            <span>Palabras clave</span>
-            <%= collection_select(:keywords, :ids, @keywords, :id, :keyword, {:include_blank => "Seleccione las palabras clave"},
-            {:multiple => true, :id => "key"}) %>
-          </label>
+        <div>
+            <%= f.select :keywords,
+                @keywords.map{ |u| [u.keyword, u.id] },
+                { include_blank: true},
+                { class: 'chosen-select', :multiple => true, data: {:placeholder => "Seleccione tres palabras clave"}  }
+            %>
         </div>
         <% end %>
-        <script>
-        var last_valid_selection = null;
-        $('#key').change(function(event) {
-          if ($(this).val().length > 3) {
-            alert('Seleccione solo 3 palabras clave');
-            $(this).val(last_valid_selection);
-          } else {
-            last_valid_selection = $(this).val();
-          }
-        });
-        </script>
+        <br>
+
 
         <div class="actions">
           <%= f.submit :"Crear publicación"%>

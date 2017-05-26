@@ -219,5 +219,5 @@ end
 
 appreq = ApplicationRequest.all
 appreq.each do |appl|
-  appl.update_attribute :created_at, (Faker::Number.between(1,365)).days.ago
+  appl.update_attribute :created_at, (Faker::Number.between(1,1200)).days.ago
 end

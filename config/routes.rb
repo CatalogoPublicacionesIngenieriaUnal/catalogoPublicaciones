@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   get 'professors/dataDepartmentPie', :defaults => { :format => 'json' }
   get 'professors/dataGenderPie', :defaults => { :format => 'json' }
   get 'application_requests/dataRequestCreation', :defaults => { :format => 'json' }
+  get 'application_requests/dataRequestStateDateAp', :defaults => { :format => 'json' }
+  get 'application_requests/dataRequestStateDateRe', :defaults => { :format => 'json' }
 
   get 'application_requests/:id/new_evaluator/', to: 'application_requests#create_evaluator', as:  :add_evaluator
   get 'application_requests/:id/form_b', to: 'application_requests#form_b', as: :form_b

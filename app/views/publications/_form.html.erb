@@ -55,13 +55,14 @@
         <hr width=70% align="center">
         <div><span>Seleccione a los docentes que hacen parte de la publicación: </span></div>
         <br>
+        <%= fields_for(@proffes) do |ab| %>
         <div>
-            <%= f.select :professors,
-                Professor.all.map{ |u| ["#{u.first_name}#{" "}#{u.last_name}", u.id] },
-                { include_blank: true},
-                { class: 'chosen-select', :multiple => true, data: {:placeholder => "Seleccione los docentes"} }
+            <%= collection_select(:professors, :ids, @professors, :id, :full_name, {selected: nil, include_blank: true},
+                {class: 'chosen-select', :multiple => true, :id => "proffesor", data: {:placeholder => "Seleccione los docentes"}})
             %>
         </div>
+        <% end %>
+
         <div class="form-row">
           <hr width=70% align="center">
           <center>
@@ -71,16 +72,12 @@
         <br>
         <%= fields_for(@words) do |ab| %>
         <div>
-            <%= f.select :keywords,
-                @keywords.map{ |u| [u.keyword, u.id] },
-                { include_blank: true},
-                { class: 'chosen-select', :multiple => true, data: {:placeholder => "Seleccione tres palabras clave"}  }
+            <%= collection_select(:keywords, :ids, @keywords, :id, :keyword, {selected: nil, include_blank: true},
+                {class: 'chosen-select', :multiple => true, :id => "key", data: {:placeholder => "Seleccione tres palabras clave"}})
             %>
         </div>
         <% end %>
         <br>
-
-
         <div class="actions">
           <%= f.submit :"Crear publicación"%>
         </div>

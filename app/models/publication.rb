@@ -52,7 +52,6 @@ class Publication < ApplicationRecord
     application_request.attatchments.where(category: att_category).first unless att_category == :concepto_editorial_b
   end
 
-
   scope :publications_by_professor, -> (professor_id){
     includes(:professor_publications,:professors).where(professors:{id: professor_id})
   }

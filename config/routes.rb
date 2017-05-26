@@ -30,8 +30,6 @@ Rails.application.routes.draw do
 
   patch 'publications/:id/evaluate', to: 'publications#evaluate', as: :publication_to_evaluation
   get 'publications/statistics', to: 'publications#statistics', :as => :statistics
-  get 'publications/dataCateg', :defaults => { :format => 'json' }
-  get 'publications/dataTheme', :defaults => { :format => 'json' }
   get 'publications/dataCategPie', :defaults => { :format => 'json' }
   get 'publications/dataThemePie', :defaults => { :format => 'json' }
   get 'publications/dataStatusPie', :defaults => { :format => 'json' }

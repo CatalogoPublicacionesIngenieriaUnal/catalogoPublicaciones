@@ -82,6 +82,8 @@ Rails.application.routes.draw do
   get 'under_construction', to: 'home#under_construction', as:  :under_construction
   get 'publications/:id/create_carta_de_presentacion', to: 'publications#create_carta_de_presentacion', as:  :create_carta_de_presentacion
   get 'publications/:id/create_concepto_editorial', to: 'publications#create_concepto_editorial', as:  :create_concepto_editorial
+  get 'application_requests/:id/create_clasificacion_editorial', to: 'application_requests#create_clasificacion_editorial', as:  :create_clasificacion_editorial
+  get 'evaluators/home/create_evaluation', to: 'evaluators#create_evaluation', as:  :create_evaluation
 
   # Rutas para el sidebar
   get 'info', to: "home#index"

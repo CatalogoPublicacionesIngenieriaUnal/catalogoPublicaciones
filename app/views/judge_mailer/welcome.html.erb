@@ -34,11 +34,11 @@
     <p>
       <%=t('judge_mailer.welcome.credentials_1')%><br>
       <%= t('judge_mailer.welcome.credentials_2', username: @evaluator.email) %>.<br>
-      <%= t('judge_mailer.welcome.credentials_3', password: @evaluator.code) %>.<br>
+      <%= t('judge_mailer.welcome.credentials_3', password: @password) %>.<br>
     </p>
     <p>
-      <%= t('judge_mailer.welcome.evaluation_1', evaluation: 'Esta') %><br>.
-      <%= t('judge_mailer.welcome.evaluation_2')%><a><href = "localhost:3000/evaluate/id/<%=@evaluator.url_token%>"><%= t('judge_mailer.welcome.evaluation_3')%></a><br>
+      <%= t('judge_mailer.welcome.evaluation_1', evaluation: Publication.find(Evaluation.find(@evaluator.evaluation_id).application_request_id).title) %>.<br>
+      <%= t('judge_mailer.welcome.evaluation_2')%> <a><href = "localhost:3000/evaluators/sign_in"><%= t('judge_mailer.welcome.evaluation_3')%></a><br>
       </p>
       <p> <%= t('judge_mailer.welcome.greeting_2') %></p>
       <p><%= t('judge_mailer.welcome.faculty') %></p>

@@ -1,6 +1,9 @@
 class Evaluator < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  @@mailer_password = ""
+
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable
   belongs_to :evaluation
   belongs_to :language
@@ -17,6 +20,8 @@ class Evaluator < ApplicationRecord
 
   before_validation :set_password, on: :create
 
+
+
   def self.evaluator_by_email(email)
     where(email: email).first
   end
@@ -25,6 +30,9 @@ class Evaluator < ApplicationRecord
     first_name + ' ' + last_name
   end
 
+  def self.mailer(evaluator)
+    JudgeMailer.welcome(evaluator,@@mailer_password).deliver_now
+  end
 
   private
 
@@ -33,5 +41,8 @@ class Evaluator < ApplicationRecord
     puts "Contraseña = #{generated_password}"
     self.password = generated_password
     self.first_update = false
+    @@mailer_password = generated_password
   end
+
+
 end

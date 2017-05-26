@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require_relative 'support/controller_macros'
 require 'devise'
+require 'chosen-rails/rspec'
 include Warden::Test::Helpers
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -62,7 +63,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include Warden::Test::Helpers
-
+  config.include Chosen::Rspec::FeatureHelpers, type: :feature
   config.after :each do
    Warden.test_reset!
   end

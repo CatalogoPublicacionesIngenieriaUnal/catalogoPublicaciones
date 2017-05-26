@@ -43,6 +43,10 @@ class Professor < ApplicationRecord
     'Escuela doctoral': 5
   }
 
+  def full_name
+    "#{first_name}#{" "}#{last_name}"
+  end
+
   def ldap_before_save
      self.email = Devise::LDAP::Adapter.get_ldap_param(self.username,"mail").first
      self.first_name = Devise::LDAP::Adapter.get_ldap_param(self.username,"givenname").first

@@ -19,3 +19,5 @@
 //= require tinymce-jquery
 //= require app.js
 //= require d3
+//= require chosen-jquery
+//= require scaffold

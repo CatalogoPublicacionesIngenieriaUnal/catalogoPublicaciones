@@ -53,11 +53,13 @@
             <%= f.select :theme_id, options_from_collection_for_select(@themes, "id", "theme"),:prompt => "Seleccione una opción" %>
           </label>
         </div>
-        <div class="form-row">
-          <label>
-            <span>Profesores</span>
-            <%= f.select :professors, options_from_collection_for_select(@professors, "id", "first_name"),:prompt => "Seleccione una opción" %>
-          </label>
+        <div><span>Seleccione a los docentes que hacen parte de la publicación: </span></div>
+        <div>
+            <%= f.select :professors,
+                Professor.all.map{ |u| ["#{u.first_name}#{" "}#{u.last_name}", u.id] },
+                { include_blank: true},
+                { class: 'chosen-select', :multiple => true, data: { :placeholder => "Profesores" }}
+            %>
         </div>
         <div class="form-row">
           <hr width=70% align="center">

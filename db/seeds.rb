@@ -151,9 +151,73 @@ for i in 0..20
     degree_institution: Faker::University.name )
   end
 
-  appreq = ApplicationRequest.all
-  appreq.each do |appl|
-    appl.update_attribute :created_at, (Faker::Number.between(1,365)).days.ago
+end
+
+
+for i in 0..40
+  professor = Professor.find( Faker::Number.between(1, 51))
+
+  publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
+  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
+
+  application_requests = ApplicationRequest.create!(state: :'Aprobado', professor_id: professor.id,
+  publication_id: publication.id, author_topic: Faker::Book.genre,
+  author_target_audience: Faker::Demographic.demonym, author_positioning_strategies: Faker::HarryPotter.quote,
+  author_academic_appreciation: Faker::HarryPotter.quote, author_published_titles: Faker::Lorem.paragraph,
+  author_final_recomendation: Faker::Hipster.paragraph, final_concept_date: Faker::Date.between(4.years.ago, Date.today))
+
+  ProfessorPublication.create!(publication_id: publication.id,
+  professor_id: professor.id)
+
+  for i in 0..Faker::Number.between(0, 5)
+    ProfessorPublication.create!(publication_id: publication.id,
+    professor_id: professor.id)
   end
 
+  for j in 0..1
+    evaluation = Evaluation.create!(state: :aprobado, application_request_id: application_requests.id)
+    evaluator = Evaluator.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,
+    email: Faker::Internet.unique.email, contact_number: Faker::Number.number(10),
+    language_id: Faker::Number.between(1, 6), evaluation_id: evaluation.id ,position: Faker::Job.title,
+    institution: Faker::Company.name, degree: Faker::Company.profession,
+    degree_institution: Faker::University.name)
+  end
+
+end
+
+for i in 0..100
+  professor = Professor.find( Faker::Number.between(1, 51))
+
+  publication = Publication.create!(title:Faker::Book.title, abstract: Faker::Lorem.paragraph,
+  category_id: Faker::Number.between(1, 4), theme_id:Faker::Number.between(1, 20))
+
+  application_requests = ApplicationRequest.create!(state: :'Rechazado', professor_id: professor.id,
+  publication_id: publication.id, author_topic: Faker::Book.genre,
+  author_target_audience: Faker::Demographic.demonym, author_positioning_strategies: Faker::HarryPotter.quote,
+  author_academic_appreciation: Faker::HarryPotter.quote, author_published_titles: Faker::Lorem.paragraph,
+  author_final_recomendation: Faker::Hipster.paragraph, final_concept_date: Faker::Date.between(4.years.ago, Date.today))
+
+  ProfessorPublication.create!(publication_id: publication.id,
+  professor_id: professor.id)
+
+  for i in 0..Faker::Number.between(0, 5)
+    ProfessorPublication.create!(publication_id: publication.id,
+    professor_id: professor.id)
+  end
+
+  for j in 0..1
+    evaluation = Evaluation.create!(state: :aprobado, application_request_id: application_requests.id)
+    evaluator = Evaluator.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,
+    email: Faker::Internet.unique.email, contact_number: Faker::Number.number(10),
+    language_id: Faker::Number.between(1, 6), evaluation_id: evaluation.id ,position: Faker::Job.title,
+    institution: Faker::Company.name, degree: Faker::Company.profession,
+    degree_institution: Faker::University.name )
+  end
+
+end
+
+
+appreq = ApplicationRequest.all
+appreq.each do |appl|
+  appl.update_attribute :created_at, (Faker::Number.between(1,365)).days.ago
 end

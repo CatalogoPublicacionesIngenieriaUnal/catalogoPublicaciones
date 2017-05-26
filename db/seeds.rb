@@ -27,6 +27,14 @@ for i in 0..100
   Keyword.create(keyword: Faker::Job.field)
 end
 
+p = Professor.new({username: "professor", first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name, email: Faker::Internet.unique.email,
+  contact_number: Faker::Number.number(10),is_authorized: Faker::Boolean.boolean(0.8),
+  gender: Faker::Number.between(1,2), department: Faker::Number.between(1, 6),
+  password: "123456", password_confirmation: "123456"})
+
+p.save!
+
 for i in 0..50
   Professor.create!(username: Faker::Internet.unique.user_name, first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name, email: Faker::Internet.unique.email,

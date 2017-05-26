@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $(".chosen-input").chosen();
   tinymce.remove();
   tinymce.init({
     selector:'#post_content',
@@ -6,6 +7,5 @@ $(document).ready(function(){
     plugins : 'advlist template searchreplace spellchecker autolink link image lists charmap hr table textcolor codesample preview pagebreak wordcount emoticons insertdatetime autoresize',
     statusbar: false,
     menubar: false
-
   });
 });

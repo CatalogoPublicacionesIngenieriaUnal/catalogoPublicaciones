@@ -66,7 +66,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_deliveries = true
 
-  config.i18n.default_locale = 'en'
-  config.i18n.available_locales = [:en, :es]
+  config.i18n.default_locale = :es
+  config.i18n.available_locales = [:es, :en]
 
 end

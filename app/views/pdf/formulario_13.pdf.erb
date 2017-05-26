@@ -17,12 +17,12 @@
 	<p><br><br></p>
 	<p>
 		Yo, <b><%= current_professor.first_name%> <%= current_professor.last_name %></b>,
-		mayor de edad, domiciliado en <b><%=%></b>, identificado con <b><%= current_professor.identity_document_type %></b>
+		mayor de edad, domiciliado en <b>Bogotá D.C.</b>, identificado con <b><%= current_professor.identity_document_type %></b>
 		número <b><%= current_professor.identity_document %></b> expedida en
 		<b><%= current_professor.identity_document_issued %></b>, actuando en nombre y
-		representación propia, y que en adelante se conocerá como el AUTOR
-		del manuscrito titulado <b><%= @publication.title %></b>, por medio del presente
-		documento pongo a disposición de <b><%= Administrator.find(1).first_name %>
+		representación propia, y que en adelante se conocerá como el AUTOR del manuscrito
+		titulado <b><%= @publication.title %></b>, por medio del presente documento
+		pongo a disposición de <b><%= Administrator.find(1).first_name %>
 		<%= Administrator.find(1).last_name %></b> el manuscrito ya mencionado a fin de
 		que el mismo sea evaluado por parte del comité editorial, para luego precisar
 		los términos en que se realizará la publicación. Dichos términos quedarán
@@ -45,35 +45,24 @@
 		del autor(es) o cuentan con las autorizaciones escritas para ser incluidos en el libro.<br>
 	</p>
 	<p>
-		Dada en Bogotá, a los <%=Date.today.day.to_words%>
-		  (<%=Date.today.day%>) días del mes <%= Date.today.strftime("%B") %> de <%=Date.today.year%>.<br>
+		Dada en Bogotá, a los <%=t(Date.today.day.to_words)%>
+		  (<%=Date.today.day%>) días del mes <%= Date.today.month %> de <%=Date.today.year%>.<br>
 	</p>
 	<p>
 		Cordialmente,<br>
 	</p>
 	<p>
-		Autor 1.<br>
-		Nombre:<%= current_professor.first_name%> <%= current_professor.last_name%><br>
-		No. de documento de identidad: <%= current_professor.identity_document %><br>
-		Facultad y dependencia: <%= current_professor.department %><br>
-		Cargo: <%=  %><br>
-		Teléfono: <%= current_professor.contact_number %><br>
-		E-mail: <%= current_professor.email %><br>
+		<b>Autor 1.</b><br>
+		<b>Nombre:</b> <%= current_professor.first_name%> <%= current_professor.last_name%><br>
+		<b>No. de documento de identidad:</b> <%= current_professor.identity_document %><br>
+		<b>Facultad y dependencia:</b> <%= current_professor.department %><br>
+		<b>Cargo:</b> <%= current_professor.position %><br>
+		<b>Teléfono:</b> <%= current_professor.contact_number %><br>
+		<b>E-mail:</b> <%= current_professor.email %><br>
 	</p>
 	<p>
-		Firma: ______________________<br>
-	</p>
-	<p>
-		Autor 2.<br>
-		Nombre: _______________________________________________<br>
-		No. de documento de identidad: __________________________<br>
-		Facultad y dependencia: _________________________________<br>
-		Cargo: _________________________________________________<br>
-		Teléfono: ______________________________________________<br>
-		E-mail: ________________________________________________<br>
-	</p>
-	<p>
-		Firma: ______________________<br>
+		<br><br>
+		<b>Firma:</b> ______________________<br>
 	</p>
 </body>
 </html>

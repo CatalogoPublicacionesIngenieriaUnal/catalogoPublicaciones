@@ -19,23 +19,6 @@ class PublicationsController < ApplicationController
     else
       @publications = Publication.search(params[:search],params[:category]).page(params[:page]).per_page(5)
     end
-    respond_to do |format|
-      format.html
-      format.json
-      format.pdf do
-        render template: 'pdf/formulario_15', pdf:'formulario_15', page_size: 'Letter',
-          header: {
-            html: {
-              template: 'pdf/headers/header_formulario_15'
-            }
-          },
-          margin:  {  top: 40,
-                      bottom: 30,
-                      left: 30,
-                      right: 30
-                    }
-      end
-    end
   end
 
   # GET /publications/1
@@ -57,6 +40,7 @@ class PublicationsController < ApplicationController
     @words = @publication.keyword_publications.build
     @current_professor = current_professor
     @professors = Professor.all
+    @proffes = @publication.professor_publications.build
   end
 
   # GET /publications/1/edit
@@ -75,6 +59,13 @@ class PublicationsController < ApplicationController
         @publication.keyword_publications.build(keyword_id: keyword)
       end
     end
+
+    params[:professors][:ids].each do |proffesor|
+      unless proffesor.blank?
+        @publication.professor_publications.build(professor_id: proffesor)
+      end
+    end
+
     respond_to do |format|
       if @publication.save
         @publication.professors << current_professor
@@ -333,6 +324,7 @@ class PublicationsController < ApplicationController
     @professors = Professor.all
     @keywords = Keyword.all
     @words = @publication.keyword_publications.build
+    @proffes = @publication.professor_publications.build
   end
 
   def set_attributes_edit
@@ -348,7 +340,7 @@ class PublicationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def publication_params
-    params.require(:publication).permit(:title, :abstract, :theme_id, :category_id, :keyword_ids, :application_request_id)
+    params.require(:publication).permit(:title, :abstract, :theme_id, :category_id, :keyword_ids, :application_request_id, :publications_ids)
   end
 
   def my_publication?

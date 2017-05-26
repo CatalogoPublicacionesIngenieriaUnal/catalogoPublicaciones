@@ -67,113 +67,113 @@
     </tr>
     <tr>
       <th>a) Tema</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%= EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:1).score %></th>
+			<th><%= EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:1).remark%></th>
     </tr>
     <tr>
       <th>b) Tipo de manuscrito</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:2).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:2).remark%></th>
     </tr>
     <tr>
       <th>c) Distribución textual</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:3).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:3).remark%></th>
     </tr>
     <tr>
       <th>d) Calidad de inédito del manuscrito</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:4).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:4).remark%></th>
     </tr>
 		<tr>
       <th>e) Observaciones de los pares evaluadores académicos</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:5).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:5).remark%></th>
     </tr>
     <tr>
       <th colspan="3" id="title1">2.	Adecuación a la pauta editorial de la Facultad (Manual editorial)</th>
     </tr>
 		<tr>
       <th>a) Índices analíticos</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:6).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:6).remark%></th>
     </tr>
 		<tr>
       <th>b) Sistema de citación</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:7).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:7).remark%></th>
     </tr>
 		<tr>
       <th>c) Referencias cruzadas</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:8).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:8).remark%></th>
     </tr>
 		<tr>
       <th>d) corrección de estilo</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:9).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:9).remark%></th>
     </tr>
 		<tr>
       <th>e) Idioma extranjero</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:10).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:10).remark%></th>
     </tr>
 		<tr>
       <th>f) Material gráfico</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:11).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:11).remark%></th>
     </tr>
 		<tr>
       <th>g) Derechos de reproducción y/o de traducción </th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:12).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:12).remark%></th>
     </tr>
 		<tr>
       <th>h) Cesión de derechos patrimoniales</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:13).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:13).remark%></th>
     </tr>
 		<tr>
       <th>i) Extensión del manuscrito</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:14).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:14).remark%></th>
     </tr>
 		<tr>
       <th colspan="3" id="title1">3.	Viabilidad editorial, económica y comercial</th>
     </tr>
 		<tr>
       <th>a) Colección y medio de publicación</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:15).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:15).remark%></th>
     </tr>
 		<tr>
       <th>b) Público objetivo y nichos de mercado</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:16).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:16).remark%></th>
     </tr>
 		<tr>
       <th>c) Tiraje sugerido</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:17).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:17).remark%></th>
     </tr>
 		<tr>
       <th>d) Evaluación de mercado (libros afines de otros sellos editoriales)</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:18).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:18).remark%></th>
     </tr>
 		<tr>
       <th>e) Posible coedición</th>
-      <th><%=%></th>
-			<th><%=%></th>
+      <th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:19).score%></th>
+			<th><%=EdConAppRequest.find_by(application_request_id: @application_request.id, editorial_concept_criterium_id:19).remark%></th>
     </tr>
   </table>
   <p>
-    Recomendación final:
+    Recomendación adicional:
   </p>
 
 	<table id="table">
 		<tr>
-			<th style="text-align:justify">Referenciar otros títulos publicados, con características similares al manuscrito, que se encuentren disponibles comercialmente Recomendación final: (utilice este espacio si desea brindar aclaraciones para la publicación) </th>
+			<th style="text-align:justify"><%=@application_request.editorial_aditional_recomendation%> </th>
 		</tr>
 	</table>
 
